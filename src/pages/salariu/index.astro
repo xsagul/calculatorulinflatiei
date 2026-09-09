@@ -1,0 +1,191 @@
+---
+import Baza from '@/layouts/Baza.astro';
+import CalculatorSalariu from '@/components/CalculatorSalariu.astro';
+import { calculeazaSalariu, deducerePersonala, inceputRegim, REGIMURI, REGIM_CURENT } from '@/lib/salariu';
+import { converteste, ULTIMA_LUNA, etichetaLuna, numeLuna } from '@/lib/inflatie';
+
+const R = REGIM_CURENT;
+const anterior = REGIMURI[1];
+const startCurent = inceputRegim(R);
+const actualizat = etichetaLuna(ULTIMA_LUNA);
+
+const lei = (n: number, z = 0) =>
+  n.toLocaleString('ro-RO', { minimumFractionDigits: z, maximumFractionDigits: z });
+
+// Grila de salarii uzuale. Fiecare rand duce la pagina lui, asa ca tabelul e si
+// raspuns pe loc, si harta a sectiunii.
+const uzuale = [R.salariulMinim, 5000, 6000, 7000, 8000, 10000, 12000, 15000, 20000]
+  .map((brut) => ({ brut, r: calculeazaSalariu({ brut }, R) }));
+
+// Cele patruzeci de praguri: un leu in plus la brut, mai putin in mana.
+const praguri: { brut: number; pierdere: number }[] = [];
+for (let brut = R.salariulMinim; brut <= R.salariulMinim + 2000; brut++) {
+  const acum = calculeazaSalariu({ brut }, R).net;
+  const inainte = calculeazaSalariu({ brut: brut - 1 }, R).net;
+  if (acum < inainte) praguri.push({ brut, pierdere: inainte - acum });
+}
+const pragMic = praguri[1];
+
+// Ce diferenta a facut trecerea de la 1 iulie 2026, la acelasi brut.
+const laMinimVechi = calculeazaSalariu({ brut: anterior.salariulMinim }, anterior);
+const laMinimNou = calculeazaSalariu({ brut: R.salariulMinim }, R);
+
+// Legatura cu restul site-ului: netul de azi, masurat in preturile de atunci.
+const netMediu = calculeazaSalariu({ brut: 8000 }, R).net;
+const acumCinciAni = { an: ULTIMA_LUNA.an - 5, luna: ULTIMA_LUNA.luna };
+const netAtunci = converteste(netMediu, ULTIMA_LUNA, acumCinciAni).echivalent;
+
+const intrebari = [
+  {
+    q: `Cum se calculează salariul net din brut în ${ULTIMA_LUNA.an}?`,
+    a: `Din brut se scad, în ordine, CAS de 25% și CASS de 10%. Din ce rămâne se scade deducerea personală, dacă se acordă, și abia pe restul se aplică impozitul pe venit de 10%. Netul e brutul minus cele trei rețineri. Angajatorul mai plătește peste brut o contribuție asiguratorie pentru muncă de 2,25%, care nu se vede în net, dar intră în costul lui.`,
+  },
+  {
+    q: 'Ce este deducerea personală și cine o primește?',
+    a: `Este suma scoasă din baza impozitului pentru salariile mici și mijlocii. Pornește de la 20% din salariul minim — ${lei(deducerePersonala(R.salariulMinim, R).deBaza)} lei acum — și crește cu cinci puncte procentuale pentru fiecare persoană aflată în întreținere. Scade cu jumătate de punct la fiecare tranșă de 50 de lei peste salariul minim și se stinge complet peste ${lei(R.salariulMinim + 2000)} lei brut.`,
+  },
+  {
+    q: 'De ce un leu în plus la brut îmi poate scădea netul?',
+    a: `Pentru că deducerea personală scade în trepte, nu continuu. La fiecare 50 de lei peste salariul minim se pierd 0,5% din salariul minim din deducere, adică ${lei(deducerePersonala(R.salariulMinim, R).deBaza * 0.025, 1)} lei. Impozitul crește cu a zecea parte din asta, în timp ce brutul a crescut cu un singur leu. Există ${praguri.length} astfel de praguri între ${lei(R.salariulMinim)} și ${lei(R.salariulMinim + 2000)} lei brut.`,
+  },
+  {
+    q: `Cât este salariul minim net în ${ULTIMA_LUNA.an}?`,
+    a: `La un brut de ${lei(R.salariulMinim)} lei, netul este ${lei(laMinimNou.net)} lei. Se aplică facilitatea prin care ${lei(R.sumaNeimpozabila)} lei din brut nu intră în baza de calcul al contribuțiilor și al impozitului. Costul total pentru angajator este ${lei(laMinimNou.costAngajator)} lei.`,
+  },
+  {
+    q: 'Cum se impozitează tichetele de masă?',
+    a: 'Intră în baza de calcul al CASS și al impozitului pe venit, dar nu și în cea de CAS și nici în contribuția plătită de angajator. Salariatul primește valoarea întreagă în tichete, însă taxele aferente se rețin din salariul în bani.',
+  },
+];
+
+const schema = {
+  '@type': 'FAQPage',
+  mainEntity: intrebari.map((i) => ({
+    '@type': 'Question',
+    name: i.q,
+    acceptedAnswer: { '@type': 'Answer', text: i.a },
+  })),
+};
+---
+
+<Baza
+  titlu={`Calculator salariu net ${ULTIMA_LUNA.an} — din brut în net și invers`}
+  descriere={`Calculează salariul net din brut sau brutul din net, cu deducerea personală, tichetele de masă și costul total al angajatorului. Cotele în vigoare în ${R.eticheta}, salariul minim ${lei(R.salariulMinim)} lei.`}
+  cale="/salariu/"
+  schema={schema}
+>
+  <div class="invelis sus">
+    <p class="eticheta">Salarii</p>
+    <h1>Calculator salariu net {ULTIMA_LUNA.an}</h1>
+    <p class="introducere">
+      Din brut în net și înapoi, cu deducerea personală calculată pe scara reală, nu rotunjită.
+      Cotele în vigoare în {R.eticheta}, cu salariul minim la {lei(R.salariulMinim)} lei.
+    </p>
+
+    <CalculatorSalariu brut={5000} regim={R} titlu="Cât rămâne din salariul brut" />
+
+    <h2>Salariile cerute cel mai des</h2>
+    <p>
+      Fiecare rând are pagina lui, cu defalcarea completă și cu ce mai cumpără suma aceea față de
+      anii trecuți.
+    </p>
+    <div class="derulabil">
+      <table>
+        <thead>
+          <tr>
+            <th>Brut</th>
+            <th class="num">Net</th>
+            <th class="num">Rețineri</th>
+            <th class="num">Cost angajator</th>
+            <th class="num">Ajunge la tine</th>
+          </tr>
+        </thead>
+        <tbody>
+          {uzuale.map(({ brut, r }) => (
+            <tr>
+              <td><a href={`/salariu/${brut}-lei-brut/`}>{lei(brut)} lei</a></td>
+              <td class="num cifre"><strong>{lei(r.net)}</strong></td>
+              <td class="num cifre">{lei(r.retineri)}</td>
+              <td class="num cifre">{lei(r.costAngajator)}</td>
+              <td class="num cifre">{lei(r.procentPastrat, 1)}%</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Cele {praguri.length} praguri unde un leu în plus te lasă cu mai puțin</h2>
+    <p>
+      Deducerea personală nu scade lin, ci în trepte de 50 de lei. La fiecare treaptă pierzi
+      0,5% din salariul minim din deducere — {lei(deducerePersonala(R.salariulMinim, R).deBaza * 0.025, 1)} lei —
+      așa că impozitul crește cu mai mult decât a crescut brutul. Între {lei(R.salariulMinim)} și
+      {lei(R.salariulMinim + 2000)} lei brut există {praguri.length} valori la care un leu în plus
+      negociat înseamnă net mai mic.
+    </p>
+    <p>
+      La {lei(pragMic.brut)} lei brut, de pildă, pierzi {lei(pragMic.pierdere)} lei net față de
+      {lei(pragMic.brut - 1)} lei brut. Cel mai adânc prag e chiar primul, la un leu peste salariul
+      minim, unde se pierde și suma neimpozabilă: netul scade cu
+      {lei(praguri[0].pierdere)} lei dintr-odată.
+    </p>
+    <p class="sursa">
+      Nu e o eroare de calcul, e felul în care e scrisă scara din articolul 77 din Codul Fiscal.
+      Merită știut înainte de o negociere.
+    </p>
+
+    <h2>Ce s-a schimbat de la 1 {numeLuna(startCurent.luna)} {startCurent.an}</h2>
+    <p>
+      Salariul minim a urcat de la {lei(anterior.salariulMinim)} la {lei(R.salariulMinim)} lei brut,
+      dar în același timp suma neimpozabilă a scăzut de la {lei(anterior.sumaNeimpozabila)} la
+      {lei(R.sumaNeimpozabila)} lei. Creșterea brută de {lei(R.salariulMinim - anterior.salariulMinim)} lei
+      s-a transformat într-un plus net de doar {lei(laMinimNou.net - laMinimVechi.net)} lei.
+    </p>
+    <div class="derulabil">
+      <table>
+        <thead>
+          <tr><th>La salariul minim</th><th class="num">{anterior.eticheta}</th><th class="num">{R.eticheta}</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Brut</td><td class="num cifre">{lei(laMinimVechi.brut)}</td><td class="num cifre">{lei(laMinimNou.brut)}</td></tr>
+          <tr><td>Sumă neimpozabilă</td><td class="num cifre">{lei(laMinimVechi.neimpozabil)}</td><td class="num cifre">{lei(laMinimNou.neimpozabil)}</td></tr>
+          <tr><td>Net</td><td class="num cifre"><strong>{lei(laMinimVechi.net)}</strong></td><td class="num cifre"><strong>{lei(laMinimNou.net)}</strong></td></tr>
+          <tr><td>Cost angajator</td><td class="num cifre">{lei(laMinimVechi.costAngajator)}</td><td class="num cifre">{lei(laMinimNou.costAngajator)}</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="sursa">
+      Detaliat, pe <a href="/salariu-minim/">pagina salariului minim</a>.
+    </p>
+
+    <h2>Netul e o cifră. Puterea lui de cumpărare e altceva</h2>
+    <p>
+      Un salariu de {lei(netMediu)} lei net azi cumpără cât cumpărau {lei(netAtunci)} lei în
+      {etichetaLuna(acumCinciAni)}. Diferența nu apare pe niciun fluturaș de salariu, dar e
+      singura care contează când compari două oferte la ani distanță.
+    </p>
+    <p>
+      Asta calculează <a href="/">calculatorul de inflație</a> al site-ului, pe indicele
+      prețurilor de consum publicat lunar de Institutul Național de Statistică, actualizat până
+      în {actualizat}.
+    </p>
+
+    <h2>Întrebări</h2>
+    <dl class="intrebari">
+      {intrebari.map((i) => (
+        <>
+          <dt>{i.q}</dt>
+          <dd>{i.a}</dd>
+        </>
+      ))}
+    </dl>
+  </div>
+</Baza>
+
+<style>
+  .sus { padding-block: var(--sp-8) var(--sp-12); }
+  .introducere { font-size: 1.1rem; color: var(--cerneala-slaba); margin-bottom: var(--sp-8); }
+  h1 { margin-top: var(--sp-2); }
+  caption { caption-side: bottom; text-align: left; padding-top: var(--sp-2); }
+  .intrebari dt { font-weight: 600; margin-top: var(--sp-6); }
+  .intrebari dd { margin: var(--sp-2) 0 0; max-width: var(--lat-text); color: var(--cerneala-slaba); }
+</style>

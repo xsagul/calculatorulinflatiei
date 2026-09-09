@@ -2,6 +2,11 @@
 import Baza from '@/layouts/Baza.astro';
 import Calculator from '@/components/Calculator.astro';
 import { converteste, inflatieAnuala, ULTIMA_LUNA, etichetaLuna, PRIMA_LUNA } from '@/lib/inflatie';
+import { calculeazaSalariu, REGIM_CURENT } from '@/lib/salariu';
+
+const SALARIU_EXEMPLU = 8000;
+const salariuExemplu = calculeazaSalariu({ brut: SALARIU_EXEMPLU }, REGIM_CURENT);
+const salariuMinim = calculeazaSalariu({ brut: REGIM_CURENT.salariulMinim }, REGIM_CURENT);
 
 const actualizat = etichetaLuna(ULTIMA_LUNA);
 const anCurent = ULTIMA_LUNA.an;
@@ -128,6 +133,20 @@ const schema = {
     <p class="sursa">
       Seria completă, din {etichetaLuna(PRIMA_LUNA)}, e pe <a href="/date/">pagina de date</a>,
       descărcabilă în CSV și JSON.
+    </p>
+
+    <h2>Cealaltă jumătate a întrebării</h2>
+    <p>
+      Prețurile îți iau din bani înainte să îi cheltuiești. Statul îi ia înainte să îi primești.
+      Un salariu de {lei(SALARIU_EXEMPLU, 0)} lei brut înseamnă {lei(salariuExemplu.net, 0)} lei net,
+      iar angajatorul plătește pentru el {lei(salariuExemplu.costAngajator, 0)} lei — din care
+      ajung la tine {lei(salariuExemplu.procentPastrat, 1)}%.
+    </p>
+    <p>
+      <a href="/salariu/">Calculatorul de salariu net</a> face socoteala pentru orice brut, cu
+      deducerea personală pe scara reală și cu tichetele de masă. Iar
+      <a href="/salariu-minim/">salariul minim</a> — {lei(salariuMinim.brut, 0)} lei brut,
+      {lei(salariuMinim.net, 0)} lei net — are pagina lui, cu tot istoricul convertit în lei de azi.
     </p>
 
     <h2>Întrebări</h2>

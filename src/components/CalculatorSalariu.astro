@@ -1,0 +1,257 @@
+---
+// A doua insula de interactivitate: brutul in net si invers.
+//
+// Ca si la inflatie, pagina se randeaza pe server cu un rezultat real. Cine
+// ajunge dintr-o cautare pe „5.000 lei brut" vede cifra inainte sa atinga ceva,
+// iar Google indexeaza un raspuns, nu un formular gol.
+//
+// SPRE DEOSEBIRE DE CALCULATORUL DE INFLATIE, aici scriptul importa exact
+// aceeasi functie pe care a folosit-o si serverul. Calculul de inflatie are
+// nevoie de o serie de 400 de numere si isi rescrie logica in browser; asta e
+// pura si incape in cativa octeti, deci nu exista niciun motiv sa existe doua
+// implementari care pot ajunge sa nu mai fie de acord.
+import { calculeazaSalariu, REGIMURI, REGIM_CURENT, type Regim } from '@/lib/salariu';
+
+interface Props {
+  brut?: number;
+  regim?: Regim;
+  /** Titlul sectiunii. Paginile generate isi pun propriul H1 deasupra. */
+  titlu?: string;
+  nivel?: 'h1' | 'h2';
+}
+const { brut = 5000, regim = REGIM_CURENT, titlu = 'Cât rămâne din salariul brut', nivel = 'h2' } = Astro.props;
+
+const r = calculeazaSalariu({ brut }, regim);
+const lei = (n: number, z = 0) =>
+  n.toLocaleString('ro-RO', { minimumFractionDigits: z, maximumFractionDigits: z });
+---
+
+<section class="cs" aria-labelledby="cs-titlu">
+  {nivel === 'h1' ? <h1 id="cs-titlu">{titlu}</h1> : <h2 id="cs-titlu">{titlu}</h2>}
+
+  <form class="form" id="cs-form">
+    <div class="camp">
+      <label for="cs-suma">Salariul</label>
+      <div class="grup">
+        <input id="cs-suma" name="suma" type="number" inputmode="numeric" min="0" step="1" value={brut} required />
+        <span class="unitate">lei</span>
+      </div>
+    </div>
+
+    <div class="camp">
+      <label for="cs-sens">Suma introdusă e</label>
+      <select id="cs-sens" name="sens">
+        <option value="brut" selected>brută</option>
+        <option value="net">netă (calculează brutul)</option>
+      </select>
+    </div>
+
+    <div class="camp">
+      <label for="cs-regim">Perioada</label>
+      <select id="cs-regim" name="regim">
+        {REGIMURI.map((x) => (
+          <option value={x.cheie} selected={x.cheie === regim.cheie}>{x.eticheta}</option>
+        ))}
+      </select>
+    </div>
+
+    <button type="submit">Calculează</button>
+  </form>
+
+  <details class="optiuni">
+    <summary>Persoane în întreținere, tichete, vârstă</summary>
+    <div class="optiuni-grila">
+      <div class="camp">
+        <label for="cs-persoane">Persoane în întreținere</label>
+        <select id="cs-persoane" name="persoane">
+          {[0, 1, 2, 3, 4].map((n) => <option value={n}>{n === 4 ? '4 sau mai multe' : n}</option>)}
+        </select>
+      </div>
+      <div class="camp">
+        <label for="cs-copii">Copii școlarizați</label>
+        <select id="cs-copii" name="copii">
+          {[0, 1, 2, 3, 4].map((n) => <option value={n}>{n}</option>)}
+        </select>
+      </div>
+      <div class="camp">
+        <label for="cs-tichete">Tichete de masă, pe lună</label>
+        <div class="grup">
+          <input id="cs-tichete" name="tichete" type="number" inputmode="numeric" min="0" step="10" value="0" />
+          <span class="unitate">lei</span>
+        </div>
+      </div>
+      <label class="bifa">
+        <input id="cs-sub26" name="sub26" type="checkbox" />
+        <span>Am sub 26 de ani</span>
+      </label>
+    </div>
+  </details>
+
+  <output class="rezultat" for="cs-suma cs-sens cs-regim">
+    <div class="col col-brut">
+      <span class="eticheta">Brut</span>
+      <strong class="cifra cifre" id="cs-brut">{lei(r.brut)} lei</strong>
+    </div>
+    <div class="sageata" aria-hidden="true">
+      <svg width="34" height="14" viewBox="0 0 34 14" fill="none">
+        <path d="M0 7h30M24 1l6 6-6 6" stroke="var(--linie-tare)" stroke-width="1.5" />
+      </svg>
+    </div>
+    <div class="col col-net">
+      <span class="eticheta">Net, în mână</span>
+      <strong class="cifra cifre" id="cs-net">{lei(r.net)} lei</strong>
+    </div>
+  </output>
+
+  <p class="propozitie" id="cs-propozitie">
+    Din <strong class="cifre">{lei(r.costAngajator)} lei</strong> cât costă angajatorul, ajung la tine
+    <strong class="cifre">{lei(r.procentPastrat, 1)}%</strong>. Restul, {lei(r.totalTaxe)} lei, sunt
+    contribuții și impozit.
+  </p>
+
+  <div class="derulabil">
+    <table class="defalcare">
+      <caption class="sursa">Defalcarea lunară, în lei.</caption>
+      <tbody id="cs-tabel">
+        <tr><th scope="row">Salariu brut</th><td class="num cifre">{lei(r.brut)}</td></tr>
+        <tr class={r.neimpozabil ? '' : 'ascuns'}>
+          <th scope="row">Sumă neimpozabilă, la salariul minim</th>
+          <td class="num cifre">−{lei(r.neimpozabil)}</td>
+        </tr>
+        <tr><th scope="row">CAS, pensie (25%)</th><td class="num cifre">−{lei(r.cas)}</td></tr>
+        <tr><th scope="row">CASS, sănătate (10%)</th><td class="num cifre">−{lei(r.cass)}</td></tr>
+        <tr><th scope="row">Deducere personală</th><td class="num cifre">{lei(r.deducere.total)}</td></tr>
+        <tr><th scope="row">Impozit pe venit (10%)</th><td class="num cifre">−{lei(r.impozit)}</td></tr>
+        <tr class="total"><th scope="row">Net, în mână</th><td class="num cifre">{lei(r.net)}</td></tr>
+        <tr><th scope="row">CAM, plătit de angajator (2,25%)</th><td class="num cifre">{lei(r.cam)}</td></tr>
+        <tr class="total"><th scope="row">Cost total angajator</th><td class="num cifre">{lei(r.costAngajator)}</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="sursa">
+    Contract cu normă întreagă, la funcția de bază. Cotele sunt cele din Codul Fiscal;
+    deducerea personală se acordă până la salariul minim plus 2.000 lei.
+  </p>
+</section>
+
+<style>
+  .cs { background: var(--hartie-sus); border: 1px solid var(--linie); border-radius: var(--raza); padding: var(--sp-6); }
+  .cs > :global(h1), .cs > :global(h2) { margin-top: 0; font-size: clamp(1.3rem, 2.6vw, 1.7rem); }
+
+  .form { display: grid; gap: var(--sp-3); align-items: end; }
+  @media (min-width: 52rem) { .form { grid-template-columns: 1fr 1.2fr 1.2fr auto; } }
+
+  .camp { display: flex; flex-direction: column; gap: var(--sp-1); border: 0; padding: 0; margin: 0; min-width: 0; }
+  label { font-size: 0.8rem; font-weight: 600; color: var(--cerneala-slaba); }
+
+  .grup { display: flex; border: 1px solid var(--linie-tare); border-radius: var(--raza); overflow: hidden; }
+  .grup input { border: 0; }
+  .unitate {
+    display: flex; align-items: center; padding-inline: var(--sp-3);
+    background: var(--hartie); border-left: 1px solid var(--linie);
+    font-size: 0.8rem; font-weight: 600; color: var(--cerneala-slaba);
+  }
+
+  input, select {
+    font: inherit; font-size: 1rem; /* 16px: sub atat, iOS mareste pagina la focus */
+    padding: var(--sp-2) var(--sp-3); min-height: 2.75rem; width: 100%; min-width: 0;
+    background: var(--hartie-sus); color: var(--cerneala);
+    border: 1px solid var(--linie-tare); border-radius: var(--raza);
+  }
+  @media (min-width: 40rem) { input, select { font-size: 0.95rem; } }
+
+  button {
+    font: inherit; font-weight: 600; min-height: 2.75rem; padding-inline: var(--sp-6);
+    border: 0; border-radius: var(--raza); background: var(--cerneala); color: var(--hartie-sus); cursor: pointer;
+  }
+  button:hover { opacity: 0.9; }
+
+  .optiuni { margin-top: var(--sp-3); }
+  .optiuni summary { cursor: pointer; font-size: 0.9rem; color: var(--cerneala-slaba); }
+  .optiuni-grila { display: grid; gap: var(--sp-3); margin-top: var(--sp-3); }
+  @media (min-width: 40rem) { .optiuni-grila { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 60rem) { .optiuni-grila { grid-template-columns: repeat(4, 1fr); } }
+  .bifa { flex-direction: row; align-items: center; gap: var(--sp-2); display: flex; font-size: 0.9rem; align-self: end; min-height: 2.75rem; }
+  .bifa input { width: auto; min-height: 0; }
+
+  .rezultat { display: grid; gap: var(--sp-3); align-items: center; margin-top: var(--sp-6); }
+  @media (min-width: 34rem) { .rezultat { grid-template-columns: 1fr auto 1fr; } }
+  .col { display: flex; flex-direction: column; gap: var(--sp-1); padding: var(--sp-4); border-radius: var(--raza); }
+  .col-brut { background: var(--atunci-fundal); }
+  .col-net { background: var(--acum-fundal); }
+  .col-brut .cifra { color: var(--atunci); }
+  .col-net .cifra { color: var(--acum); }
+  .eticheta { font-size: 0.8rem; font-weight: 600; color: var(--cerneala-slaba); }
+  .cifra { font-size: clamp(1.5rem, 4.5vw, 2.1rem); font-family: var(--font-titlu); font-weight: 400; line-height: 1.1; }
+  .sageata { display: flex; justify-content: center; }
+  @media (max-width: 33.99rem) { .sageata svg { transform: rotate(90deg); } }
+
+  .propozitie { margin: var(--sp-4) 0 var(--sp-6); }
+
+  .defalcare th { font-weight: 400; text-align: left; }
+  .defalcare .total th, .defalcare .total td { font-weight: 600; border-top: 1px solid var(--linie-tare); }
+  .defalcare .ascuns { display: none; }
+  caption { caption-side: bottom; text-align: left; padding-top: var(--sp-2); }
+</style>
+
+<script>
+  // Exact functia folosita si la randare pe server. O singura sursa de adevar.
+  import { calculeazaSalariu, brutDinNet, regimDupaCheie } from '@/lib/salariu';
+
+  const form = document.getElementById('cs-form') as HTMLFormElement | null;
+  if (form) {
+    const lei = (n: number, z = 0) =>
+      n.toLocaleString('ro-RO', { minimumFractionDigits: z, maximumFractionDigits: z });
+    const el = (id: string) => document.getElementById(id);
+    const scrie = (id: string, t: string) => { const e = el(id); if (e) e.textContent = t; };
+    const numar = (id: string) => Number((el(id) as HTMLInputElement | HTMLSelectElement)?.value ?? 0);
+
+    function calculeaza(event?: Event) {
+      event?.preventDefault();
+      const suma = Math.max(0, numar('cs-suma'));
+      const regim = regimDupaCheie((el('cs-regim') as HTMLSelectElement).value);
+      const optiuni = {
+        persoane: numar('cs-persoane'),
+        copii: numar('cs-copii'),
+        tichete: Math.max(0, numar('cs-tichete')),
+        sub26: (el('cs-sub26') as HTMLInputElement).checked,
+      };
+
+      const brut = (el('cs-sens') as HTMLSelectElement).value === 'net'
+        ? brutDinNet(suma, regim, optiuni)
+        : suma;
+      const r = calculeazaSalariu({ ...optiuni, brut }, regim);
+
+      scrie('cs-brut', `${lei(r.brut)} lei`);
+      scrie('cs-net', `${lei(r.net)} lei`);
+
+      const prop = el('cs-propozitie')!;
+      prop.innerHTML = `Din <strong class="cifre">${lei(r.costAngajator)} lei</strong> cât costă angajatorul, `
+        + `ajung la tine <strong class="cifre">${lei(r.procentPastrat, 1)}%</strong>. `
+        + `Restul, ${lei(r.totalTaxe)} lei, sunt contribuții și impozit.`;
+
+      const rand = (eticheta: string, valoare: string, clasa = '') =>
+        `<tr class="${clasa}"><th scope="row">${eticheta}</th><td class="num cifre">${valoare}</td></tr>`;
+      el('cs-tabel')!.innerHTML = [
+        rand('Salariu brut', lei(r.brut)),
+        r.neimpozabil ? rand('Sumă neimpozabilă, la salariul minim', `−${lei(r.neimpozabil)}`) : '',
+        rand('CAS, pensie (25%)', `−${lei(r.cas)}`),
+        rand('CASS, sănătate (10%)', `−${lei(r.cass)}`),
+        r.tichete ? rand('CASS pe tichete de masă', `−${lei(r.cassTichete)}`) : '',
+        rand('Deducere personală', lei(r.deducere.total)),
+        rand('Impozit pe venit (10%)', `−${lei(r.impozit)}`),
+        rand('Net, în mână', lei(r.net), 'total'),
+        r.tichete ? rand('Tichete de masă', lei(r.tichete)) : '',
+        r.tichete ? rand('Total primit', lei(r.totalPrimit), 'total') : '',
+        rand('CAM, plătit de angajator (2,25%)', lei(r.cam)),
+        rand('Cost total angajator', lei(r.costAngajator), 'total'),
+      ].join('');
+    }
+
+    form.addEventListener('submit', calculeaza);
+    for (const id of ['cs-suma', 'cs-sens', 'cs-regim', 'cs-persoane', 'cs-copii', 'cs-tichete', 'cs-sub26']) {
+      el(id)?.addEventListener('change', calculeaza);
+    }
+  }
+</script>

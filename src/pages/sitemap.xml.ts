@@ -1,8 +1,12 @@
-// Sitemap scris de mana: patru rute, nicio dependenta in plus. `lastmod` vine din
-// data ultimei luni de date, nu din data build-ului — o pagina care nu s-a
-// schimbat nu are ce sa declare drept modificata.
+// Sitemap scris de mana, fara dependente in plus. `lastmod` vine din data
+// ultimei luni de date, nu din data build-ului — o pagina care nu s-a schimbat
+// nu are ce sa declare drept modificata.
+//
+// Paginile de salarii se genereaza din aceeasi lista care le si creeaza, ca sa
+// nu existe niciodata o pagina publicata si nedeclarata, sau invers.
 import type { APIRoute } from 'astro';
 import date from '@/data/ipc-lunar.json';
+import { valoriBrut } from '@/lib/salarii-pagini';
 
 const SITE = 'https://calculatorulinflatiei.ro';
 const u = date.ultimaLuna as { an: number; luna: number };
@@ -11,11 +15,14 @@ const lastmod = new Date(Date.UTC(u.an, u.luna, 0)).toISOString().slice(0, 10);
 
 const rute = [
   { cale: '/', prioritate: '1.0' },
-  { cale: '/rata-inflatiei', prioritate: '0.9' },
+  { cale: '/salariu', prioritate: '0.9' },
+  { cale: '/salariu-minim', prioritate: '0.9' },
+  { cale: '/rata-inflatiei', prioritate: '0.8' },
   { cale: '/date', prioritate: '0.7' },
   { cale: '/api', prioritate: '0.4' },
   { cale: '/politica-de-confidentialitate', prioritate: '0.3' },
   { cale: '/cookies', prioritate: '0.3' },
+  ...valoriBrut().map((brut) => ({ cale: `/salariu/${brut}-lei-brut`, prioritate: '0.6' })),
 ];
 
 export const GET: APIRoute = () => {

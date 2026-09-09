@@ -1,0 +1,259 @@
+---
+// O pagina pentru fiecare salariu brut cautat.
+//
+// CE FACE O PAGINA GENERATA SA NU FIE BALAST. Un sablon umplut cu o cifra
+// diferita e balast, si Google il trateaza ca atare. Fiecare pagina de aici
+// raspunde la intrebarea pusa („cat e net din 5.000 brut") in primul rand, si
+// apoi la cele patru pe care le pune acelasi om imediat dupa: cum se schimba
+// daca am copii, cat as fi luat inainte de 1 iulie, cat mi-ar trebui brut ca sa
+// iau atat net, si — asta n-o are nimeni — cat mai cumpara suma aia fata de acum
+// cinci sau zece ani.
+//
+// Ultima e motivul pentru care sectiunea asta traieste pe acest domeniu si nu pe
+// altul: seria INS din 1991 incoace e deja aici.
+import Baza from '@/layouts/Baza.astro';
+import CalculatorSalariu from '@/components/CalculatorSalariu.astro';
+import {
+  calculeazaSalariu, brutDinNet, inceputRegim, REGIMURI, REGIM_CURENT,
+} from '@/lib/salariu';
+import { valoriBrut, vecini, inrudite } from '@/lib/salarii-pagini';
+import { converteste, ULTIMA_LUNA, etichetaLuna, numeLuna, PRIMA_LUNA } from '@/lib/inflatie';
+
+export function getStaticPaths() {
+  return valoriBrut().map((brut) => ({
+    params: { cale: `${brut}-lei-brut` },
+    props: { brut },
+  }));
+}
+
+const { brut } = Astro.props;
+const R = REGIM_CURENT;
+const anterior = REGIMURI[1];
+const startCurent = inceputRegim(R);
+
+const r = calculeazaSalariu({ brut }, R);
+const inainte = calculeazaSalariu({ brut }, anterior);
+
+const lei = (n: number, z = 0) =>
+  n.toLocaleString('ro-RO', { minimumFractionDigits: z, maximumFractionDigits: z });
+
+// Cu persoane in intretinere. Aratam doar daca deducerea chiar se schimba —
+// peste plafon toate randurile ar fi identice, si un tabel care repeta aceeasi
+// cifra de cinci ori e mai rau decat lipsa lui.
+const cuPersoane = [0, 1, 2, 3, 4].map((persoane) => ({
+  persoane,
+  r: calculeazaSalariu({ brut, persoane }, R),
+}));
+const deducereaConteaza = cuPersoane[4].r.net !== cuPersoane[0].r.net;
+
+// Tichete de masa la un nivel uzual.
+const cuTichete = calculeazaSalariu({ brut, tichete: 700 }, R);
+
+// Ce mai cumpara netul asta, fata de aceeasi luna din alti ani.
+const aniInapoi = [1, 5, 10, 15]
+  .map((n) => ({ an: ULTIMA_LUNA.an - n, luna: ULTIMA_LUNA.luna }))
+  .filter((l) => l.an >= PRIMA_LUNA.an + 1)
+  .map((l) => ({ luna: l, echivalent: converteste(r.net, ULTIMA_LUNA, l).echivalent }));
+
+const { anterior: brutAnterior, urmator: brutUrmator } = vecini(brut);
+const apropiate = inrudite(brut);
+
+const oriMinimul = brut / R.salariulMinim;
+const brutPentruNet = brutDinNet(r.net, anterior);
+
+const intrebari = [
+  {
+    q: `Cât înseamnă ${lei(brut)} lei brut în net?`,
+    a: `${lei(brut)} lei brut înseamnă ${lei(r.net)} lei net, în ${R.eticheta}. Din brut se rețin ${lei(r.cas)} lei CAS, ${lei(r.cass)} lei CASS și ${lei(r.impozit)} lei impozit pe venit${r.deducere.total ? `, după o deducere personală de ${lei(r.deducere.total)} lei` : ''}.`,
+  },
+  {
+    q: `Cât costă angajatorul un salariu de ${lei(brut)} lei brut?`,
+    a: `${lei(r.costAngajator)} lei pe lună: brutul plus contribuția asiguratorie pentru muncă de 2,25%, adică ${lei(r.cam)} lei. Din acest cost total, ${lei(r.procentPastrat, 1)}% ajung la salariat.`,
+  },
+  {
+    q: `Ce brut îmi trebuie ca să iau ${lei(r.net)} lei net?`,
+    a: `În ${R.eticheta}, ${lei(brut)} lei brut. În ${anterior.eticheta}, când salariul minim era ${lei(anterior.salariulMinim)} lei, ar fi fost nevoie de ${lei(brutPentruNet)} lei brut pentru același net.`,
+  },
+  ...(deducereaConteaza
+    ? [{
+        q: `Cum se schimbă netul dacă am persoane în întreținere?`,
+        a: `Deducerea personală crește cu cinci puncte procentuale din salariul minim pentru fiecare persoană aflată în întreținere. La ${lei(brut)} lei brut, netul urcă de la ${lei(cuPersoane[0].r.net)} lei fără nicio persoană în întreținere la ${lei(cuPersoane[4].r.net)} lei cu patru sau mai multe.`,
+      }]
+    : []),
+];
+
+const schema = {
+  '@type': 'FAQPage',
+  mainEntity: intrebari.map((i) => ({
+    '@type': 'Question',
+    name: i.q,
+    acceptedAnswer: { '@type': 'Answer', text: i.a },
+  })),
+};
+
+const firimituri = {
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Salarii', item: 'https://calculatorulinflatiei.ro/salariu/' },
+    { '@type': 'ListItem', position: 2, name: `${lei(brut)} lei brut` },
+  ],
+};
+---
+
+<Baza
+  titlu={`${lei(brut)} lei brut = ${lei(r.net)} lei net (${ULTIMA_LUNA.an})`}
+  descriere={`${lei(brut)} lei brut înseamnă ${lei(r.net)} lei net în ${R.eticheta}. Defalcare completă: CAS ${lei(r.cas)} lei, CASS ${lei(r.cass)} lei, impozit ${lei(r.impozit)} lei, cost angajator ${lei(r.costAngajator)} lei.`}
+  cale={`/salariu/${brut}-lei-brut/`}
+  schema={{ '@type': 'ItemList', itemListElement: [schema, firimituri] }}
+>
+  <div class="invelis sus">
+    <nav class="firimituri" aria-label="Firimituri">
+      <a href="/salariu/">Salarii</a> <span aria-hidden="true">›</span> {lei(brut)} lei brut
+    </nav>
+
+    <h1>{lei(brut)} lei brut înseamnă <span class="raspuns">{lei(r.net)} lei net</span></h1>
+    <p class="introducere">
+      Pentru un contract cu normă întreagă la funcția de bază, în {R.eticheta}. Angajatorul plătește
+      {lei(r.costAngajator)} lei ca să îți ajungă în cont {lei(r.net)} lei — restul de
+      {lei(r.totalTaxe)} lei sunt contribuții și impozit.
+    </p>
+
+    <CalculatorSalariu brut={brut} regim={R} titlu={`Defalcarea pentru ${lei(brut)} lei brut`} />
+
+    {deducereaConteaza && (
+      <>
+        <h2>Cu persoane în întreținere</h2>
+        <p>
+          La {lei(brut)} lei brut deducerea personală încă se acordă, deci fiecare persoană aflată
+          în întreținere lasă mai mulți bani în mână.
+        </p>
+        <div class="derulabil">
+          <table>
+            <thead>
+              <tr>
+                <th>Persoane în întreținere</th>
+                <th class="num">Deducere</th>
+                <th class="num">Impozit</th>
+                <th class="num">Net</th>
+              </tr>
+            </thead>
+            <tbody>
+              {cuPersoane.map(({ persoane, r: x }) => (
+                <tr>
+                  <td>{persoane === 4 ? '4 sau mai multe' : persoane}</td>
+                  <td class="num cifre">{lei(x.deducere.total)}</td>
+                  <td class="num cifre">{lei(x.impozit)}</td>
+                  <td class="num cifre"><strong>{lei(x.net)}</strong></td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </>
+    )}
+
+    <h2>Cu tichete de masă</h2>
+    <p>
+      Tichetele intră în baza de calcul al CASS și al impozitului, dar nu și în cea de CAS și nici
+      în contribuția plătită de angajator. La {lei(brut)} lei brut plus 700 de lei în tichete,
+      primești {lei(cuTichete.net)} lei în bani și 700 de lei în tichete, adică
+      {lei(cuTichete.totalPrimit)} lei în total. Angajatorul plătește {lei(cuTichete.costAngajator)} lei.
+    </p>
+
+    <h2>Același brut, înainte de 1 {numeLuna(startCurent.luna)} {startCurent.an}</h2>
+    <p>
+      {r.net === inainte.net
+        ? `La ${lei(brut)} lei brut, schimbarea salariului minim nu a mutat nimic: netul era tot ${lei(inainte.net)} lei. Deducerea personală se stinsese deja la acest nivel de salariu în ambele regimuri.`
+        : `În ${anterior.eticheta}, când salariul minim era ${lei(anterior.salariulMinim)} lei, același brut de ${lei(brut)} lei dădea ${lei(inainte.net)} lei net. Diferența e de ${lei(Math.abs(r.net - inainte.net))} lei ${r.net > inainte.net ? 'în plus' : 'în minus'}, fiindcă scara deducerii personale se raportează la salariul minim, iar acesta s-a schimbat.`}
+    </p>
+
+    <h2>Cât mai cumpără {lei(r.net)} lei</h2>
+    <p>
+      Netul e o cifră fixă; puterea lui de cumpărare nu e. Tabelul arată ce sumă din trecut
+      cumpăra exact cât cumpără {lei(r.net)} lei în {etichetaLuna(ULTIMA_LUNA)}, pe indicele
+      prețurilor de consum al Institutului Național de Statistică.
+    </p>
+    <div class="derulabil">
+      <table>
+        <thead>
+          <tr><th>Luna</th><th class="num">Echivalentul lui {lei(r.net)} lei de azi</th></tr>
+        </thead>
+        <tbody>
+          {aniInapoi.map(({ luna, echivalent }) => (
+            <tr>
+              <td>{etichetaLuna(luna)}</td>
+              <td class="num cifre">{lei(echivalent)} lei</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="sursa">
+      Altfel spus: un salariu de {lei(aniInapoi[aniInapoi.length - 1]?.echivalent ?? 0)} lei net în
+      {etichetaLuna(aniInapoi[aniInapoi.length - 1]?.luna ?? ULTIMA_LUNA)} valora cât valorează
+      {lei(r.net)} lei acum. <a href="/">Calculatorul de inflație</a> face comparația între oricare
+      două luni.
+    </p>
+
+    <h2>Unde stă acest salariu</h2>
+    <p>
+      {lei(brut)} lei brut înseamnă {oriMinimul >= 1
+        ? `de ${lei(oriMinimul, 2)} ori salariul minim`
+        : `${lei(oriMinimul * 100, 0)}% din salariul minim`} din {R.eticheta}, care este
+      {lei(R.salariulMinim)} lei brut, adică <a href="/salariu-minim/">{lei(calculeazaSalariu({ brut: R.salariulMinim }, R).net)} lei net</a>.
+    </p>
+
+    <h2>Salarii apropiate</h2>
+    <ul class="apropiate">
+      {apropiate.map((v) => (
+        <li>
+          <a href={`/salariu/${v}-lei-brut/`}>
+            {lei(v)} lei brut <span class="mic">→ {lei(calculeazaSalariu({ brut: v }, R).net)} net</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <nav class="vecini" aria-label="Salariul anterior și următorul">
+      {brutAnterior && <a href={`/salariu/${brutAnterior}-lei-brut/`}>← {lei(brutAnterior)} lei brut</a>}
+      <a href="/salariu/">Toate salariile</a>
+      {brutUrmator && <a href={`/salariu/${brutUrmator}-lei-brut/`}>{lei(brutUrmator)} lei brut →</a>}
+    </nav>
+
+    <h2>Întrebări</h2>
+    <dl class="intrebari">
+      {intrebari.map((i) => (
+        <>
+          <dt>{i.q}</dt>
+          <dd>{i.a}</dd>
+        </>
+      ))}
+    </dl>
+  </div>
+</Baza>
+
+<style>
+  .sus { padding-block: var(--sp-6) var(--sp-12); }
+  .firimituri { font-size: 0.85rem; color: var(--cerneala-slaba); margin-bottom: var(--sp-4); }
+  h1 { margin-bottom: var(--sp-4); }
+  .raspuns { color: var(--acum); white-space: nowrap; }
+  .introducere { font-size: 1.05rem; color: var(--cerneala-slaba); margin-bottom: var(--sp-8); max-width: var(--lat-text); }
+
+  .apropiate { list-style: none; padding: 0; display: grid; gap: var(--sp-2); max-width: none; }
+  @media (min-width: 40rem) { .apropiate { grid-template-columns: repeat(3, 1fr); } }
+  .apropiate a {
+    display: block; padding: var(--sp-3); background: var(--hartie-sus);
+    border: 1px solid var(--linie); border-radius: var(--raza); text-decoration: none;
+  }
+  .apropiate a:hover { border-color: var(--linie-tare); }
+  .mic { color: var(--cerneala-slaba); font-size: 0.85rem; }
+
+  .vecini {
+    display: flex; flex-wrap: wrap; gap: var(--sp-4); justify-content: space-between;
+    margin-top: var(--sp-8); padding-top: var(--sp-4); border-top: 1px solid var(--linie);
+    font-size: 0.9rem;
+  }
+
+  .intrebari dt { font-weight: 600; margin-top: var(--sp-6); }
+  .intrebari dd { margin: var(--sp-2) 0 0; max-width: var(--lat-text); color: var(--cerneala-slaba); }
+</style>

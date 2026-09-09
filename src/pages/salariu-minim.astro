@@ -1,0 +1,194 @@
+---
+// Salariul minim: cea mai cautata cifra din tot subiectul salariilor, si singura
+// care se schimba de doua ori intr-un an calendaristic. Pagina raspunde in prima
+// propozitie si abia apoi explica.
+import Baza from '@/layouts/Baza.astro';
+import CalculatorSalariu from '@/components/CalculatorSalariu.astro';
+import { calculeazaSalariu, inceputRegim, REGIMURI, REGIM_CURENT } from '@/lib/salariu';
+import { converteste, ULTIMA_LUNA, etichetaLuna, numeLuna } from '@/lib/inflatie';
+
+const R = REGIM_CURENT;
+const anterior = REGIMURI[1];
+const startCurent = inceputRegim(R);
+
+const acum = calculeazaSalariu({ brut: R.salariulMinim }, R);
+const inainte = calculeazaSalariu({ brut: anterior.salariulMinim }, anterior);
+
+const lei = (n: number, z = 0) =>
+  n.toLocaleString('ro-RO', { minimumFractionDigits: z, maximumFractionDigits: z });
+
+// Istoricul salariului minim brut, in lei noi. Sursa: hotararile de guvern prin
+// care a fost stabilit, an de an. Retinem prima luna a fiecarui nivel.
+const ISTORIC = [
+  { an: 2015, luna: 7, brut: 1050 },
+  { an: 2016, luna: 5, brut: 1250 },
+  { an: 2017, luna: 2, brut: 1450 },
+  { an: 2018, luna: 1, brut: 1900 },
+  { an: 2019, luna: 1, brut: 2080 },
+  { an: 2020, luna: 1, brut: 2230 },
+  { an: 2021, luna: 1, brut: 2300 },
+  { an: 2022, luna: 1, brut: 2550 },
+  { an: 2023, luna: 1, brut: 3000 },
+  { an: 2024, luna: 1, brut: 3300 },
+  { an: 2024, luna: 7, brut: 3700 },
+  { an: 2025, luna: 1, brut: 4050 },
+  { an: 2026, luna: 7, brut: 4325 },
+];
+
+// Fiecare nivel din trecut, exprimat in puterea de cumparare de azi. Asta e
+// intrebarea pe care o pune toata lumea si la care nu raspunde nimeni: a crescut
+// salariul minim mai repede decat preturile?
+//
+// Ultimul nivel poate incepe dupa ultima luna cu date — salariul minim se
+// schimba prin hotarare de guvern, indicele se publica cu o luna intarziere.
+// Pentru acela conversia se face de la ultima luna cunoscuta, adica nu se face
+// deloc, ceea ce e si raspunsul corect.
+const rang = (l: { an: number; luna: number }) => l.an * 12 + l.luna;
+const istoricReal = ISTORIC.map((x) => {
+  const luna = { an: x.an, luna: x.luna };
+  const referinta = rang(luna) > rang(ULTIMA_LUNA) ? ULTIMA_LUNA : luna;
+  const inLeiDeAzi = converteste(x.brut, referinta, ULTIMA_LUNA).echivalent;
+  return { ...x, luna, inLeiDeAzi };
+});
+const primul = istoricReal[0];
+const ultimul = istoricReal[istoricReal.length - 1];
+const castigReal = (ultimul.brut / primul.inLeiDeAzi - 1) * 100;
+
+const intrebari = [
+  {
+    q: `Cât este salariul minim în ${ULTIMA_LUNA.an}?`,
+    a: `Salariul minim brut pe țară garantat în plată este ${lei(R.salariulMinim)} lei de la 1 ${numeLuna(startCurent.luna)} ${startCurent.an}, față de ${lei(anterior.salariulMinim)} lei în ${anterior.eticheta}.`,
+  },
+  {
+    q: `Cât este salariul minim net în ${ULTIMA_LUNA.an}?`,
+    a: `${lei(acum.net)} lei. Din brutul de ${lei(R.salariulMinim)} lei se scade mai întâi suma neimpozabilă de ${lei(R.sumaNeimpozabila)} lei, apoi din rest se rețin CAS ${lei(acum.cas)} lei, CASS ${lei(acum.cass)} lei și impozit ${lei(acum.impozit)} lei, după o deducere personală de ${lei(acum.deducere.total)} lei.`,
+  },
+  {
+    q: 'Cât costă un salariat plătit cu salariul minim?',
+    a: `${lei(acum.costAngajator)} lei pe lună: brutul de ${lei(R.salariulMinim)} lei plus contribuția asiguratorie pentru muncă de ${lei(acum.cam)} lei. Din acest cost, ${lei(acum.procentPastrat, 1)}% ajung la salariat.`,
+  },
+  {
+    q: 'Ce este suma neimpozabilă de la salariul minim?',
+    a: `O parte din brut scoasă din baza de calcul al contribuțiilor și al impozitului, pentru cine e plătit exact cu salariul minim: ${lei(anterior.sumaNeimpozabila)} lei în ${anterior.eticheta} și ${lei(R.sumaNeimpozabila)} lei de la 1 ${numeLuna(startCurent.luna)} ${startCurent.an}. Se pierde integral dacă salariul de bază urcă fie și cu un leu peste minim.`,
+  },
+  {
+    q: 'A crescut salariul minim mai repede decât prețurile?',
+    a: `Da. ${lei(primul.brut)} lei din ${etichetaLuna(primul.luna)} valorau cât ${lei(primul.inLeiDeAzi)} lei de astăzi. Salariul minim actual, de ${lei(ultimul.brut)} lei, este cu ${lei(castigReal, 0)}% peste acea valoare, deci creșterea a fost reală, nu doar nominală.`,
+  },
+];
+
+const schema = {
+  '@type': 'FAQPage',
+  mainEntity: intrebari.map((i) => ({
+    '@type': 'Question',
+    name: i.q,
+    acceptedAnswer: { '@type': 'Answer', text: i.a },
+  })),
+};
+---
+
+<Baza
+  titlu={`Salariul minim ${ULTIMA_LUNA.an}: ${lei(R.salariulMinim)} lei brut, ${lei(acum.net)} lei net`}
+  descriere={`Salariul minim brut este ${lei(R.salariulMinim)} lei de la 1 ${numeLuna(startCurent.luna)} ${startCurent.an}, adică ${lei(acum.net)} lei net. Defalcarea taxelor, costul pentru angajator și istoricul ajustat cu inflația.`}
+  cale="/salariu-minim/"
+  schema={schema}
+>
+  <div class="invelis sus">
+    <p class="eticheta">Salarii</p>
+    <h1>Salariul minim în {ULTIMA_LUNA.an}: <span class="raspuns">{lei(acum.net)} lei net</span></h1>
+    <p class="introducere">
+      Salariul minim brut pe țară garantat în plată este {lei(R.salariulMinim)} lei de la
+      1 {numeLuna(startCurent.luna)} {startCurent.an}. În mână rămân {lei(acum.net)} lei, iar
+      angajatorul plătește în total {lei(acum.costAngajator)} lei.
+    </p>
+
+    <h2>Ce s-a schimbat</h2>
+    <p>
+      Brutul a crescut cu {lei(R.salariulMinim - anterior.salariulMinim)} lei, dar suma neimpozabilă
+      a scăzut de la {lei(anterior.sumaNeimpozabila)} la {lei(R.sumaNeimpozabila)} lei. Cele două se
+      bat cap în cap: din creșterea brută rămâne un plus net de {lei(acum.net - inainte.net)} lei.
+    </p>
+    <div class="derulabil">
+      <table>
+        <thead>
+          <tr><th></th><th class="num">{anterior.eticheta}</th><th class="num">{R.eticheta}</th><th class="num">Diferența</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Brut</td><td class="num cifre">{lei(inainte.brut)}</td><td class="num cifre">{lei(acum.brut)}</td><td class="num cifre">+{lei(acum.brut - inainte.brut)}</td></tr>
+          <tr><td>Sumă neimpozabilă</td><td class="num cifre">{lei(inainte.neimpozabil)}</td><td class="num cifre">{lei(acum.neimpozabil)}</td><td class="num cifre">−{lei(inainte.neimpozabil - acum.neimpozabil)}</td></tr>
+          <tr><td>CAS</td><td class="num cifre">{lei(inainte.cas)}</td><td class="num cifre">{lei(acum.cas)}</td><td class="num cifre">+{lei(acum.cas - inainte.cas)}</td></tr>
+          <tr><td>CASS</td><td class="num cifre">{lei(inainte.cass)}</td><td class="num cifre">{lei(acum.cass)}</td><td class="num cifre">+{lei(acum.cass - inainte.cass)}</td></tr>
+          <tr><td>Deducere personală</td><td class="num cifre">{lei(inainte.deducere.total)}</td><td class="num cifre">{lei(acum.deducere.total)}</td><td class="num cifre">+{lei(acum.deducere.total - inainte.deducere.total)}</td></tr>
+          <tr><td>Impozit</td><td class="num cifre">{lei(inainte.impozit)}</td><td class="num cifre">{lei(acum.impozit)}</td><td class="num cifre">+{lei(acum.impozit - inainte.impozit)}</td></tr>
+          <tr><td><strong>Net</strong></td><td class="num cifre"><strong>{lei(inainte.net)}</strong></td><td class="num cifre"><strong>{lei(acum.net)}</strong></td><td class="num cifre"><strong>+{lei(acum.net - inainte.net)}</strong></td></tr>
+          <tr><td>Cost angajator</td><td class="num cifre">{lei(inainte.costAngajator)}</td><td class="num cifre">{lei(acum.costAngajator)}</td><td class="num cifre">+{lei(acum.costAngajator - inainte.costAngajator)}</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <CalculatorSalariu brut={R.salariulMinim} regim={R} titlu="Verifică pe orice sumă" />
+
+    <h2>Salariul minim, în lei de azi</h2>
+    <p>
+      Cifra brută nu spune singură dacă viața a devenit mai ușoară. Coloana din dreapta arată ce
+      ar valora fiecare salariu minim din trecut dacă l-ai primi în {etichetaLuna(ULTIMA_LUNA)},
+      la prețurile de acum.
+    </p>
+    <div class="derulabil">
+      <table>
+        <thead>
+          <tr>
+            <th>Din</th>
+            <th class="num">Brut, atunci</th>
+            <th class="num">Cât ar valora azi</th>
+          </tr>
+        </thead>
+        <tbody>
+          {istoricReal.map((x) => (
+            <tr>
+              <td>{etichetaLuna(x.luna)}</td>
+              <td class="num cifre">{lei(x.brut)} lei</td>
+              <td class="num cifre">{lei(x.inLeiDeAzi)} lei</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p>
+      Salariul minim din {etichetaLuna(primul.luna)}, de {lei(primul.brut)} lei, ar însemna azi
+      {lei(primul.inLeiDeAzi)} lei. Cel actual, de {lei(ultimul.brut)} lei, este cu
+      {lei(castigReal, 0)}% peste acel prag — creșterea a bătut inflația, chiar dacă nu cu marja pe
+      care o sugerează cifra brută.
+    </p>
+    <p class="sursa">
+      Conversia folosește lanțul lunar al indicelui prețurilor de consum publicat de Institutul
+      Național de Statistică. <a href="/">Calculatorul de inflație</a> face aceeași comparație
+      pentru orice sumă și orice două luni.
+    </p>
+
+    <h2>Întrebări</h2>
+    <dl class="intrebari">
+      {intrebari.map((i) => (
+        <>
+          <dt>{i.q}</dt>
+          <dd>{i.a}</dd>
+        </>
+      ))}
+    </dl>
+
+    <p class="sursa mai-departe">
+      Mai departe: <a href="/salariu/">calculatorul de salariu net</a> pentru orice brut, sau
+      <a href={`/salariu/${R.salariulMinim}-lei-brut/`}>pagina salariului de {lei(R.salariulMinim)} lei brut</a>.
+    </p>
+  </div>
+</Baza>
+
+<style>
+  .sus { padding-block: var(--sp-8) var(--sp-12); }
+  h1 { margin-top: var(--sp-2); }
+  .raspuns { color: var(--acum); white-space: nowrap; }
+  .introducere { font-size: 1.1rem; color: var(--cerneala-slaba); margin-bottom: var(--sp-8); }
+  .intrebari dt { font-weight: 600; margin-top: var(--sp-6); }
+  .intrebari dd { margin: var(--sp-2) 0 0; max-width: var(--lat-text); color: var(--cerneala-slaba); }
+  .mai-departe { margin-top: var(--sp-8); }
+</style>
