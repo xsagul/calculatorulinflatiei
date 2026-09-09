@@ -1,0 +1,169 @@
+---
+// O pagina pentru fiecare cota. „calculator tva 21" si „calculator tva 11" se
+// cauta separat, ca doua intrebari diferite, si merita doua raspunsuri care
+// incep direct cu cifra ceruta, nu cu un selector.
+import Baza from '@/layouts/Baza.astro';
+import CalculatorTva from '@/components/CalculatorTva.astro';
+import { COTE, adaugaTva, extrageTva, type Cota } from '@/lib/tva';
+import { ULTIMA_LUNA } from '@/lib/inflatie';
+
+export function getStaticPaths() {
+  return COTE.map((cota) => ({ params: { cota: cota.slug }, props: { cota } }));
+}
+
+const { cota } = Astro.props as { cota: Cota };
+const p = cota.procent;
+
+const lei = (n: number, z = 2) =>
+  n.toLocaleString('ro-RO', { minimumFractionDigits: z, maximumFractionDigits: z });
+
+const sume = [10, 50, 100, 250, 500, 1000, 2500, 5000, 10000];
+const dinSuta = (p / (100 + p)) * 100;
+const altele = COTE.filter((c) => c.slug !== cota.slug);
+
+const intrebari = [
+  {
+    q: `Cum calculezi TVA de ${p}%?`,
+    a: `La un preț fără TVA se înmulțește cu ${p / 100} și se adaugă: ${lei(100, 0)} lei fără TVA devin ${lei(adaugaTva(100, p).cuTva)} lei cu TVA. Ca să extragi taxa dintr-un preț care o conține, se împarte la ${100 + p} și se înmulțește cu ${p}.`,
+  },
+  {
+    q: `Cât TVA e în ${lei(100, 0)} de lei cu TVA de ${p}%?`,
+    a: `${lei(extrageTva(100, p).tva)} lei, adică ${lei(dinSuta, 4)}% din totalul cu TVA. Prețul fără TVA este ${lei(extrageTva(100, p).faraTva)} lei.`,
+  },
+  {
+    q: `La ce se aplică cota de ${p}%?`,
+    a: `${cota.seAplicaLa.charAt(0).toUpperCase()}${cota.seAplicaLa.slice(1)} Perioadă: ${cota.perioada}.`,
+  },
+];
+
+const schema = {
+  '@type': 'FAQPage',
+  mainEntity: intrebari.map((i) => ({
+    '@type': 'Question',
+    name: i.q,
+    acceptedAnswer: { '@type': 'Answer', text: i.a },
+  })),
+};
+---
+
+<Baza
+  titlu={`Calculator TVA ${p}% — adaugă sau extrage taxa`}
+  descriere={`Calculează TVA de ${p}%: adaugă taxa la un preț fără TVA sau extrage-o dintr-un preț care o conține. ${lei(100, 0)} lei fără TVA fac ${lei(adaugaTva(100, p).cuTva)} lei cu TVA; din ${lei(100, 0)} lei cu TVA, taxa e ${lei(extrageTva(100, p).tva)} lei.`}
+  cale={`/tva/${cota.slug}/`}
+  schema={schema}
+>
+  <div class="invelis sus">
+    <nav class="firimituri" aria-label="Firimituri">
+      <a href="/tva/">TVA</a> <span aria-hidden="true">›</span> {p}%
+    </nav>
+
+    <h1>Calculator TVA {p}%</h1>
+    <p class="introducere">
+      {cota.inVigoare
+        ? `${cota.eticheta}, în vigoare ${cota.perioada}. Se aplică la ${cota.seAplicaLa}`
+        : `Atenție: această cotă nu mai e în vigoare (${cota.perioada}). O păstrăm pentru verificarea facturilor din perioada în care se aplica: ${cota.seAplicaLa}`}
+    </p>
+
+    {!cota.inVigoare && (
+      <p class="avertisment">
+        Pentru livrări de astăzi folosește cota standard de 21% sau cea redusă de 11%.
+        <a href="/tva/">Vezi cotele în vigoare.</a>
+      </p>
+    )}
+
+    <CalculatorTva suma={1000} cota={cota} titlu={`Calculează TVA de ${p}%`} />
+
+    <h2>Tabel: TVA de {p}%, în ambele direcții</h2>
+    <p>
+      Coloanele din stânga pornesc de la un preț fără TVA; cele din dreapta pornesc de la un preț
+      care conține deja taxa.
+    </p>
+    <div class="derulabil">
+      <table>
+        <thead>
+          <tr>
+            <th class="num">Fără TVA</th>
+            <th class="num">+ TVA {p}%</th>
+            <th class="num">= Total</th>
+            <th class="num">Cu TVA</th>
+            <th class="num">din care TVA</th>
+            <th class="num">= Fără TVA</th>
+          </tr>
+        </thead>
+        <tbody>
+          {sume.map((s) => {
+            const a = adaugaTva(s, p);
+            const e = extrageTva(s, p);
+            return (
+              <tr>
+                <td class="num cifre">{lei(s, 0)}</td>
+                <td class="num cifre">{lei(a.tva)}</td>
+                <td class="num cifre"><strong>{lei(a.cuTva)}</strong></td>
+                <td class="num cifre">{lei(s, 0)}</td>
+                <td class="num cifre">{lei(e.tva)}</td>
+                <td class="num cifre"><strong>{lei(e.faraTva)}</strong></td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Cele două formule</h2>
+    <p>
+      <strong>Adaugi taxa:</strong> înmulțești prețul fără TVA cu {lei(1 + p / 100, 2)}.
+      {lei(1000, 0)} lei fără TVA fac {lei(adaugaTva(1000, p).cuTva)} lei cu TVA.
+    </p>
+    <p>
+      <strong>Extragi taxa:</strong> înmulțești prețul cu TVA cu {p}/{100 + p}, adică cu
+      {lei(dinSuta / 100, 6)}. Din {lei(1000, 0)} lei cu TVA, taxa e
+      {lei(extrageTva(1000, p).tva)} lei, iar prețul fără TVA e {lei(extrageTva(1000, p).faraTva)} lei.
+    </p>
+    <p class="sursa">
+      Cota se raportează întotdeauna la baza fără taxă. De aceea {p}% dintr-un preț cu TVA nu e
+      TVA-ul din el: ar da {lei(1000 * p / 100)} lei în loc de {lei(extrageTva(1000, p).tva)} lei.
+    </p>
+
+    <h2>Celelalte cote</h2>
+    <ul class="alte">
+      {altele.map((c) => (
+        <li>
+          <a href={`/tva/${c.slug}/`}>
+            <strong>TVA {c.procent}%</strong>
+            <span class="mic">{c.inVigoare ? ' — în vigoare' : ' — istorică'}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+
+    <h2>Întrebări</h2>
+    <dl class="intrebari">
+      {intrebari.map((i) => (
+        <>
+          <dt>{i.q}</dt>
+          <dd>{i.a}</dd>
+        </>
+      ))}
+    </dl>
+  </div>
+</Baza>
+
+<style>
+  .sus { padding-block: var(--sp-6) var(--sp-12); }
+  .firimituri { font-size: 0.85rem; color: var(--cerneala-slaba); margin-bottom: var(--sp-4); }
+  .introducere { font-size: 1.05rem; color: var(--cerneala-slaba); margin-bottom: var(--sp-6); }
+  .avertisment {
+    padding: var(--sp-3); border-left: 3px solid var(--acum);
+    background: var(--acum-fundal); font-size: 0.9rem; margin-bottom: var(--sp-6);
+  }
+  .alte { list-style: none; padding: 0; display: grid; gap: var(--sp-2); max-width: none; }
+  @media (min-width: 40rem) { .alte { grid-template-columns: repeat(4, 1fr); } }
+  .alte a {
+    display: block; padding: var(--sp-3); background: var(--hartie-sus);
+    border: 1px solid var(--linie); border-radius: var(--raza); text-decoration: none;
+  }
+  .alte a:hover { border-color: var(--linie-tare); }
+  .mic { font-size: 0.85rem; color: var(--cerneala-slaba); }
+  .intrebari dt { font-weight: 600; margin-top: var(--sp-6); }
+  .intrebari dd { margin: var(--sp-2) 0 0; max-width: var(--lat-text); color: var(--cerneala-slaba); }
+</style>

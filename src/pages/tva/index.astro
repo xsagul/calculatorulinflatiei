@@ -1,0 +1,156 @@
+---
+import Baza from '@/layouts/Baza.astro';
+import CalculatorTva from '@/components/CalculatorTva.astro';
+import { COTE, COTE_IN_VIGOARE, COTA_STANDARD, adaugaTva, extrageTva } from '@/lib/tva';
+import { ULTIMA_LUNA } from '@/lib/inflatie';
+
+const lei = (n: number, z = 2) =>
+  n.toLocaleString('ro-RO', { minimumFractionDigits: z, maximumFractionDigits: z });
+
+// Cat s-a schimbat pretul final cand cota standard a urcat de la 19 la 21, la
+// acelasi pret fara TVA. E intrebarea pe care si-o pune oricine compara o
+// factura din vara lui 2025 cu una de acum.
+const COS = 1000;
+const vechi = adaugaTva(COS, 19);
+const nou = adaugaTva(COS, 21);
+
+// Tabel de referinta: cateva sume rotunde, in ambele directii.
+const sume = [100, 500, 1000, 5000, 10000];
+
+const intrebari = [
+  {
+    q: `Care sunt cotele de TVA în România în ${ULTIMA_LUNA.an}?`,
+    a: `Două cote: 21% cota standard și 11% cota redusă, amândouă în vigoare de la 1 august 2025, stabilite prin Legea 141/2025. Cota de 9% păstrată tranzitoriu pentru unele locuințe a expirat la 31 iulie 2026.`,
+  },
+  {
+    q: 'Cum extragi TVA-ul dintr-un preț care îl conține deja?',
+    a: `Se împarte prețul la 100 plus cota și se înmulțește cu cota. Pentru 21%, asta înseamnă înmulțirea cu 21/121, adică 17,3554% din prețul cu TVA. Greșeala uzuală e să se scadă 21% din total, ceea ce dă un rezultat prea mare: la 1.000 de lei cu TVA, taxa reală e ${lei(extrageTva(1000, 21).tva)} lei, nu 210.`,
+  },
+  {
+    q: 'Ce se aplică cu 11% și ce cu 21%?',
+    a: `Cota redusă de 11% acoperă alimentele, medicamentele, apa potabilă, cărțile, ziarele, cazarea hotelieră, restaurantele și catering-ul, transportul de persoane și lemnele de foc. Tot restul intră la 21%: regula e că, dacă produsul nu apare expres pe lista cotei reduse, se aplică cota standard.`,
+  },
+  {
+    q: 'Ce cotă folosesc pentru o factură din iulie 2025?',
+    a: 'Cotele vechi: 19% standard, 9% și 5% reduse. Cotele noi se aplică livrărilor de la 1 august 2025 încolo, deci o factură anterioară se verifică cu cota în vigoare la data faptului generator, nu cu cea de azi.',
+  },
+  {
+    q: 'Cu cât a crescut prețul final după majorarea din august 2025?',
+    a: `La un preț de ${lei(COS, 0)} lei fără TVA, prețul cu TVA a urcat de la ${lei(vechi.cuTva)} lei la ${lei(nou.cuTva)} lei, adică ${lei(nou.cuTva - vechi.cuTva)} lei în plus, sau ${lei(((nou.cuTva / vechi.cuTva) - 1) * 100, 2)}%.`,
+  },
+];
+
+const schema = {
+  '@type': 'FAQPage',
+  mainEntity: intrebari.map((i) => ({
+    '@type': 'Question',
+    name: i.q,
+    acceptedAnswer: { '@type': 'Answer', text: i.a },
+  })),
+};
+---
+
+<Baza
+  titlu={`Calculator TVA ${ULTIMA_LUNA.an} — 21% și 11%, adaugă sau extrage`}
+  descriere={`Calculează TVA la cotele în vigoare, 21% și 11%, sau la cele vechi de 19%, 9% și 5% pentru facturi anterioare lui august 2025. Adaugă taxa la un preț fără TVA sau extrage-o dintr-unul care o conține.`}
+  cale="/tva/"
+  schema={schema}
+>
+  <div class="invelis sus">
+    <p class="eticheta">TVA</p>
+    <h1>Calculator TVA {ULTIMA_LUNA.an}</h1>
+    <p class="introducere">
+      Cotele în vigoare sunt 21% și 11%, din 1 august 2025. Calculatorul le păstrează și pe cele
+      vechi — 19%, 9% și 5% — fiindcă o factură din iulie 2025 se verifică cu cota de atunci, nu cu
+      cea de acum.
+    </p>
+
+    <CalculatorTva suma={1000} cota={COTA_STANDARD} />
+
+    <h2>Cotele de TVA în vigoare</h2>
+    <div class="derulabil">
+      <table>
+        <thead>
+          <tr><th>Cota</th><th>Se aplică la</th><th>Perioadă</th></tr>
+        </thead>
+        <tbody>
+          {COTE.map((c) => (
+            <tr class={c.inVigoare ? '' : 'stinsa'}>
+              <td>
+                <a href={`/tva/${c.slug}/`}><strong>{c.procent}%</strong></a>
+                {!c.inVigoare && <span class="mic"> — nu mai e în vigoare</span>}
+              </td>
+              <td class="descriere">{c.seAplicaLa}</td>
+              <td class="mic">{c.perioada}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Tabel rapid, la cotele în vigoare</h2>
+    <div class="derulabil">
+      <table>
+        <thead>
+          <tr>
+            <th>Preț fără TVA</th>
+            {COTE_IN_VIGOARE.map((c) => <th class="num">TVA {c.procent}%</th>)}
+            {COTE_IN_VIGOARE.map((c) => <th class="num">Total cu {c.procent}%</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {sume.map((s) => (
+            <tr>
+              <td class="cifre">{lei(s, 0)} lei</td>
+              {COTE_IN_VIGOARE.map((c) => <td class="num cifre">{lei(adaugaTva(s, c.procent).tva)}</td>)}
+              {COTE_IN_VIGOARE.map((c) => <td class="num cifre">{lei(adaugaTva(s, c.procent).cuTva)}</td>)}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Greșeala care costă patru lei la fiecare sută</h2>
+    <p>
+      TVA-ul se raportează la prețul fără taxă, nu la cel cu taxă. Dacă ai un preț de
+      {lei(1000, 0)} lei care conține deja TVA de 21%, taxa din el nu e 210 lei, ci
+      {lei(extrageTva(1000, 21).tva)} lei — se împarte la 121 și se înmulțește cu 21. Prețul fără
+      TVA e {lei(extrageTva(1000, 21).faraTva)} lei.
+    </p>
+    <p>
+      Verificarea e simplă: {lei(extrageTva(1000, 21).faraTva)} plus 21% dă înapoi exact
+      {lei(1000, 0)} lei. Dacă scazi 21% din total, obții {lei(790, 0)} lei, iar adunând 21% la ei
+      ajungi la {lei(adaugaTva(790, 21).cuTva)} lei, adică nu mai iese suma de la care ai plecat.
+    </p>
+
+    <h2>Ce a însemnat trecerea de la 19% la 21%</h2>
+    <p>
+      La același preț fără TVA de {lei(COS, 0)} lei, prețul de raft a urcat de la
+      {lei(vechi.cuTva)} lei la {lei(nou.cuTva)} lei — cu {lei(nou.cuTva - vechi.cuTva)} lei, adică
+      {lei(((nou.cuTva / vechi.cuTva) - 1) * 100, 2)}%. Majorarea din august 2025 se vede și în
+      indicele prețurilor de consum, pe care îl poți urmări pe
+      <a href="/rata-inflatiei/">pagina ratei inflației</a>.
+    </p>
+
+    <h2>Întrebări</h2>
+    <dl class="intrebari">
+      {intrebari.map((i) => (
+        <>
+          <dt>{i.q}</dt>
+          <dd>{i.a}</dd>
+        </>
+      ))}
+    </dl>
+  </div>
+</Baza>
+
+<style>
+  .sus { padding-block: var(--sp-8) var(--sp-12); }
+  h1 { margin-top: var(--sp-2); }
+  .introducere { font-size: 1.1rem; color: var(--cerneala-slaba); margin-bottom: var(--sp-8); }
+  .stinsa { color: var(--cerneala-slaba); }
+  .mic { font-size: 0.85rem; color: var(--cerneala-slaba); }
+  .descriere { font-size: 0.9rem; max-width: 34rem; }
+  .intrebari dt { font-weight: 600; margin-top: var(--sp-6); }
+  .intrebari dd { margin: var(--sp-2) 0 0; max-width: var(--lat-text); color: var(--cerneala-slaba); }
+</style>

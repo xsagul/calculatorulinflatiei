@@ -11,7 +11,9 @@
     "preview": "astro preview",
     "astro": "astro",
     "date:ipc": "node scripts/ipc-insse.mjs",
-    "test": "node --no-warnings scripts/test-inflatie.mts"
+    "test": "node --no-warnings scripts/test-inflatie.mts && node --no-warnings scripts/test-salariu.mts",
+    "indexnow": "node scripts/indexnow.mjs",
+    "deploy": "astro build && wrangler pages deploy dist --project-name calculatorulinflatiei --branch main --commit-dirty=true"
   },
   "dependencies": {
     "astro": "^7.3.2"

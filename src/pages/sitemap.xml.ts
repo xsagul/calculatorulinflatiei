@@ -7,6 +7,7 @@
 import type { APIRoute } from 'astro';
 import date from '@/data/ipc-lunar.json';
 import { valoriBrut } from '@/lib/salarii-pagini';
+import { COTE } from '@/lib/tva';
 
 const SITE = 'https://calculatorulinflatiei.ro';
 const u = date.ultimaLuna as { an: number; luna: number };
@@ -17,11 +18,13 @@ const rute = [
   { cale: '/', prioritate: '1.0' },
   { cale: '/salariu', prioritate: '0.9' },
   { cale: '/salariu-minim', prioritate: '0.9' },
+  { cale: '/tva', prioritate: '0.9' },
   { cale: '/rata-inflatiei', prioritate: '0.8' },
   { cale: '/date', prioritate: '0.7' },
   { cale: '/api', prioritate: '0.4' },
   { cale: '/politica-de-confidentialitate', prioritate: '0.3' },
   { cale: '/cookies', prioritate: '0.3' },
+  ...COTE.map((c) => ({ cale: `/tva/${c.slug}`, prioritate: c.inVigoare ? '0.8' : '0.5' })),
   ...valoriBrut().map((brut) => ({ cale: `/salariu/${brut}-lei-brut`, prioritate: '0.6' })),
 ];
 
