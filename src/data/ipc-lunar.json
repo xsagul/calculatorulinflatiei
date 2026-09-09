@@ -1,0 +1,10691 @@
+{
+  "sursa": {
+    "institutie": "Institutul Național de Statistică",
+    "baza": "TEMPO-Online",
+    "matrice": "IPC102A",
+    "denumire": "Indicii preturilor de consum - evolutia lunara fata de luna anterioara",
+    "url": "http://statistici.insse.ro:8077/tempo-ins/matrix/IPC102A",
+    "licenta": "OGL-ROU-1.0"
+  },
+  "descarcatLa": "2026-09-09T20:52:52.297Z",
+  "unitate": "procente fata de luna precedenta (100 = preturi neschimbate)",
+  "denominare": {
+    "dataLegala": "2005-07-01",
+    "act": "Legea nr. 348/2004 privind denominarea monedei naționale",
+    "factor": 10000,
+    "nota": "Indicii de pret nu contin taierea. Orice conversie a unei sume dinainte de 1 iulie 2005 in lei de azi trebuie impartita la 10.000, altfel rezultatul e gresit de zece mii de ori."
+  },
+  "categorii": {
+    "Total": [
+      {
+        "an": 1991,
+        "luna": 1,
+        "indice": 114.8
+      },
+      {
+        "an": 1991,
+        "luna": 2,
+        "indice": 107
+      },
+      {
+        "an": 1991,
+        "luna": 3,
+        "indice": 106.6
+      },
+      {
+        "an": 1991,
+        "luna": 4,
+        "indice": 126.5
+      },
+      {
+        "an": 1991,
+        "luna": 5,
+        "indice": 105.1
+      },
+      {
+        "an": 1991,
+        "luna": 6,
+        "indice": 102
+      },
+      {
+        "an": 1991,
+        "luna": 7,
+        "indice": 109.5
+      },
+      {
+        "an": 1991,
+        "luna": 8,
+        "indice": 111.2
+      },
+      {
+        "an": 1991,
+        "luna": 9,
+        "indice": 107.3
+      },
+      {
+        "an": 1991,
+        "luna": 10,
+        "indice": 110.4
+      },
+      {
+        "an": 1991,
+        "luna": 11,
+        "indice": 110.9
+      },
+      {
+        "an": 1991,
+        "luna": 12,
+        "indice": 113.7
+      },
+      {
+        "an": 1992,
+        "luna": 1,
+        "indice": 119.5
+      },
+      {
+        "an": 1992,
+        "luna": 2,
+        "indice": 112.5
+      },
+      {
+        "an": 1992,
+        "luna": 3,
+        "indice": 110
+      },
+      {
+        "an": 1992,
+        "luna": 4,
+        "indice": 104.7
+      },
+      {
+        "an": 1992,
+        "luna": 5,
+        "indice": 112.1
+      },
+      {
+        "an": 1992,
+        "luna": 6,
+        "indice": 104.3
+      },
+      {
+        "an": 1992,
+        "luna": 7,
+        "indice": 103.2
+      },
+      {
+        "an": 1992,
+        "luna": 8,
+        "indice": 103.4
+      },
+      {
+        "an": 1992,
+        "luna": 9,
+        "indice": 110.1
+      },
+      {
+        "an": 1992,
+        "luna": 10,
+        "indice": 109.6
+      },
+      {
+        "an": 1992,
+        "luna": 11,
+        "indice": 113.5
+      },
+      {
+        "an": 1992,
+        "luna": 12,
+        "indice": 113.2
+      },
+      {
+        "an": 1993,
+        "luna": 1,
+        "indice": 111.5
+      },
+      {
+        "an": 1993,
+        "luna": 2,
+        "indice": 108.2
+      },
+      {
+        "an": 1993,
+        "luna": 3,
+        "indice": 109.2
+      },
+      {
+        "an": 1993,
+        "luna": 4,
+        "indice": 110
+      },
+      {
+        "an": 1993,
+        "luna": 5,
+        "indice": 130.4
+      },
+      {
+        "an": 1993,
+        "luna": 6,
+        "indice": 105.5
+      },
+      {
+        "an": 1993,
+        "luna": 7,
+        "indice": 113.2
+      },
+      {
+        "an": 1993,
+        "luna": 8,
+        "indice": 110.8
+      },
+      {
+        "an": 1993,
+        "luna": 9,
+        "indice": 110.9
+      },
+      {
+        "an": 1993,
+        "luna": 10,
+        "indice": 116.3
+      },
+      {
+        "an": 1993,
+        "luna": 11,
+        "indice": 114.2
+      },
+      {
+        "an": 1993,
+        "luna": 12,
+        "indice": 107.4
+      },
+      {
+        "an": 1994,
+        "luna": 1,
+        "indice": 104.9
+      },
+      {
+        "an": 1994,
+        "luna": 2,
+        "indice": 105.9
+      },
+      {
+        "an": 1994,
+        "luna": 3,
+        "indice": 108.3
+      },
+      {
+        "an": 1994,
+        "luna": 4,
+        "indice": 106.1
+      },
+      {
+        "an": 1994,
+        "luna": 5,
+        "indice": 105
+      },
+      {
+        "an": 1994,
+        "luna": 6,
+        "indice": 102.6
+      },
+      {
+        "an": 1994,
+        "luna": 7,
+        "indice": 101.6
+      },
+      {
+        "an": 1994,
+        "luna": 8,
+        "indice": 101.8
+      },
+      {
+        "an": 1994,
+        "luna": 9,
+        "indice": 103.9
+      },
+      {
+        "an": 1994,
+        "luna": 10,
+        "indice": 104.4
+      },
+      {
+        "an": 1994,
+        "luna": 11,
+        "indice": 102.8
+      },
+      {
+        "an": 1994,
+        "luna": 12,
+        "indice": 102.1
+      },
+      {
+        "an": 1995,
+        "luna": 1,
+        "indice": 102
+      },
+      {
+        "an": 1995,
+        "luna": 2,
+        "indice": 101.4
+      },
+      {
+        "an": 1995,
+        "luna": 3,
+        "indice": 100.9
+      },
+      {
+        "an": 1995,
+        "luna": 4,
+        "indice": 101.6
+      },
+      {
+        "an": 1995,
+        "luna": 5,
+        "indice": 101.1
+      },
+      {
+        "an": 1995,
+        "luna": 6,
+        "indice": 101.3
+      },
+      {
+        "an": 1995,
+        "luna": 7,
+        "indice": 102.6
+      },
+      {
+        "an": 1995,
+        "luna": 8,
+        "indice": 101
+      },
+      {
+        "an": 1995,
+        "luna": 9,
+        "indice": 101.6
+      },
+      {
+        "an": 1995,
+        "luna": 10,
+        "indice": 103.5
+      },
+      {
+        "an": 1995,
+        "luna": 11,
+        "indice": 104.1
+      },
+      {
+        "an": 1995,
+        "luna": 12,
+        "indice": 103.7
+      },
+      {
+        "an": 1996,
+        "luna": 1,
+        "indice": 101.2
+      },
+      {
+        "an": 1996,
+        "luna": 2,
+        "indice": 101.9
+      },
+      {
+        "an": 1996,
+        "luna": 3,
+        "indice": 101.7
+      },
+      {
+        "an": 1996,
+        "luna": 4,
+        "indice": 101.9
+      },
+      {
+        "an": 1996,
+        "luna": 5,
+        "indice": 105.3
+      },
+      {
+        "an": 1996,
+        "luna": 6,
+        "indice": 101
+      },
+      {
+        "an": 1996,
+        "luna": 7,
+        "indice": 107.5
+      },
+      {
+        "an": 1996,
+        "luna": 8,
+        "indice": 103.8
+      },
+      {
+        "an": 1996,
+        "luna": 9,
+        "indice": 102.4
+      },
+      {
+        "an": 1996,
+        "luna": 10,
+        "indice": 103.4
+      },
+      {
+        "an": 1996,
+        "luna": 11,
+        "indice": 105.8
+      },
+      {
+        "an": 1996,
+        "luna": 12,
+        "indice": 110.3
+      },
+      {
+        "an": 1997,
+        "luna": 1,
+        "indice": 113.7
+      },
+      {
+        "an": 1997,
+        "luna": 2,
+        "indice": 118.8
+      },
+      {
+        "an": 1997,
+        "luna": 3,
+        "indice": 130.7
+      },
+      {
+        "an": 1997,
+        "luna": 4,
+        "indice": 106.9
+      },
+      {
+        "an": 1997,
+        "luna": 5,
+        "indice": 104.3
+      },
+      {
+        "an": 1997,
+        "luna": 6,
+        "indice": 102.3
+      },
+      {
+        "an": 1997,
+        "luna": 7,
+        "indice": 100.7
+      },
+      {
+        "an": 1997,
+        "luna": 8,
+        "indice": 103.5
+      },
+      {
+        "an": 1997,
+        "luna": 9,
+        "indice": 103.3
+      },
+      {
+        "an": 1997,
+        "luna": 10,
+        "indice": 106.5
+      },
+      {
+        "an": 1997,
+        "luna": 11,
+        "indice": 104.3
+      },
+      {
+        "an": 1997,
+        "luna": 12,
+        "indice": 104.5
+      },
+      {
+        "an": 1998,
+        "luna": 1,
+        "indice": 104.9
+      },
+      {
+        "an": 1998,
+        "luna": 2,
+        "indice": 107.2
+      },
+      {
+        "an": 1998,
+        "luna": 3,
+        "indice": 103.8
+      },
+      {
+        "an": 1998,
+        "luna": 4,
+        "indice": 102.7
+      },
+      {
+        "an": 1998,
+        "luna": 5,
+        "indice": 102.3
+      },
+      {
+        "an": 1998,
+        "luna": 6,
+        "indice": 101.3
+      },
+      {
+        "an": 1998,
+        "luna": 7,
+        "indice": 101.3
+      },
+      {
+        "an": 1998,
+        "luna": 8,
+        "indice": 100.6
+      },
+      {
+        "an": 1998,
+        "luna": 9,
+        "indice": 102.7
+      },
+      {
+        "an": 1998,
+        "luna": 10,
+        "indice": 103.9
+      },
+      {
+        "an": 1998,
+        "luna": 11,
+        "indice": 101.9
+      },
+      {
+        "an": 1998,
+        "luna": 12,
+        "indice": 102.2
+      },
+      {
+        "an": 1999,
+        "luna": 1,
+        "indice": 103
+      },
+      {
+        "an": 1999,
+        "luna": 2,
+        "indice": 102.9
+      },
+      {
+        "an": 1999,
+        "luna": 3,
+        "indice": 106.4
+      },
+      {
+        "an": 1999,
+        "luna": 4,
+        "indice": 104.8
+      },
+      {
+        "an": 1999,
+        "luna": 5,
+        "indice": 105.3
+      },
+      {
+        "an": 1999,
+        "luna": 6,
+        "indice": 105.1
+      },
+      {
+        "an": 1999,
+        "luna": 7,
+        "indice": 101.7
+      },
+      {
+        "an": 1999,
+        "luna": 8,
+        "indice": 101.2
+      },
+      {
+        "an": 1999,
+        "luna": 9,
+        "indice": 103.2
+      },
+      {
+        "an": 1999,
+        "luna": 10,
+        "indice": 104.2
+      },
+      {
+        "an": 1999,
+        "luna": 11,
+        "indice": 104
+      },
+      {
+        "an": 1999,
+        "luna": 12,
+        "indice": 102.9
+      },
+      {
+        "an": 2000,
+        "luna": 1,
+        "indice": 104.3
+      },
+      {
+        "an": 2000,
+        "luna": 2,
+        "indice": 102.2
+      },
+      {
+        "an": 2000,
+        "luna": 3,
+        "indice": 101.8
+      },
+      {
+        "an": 2000,
+        "luna": 4,
+        "indice": 104.8
+      },
+      {
+        "an": 2000,
+        "luna": 5,
+        "indice": 101.8
+      },
+      {
+        "an": 2000,
+        "luna": 6,
+        "indice": 102.8
+      },
+      {
+        "an": 2000,
+        "luna": 7,
+        "indice": 104.3
+      },
+      {
+        "an": 2000,
+        "luna": 8,
+        "indice": 101.8
+      },
+      {
+        "an": 2000,
+        "luna": 9,
+        "indice": 102.8
+      },
+      {
+        "an": 2000,
+        "luna": 10,
+        "indice": 102.8
+      },
+      {
+        "an": 2000,
+        "luna": 11,
+        "indice": 102.8
+      },
+      {
+        "an": 2000,
+        "luna": 12,
+        "indice": 102.5
+      },
+      {
+        "an": 2001,
+        "luna": 1,
+        "indice": 103.7
+      },
+      {
+        "an": 2001,
+        "luna": 2,
+        "indice": 102.3
+      },
+      {
+        "an": 2001,
+        "luna": 3,
+        "indice": 102
+      },
+      {
+        "an": 2001,
+        "luna": 4,
+        "indice": 102.7
+      },
+      {
+        "an": 2001,
+        "luna": 5,
+        "indice": 101.7
+      },
+      {
+        "an": 2001,
+        "luna": 6,
+        "indice": 101.6
+      },
+      {
+        "an": 2001,
+        "luna": 7,
+        "indice": 101.3
+      },
+      {
+        "an": 2001,
+        "luna": 8,
+        "indice": 102.2
+      },
+      {
+        "an": 2001,
+        "luna": 9,
+        "indice": 101.9
+      },
+      {
+        "an": 2001,
+        "luna": 10,
+        "indice": 102.4
+      },
+      {
+        "an": 2001,
+        "luna": 11,
+        "indice": 102.7
+      },
+      {
+        "an": 2001,
+        "luna": 12,
+        "indice": 102.2
+      },
+      {
+        "an": 2002,
+        "luna": 1,
+        "indice": 102.3
+      },
+      {
+        "an": 2002,
+        "luna": 2,
+        "indice": 101.2
+      },
+      {
+        "an": 2002,
+        "luna": 3,
+        "indice": 100.4
+      },
+      {
+        "an": 2002,
+        "luna": 4,
+        "indice": 102
+      },
+      {
+        "an": 2002,
+        "luna": 5,
+        "indice": 101.9
+      },
+      {
+        "an": 2002,
+        "luna": 6,
+        "indice": 101.2
+      },
+      {
+        "an": 2002,
+        "luna": 7,
+        "indice": 100.5
+      },
+      {
+        "an": 2002,
+        "luna": 8,
+        "indice": 100.8
+      },
+      {
+        "an": 2002,
+        "luna": 9,
+        "indice": 100.6
+      },
+      {
+        "an": 2002,
+        "luna": 10,
+        "indice": 101.6
+      },
+      {
+        "an": 2002,
+        "luna": 11,
+        "indice": 102.6
+      },
+      {
+        "an": 2002,
+        "luna": 12,
+        "indice": 101.5
+      },
+      {
+        "an": 2003,
+        "luna": 1,
+        "indice": 101.3
+      },
+      {
+        "an": 2003,
+        "luna": 2,
+        "indice": 100.8
+      },
+      {
+        "an": 2003,
+        "luna": 3,
+        "indice": 101.1
+      },
+      {
+        "an": 2003,
+        "luna": 4,
+        "indice": 101.1
+      },
+      {
+        "an": 2003,
+        "luna": 5,
+        "indice": 100.5
+      },
+      {
+        "an": 2003,
+        "luna": 6,
+        "indice": 100.9
+      },
+      {
+        "an": 2003,
+        "luna": 7,
+        "indice": 101.2
+      },
+      {
+        "an": 2003,
+        "luna": 8,
+        "indice": 100.3
+      },
+      {
+        "an": 2003,
+        "luna": 9,
+        "indice": 102.1
+      },
+      {
+        "an": 2003,
+        "luna": 10,
+        "indice": 101.5
+      },
+      {
+        "an": 2003,
+        "luna": 11,
+        "indice": 101.4
+      },
+      {
+        "an": 2003,
+        "luna": 12,
+        "indice": 101.2
+      },
+      {
+        "an": 2004,
+        "luna": 1,
+        "indice": 101.1
+      },
+      {
+        "an": 2004,
+        "luna": 2,
+        "indice": 100.6
+      },
+      {
+        "an": 2004,
+        "luna": 3,
+        "indice": 100.5
+      },
+      {
+        "an": 2004,
+        "luna": 4,
+        "indice": 100.6
+      },
+      {
+        "an": 2004,
+        "luna": 5,
+        "indice": 100.3
+      },
+      {
+        "an": 2004,
+        "luna": 6,
+        "indice": 100.6
+      },
+      {
+        "an": 2004,
+        "luna": 7,
+        "indice": 101.3
+      },
+      {
+        "an": 2004,
+        "luna": 8,
+        "indice": 100.5
+      },
+      {
+        "an": 2004,
+        "luna": 9,
+        "indice": 100.9
+      },
+      {
+        "an": 2004,
+        "luna": 10,
+        "indice": 101.2
+      },
+      {
+        "an": 2004,
+        "luna": 11,
+        "indice": 100.6
+      },
+      {
+        "an": 2004,
+        "luna": 12,
+        "indice": 100.6
+      },
+      {
+        "an": 2005,
+        "luna": 1,
+        "indice": 100.8
+      },
+      {
+        "an": 2005,
+        "luna": 2,
+        "indice": 100.6
+      },
+      {
+        "an": 2005,
+        "luna": 3,
+        "indice": 100.3
+      },
+      {
+        "an": 2005,
+        "luna": 4,
+        "indice": 101.8
+      },
+      {
+        "an": 2005,
+        "luna": 5,
+        "indice": 100.3
+      },
+      {
+        "an": 2005,
+        "luna": 6,
+        "indice": 100.3
+      },
+      {
+        "an": 2005,
+        "luna": 7,
+        "indice": 101
+      },
+      {
+        "an": 2005,
+        "luna": 8,
+        "indice": 100.1
+      },
+      {
+        "an": 2005,
+        "luna": 9,
+        "indice": 100.6
+      },
+      {
+        "an": 2005,
+        "luna": 10,
+        "indice": 100.9
+      },
+      {
+        "an": 2005,
+        "luna": 11,
+        "indice": 101.2
+      },
+      {
+        "an": 2005,
+        "luna": 12,
+        "indice": 100.5
+      },
+      {
+        "an": 2006,
+        "luna": 1,
+        "indice": 101.03
+      },
+      {
+        "an": 2006,
+        "luna": 2,
+        "indice": 100.24
+      },
+      {
+        "an": 2006,
+        "luna": 3,
+        "indice": 100.21
+      },
+      {
+        "an": 2006,
+        "luna": 4,
+        "indice": 100.42
+      },
+      {
+        "an": 2006,
+        "luna": 5,
+        "indice": 100.6
+      },
+      {
+        "an": 2006,
+        "luna": 6,
+        "indice": 100.15
+      },
+      {
+        "an": 2006,
+        "luna": 7,
+        "indice": 100.11
+      },
+      {
+        "an": 2006,
+        "luna": 8,
+        "indice": 99.93
+      },
+      {
+        "an": 2006,
+        "luna": 9,
+        "indice": 100.05
+      },
+      {
+        "an": 2006,
+        "luna": 10,
+        "indice": 100.21
+      },
+      {
+        "an": 2006,
+        "luna": 11,
+        "indice": 101.09
+      },
+      {
+        "an": 2006,
+        "luna": 12,
+        "indice": 100.74
+      },
+      {
+        "an": 2007,
+        "luna": 1,
+        "indice": 100.2
+      },
+      {
+        "an": 2007,
+        "luna": 2,
+        "indice": 100.04
+      },
+      {
+        "an": 2007,
+        "luna": 3,
+        "indice": 100.07
+      },
+      {
+        "an": 2007,
+        "luna": 4,
+        "indice": 100.52
+      },
+      {
+        "an": 2007,
+        "luna": 5,
+        "indice": 100.64
+      },
+      {
+        "an": 2007,
+        "luna": 6,
+        "indice": 100.14
+      },
+      {
+        "an": 2007,
+        "luna": 7,
+        "indice": 100.29
+      },
+      {
+        "an": 2007,
+        "luna": 8,
+        "indice": 100.86
+      },
+      {
+        "an": 2007,
+        "luna": 9,
+        "indice": 101.08
+      },
+      {
+        "an": 2007,
+        "luna": 10,
+        "indice": 100.97
+      },
+      {
+        "an": 2007,
+        "luna": 11,
+        "indice": 100.93
+      },
+      {
+        "an": 2007,
+        "luna": 12,
+        "indice": 100.64
+      },
+      {
+        "an": 2008,
+        "luna": 1,
+        "indice": 100.86
+      },
+      {
+        "an": 2008,
+        "luna": 2,
+        "indice": 100.7
+      },
+      {
+        "an": 2008,
+        "luna": 3,
+        "indice": 100.67
+      },
+      {
+        "an": 2008,
+        "luna": 4,
+        "indice": 100.52
+      },
+      {
+        "an": 2008,
+        "luna": 5,
+        "indice": 100.49
+      },
+      {
+        "an": 2008,
+        "luna": 6,
+        "indice": 100.28
+      },
+      {
+        "an": 2008,
+        "luna": 7,
+        "indice": 100.69
+      },
+      {
+        "an": 2008,
+        "luna": 8,
+        "indice": 99.91
+      },
+      {
+        "an": 2008,
+        "luna": 9,
+        "indice": 100.4
+      },
+      {
+        "an": 2008,
+        "luna": 10,
+        "indice": 101.06
+      },
+      {
+        "an": 2008,
+        "luna": 11,
+        "indice": 100.32
+      },
+      {
+        "an": 2008,
+        "luna": 12,
+        "indice": 100.23
+      },
+      {
+        "an": 2009,
+        "luna": 1,
+        "indice": 101.24
+      },
+      {
+        "an": 2009,
+        "luna": 2,
+        "indice": 100.88
+      },
+      {
+        "an": 2009,
+        "luna": 3,
+        "indice": 100.5
+      },
+      {
+        "an": 2009,
+        "luna": 4,
+        "indice": 100.27
+      },
+      {
+        "an": 2009,
+        "luna": 5,
+        "indice": 100.01
+      },
+      {
+        "an": 2009,
+        "luna": 6,
+        "indice": 100.2
+      },
+      {
+        "an": 2009,
+        "luna": 7,
+        "indice": 99.93
+      },
+      {
+        "an": 2009,
+        "luna": 8,
+        "indice": 99.81
+      },
+      {
+        "an": 2009,
+        "luna": 9,
+        "indice": 100.39
+      },
+      {
+        "an": 2009,
+        "luna": 10,
+        "indice": 100.44
+      },
+      {
+        "an": 2009,
+        "luna": 11,
+        "indice": 100.67
+      },
+      {
+        "an": 2009,
+        "luna": 12,
+        "indice": 100.32
+      },
+      {
+        "an": 2010,
+        "luna": 1,
+        "indice": 101.68
+      },
+      {
+        "an": 2010,
+        "luna": 2,
+        "indice": 100.2
+      },
+      {
+        "an": 2010,
+        "luna": 3,
+        "indice": 100.22
+      },
+      {
+        "an": 2010,
+        "luna": 4,
+        "indice": 100.35
+      },
+      {
+        "an": 2010,
+        "luna": 5,
+        "indice": 100.15
+      },
+      {
+        "an": 2010,
+        "luna": 6,
+        "indice": 100.16
+      },
+      {
+        "an": 2010,
+        "luna": 7,
+        "indice": 102.58
+      },
+      {
+        "an": 2010,
+        "luna": 8,
+        "indice": 100.23
+      },
+      {
+        "an": 2010,
+        "luna": 9,
+        "indice": 100.56
+      },
+      {
+        "an": 2010,
+        "luna": 10,
+        "indice": 100.55
+      },
+      {
+        "an": 2010,
+        "luna": 11,
+        "indice": 100.52
+      },
+      {
+        "an": 2010,
+        "luna": 12,
+        "indice": 100.53
+      },
+      {
+        "an": 2011,
+        "luna": 1,
+        "indice": 100.77
+      },
+      {
+        "an": 2011,
+        "luna": 2,
+        "indice": 100.77
+      },
+      {
+        "an": 2011,
+        "luna": 3,
+        "indice": 100.6
+      },
+      {
+        "an": 2011,
+        "luna": 4,
+        "indice": 100.66
+      },
+      {
+        "an": 2011,
+        "luna": 5,
+        "indice": 100.21
+      },
+      {
+        "an": 2011,
+        "luna": 6,
+        "indice": 99.71
+      },
+      {
+        "an": 2011,
+        "luna": 7,
+        "indice": 99.65
+      },
+      {
+        "an": 2011,
+        "luna": 8,
+        "indice": 99.65
+      },
+      {
+        "an": 2011,
+        "luna": 9,
+        "indice": 99.79
+      },
+      {
+        "an": 2011,
+        "luna": 10,
+        "indice": 100.64
+      },
+      {
+        "an": 2011,
+        "luna": 11,
+        "indice": 100.42
+      },
+      {
+        "an": 2011,
+        "luna": 12,
+        "indice": 100.23
+      },
+      {
+        "an": 2012,
+        "luna": 1,
+        "indice": 100.36
+      },
+      {
+        "an": 2012,
+        "luna": 2,
+        "indice": 100.64
+      },
+      {
+        "an": 2012,
+        "luna": 3,
+        "indice": 100.42
+      },
+      {
+        "an": 2012,
+        "luna": 4,
+        "indice": 100.07
+      },
+      {
+        "an": 2012,
+        "luna": 5,
+        "indice": 100.2
+      },
+      {
+        "an": 2012,
+        "luna": 6,
+        "indice": 99.96
+      },
+      {
+        "an": 2012,
+        "luna": 7,
+        "indice": 100.59
+      },
+      {
+        "an": 2012,
+        "luna": 8,
+        "indice": 100.51
+      },
+      {
+        "an": 2012,
+        "luna": 9,
+        "indice": 101.18
+      },
+      {
+        "an": 2012,
+        "luna": 10,
+        "indice": 100.29
+      },
+      {
+        "an": 2012,
+        "luna": 11,
+        "indice": 100.04
+      },
+      {
+        "an": 2012,
+        "luna": 12,
+        "indice": 100.6
+      },
+      {
+        "an": 2013,
+        "luna": 1,
+        "indice": 101.34
+      },
+      {
+        "an": 2013,
+        "luna": 2,
+        "indice": 100.34
+      },
+      {
+        "an": 2013,
+        "luna": 3,
+        "indice": 100.04
+      },
+      {
+        "an": 2013,
+        "luna": 4,
+        "indice": 100.11
+      },
+      {
+        "an": 2013,
+        "luna": 5,
+        "indice": 100.23
+      },
+      {
+        "an": 2013,
+        "luna": 6,
+        "indice": 100.01
+      },
+      {
+        "an": 2013,
+        "luna": 7,
+        "indice": 99.66
+      },
+      {
+        "an": 2013,
+        "luna": 8,
+        "indice": 99.8
+      },
+      {
+        "an": 2013,
+        "luna": 9,
+        "indice": 99.43
+      },
+      {
+        "an": 2013,
+        "luna": 10,
+        "indice": 100.29
+      },
+      {
+        "an": 2013,
+        "luna": 11,
+        "indice": 99.99
+      },
+      {
+        "an": 2013,
+        "luna": 12,
+        "indice": 100.33
+      },
+      {
+        "an": 2014,
+        "luna": 1,
+        "indice": 100.85
+      },
+      {
+        "an": 2014,
+        "luna": 2,
+        "indice": 100.33
+      },
+      {
+        "an": 2014,
+        "luna": 3,
+        "indice": 100.03
+      },
+      {
+        "an": 2014,
+        "luna": 4,
+        "indice": 100.27
+      },
+      {
+        "an": 2014,
+        "luna": 5,
+        "indice": 99.96
+      },
+      {
+        "an": 2014,
+        "luna": 6,
+        "indice": 99.73
+      },
+      {
+        "an": 2014,
+        "luna": 7,
+        "indice": 99.95
+      },
+      {
+        "an": 2014,
+        "luna": 8,
+        "indice": 99.69
+      },
+      {
+        "an": 2014,
+        "luna": 9,
+        "indice": 100.12
+      },
+      {
+        "an": 2014,
+        "luna": 10,
+        "indice": 100.19
+      },
+      {
+        "an": 2014,
+        "luna": 11,
+        "indice": 99.81
+      },
+      {
+        "an": 2014,
+        "luna": 12,
+        "indice": 99.9
+      },
+      {
+        "an": 2015,
+        "luna": 1,
+        "indice": 100.43
+      },
+      {
+        "an": 2015,
+        "luna": 2,
+        "indice": 100.33
+      },
+      {
+        "an": 2015,
+        "luna": 3,
+        "indice": 100.41
+      },
+      {
+        "an": 2015,
+        "luna": 4,
+        "indice": 100.13
+      },
+      {
+        "an": 2015,
+        "luna": 5,
+        "indice": 100.47
+      },
+      {
+        "an": 2015,
+        "luna": 6,
+        "indice": 97.05
+      },
+      {
+        "an": 2015,
+        "luna": 7,
+        "indice": 99.83
+      },
+      {
+        "an": 2015,
+        "luna": 8,
+        "indice": 99.49
+      },
+      {
+        "an": 2015,
+        "luna": 9,
+        "indice": 100.26
+      },
+      {
+        "an": 2015,
+        "luna": 10,
+        "indice": 100.28
+      },
+      {
+        "an": 2015,
+        "luna": 11,
+        "indice": 100.31
+      },
+      {
+        "an": 2015,
+        "luna": 12,
+        "indice": 100.11
+      },
+      {
+        "an": 2016,
+        "luna": 1,
+        "indice": 99.22
+      },
+      {
+        "an": 2016,
+        "luna": 2,
+        "indice": 99.76
+      },
+      {
+        "an": 2016,
+        "luna": 3,
+        "indice": 100.1
+      },
+      {
+        "an": 2016,
+        "luna": 4,
+        "indice": 99.85
+      },
+      {
+        "an": 2016,
+        "luna": 5,
+        "indice": 100.25
+      },
+      {
+        "an": 2016,
+        "luna": 6,
+        "indice": 99.83
+      },
+      {
+        "an": 2016,
+        "luna": 7,
+        "indice": 99.76
+      },
+      {
+        "an": 2016,
+        "luna": 8,
+        "indice": 100.07
+      },
+      {
+        "an": 2016,
+        "luna": 9,
+        "indice": 99.89
+      },
+      {
+        "an": 2016,
+        "luna": 10,
+        "indice": 100.43
+      },
+      {
+        "an": 2016,
+        "luna": 11,
+        "indice": 100.07
+      },
+      {
+        "an": 2016,
+        "luna": 12,
+        "indice": 100.24
+      },
+      {
+        "an": 2017,
+        "luna": 1,
+        "indice": 99.81
+      },
+      {
+        "an": 2017,
+        "luna": 2,
+        "indice": 99.91
+      },
+      {
+        "an": 2017,
+        "luna": 3,
+        "indice": 100.08
+      },
+      {
+        "an": 2017,
+        "luna": 4,
+        "indice": 100.28
+      },
+      {
+        "an": 2017,
+        "luna": 5,
+        "indice": 100.28
+      },
+      {
+        "an": 2017,
+        "luna": 6,
+        "indice": 100.04
+      },
+      {
+        "an": 2017,
+        "luna": 7,
+        "indice": 100.32
+      },
+      {
+        "an": 2017,
+        "luna": 8,
+        "indice": 99.8
+      },
+      {
+        "an": 2017,
+        "luna": 9,
+        "indice": 100.5
+      },
+      {
+        "an": 2017,
+        "luna": 10,
+        "indice": 101.28
+      },
+      {
+        "an": 2017,
+        "luna": 11,
+        "indice": 100.66
+      },
+      {
+        "an": 2017,
+        "luna": 12,
+        "indice": 100.32
+      },
+      {
+        "an": 2018,
+        "luna": 1,
+        "indice": 100.78
+      },
+      {
+        "an": 2018,
+        "luna": 2,
+        "indice": 100.3
+      },
+      {
+        "an": 2018,
+        "luna": 3,
+        "indice": 100.29
+      },
+      {
+        "an": 2018,
+        "luna": 4,
+        "indice": 100.54
+      },
+      {
+        "an": 2018,
+        "luna": 5,
+        "indice": 100.47
+      },
+      {
+        "an": 2018,
+        "luna": 6,
+        "indice": 100.02
+      },
+      {
+        "an": 2018,
+        "luna": 7,
+        "indice": 99.52
+      },
+      {
+        "an": 2018,
+        "luna": 8,
+        "indice": 100.28
+      },
+      {
+        "an": 2018,
+        "luna": 9,
+        "indice": 100.47
+      },
+      {
+        "an": 2018,
+        "luna": 10,
+        "indice": 100.52
+      },
+      {
+        "an": 2018,
+        "luna": 11,
+        "indice": 99.87
+      },
+      {
+        "an": 2018,
+        "luna": 12,
+        "indice": 100.16
+      },
+      {
+        "an": 2019,
+        "luna": 1,
+        "indice": 100.83
+      },
+      {
+        "an": 2019,
+        "luna": 2,
+        "indice": 100.79
+      },
+      {
+        "an": 2019,
+        "luna": 3,
+        "indice": 100.49
+      },
+      {
+        "an": 2019,
+        "luna": 4,
+        "indice": 100.61
+      },
+      {
+        "an": 2019,
+        "luna": 5,
+        "indice": 100.46
+      },
+      {
+        "an": 2019,
+        "luna": 6,
+        "indice": 99.77
+      },
+      {
+        "an": 2019,
+        "luna": 7,
+        "indice": 99.8
+      },
+      {
+        "an": 2019,
+        "luna": 8,
+        "indice": 100.06
+      },
+      {
+        "an": 2019,
+        "luna": 9,
+        "indice": 100.09
+      },
+      {
+        "an": 2019,
+        "luna": 10,
+        "indice": 100.43
+      },
+      {
+        "an": 2019,
+        "luna": 11,
+        "indice": 100.23
+      },
+      {
+        "an": 2019,
+        "luna": 12,
+        "indice": 100.42
+      },
+      {
+        "an": 2020,
+        "luna": 1,
+        "indice": 100.41
+      },
+      {
+        "an": 2020,
+        "luna": 2,
+        "indice": 100.25
+      },
+      {
+        "an": 2020,
+        "luna": 3,
+        "indice": 100.5
+      },
+      {
+        "an": 2020,
+        "luna": 4,
+        "indice": 100.26
+      },
+      {
+        "an": 2020,
+        "luna": 5,
+        "indice": 100.05
+      },
+      {
+        "an": 2020,
+        "luna": 6,
+        "indice": 100.08
+      },
+      {
+        "an": 2020,
+        "luna": 7,
+        "indice": 100
+      },
+      {
+        "an": 2020,
+        "luna": 8,
+        "indice": 99.95
+      },
+      {
+        "an": 2020,
+        "luna": 9,
+        "indice": 99.86
+      },
+      {
+        "an": 2020,
+        "luna": 10,
+        "indice": 100.22
+      },
+      {
+        "an": 2020,
+        "luna": 11,
+        "indice": 100.13
+      },
+      {
+        "an": 2020,
+        "luna": 12,
+        "indice": 100.34
+      },
+      {
+        "an": 2021,
+        "luna": 1,
+        "indice": 101.33
+      },
+      {
+        "an": 2021,
+        "luna": 2,
+        "indice": 100.41
+      },
+      {
+        "an": 2021,
+        "luna": 3,
+        "indice": 100.38
+      },
+      {
+        "an": 2021,
+        "luna": 4,
+        "indice": 100.45
+      },
+      {
+        "an": 2021,
+        "luna": 5,
+        "indice": 100.53
+      },
+      {
+        "an": 2021,
+        "luna": 6,
+        "indice": 100.27
+      },
+      {
+        "an": 2021,
+        "luna": 7,
+        "indice": 100.97
+      },
+      {
+        "an": 2021,
+        "luna": 8,
+        "indice": 100.24
+      },
+      {
+        "an": 2021,
+        "luna": 9,
+        "indice": 100.84
+      },
+      {
+        "an": 2021,
+        "luna": 10,
+        "indice": 101.78
+      },
+      {
+        "an": 2021,
+        "luna": 11,
+        "indice": 100
+      },
+      {
+        "an": 2021,
+        "luna": 12,
+        "indice": 100.71
+      },
+      {
+        "an": 2022,
+        "luna": 1,
+        "indice": 101.48
+      },
+      {
+        "an": 2022,
+        "luna": 2,
+        "indice": 100.58
+      },
+      {
+        "an": 2022,
+        "luna": 3,
+        "indice": 101.88
+      },
+      {
+        "an": 2022,
+        "luna": 4,
+        "indice": 103.74
+      },
+      {
+        "an": 2022,
+        "luna": 5,
+        "indice": 101.18
+      },
+      {
+        "an": 2022,
+        "luna": 6,
+        "indice": 100.76
+      },
+      {
+        "an": 2022,
+        "luna": 7,
+        "indice": 100.89
+      },
+      {
+        "an": 2022,
+        "luna": 8,
+        "indice": 100.56
+      },
+      {
+        "an": 2022,
+        "luna": 9,
+        "indice": 101.33
+      },
+      {
+        "an": 2022,
+        "luna": 10,
+        "indice": 101.28
+      },
+      {
+        "an": 2022,
+        "luna": 11,
+        "indice": 101.25
+      },
+      {
+        "an": 2022,
+        "luna": 12,
+        "indice": 100.37
+      },
+      {
+        "an": 2023,
+        "luna": 1,
+        "indice": 100.34
+      },
+      {
+        "an": 2023,
+        "luna": 2,
+        "indice": 100.98
+      },
+      {
+        "an": 2023,
+        "luna": 3,
+        "indice": 101.01
+      },
+      {
+        "an": 2023,
+        "luna": 4,
+        "indice": 100.75
+      },
+      {
+        "an": 2023,
+        "luna": 5,
+        "indice": 100.64
+      },
+      {
+        "an": 2023,
+        "luna": 6,
+        "indice": 100.4
+      },
+      {
+        "an": 2023,
+        "luna": 7,
+        "indice": 100.15
+      },
+      {
+        "an": 2023,
+        "luna": 8,
+        "indice": 100.54
+      },
+      {
+        "an": 2023,
+        "luna": 9,
+        "indice": 100.79
+      },
+      {
+        "an": 2023,
+        "luna": 10,
+        "indice": 100.57
+      },
+      {
+        "an": 2023,
+        "luna": 11,
+        "indice": 99.99
+      },
+      {
+        "an": 2023,
+        "luna": 12,
+        "indice": 100.26
+      },
+      {
+        "an": 2024,
+        "luna": 1,
+        "indice": 101.1
+      },
+      {
+        "an": 2024,
+        "luna": 2,
+        "indice": 100.81
+      },
+      {
+        "an": 2024,
+        "luna": 3,
+        "indice": 100.42
+      },
+      {
+        "an": 2024,
+        "luna": 4,
+        "indice": 100.08
+      },
+      {
+        "an": 2024,
+        "luna": 5,
+        "indice": 99.89
+      },
+      {
+        "an": 2024,
+        "luna": 6,
+        "indice": 100.24
+      },
+      {
+        "an": 2024,
+        "luna": 7,
+        "indice": 100.6
+      },
+      {
+        "an": 2024,
+        "luna": 8,
+        "indice": 100.23
+      },
+      {
+        "an": 2024,
+        "luna": 9,
+        "indice": 100.33
+      },
+      {
+        "an": 2024,
+        "luna": 10,
+        "indice": 100.62
+      },
+      {
+        "an": 2024,
+        "luna": 11,
+        "indice": 100.41
+      },
+      {
+        "an": 2024,
+        "luna": 12,
+        "indice": 100.29
+      },
+      {
+        "an": 2025,
+        "luna": 1,
+        "indice": 100.92
+      },
+      {
+        "an": 2025,
+        "luna": 2,
+        "indice": 100.88
+      },
+      {
+        "an": 2025,
+        "luna": 3,
+        "indice": 100.27
+      },
+      {
+        "an": 2025,
+        "luna": 4,
+        "indice": 100.07
+      },
+      {
+        "an": 2025,
+        "luna": 5,
+        "indice": 100.46
+      },
+      {
+        "an": 2025,
+        "luna": 6,
+        "indice": 100.45
+      },
+      {
+        "an": 2025,
+        "luna": 7,
+        "indice": 102.68
+      },
+      {
+        "an": 2025,
+        "luna": 8,
+        "indice": 102.1
+      },
+      {
+        "an": 2025,
+        "luna": 9,
+        "indice": 100.36
+      },
+      {
+        "an": 2025,
+        "luna": 10,
+        "indice": 100.5
+      },
+      {
+        "an": 2025,
+        "luna": 11,
+        "indice": 100.42
+      },
+      {
+        "an": 2025,
+        "luna": 12,
+        "indice": 100.22
+      },
+      {
+        "an": 2026,
+        "luna": 1,
+        "indice": 100.86
+      },
+      {
+        "an": 2026,
+        "luna": 2,
+        "indice": 100.59
+      },
+      {
+        "an": 2026,
+        "luna": 3,
+        "indice": 100.78
+      },
+      {
+        "an": 2026,
+        "luna": 4,
+        "indice": 100.84
+      },
+      {
+        "an": 2026,
+        "luna": 5,
+        "indice": 100.58
+      },
+      {
+        "an": 2026,
+        "luna": 6,
+        "indice": 100.06
+      }
+    ],
+    "Marfuri alimentare": [
+      {
+        "an": 1991,
+        "luna": 1,
+        "indice": 108.5
+      },
+      {
+        "an": 1991,
+        "luna": 2,
+        "indice": 104.1
+      },
+      {
+        "an": 1991,
+        "luna": 3,
+        "indice": 112.9
+      },
+      {
+        "an": 1991,
+        "luna": 4,
+        "indice": 158.6
+      },
+      {
+        "an": 1991,
+        "luna": 5,
+        "indice": 101
+      },
+      {
+        "an": 1991,
+        "luna": 6,
+        "indice": 98.3
+      },
+      {
+        "an": 1991,
+        "luna": 7,
+        "indice": 110.8
+      },
+      {
+        "an": 1991,
+        "luna": 8,
+        "indice": 117.2
+      },
+      {
+        "an": 1991,
+        "luna": 9,
+        "indice": 106.9
+      },
+      {
+        "an": 1991,
+        "luna": 10,
+        "indice": 109.6
+      },
+      {
+        "an": 1991,
+        "luna": 11,
+        "indice": 108.7
+      },
+      {
+        "an": 1991,
+        "luna": 12,
+        "indice": 116.7
+      },
+      {
+        "an": 1992,
+        "luna": 1,
+        "indice": 121.7
+      },
+      {
+        "an": 1992,
+        "luna": 2,
+        "indice": 112.4
+      },
+      {
+        "an": 1992,
+        "luna": 3,
+        "indice": 107.9
+      },
+      {
+        "an": 1992,
+        "luna": 4,
+        "indice": 106.2
+      },
+      {
+        "an": 1992,
+        "luna": 5,
+        "indice": 116.3
+      },
+      {
+        "an": 1992,
+        "luna": 6,
+        "indice": 104.5
+      },
+      {
+        "an": 1992,
+        "luna": 7,
+        "indice": 101.1
+      },
+      {
+        "an": 1992,
+        "luna": 8,
+        "indice": 101.6
+      },
+      {
+        "an": 1992,
+        "luna": 9,
+        "indice": 112.1
+      },
+      {
+        "an": 1992,
+        "luna": 10,
+        "indice": 110.8
+      },
+      {
+        "an": 1992,
+        "luna": 11,
+        "indice": 114.6
+      },
+      {
+        "an": 1992,
+        "luna": 12,
+        "indice": 115
+      },
+      {
+        "an": 1993,
+        "luna": 1,
+        "indice": 107
+      },
+      {
+        "an": 1993,
+        "luna": 2,
+        "indice": 105.7
+      },
+      {
+        "an": 1993,
+        "luna": 3,
+        "indice": 115.2
+      },
+      {
+        "an": 1993,
+        "luna": 4,
+        "indice": 111.8
+      },
+      {
+        "an": 1993,
+        "luna": 5,
+        "indice": 130.3
+      },
+      {
+        "an": 1993,
+        "luna": 6,
+        "indice": 100.4
+      },
+      {
+        "an": 1993,
+        "luna": 7,
+        "indice": 110.1
+      },
+      {
+        "an": 1993,
+        "luna": 8,
+        "indice": 109.7
+      },
+      {
+        "an": 1993,
+        "luna": 9,
+        "indice": 112
+      },
+      {
+        "an": 1993,
+        "luna": 10,
+        "indice": 117.1
+      },
+      {
+        "an": 1993,
+        "luna": 11,
+        "indice": 116.5
+      },
+      {
+        "an": 1993,
+        "luna": 12,
+        "indice": 105.5
+      },
+      {
+        "an": 1994,
+        "luna": 1,
+        "indice": 103.9
+      },
+      {
+        "an": 1994,
+        "luna": 2,
+        "indice": 106.9
+      },
+      {
+        "an": 1994,
+        "luna": 3,
+        "indice": 111.1
+      },
+      {
+        "an": 1994,
+        "luna": 4,
+        "indice": 105.9
+      },
+      {
+        "an": 1994,
+        "luna": 5,
+        "indice": 105.5
+      },
+      {
+        "an": 1994,
+        "luna": 6,
+        "indice": 101.1
+      },
+      {
+        "an": 1994,
+        "luna": 7,
+        "indice": 100.6
+      },
+      {
+        "an": 1994,
+        "luna": 8,
+        "indice": 100.4
+      },
+      {
+        "an": 1994,
+        "luna": 9,
+        "indice": 105
+      },
+      {
+        "an": 1994,
+        "luna": 10,
+        "indice": 104.9
+      },
+      {
+        "an": 1994,
+        "luna": 11,
+        "indice": 103.2
+      },
+      {
+        "an": 1994,
+        "luna": 12,
+        "indice": 102.6
+      },
+      {
+        "an": 1995,
+        "luna": 1,
+        "indice": 103
+      },
+      {
+        "an": 1995,
+        "luna": 2,
+        "indice": 101.5
+      },
+      {
+        "an": 1995,
+        "luna": 3,
+        "indice": 100.3
+      },
+      {
+        "an": 1995,
+        "luna": 4,
+        "indice": 101.4
+      },
+      {
+        "an": 1995,
+        "luna": 5,
+        "indice": 100.7
+      },
+      {
+        "an": 1995,
+        "luna": 6,
+        "indice": 100.1
+      },
+      {
+        "an": 1995,
+        "luna": 7,
+        "indice": 103.1
+      },
+      {
+        "an": 1995,
+        "luna": 8,
+        "indice": 100
+      },
+      {
+        "an": 1995,
+        "luna": 9,
+        "indice": 101.2
+      },
+      {
+        "an": 1995,
+        "luna": 10,
+        "indice": 103.5
+      },
+      {
+        "an": 1995,
+        "luna": 11,
+        "indice": 103.8
+      },
+      {
+        "an": 1995,
+        "luna": 12,
+        "indice": 104.5
+      },
+      {
+        "an": 1996,
+        "luna": 1,
+        "indice": 101.1
+      },
+      {
+        "an": 1996,
+        "luna": 2,
+        "indice": 101.9
+      },
+      {
+        "an": 1996,
+        "luna": 3,
+        "indice": 101.5
+      },
+      {
+        "an": 1996,
+        "luna": 4,
+        "indice": 102.4
+      },
+      {
+        "an": 1996,
+        "luna": 5,
+        "indice": 106.9
+      },
+      {
+        "an": 1996,
+        "luna": 6,
+        "indice": 100.6
+      },
+      {
+        "an": 1996,
+        "luna": 7,
+        "indice": 105.4
+      },
+      {
+        "an": 1996,
+        "luna": 8,
+        "indice": 101.9
+      },
+      {
+        "an": 1996,
+        "luna": 9,
+        "indice": 102.3
+      },
+      {
+        "an": 1996,
+        "luna": 10,
+        "indice": 103.6
+      },
+      {
+        "an": 1996,
+        "luna": 11,
+        "indice": 105.8
+      },
+      {
+        "an": 1996,
+        "luna": 12,
+        "indice": 111.9
+      },
+      {
+        "an": 1997,
+        "luna": 1,
+        "indice": 110.6
+      },
+      {
+        "an": 1997,
+        "luna": 2,
+        "indice": 125.2
+      },
+      {
+        "an": 1997,
+        "luna": 3,
+        "indice": 131.4
+      },
+      {
+        "an": 1997,
+        "luna": 4,
+        "indice": 105.5
+      },
+      {
+        "an": 1997,
+        "luna": 5,
+        "indice": 102.8
+      },
+      {
+        "an": 1997,
+        "luna": 6,
+        "indice": 101
+      },
+      {
+        "an": 1997,
+        "luna": 7,
+        "indice": 99.5
+      },
+      {
+        "an": 1997,
+        "luna": 8,
+        "indice": 103.9
+      },
+      {
+        "an": 1997,
+        "luna": 9,
+        "indice": 102.1
+      },
+      {
+        "an": 1997,
+        "luna": 10,
+        "indice": 106
+      },
+      {
+        "an": 1997,
+        "luna": 11,
+        "indice": 104.1
+      },
+      {
+        "an": 1997,
+        "luna": 12,
+        "indice": 105.8
+      },
+      {
+        "an": 1998,
+        "luna": 1,
+        "indice": 104.5
+      },
+      {
+        "an": 1998,
+        "luna": 2,
+        "indice": 107.7
+      },
+      {
+        "an": 1998,
+        "luna": 3,
+        "indice": 102.5
+      },
+      {
+        "an": 1998,
+        "luna": 4,
+        "indice": 102.1
+      },
+      {
+        "an": 1998,
+        "luna": 5,
+        "indice": 100.7
+      },
+      {
+        "an": 1998,
+        "luna": 6,
+        "indice": 100
+      },
+      {
+        "an": 1998,
+        "luna": 7,
+        "indice": 99
+      },
+      {
+        "an": 1998,
+        "luna": 8,
+        "indice": 99
+      },
+      {
+        "an": 1998,
+        "luna": 9,
+        "indice": 102.7
+      },
+      {
+        "an": 1998,
+        "luna": 10,
+        "indice": 101.6
+      },
+      {
+        "an": 1998,
+        "luna": 11,
+        "indice": 101.8
+      },
+      {
+        "an": 1998,
+        "luna": 12,
+        "indice": 102.5
+      },
+      {
+        "an": 1999,
+        "luna": 1,
+        "indice": 102.5
+      },
+      {
+        "an": 1999,
+        "luna": 2,
+        "indice": 102.5
+      },
+      {
+        "an": 1999,
+        "luna": 3,
+        "indice": 104.7
+      },
+      {
+        "an": 1999,
+        "luna": 4,
+        "indice": 105.2
+      },
+      {
+        "an": 1999,
+        "luna": 5,
+        "indice": 103.1
+      },
+      {
+        "an": 1999,
+        "luna": 6,
+        "indice": 100.5
+      },
+      {
+        "an": 1999,
+        "luna": 7,
+        "indice": 98.8
+      },
+      {
+        "an": 1999,
+        "luna": 8,
+        "indice": 100
+      },
+      {
+        "an": 1999,
+        "luna": 9,
+        "indice": 103.6
+      },
+      {
+        "an": 1999,
+        "luna": 10,
+        "indice": 103.4
+      },
+      {
+        "an": 1999,
+        "luna": 11,
+        "indice": 103.4
+      },
+      {
+        "an": 1999,
+        "luna": 12,
+        "indice": 104.1
+      },
+      {
+        "an": 2000,
+        "luna": 1,
+        "indice": 106.8
+      },
+      {
+        "an": 2000,
+        "luna": 2,
+        "indice": 103.1
+      },
+      {
+        "an": 2000,
+        "luna": 3,
+        "indice": 102.4
+      },
+      {
+        "an": 2000,
+        "luna": 4,
+        "indice": 102.3
+      },
+      {
+        "an": 2000,
+        "luna": 5,
+        "indice": 101.9
+      },
+      {
+        "an": 2000,
+        "luna": 6,
+        "indice": 103.7
+      },
+      {
+        "an": 2000,
+        "luna": 7,
+        "indice": 105.2
+      },
+      {
+        "an": 2000,
+        "luna": 8,
+        "indice": 101.2
+      },
+      {
+        "an": 2000,
+        "luna": 9,
+        "indice": 103
+      },
+      {
+        "an": 2000,
+        "luna": 10,
+        "indice": 103.1
+      },
+      {
+        "an": 2000,
+        "luna": 11,
+        "indice": 102.9
+      },
+      {
+        "an": 2000,
+        "luna": 12,
+        "indice": 103
+      },
+      {
+        "an": 2001,
+        "luna": 1,
+        "indice": 103.8
+      },
+      {
+        "an": 2001,
+        "luna": 2,
+        "indice": 103.1
+      },
+      {
+        "an": 2001,
+        "luna": 3,
+        "indice": 102.5
+      },
+      {
+        "an": 2001,
+        "luna": 4,
+        "indice": 103.3
+      },
+      {
+        "an": 2001,
+        "luna": 5,
+        "indice": 101.9
+      },
+      {
+        "an": 2001,
+        "luna": 6,
+        "indice": 102
+      },
+      {
+        "an": 2001,
+        "luna": 7,
+        "indice": 100.1
+      },
+      {
+        "an": 2001,
+        "luna": 8,
+        "indice": 100.7
+      },
+      {
+        "an": 2001,
+        "luna": 9,
+        "indice": 101.4
+      },
+      {
+        "an": 2001,
+        "luna": 10,
+        "indice": 101.8
+      },
+      {
+        "an": 2001,
+        "luna": 11,
+        "indice": 101.2
+      },
+      {
+        "an": 2001,
+        "luna": 12,
+        "indice": 102.6
+      },
+      {
+        "an": 2002,
+        "luna": 1,
+        "indice": 102.5
+      },
+      {
+        "an": 2002,
+        "luna": 2,
+        "indice": 100.7
+      },
+      {
+        "an": 2002,
+        "luna": 3,
+        "indice": 100.5
+      },
+      {
+        "an": 2002,
+        "luna": 4,
+        "indice": 102.3
+      },
+      {
+        "an": 2002,
+        "luna": 5,
+        "indice": 102.3
+      },
+      {
+        "an": 2002,
+        "luna": 6,
+        "indice": 101.5
+      },
+      {
+        "an": 2002,
+        "luna": 7,
+        "indice": 99
+      },
+      {
+        "an": 2002,
+        "luna": 8,
+        "indice": 100.3
+      },
+      {
+        "an": 2002,
+        "luna": 9,
+        "indice": 100.1
+      },
+      {
+        "an": 2002,
+        "luna": 10,
+        "indice": 100.9
+      },
+      {
+        "an": 2002,
+        "luna": 11,
+        "indice": 102.2
+      },
+      {
+        "an": 2002,
+        "luna": 12,
+        "indice": 102.7
+      },
+      {
+        "an": 2003,
+        "luna": 1,
+        "indice": 101.5
+      },
+      {
+        "an": 2003,
+        "luna": 2,
+        "indice": 101.7
+      },
+      {
+        "an": 2003,
+        "luna": 3,
+        "indice": 101.3
+      },
+      {
+        "an": 2003,
+        "luna": 4,
+        "indice": 101.3
+      },
+      {
+        "an": 2003,
+        "luna": 5,
+        "indice": 100.3
+      },
+      {
+        "an": 2003,
+        "luna": 6,
+        "indice": 101.2
+      },
+      {
+        "an": 2003,
+        "luna": 7,
+        "indice": 101.1
+      },
+      {
+        "an": 2003,
+        "luna": 8,
+        "indice": 99.3
+      },
+      {
+        "an": 2003,
+        "luna": 9,
+        "indice": 100.2
+      },
+      {
+        "an": 2003,
+        "luna": 10,
+        "indice": 101.2
+      },
+      {
+        "an": 2003,
+        "luna": 11,
+        "indice": 102.1
+      },
+      {
+        "an": 2003,
+        "luna": 12,
+        "indice": 101.8
+      },
+      {
+        "an": 2004,
+        "luna": 1,
+        "indice": 100.4
+      },
+      {
+        "an": 2004,
+        "luna": 2,
+        "indice": 100.8
+      },
+      {
+        "an": 2004,
+        "luna": 3,
+        "indice": 100.7
+      },
+      {
+        "an": 2004,
+        "luna": 4,
+        "indice": 100.3
+      },
+      {
+        "an": 2004,
+        "luna": 5,
+        "indice": 100
+      },
+      {
+        "an": 2004,
+        "luna": 6,
+        "indice": 100.4
+      },
+      {
+        "an": 2004,
+        "luna": 7,
+        "indice": 100.8
+      },
+      {
+        "an": 2004,
+        "luna": 8,
+        "indice": 100.2
+      },
+      {
+        "an": 2004,
+        "luna": 9,
+        "indice": 100.7
+      },
+      {
+        "an": 2004,
+        "luna": 10,
+        "indice": 100.9
+      },
+      {
+        "an": 2004,
+        "luna": 11,
+        "indice": 100.9
+      },
+      {
+        "an": 2004,
+        "luna": 12,
+        "indice": 101.1
+      },
+      {
+        "an": 2005,
+        "luna": 1,
+        "indice": 100.4
+      },
+      {
+        "an": 2005,
+        "luna": 2,
+        "indice": 100.5
+      },
+      {
+        "an": 2005,
+        "luna": 3,
+        "indice": 100.3
+      },
+      {
+        "an": 2005,
+        "luna": 4,
+        "indice": 100
+      },
+      {
+        "an": 2005,
+        "luna": 5,
+        "indice": 100.1
+      },
+      {
+        "an": 2005,
+        "luna": 6,
+        "indice": 100.4
+      },
+      {
+        "an": 2005,
+        "luna": 7,
+        "indice": 100.2
+      },
+      {
+        "an": 2005,
+        "luna": 8,
+        "indice": 100
+      },
+      {
+        "an": 2005,
+        "luna": 9,
+        "indice": 100.2
+      },
+      {
+        "an": 2005,
+        "luna": 10,
+        "indice": 101.2
+      },
+      {
+        "an": 2005,
+        "luna": 11,
+        "indice": 101.2
+      },
+      {
+        "an": 2005,
+        "luna": 12,
+        "indice": 101.1
+      },
+      {
+        "an": 2006,
+        "luna": 1,
+        "indice": 100.32
+      },
+      {
+        "an": 2006,
+        "luna": 2,
+        "indice": 100.55
+      },
+      {
+        "an": 2006,
+        "luna": 3,
+        "indice": 100.42
+      },
+      {
+        "an": 2006,
+        "luna": 4,
+        "indice": 100.45
+      },
+      {
+        "an": 2006,
+        "luna": 5,
+        "indice": 100.08
+      },
+      {
+        "an": 2006,
+        "luna": 6,
+        "indice": 99.55
+      },
+      {
+        "an": 2006,
+        "luna": 7,
+        "indice": 98.76
+      },
+      {
+        "an": 2006,
+        "luna": 8,
+        "indice": 99.15
+      },
+      {
+        "an": 2006,
+        "luna": 9,
+        "indice": 99.34
+      },
+      {
+        "an": 2006,
+        "luna": 10,
+        "indice": 100.05
+      },
+      {
+        "an": 2006,
+        "luna": 11,
+        "indice": 101.29
+      },
+      {
+        "an": 2006,
+        "luna": 12,
+        "indice": 101.15
+      },
+      {
+        "an": 2007,
+        "luna": 1,
+        "indice": 100.28
+      },
+      {
+        "an": 2007,
+        "luna": 2,
+        "indice": 99.97
+      },
+      {
+        "an": 2007,
+        "luna": 3,
+        "indice": 99.95
+      },
+      {
+        "an": 2007,
+        "luna": 4,
+        "indice": 100.49
+      },
+      {
+        "an": 2007,
+        "luna": 5,
+        "indice": 100.23
+      },
+      {
+        "an": 2007,
+        "luna": 6,
+        "indice": 100.32
+      },
+      {
+        "an": 2007,
+        "luna": 7,
+        "indice": 100.56
+      },
+      {
+        "an": 2007,
+        "luna": 8,
+        "indice": 101.68
+      },
+      {
+        "an": 2007,
+        "luna": 9,
+        "indice": 101.94
+      },
+      {
+        "an": 2007,
+        "luna": 10,
+        "indice": 101.3
+      },
+      {
+        "an": 2007,
+        "luna": 11,
+        "indice": 101.17
+      },
+      {
+        "an": 2007,
+        "luna": 12,
+        "indice": 100.92
+      },
+      {
+        "an": 2008,
+        "luna": 1,
+        "indice": 100.8
+      },
+      {
+        "an": 2008,
+        "luna": 2,
+        "indice": 100.38
+      },
+      {
+        "an": 2008,
+        "luna": 3,
+        "indice": 100.55
+      },
+      {
+        "an": 2008,
+        "luna": 4,
+        "indice": 101.05
+      },
+      {
+        "an": 2008,
+        "luna": 5,
+        "indice": 100.53
+      },
+      {
+        "an": 2008,
+        "luna": 6,
+        "indice": 100.32
+      },
+      {
+        "an": 2008,
+        "luna": 7,
+        "indice": 99.32
+      },
+      {
+        "an": 2008,
+        "luna": 8,
+        "indice": 100.2
+      },
+      {
+        "an": 2008,
+        "luna": 9,
+        "indice": 100.33
+      },
+      {
+        "an": 2008,
+        "luna": 10,
+        "indice": 101.14
+      },
+      {
+        "an": 2008,
+        "luna": 11,
+        "indice": 100.73
+      },
+      {
+        "an": 2008,
+        "luna": 12,
+        "indice": 100.52
+      },
+      {
+        "an": 2009,
+        "luna": 1,
+        "indice": 100.71
+      },
+      {
+        "an": 2009,
+        "luna": 2,
+        "indice": 100.32
+      },
+      {
+        "an": 2009,
+        "luna": 3,
+        "indice": 100.39
+      },
+      {
+        "an": 2009,
+        "luna": 4,
+        "indice": 100.03
+      },
+      {
+        "an": 2009,
+        "luna": 5,
+        "indice": 99.95
+      },
+      {
+        "an": 2009,
+        "luna": 6,
+        "indice": 99.82
+      },
+      {
+        "an": 2009,
+        "luna": 7,
+        "indice": 99.5
+      },
+      {
+        "an": 2009,
+        "luna": 8,
+        "indice": 98.94
+      },
+      {
+        "an": 2009,
+        "luna": 9,
+        "indice": 99.84
+      },
+      {
+        "an": 2009,
+        "luna": 10,
+        "indice": 100.15
+      },
+      {
+        "an": 2009,
+        "luna": 11,
+        "indice": 100.41
+      },
+      {
+        "an": 2009,
+        "luna": 12,
+        "indice": 100.34
+      },
+      {
+        "an": 2010,
+        "luna": 1,
+        "indice": 100.43
+      },
+      {
+        "an": 2010,
+        "luna": 2,
+        "indice": 100.24
+      },
+      {
+        "an": 2010,
+        "luna": 3,
+        "indice": 100.17
+      },
+      {
+        "an": 2010,
+        "luna": 4,
+        "indice": 100.02
+      },
+      {
+        "an": 2010,
+        "luna": 5,
+        "indice": 99.91
+      },
+      {
+        "an": 2010,
+        "luna": 6,
+        "indice": 99.94
+      },
+      {
+        "an": 2010,
+        "luna": 7,
+        "indice": 101.92
+      },
+      {
+        "an": 2010,
+        "luna": 8,
+        "indice": 100.38
+      },
+      {
+        "an": 2010,
+        "luna": 9,
+        "indice": 100.82
+      },
+      {
+        "an": 2010,
+        "luna": 10,
+        "indice": 100.82
+      },
+      {
+        "an": 2010,
+        "luna": 11,
+        "indice": 100.88
+      },
+      {
+        "an": 2010,
+        "luna": 12,
+        "indice": 100.76
+      },
+      {
+        "an": 2011,
+        "luna": 1,
+        "indice": 101.14
+      },
+      {
+        "an": 2011,
+        "luna": 2,
+        "indice": 101.76
+      },
+      {
+        "an": 2011,
+        "luna": 3,
+        "indice": 101.17
+      },
+      {
+        "an": 2011,
+        "luna": 4,
+        "indice": 100.92
+      },
+      {
+        "an": 2011,
+        "luna": 5,
+        "indice": 100.21
+      },
+      {
+        "an": 2011,
+        "luna": 6,
+        "indice": 98.66
+      },
+      {
+        "an": 2011,
+        "luna": 7,
+        "indice": 98.05
+      },
+      {
+        "an": 2011,
+        "luna": 8,
+        "indice": 98.61
+      },
+      {
+        "an": 2011,
+        "luna": 9,
+        "indice": 98.82
+      },
+      {
+        "an": 2011,
+        "luna": 10,
+        "indice": 100.81
+      },
+      {
+        "an": 2011,
+        "luna": 11,
+        "indice": 100.54
+      },
+      {
+        "an": 2011,
+        "luna": 12,
+        "indice": 100.36
+      },
+      {
+        "an": 2012,
+        "luna": 1,
+        "indice": 100.32
+      },
+      {
+        "an": 2012,
+        "luna": 2,
+        "indice": 101.21
+      },
+      {
+        "an": 2012,
+        "luna": 3,
+        "indice": 100.64
+      },
+      {
+        "an": 2012,
+        "luna": 4,
+        "indice": 99.89
+      },
+      {
+        "an": 2012,
+        "luna": 5,
+        "indice": 100.02
+      },
+      {
+        "an": 2012,
+        "luna": 6,
+        "indice": 99.87
+      },
+      {
+        "an": 2012,
+        "luna": 7,
+        "indice": 100.14
+      },
+      {
+        "an": 2012,
+        "luna": 8,
+        "indice": 100.67
+      },
+      {
+        "an": 2012,
+        "luna": 9,
+        "indice": 102.27
+      },
+      {
+        "an": 2012,
+        "luna": 10,
+        "indice": 100.09
+      },
+      {
+        "an": 2012,
+        "luna": 11,
+        "indice": 100.29
+      },
+      {
+        "an": 2012,
+        "luna": 12,
+        "indice": 100.66
+      },
+      {
+        "an": 2013,
+        "luna": 1,
+        "indice": 101.24
+      },
+      {
+        "an": 2013,
+        "luna": 2,
+        "indice": 100.29
+      },
+      {
+        "an": 2013,
+        "luna": 3,
+        "indice": 99.93
+      },
+      {
+        "an": 2013,
+        "luna": 4,
+        "indice": 100.02
+      },
+      {
+        "an": 2013,
+        "luna": 5,
+        "indice": 100.77
+      },
+      {
+        "an": 2013,
+        "luna": 6,
+        "indice": 99.28
+      },
+      {
+        "an": 2013,
+        "luna": 7,
+        "indice": 98.38
+      },
+      {
+        "an": 2013,
+        "luna": 8,
+        "indice": 99.19
+      },
+      {
+        "an": 2013,
+        "luna": 9,
+        "indice": 98.17
+      },
+      {
+        "an": 2013,
+        "luna": 10,
+        "indice": 100.48
+      },
+      {
+        "an": 2013,
+        "luna": 11,
+        "indice": 99.85
+      },
+      {
+        "an": 2013,
+        "luna": 12,
+        "indice": 100.62
+      },
+      {
+        "an": 2014,
+        "luna": 1,
+        "indice": 100.86
+      },
+      {
+        "an": 2014,
+        "luna": 2,
+        "indice": 100.3
+      },
+      {
+        "an": 2014,
+        "luna": 3,
+        "indice": 99.88
+      },
+      {
+        "an": 2014,
+        "luna": 4,
+        "indice": 99.94
+      },
+      {
+        "an": 2014,
+        "luna": 5,
+        "indice": 99.88
+      },
+      {
+        "an": 2014,
+        "luna": 6,
+        "indice": 99.26
+      },
+      {
+        "an": 2014,
+        "luna": 7,
+        "indice": 99.7
+      },
+      {
+        "an": 2014,
+        "luna": 8,
+        "indice": 99.1
+      },
+      {
+        "an": 2014,
+        "luna": 9,
+        "indice": 100.17
+      },
+      {
+        "an": 2014,
+        "luna": 10,
+        "indice": 100.55
+      },
+      {
+        "an": 2014,
+        "luna": 11,
+        "indice": 99.73
+      },
+      {
+        "an": 2014,
+        "luna": 12,
+        "indice": 100.24
+      },
+      {
+        "an": 2015,
+        "luna": 1,
+        "indice": 100.57
+      },
+      {
+        "an": 2015,
+        "luna": 2,
+        "indice": 100.53
+      },
+      {
+        "an": 2015,
+        "luna": 3,
+        "indice": 100.29
+      },
+      {
+        "an": 2015,
+        "luna": 4,
+        "indice": 100.33
+      },
+      {
+        "an": 2015,
+        "luna": 5,
+        "indice": 100.75
+      },
+      {
+        "an": 2015,
+        "luna": 6,
+        "indice": 91.77
+      },
+      {
+        "an": 2015,
+        "luna": 7,
+        "indice": 98.83
+      },
+      {
+        "an": 2015,
+        "luna": 8,
+        "indice": 99.21
+      },
+      {
+        "an": 2015,
+        "luna": 9,
+        "indice": 100.9
+      },
+      {
+        "an": 2015,
+        "luna": 10,
+        "indice": 100.5
+      },
+      {
+        "an": 2015,
+        "luna": 11,
+        "indice": 100.06
+      },
+      {
+        "an": 2015,
+        "luna": 12,
+        "indice": 100.24
+      },
+      {
+        "an": 2016,
+        "luna": 1,
+        "indice": 100.47
+      },
+      {
+        "an": 2016,
+        "luna": 2,
+        "indice": 100.34
+      },
+      {
+        "an": 2016,
+        "luna": 3,
+        "indice": 99.99
+      },
+      {
+        "an": 2016,
+        "luna": 4,
+        "indice": 99.63
+      },
+      {
+        "an": 2016,
+        "luna": 5,
+        "indice": 100.55
+      },
+      {
+        "an": 2016,
+        "luna": 6,
+        "indice": 99.32
+      },
+      {
+        "an": 2016,
+        "luna": 7,
+        "indice": 100.04
+      },
+      {
+        "an": 2016,
+        "luna": 8,
+        "indice": 99.91
+      },
+      {
+        "an": 2016,
+        "luna": 9,
+        "indice": 99.42
+      },
+      {
+        "an": 2016,
+        "luna": 10,
+        "indice": 100.53
+      },
+      {
+        "an": 2016,
+        "luna": 11,
+        "indice": 100.23
+      },
+      {
+        "an": 2016,
+        "luna": 12,
+        "indice": 100.26
+      },
+      {
+        "an": 2017,
+        "luna": 1,
+        "indice": 100.91
+      },
+      {
+        "an": 2017,
+        "luna": 2,
+        "indice": 100.65
+      },
+      {
+        "an": 2017,
+        "luna": 3,
+        "indice": 100.23
+      },
+      {
+        "an": 2017,
+        "luna": 4,
+        "indice": 100.19
+      },
+      {
+        "an": 2017,
+        "luna": 5,
+        "indice": 100.61
+      },
+      {
+        "an": 2017,
+        "luna": 6,
+        "indice": 99.82
+      },
+      {
+        "an": 2017,
+        "luna": 7,
+        "indice": 99.61
+      },
+      {
+        "an": 2017,
+        "luna": 8,
+        "indice": 99.14
+      },
+      {
+        "an": 2017,
+        "luna": 9,
+        "indice": 100.54
+      },
+      {
+        "an": 2017,
+        "luna": 10,
+        "indice": 101.3
+      },
+      {
+        "an": 2017,
+        "luna": 11,
+        "indice": 100.57
+      },
+      {
+        "an": 2017,
+        "luna": 12,
+        "indice": 100.44
+      },
+      {
+        "an": 2018,
+        "luna": 1,
+        "indice": 100.64
+      },
+      {
+        "an": 2018,
+        "luna": 2,
+        "indice": 100.61
+      },
+      {
+        "an": 2018,
+        "luna": 3,
+        "indice": 100.48
+      },
+      {
+        "an": 2018,
+        "luna": 4,
+        "indice": 100.18
+      },
+      {
+        "an": 2018,
+        "luna": 5,
+        "indice": 100.54
+      },
+      {
+        "an": 2018,
+        "luna": 6,
+        "indice": 99.76
+      },
+      {
+        "an": 2018,
+        "luna": 7,
+        "indice": 99.2
+      },
+      {
+        "an": 2018,
+        "luna": 8,
+        "indice": 99.83
+      },
+      {
+        "an": 2018,
+        "luna": 9,
+        "indice": 100.83
+      },
+      {
+        "an": 2018,
+        "luna": 10,
+        "indice": 100.61
+      },
+      {
+        "an": 2018,
+        "luna": 11,
+        "indice": 99.73
+      },
+      {
+        "an": 2018,
+        "luna": 12,
+        "indice": 100.67
+      },
+      {
+        "an": 2019,
+        "luna": 1,
+        "indice": 101.3
+      },
+      {
+        "an": 2019,
+        "luna": 2,
+        "indice": 101.27
+      },
+      {
+        "an": 2019,
+        "luna": 3,
+        "indice": 100.48
+      },
+      {
+        "an": 2019,
+        "luna": 4,
+        "indice": 100.68
+      },
+      {
+        "an": 2019,
+        "luna": 5,
+        "indice": 100.79
+      },
+      {
+        "an": 2019,
+        "luna": 6,
+        "indice": 99.53
+      },
+      {
+        "an": 2019,
+        "luna": 7,
+        "indice": 99.34
+      },
+      {
+        "an": 2019,
+        "luna": 8,
+        "indice": 99.71
+      },
+      {
+        "an": 2019,
+        "luna": 9,
+        "indice": 99.91
+      },
+      {
+        "an": 2019,
+        "luna": 10,
+        "indice": 100.7
+      },
+      {
+        "an": 2019,
+        "luna": 11,
+        "indice": 100.43
+      },
+      {
+        "an": 2019,
+        "luna": 12,
+        "indice": 100.84
+      },
+      {
+        "an": 2020,
+        "luna": 1,
+        "indice": 100.99
+      },
+      {
+        "an": 2020,
+        "luna": 2,
+        "indice": 100.63
+      },
+      {
+        "an": 2020,
+        "luna": 3,
+        "indice": 101.46
+      },
+      {
+        "an": 2020,
+        "luna": 4,
+        "indice": 101.27
+      },
+      {
+        "an": 2020,
+        "luna": 5,
+        "indice": 100.34
+      },
+      {
+        "an": 2020,
+        "luna": 6,
+        "indice": 99.62
+      },
+      {
+        "an": 2020,
+        "luna": 7,
+        "indice": 99.55
+      },
+      {
+        "an": 2020,
+        "luna": 8,
+        "indice": 99.59
+      },
+      {
+        "an": 2020,
+        "luna": 9,
+        "indice": 99.45
+      },
+      {
+        "an": 2020,
+        "luna": 10,
+        "indice": 100.11
+      },
+      {
+        "an": 2020,
+        "luna": 11,
+        "indice": 99.92
+      },
+      {
+        "an": 2020,
+        "luna": 12,
+        "indice": 100.29
+      },
+      {
+        "an": 2021,
+        "luna": 1,
+        "indice": 100.63
+      },
+      {
+        "an": 2021,
+        "luna": 2,
+        "indice": 100.46
+      },
+      {
+        "an": 2021,
+        "luna": 3,
+        "indice": 100.37
+      },
+      {
+        "an": 2021,
+        "luna": 4,
+        "indice": 100.45
+      },
+      {
+        "an": 2021,
+        "luna": 5,
+        "indice": 101.1
+      },
+      {
+        "an": 2021,
+        "luna": 6,
+        "indice": 100.25
+      },
+      {
+        "an": 2021,
+        "luna": 7,
+        "indice": 99.71
+      },
+      {
+        "an": 2021,
+        "luna": 8,
+        "indice": 99.95
+      },
+      {
+        "an": 2021,
+        "luna": 9,
+        "indice": 100.95
+      },
+      {
+        "an": 2021,
+        "luna": 10,
+        "indice": 101.06
+      },
+      {
+        "an": 2021,
+        "luna": 11,
+        "indice": 100.73
+      },
+      {
+        "an": 2021,
+        "luna": 12,
+        "indice": 100.84
+      },
+      {
+        "an": 2022,
+        "luna": 1,
+        "indice": 101.15
+      },
+      {
+        "an": 2022,
+        "luna": 2,
+        "indice": 101.96
+      },
+      {
+        "an": 2022,
+        "luna": 3,
+        "indice": 102.54
+      },
+      {
+        "an": 2022,
+        "luna": 4,
+        "indice": 102.56
+      },
+      {
+        "an": 2022,
+        "luna": 5,
+        "indice": 101.73
+      },
+      {
+        "an": 2022,
+        "luna": 6,
+        "indice": 100.62
+      },
+      {
+        "an": 2022,
+        "luna": 7,
+        "indice": 100.92
+      },
+      {
+        "an": 2022,
+        "luna": 8,
+        "indice": 101.82
+      },
+      {
+        "an": 2022,
+        "luna": 9,
+        "indice": 101.72
+      },
+      {
+        "an": 2022,
+        "luna": 10,
+        "indice": 102.29
+      },
+      {
+        "an": 2022,
+        "luna": 11,
+        "indice": 101.54
+      },
+      {
+        "an": 2022,
+        "luna": 12,
+        "indice": 101.26
+      },
+      {
+        "an": 2023,
+        "luna": 1,
+        "indice": 101.5
+      },
+      {
+        "an": 2023,
+        "luna": 2,
+        "indice": 101.85
+      },
+      {
+        "an": 2023,
+        "luna": 3,
+        "indice": 101.89
+      },
+      {
+        "an": 2023,
+        "luna": 4,
+        "indice": 101.1
+      },
+      {
+        "an": 2023,
+        "luna": 5,
+        "indice": 100.8
+      },
+      {
+        "an": 2023,
+        "luna": 6,
+        "indice": 99.9
+      },
+      {
+        "an": 2023,
+        "luna": 7,
+        "indice": 99.51
+      },
+      {
+        "an": 2023,
+        "luna": 8,
+        "indice": 98.01
+      },
+      {
+        "an": 2023,
+        "luna": 9,
+        "indice": 100.33
+      },
+      {
+        "an": 2023,
+        "luna": 10,
+        "indice": 100.71
+      },
+      {
+        "an": 2023,
+        "luna": 11,
+        "indice": 99.84
+      },
+      {
+        "an": 2023,
+        "luna": 12,
+        "indice": 100.29
+      },
+      {
+        "an": 2024,
+        "luna": 1,
+        "indice": 101.34
+      },
+      {
+        "an": 2024,
+        "luna": 2,
+        "indice": 100.73
+      },
+      {
+        "an": 2024,
+        "luna": 3,
+        "indice": 100.25
+      },
+      {
+        "an": 2024,
+        "luna": 4,
+        "indice": 100.37
+      },
+      {
+        "an": 2024,
+        "luna": 5,
+        "indice": 99.98
+      },
+      {
+        "an": 2024,
+        "luna": 6,
+        "indice": 99.76
+      },
+      {
+        "an": 2024,
+        "luna": 7,
+        "indice": 100.11
+      },
+      {
+        "an": 2024,
+        "luna": 8,
+        "indice": 100.45
+      },
+      {
+        "an": 2024,
+        "luna": 9,
+        "indice": 100.79
+      },
+      {
+        "an": 2024,
+        "luna": 10,
+        "indice": 100.75
+      },
+      {
+        "an": 2024,
+        "luna": 11,
+        "indice": 100.19
+      },
+      {
+        "an": 2024,
+        "luna": 12,
+        "indice": 100.27
+      },
+      {
+        "an": 2025,
+        "luna": 1,
+        "indice": 100.8
+      },
+      {
+        "an": 2025,
+        "luna": 2,
+        "indice": 100.73
+      },
+      {
+        "an": 2025,
+        "luna": 3,
+        "indice": 100.79
+      },
+      {
+        "an": 2025,
+        "luna": 4,
+        "indice": 100.83
+      },
+      {
+        "an": 2025,
+        "luna": 5,
+        "indice": 100.89
+      },
+      {
+        "an": 2025,
+        "luna": 6,
+        "indice": 100.53
+      },
+      {
+        "an": 2025,
+        "luna": 7,
+        "indice": 100.39
+      },
+      {
+        "an": 2025,
+        "luna": 8,
+        "indice": 101.63
+      },
+      {
+        "an": 2025,
+        "luna": 9,
+        "indice": 99.8
+      },
+      {
+        "an": 2025,
+        "luna": 10,
+        "indice": 100.48
+      },
+      {
+        "an": 2025,
+        "luna": 11,
+        "indice": 100.25
+      },
+      {
+        "an": 2025,
+        "luna": 12,
+        "indice": 100.37
+      },
+      {
+        "an": 2026,
+        "luna": 1,
+        "indice": 100.91
+      },
+      {
+        "an": 2026,
+        "luna": 2,
+        "indice": 100.76
+      },
+      {
+        "an": 2026,
+        "luna": 3,
+        "indice": 100.58
+      },
+      {
+        "an": 2026,
+        "luna": 4,
+        "indice": 100.57
+      },
+      {
+        "an": 2026,
+        "luna": 5,
+        "indice": 100.32
+      },
+      {
+        "an": 2026,
+        "luna": 6,
+        "indice": 99.56
+      }
+    ],
+    "Marfuri nealimentare": [
+      {
+        "an": 1991,
+        "luna": 1,
+        "indice": 122
+      },
+      {
+        "an": 1991,
+        "luna": 2,
+        "indice": 108.8
+      },
+      {
+        "an": 1991,
+        "luna": 3,
+        "indice": 103.4
+      },
+      {
+        "an": 1991,
+        "luna": 4,
+        "indice": 105.1
+      },
+      {
+        "an": 1991,
+        "luna": 5,
+        "indice": 108.9
+      },
+      {
+        "an": 1991,
+        "luna": 6,
+        "indice": 105.1
+      },
+      {
+        "an": 1991,
+        "luna": 7,
+        "indice": 109.3
+      },
+      {
+        "an": 1991,
+        "luna": 8,
+        "indice": 106
+      },
+      {
+        "an": 1991,
+        "luna": 9,
+        "indice": 107.3
+      },
+      {
+        "an": 1991,
+        "luna": 10,
+        "indice": 111.4
+      },
+      {
+        "an": 1991,
+        "luna": 11,
+        "indice": 110.5
+      },
+      {
+        "an": 1991,
+        "luna": 12,
+        "indice": 111.2
+      },
+      {
+        "an": 1992,
+        "luna": 1,
+        "indice": 119.6
+      },
+      {
+        "an": 1992,
+        "luna": 2,
+        "indice": 114.1
+      },
+      {
+        "an": 1992,
+        "luna": 3,
+        "indice": 111.8
+      },
+      {
+        "an": 1992,
+        "luna": 4,
+        "indice": 103.5
+      },
+      {
+        "an": 1992,
+        "luna": 5,
+        "indice": 109.6
+      },
+      {
+        "an": 1992,
+        "luna": 6,
+        "indice": 104.2
+      },
+      {
+        "an": 1992,
+        "luna": 7,
+        "indice": 104.6
+      },
+      {
+        "an": 1992,
+        "luna": 8,
+        "indice": 104.9
+      },
+      {
+        "an": 1992,
+        "luna": 9,
+        "indice": 107.9
+      },
+      {
+        "an": 1992,
+        "luna": 10,
+        "indice": 108.7
+      },
+      {
+        "an": 1992,
+        "luna": 11,
+        "indice": 112.3
+      },
+      {
+        "an": 1992,
+        "luna": 12,
+        "indice": 111.1
+      },
+      {
+        "an": 1993,
+        "luna": 1,
+        "indice": 117.6
+      },
+      {
+        "an": 1993,
+        "luna": 2,
+        "indice": 111.9
+      },
+      {
+        "an": 1993,
+        "luna": 3,
+        "indice": 103.1
+      },
+      {
+        "an": 1993,
+        "luna": 4,
+        "indice": 108.5
+      },
+      {
+        "an": 1993,
+        "luna": 5,
+        "indice": 132.5
+      },
+      {
+        "an": 1993,
+        "luna": 6,
+        "indice": 108.9
+      },
+      {
+        "an": 1993,
+        "luna": 7,
+        "indice": 114
+      },
+      {
+        "an": 1993,
+        "luna": 8,
+        "indice": 113
+      },
+      {
+        "an": 1993,
+        "luna": 9,
+        "indice": 111.1
+      },
+      {
+        "an": 1993,
+        "luna": 10,
+        "indice": 116.7
+      },
+      {
+        "an": 1993,
+        "luna": 11,
+        "indice": 111.3
+      },
+      {
+        "an": 1993,
+        "luna": 12,
+        "indice": 108.7
+      },
+      {
+        "an": 1994,
+        "luna": 1,
+        "indice": 105.7
+      },
+      {
+        "an": 1994,
+        "luna": 2,
+        "indice": 104.7
+      },
+      {
+        "an": 1994,
+        "luna": 3,
+        "indice": 104.9
+      },
+      {
+        "an": 1994,
+        "luna": 4,
+        "indice": 106.3
+      },
+      {
+        "an": 1994,
+        "luna": 5,
+        "indice": 104.1
+      },
+      {
+        "an": 1994,
+        "luna": 6,
+        "indice": 103.2
+      },
+      {
+        "an": 1994,
+        "luna": 7,
+        "indice": 102.7
+      },
+      {
+        "an": 1994,
+        "luna": 8,
+        "indice": 102.8
+      },
+      {
+        "an": 1994,
+        "luna": 9,
+        "indice": 102.7
+      },
+      {
+        "an": 1994,
+        "luna": 10,
+        "indice": 103.6
+      },
+      {
+        "an": 1994,
+        "luna": 11,
+        "indice": 102.6
+      },
+      {
+        "an": 1994,
+        "luna": 12,
+        "indice": 101.4
+      },
+      {
+        "an": 1995,
+        "luna": 1,
+        "indice": 101.1
+      },
+      {
+        "an": 1995,
+        "luna": 2,
+        "indice": 101.3
+      },
+      {
+        "an": 1995,
+        "luna": 3,
+        "indice": 101
+      },
+      {
+        "an": 1995,
+        "luna": 4,
+        "indice": 102.1
+      },
+      {
+        "an": 1995,
+        "luna": 5,
+        "indice": 101
+      },
+      {
+        "an": 1995,
+        "luna": 6,
+        "indice": 101.9
+      },
+      {
+        "an": 1995,
+        "luna": 7,
+        "indice": 101.9
+      },
+      {
+        "an": 1995,
+        "luna": 8,
+        "indice": 101.5
+      },
+      {
+        "an": 1995,
+        "luna": 9,
+        "indice": 101.6
+      },
+      {
+        "an": 1995,
+        "luna": 10,
+        "indice": 103.3
+      },
+      {
+        "an": 1995,
+        "luna": 11,
+        "indice": 104.2
+      },
+      {
+        "an": 1995,
+        "luna": 12,
+        "indice": 102.9
+      },
+      {
+        "an": 1996,
+        "luna": 1,
+        "indice": 101.5
+      },
+      {
+        "an": 1996,
+        "luna": 2,
+        "indice": 101.8
+      },
+      {
+        "an": 1996,
+        "luna": 3,
+        "indice": 101.5
+      },
+      {
+        "an": 1996,
+        "luna": 4,
+        "indice": 101.3
+      },
+      {
+        "an": 1996,
+        "luna": 5,
+        "indice": 103.9
+      },
+      {
+        "an": 1996,
+        "luna": 6,
+        "indice": 101.4
+      },
+      {
+        "an": 1996,
+        "luna": 7,
+        "indice": 110
+      },
+      {
+        "an": 1996,
+        "luna": 8,
+        "indice": 105
+      },
+      {
+        "an": 1996,
+        "luna": 9,
+        "indice": 102.1
+      },
+      {
+        "an": 1996,
+        "luna": 10,
+        "indice": 103.2
+      },
+      {
+        "an": 1996,
+        "luna": 11,
+        "indice": 106.8
+      },
+      {
+        "an": 1996,
+        "luna": 12,
+        "indice": 110.2
+      },
+      {
+        "an": 1997,
+        "luna": 1,
+        "indice": 117.1
+      },
+      {
+        "an": 1997,
+        "luna": 2,
+        "indice": 112.3
+      },
+      {
+        "an": 1997,
+        "luna": 3,
+        "indice": 127.5
+      },
+      {
+        "an": 1997,
+        "luna": 4,
+        "indice": 107.9
+      },
+      {
+        "an": 1997,
+        "luna": 5,
+        "indice": 106.4
+      },
+      {
+        "an": 1997,
+        "luna": 6,
+        "indice": 102.4
+      },
+      {
+        "an": 1997,
+        "luna": 7,
+        "indice": 101.7
+      },
+      {
+        "an": 1997,
+        "luna": 8,
+        "indice": 102.7
+      },
+      {
+        "an": 1997,
+        "luna": 9,
+        "indice": 103.2
+      },
+      {
+        "an": 1997,
+        "luna": 10,
+        "indice": 106
+      },
+      {
+        "an": 1997,
+        "luna": 11,
+        "indice": 104.1
+      },
+      {
+        "an": 1997,
+        "luna": 12,
+        "indice": 103.4
+      },
+      {
+        "an": 1998,
+        "luna": 1,
+        "indice": 102.8
+      },
+      {
+        "an": 1998,
+        "luna": 2,
+        "indice": 107
+      },
+      {
+        "an": 1998,
+        "luna": 3,
+        "indice": 105.2
+      },
+      {
+        "an": 1998,
+        "luna": 4,
+        "indice": 102.3
+      },
+      {
+        "an": 1998,
+        "luna": 5,
+        "indice": 104.1
+      },
+      {
+        "an": 1998,
+        "luna": 6,
+        "indice": 102.6
+      },
+      {
+        "an": 1998,
+        "luna": 7,
+        "indice": 102.6
+      },
+      {
+        "an": 1998,
+        "luna": 8,
+        "indice": 101.9
+      },
+      {
+        "an": 1998,
+        "luna": 9,
+        "indice": 101.8
+      },
+      {
+        "an": 1998,
+        "luna": 10,
+        "indice": 105.1
+      },
+      {
+        "an": 1998,
+        "luna": 11,
+        "indice": 101.9
+      },
+      {
+        "an": 1998,
+        "luna": 12,
+        "indice": 101.9
+      },
+      {
+        "an": 1999,
+        "luna": 1,
+        "indice": 102.5
+      },
+      {
+        "an": 1999,
+        "luna": 2,
+        "indice": 103.4
+      },
+      {
+        "an": 1999,
+        "luna": 3,
+        "indice": 108.8
+      },
+      {
+        "an": 1999,
+        "luna": 4,
+        "indice": 103.7
+      },
+      {
+        "an": 1999,
+        "luna": 5,
+        "indice": 103.4
+      },
+      {
+        "an": 1999,
+        "luna": 6,
+        "indice": 107.3
+      },
+      {
+        "an": 1999,
+        "luna": 7,
+        "indice": 102.6
+      },
+      {
+        "an": 1999,
+        "luna": 8,
+        "indice": 102.2
+      },
+      {
+        "an": 1999,
+        "luna": 9,
+        "indice": 102.9
+      },
+      {
+        "an": 1999,
+        "luna": 10,
+        "indice": 103.6
+      },
+      {
+        "an": 1999,
+        "luna": 11,
+        "indice": 105.3
+      },
+      {
+        "an": 1999,
+        "luna": 12,
+        "indice": 102.5
+      },
+      {
+        "an": 2000,
+        "luna": 1,
+        "indice": 102.4
+      },
+      {
+        "an": 2000,
+        "luna": 2,
+        "indice": 101.3
+      },
+      {
+        "an": 2000,
+        "luna": 3,
+        "indice": 101.2
+      },
+      {
+        "an": 2000,
+        "luna": 4,
+        "indice": 105.3
+      },
+      {
+        "an": 2000,
+        "luna": 5,
+        "indice": 101.9
+      },
+      {
+        "an": 2000,
+        "luna": 6,
+        "indice": 103
+      },
+      {
+        "an": 2000,
+        "luna": 7,
+        "indice": 103.9
+      },
+      {
+        "an": 2000,
+        "luna": 8,
+        "indice": 102.1
+      },
+      {
+        "an": 2000,
+        "luna": 9,
+        "indice": 103.1
+      },
+      {
+        "an": 2000,
+        "luna": 10,
+        "indice": 102.3
+      },
+      {
+        "an": 2000,
+        "luna": 11,
+        "indice": 103.5
+      },
+      {
+        "an": 2000,
+        "luna": 12,
+        "indice": 102.4
+      },
+      {
+        "an": 2001,
+        "luna": 1,
+        "indice": 102.2
+      },
+      {
+        "an": 2001,
+        "luna": 2,
+        "indice": 101.3
+      },
+      {
+        "an": 2001,
+        "luna": 3,
+        "indice": 101.8
+      },
+      {
+        "an": 2001,
+        "luna": 4,
+        "indice": 102.4
+      },
+      {
+        "an": 2001,
+        "luna": 5,
+        "indice": 101.8
+      },
+      {
+        "an": 2001,
+        "luna": 6,
+        "indice": 101.2
+      },
+      {
+        "an": 2001,
+        "luna": 7,
+        "indice": 102
+      },
+      {
+        "an": 2001,
+        "luna": 8,
+        "indice": 103.9
+      },
+      {
+        "an": 2001,
+        "luna": 9,
+        "indice": 102.3
+      },
+      {
+        "an": 2001,
+        "luna": 10,
+        "indice": 102.6
+      },
+      {
+        "an": 2001,
+        "luna": 11,
+        "indice": 104.8
+      },
+      {
+        "an": 2001,
+        "luna": 12,
+        "indice": 101.4
+      },
+      {
+        "an": 2002,
+        "luna": 1,
+        "indice": 102.4
+      },
+      {
+        "an": 2002,
+        "luna": 2,
+        "indice": 101.6
+      },
+      {
+        "an": 2002,
+        "luna": 3,
+        "indice": 100
+      },
+      {
+        "an": 2002,
+        "luna": 4,
+        "indice": 101.6
+      },
+      {
+        "an": 2002,
+        "luna": 5,
+        "indice": 101.4
+      },
+      {
+        "an": 2002,
+        "luna": 6,
+        "indice": 100.8
+      },
+      {
+        "an": 2002,
+        "luna": 7,
+        "indice": 101.5
+      },
+      {
+        "an": 2002,
+        "luna": 8,
+        "indice": 101
+      },
+      {
+        "an": 2002,
+        "luna": 9,
+        "indice": 101.1
+      },
+      {
+        "an": 2002,
+        "luna": 10,
+        "indice": 102.4
+      },
+      {
+        "an": 2002,
+        "luna": 11,
+        "indice": 103
+      },
+      {
+        "an": 2002,
+        "luna": 12,
+        "indice": 100.7
+      },
+      {
+        "an": 2003,
+        "luna": 1,
+        "indice": 101.1
+      },
+      {
+        "an": 2003,
+        "luna": 2,
+        "indice": 100.8
+      },
+      {
+        "an": 2003,
+        "luna": 3,
+        "indice": 101
+      },
+      {
+        "an": 2003,
+        "luna": 4,
+        "indice": 100.6
+      },
+      {
+        "an": 2003,
+        "luna": 5,
+        "indice": 100.7
+      },
+      {
+        "an": 2003,
+        "luna": 6,
+        "indice": 100.6
+      },
+      {
+        "an": 2003,
+        "luna": 7,
+        "indice": 101.5
+      },
+      {
+        "an": 2003,
+        "luna": 8,
+        "indice": 100.6
+      },
+      {
+        "an": 2003,
+        "luna": 9,
+        "indice": 104.5
+      },
+      {
+        "an": 2003,
+        "luna": 10,
+        "indice": 101
+      },
+      {
+        "an": 2003,
+        "luna": 11,
+        "indice": 100.7
+      },
+      {
+        "an": 2003,
+        "luna": 12,
+        "indice": 100.5
+      },
+      {
+        "an": 2004,
+        "luna": 1,
+        "indice": 101.8
+      },
+      {
+        "an": 2004,
+        "luna": 2,
+        "indice": 100.5
+      },
+      {
+        "an": 2004,
+        "luna": 3,
+        "indice": 100.3
+      },
+      {
+        "an": 2004,
+        "luna": 4,
+        "indice": 100.7
+      },
+      {
+        "an": 2004,
+        "luna": 5,
+        "indice": 100.5
+      },
+      {
+        "an": 2004,
+        "luna": 6,
+        "indice": 100.6
+      },
+      {
+        "an": 2004,
+        "luna": 7,
+        "indice": 102.1
+      },
+      {
+        "an": 2004,
+        "luna": 8,
+        "indice": 100.6
+      },
+      {
+        "an": 2004,
+        "luna": 9,
+        "indice": 101
+      },
+      {
+        "an": 2004,
+        "luna": 10,
+        "indice": 101.5
+      },
+      {
+        "an": 2004,
+        "luna": 11,
+        "indice": 101
+      },
+      {
+        "an": 2004,
+        "luna": 12,
+        "indice": 100.4
+      },
+      {
+        "an": 2005,
+        "luna": 1,
+        "indice": 101.3
+      },
+      {
+        "an": 2005,
+        "luna": 2,
+        "indice": 100
+      },
+      {
+        "an": 2005,
+        "luna": 3,
+        "indice": 100.3
+      },
+      {
+        "an": 2005,
+        "luna": 4,
+        "indice": 103.6
+      },
+      {
+        "an": 2005,
+        "luna": 5,
+        "indice": 100.2
+      },
+      {
+        "an": 2005,
+        "luna": 6,
+        "indice": 99.9
+      },
+      {
+        "an": 2005,
+        "luna": 7,
+        "indice": 101.7
+      },
+      {
+        "an": 2005,
+        "luna": 8,
+        "indice": 100.3
+      },
+      {
+        "an": 2005,
+        "luna": 9,
+        "indice": 100.7
+      },
+      {
+        "an": 2005,
+        "luna": 10,
+        "indice": 100
+      },
+      {
+        "an": 2005,
+        "luna": 11,
+        "indice": 101.2
+      },
+      {
+        "an": 2005,
+        "luna": 12,
+        "indice": 100.2
+      },
+      {
+        "an": 2006,
+        "luna": 1,
+        "indice": 101.88
+      },
+      {
+        "an": 2006,
+        "luna": 2,
+        "indice": 100.16
+      },
+      {
+        "an": 2006,
+        "luna": 3,
+        "indice": 100.11
+      },
+      {
+        "an": 2006,
+        "luna": 4,
+        "indice": 100.38
+      },
+      {
+        "an": 2006,
+        "luna": 5,
+        "indice": 101.2
+      },
+      {
+        "an": 2006,
+        "luna": 6,
+        "indice": 100.45
+      },
+      {
+        "an": 2006,
+        "luna": 7,
+        "indice": 101.15
+      },
+      {
+        "an": 2006,
+        "luna": 8,
+        "indice": 100.31
+      },
+      {
+        "an": 2006,
+        "luna": 9,
+        "indice": 100.24
+      },
+      {
+        "an": 2006,
+        "luna": 10,
+        "indice": 100.07
+      },
+      {
+        "an": 2006,
+        "luna": 11,
+        "indice": 101.23
+      },
+      {
+        "an": 2006,
+        "luna": 12,
+        "indice": 100.87
+      },
+      {
+        "an": 2007,
+        "luna": 1,
+        "indice": 99.8
+      },
+      {
+        "an": 2007,
+        "luna": 2,
+        "indice": 99.97
+      },
+      {
+        "an": 2007,
+        "luna": 3,
+        "indice": 100.13
+      },
+      {
+        "an": 2007,
+        "luna": 4,
+        "indice": 100.84
+      },
+      {
+        "an": 2007,
+        "luna": 5,
+        "indice": 100.33
+      },
+      {
+        "an": 2007,
+        "luna": 6,
+        "indice": 100.08
+      },
+      {
+        "an": 2007,
+        "luna": 7,
+        "indice": 100.44
+      },
+      {
+        "an": 2007,
+        "luna": 8,
+        "indice": 100.08
+      },
+      {
+        "an": 2007,
+        "luna": 9,
+        "indice": 100.19
+      },
+      {
+        "an": 2007,
+        "luna": 10,
+        "indice": 100.69
+      },
+      {
+        "an": 2007,
+        "luna": 11,
+        "indice": 100.61
+      },
+      {
+        "an": 2007,
+        "luna": 12,
+        "indice": 100.39
+      },
+      {
+        "an": 2008,
+        "luna": 1,
+        "indice": 100.37
+      },
+      {
+        "an": 2008,
+        "luna": 2,
+        "indice": 101.08
+      },
+      {
+        "an": 2008,
+        "luna": 3,
+        "indice": 100.67
+      },
+      {
+        "an": 2008,
+        "luna": 4,
+        "indice": 100.46
+      },
+      {
+        "an": 2008,
+        "luna": 5,
+        "indice": 100.47
+      },
+      {
+        "an": 2008,
+        "luna": 6,
+        "indice": 100.28
+      },
+      {
+        "an": 2008,
+        "luna": 7,
+        "indice": 102.31
+      },
+      {
+        "an": 2008,
+        "luna": 8,
+        "indice": 100
+      },
+      {
+        "an": 2008,
+        "luna": 9,
+        "indice": 100.19
+      },
+      {
+        "an": 2008,
+        "luna": 10,
+        "indice": 100.52
+      },
+      {
+        "an": 2008,
+        "luna": 11,
+        "indice": 99.95
+      },
+      {
+        "an": 2008,
+        "luna": 12,
+        "indice": 99.53
+      },
+      {
+        "an": 2009,
+        "luna": 1,
+        "indice": 100.83
+      },
+      {
+        "an": 2009,
+        "luna": 2,
+        "indice": 101.31
+      },
+      {
+        "an": 2009,
+        "luna": 3,
+        "indice": 100.68
+      },
+      {
+        "an": 2009,
+        "luna": 4,
+        "indice": 100.81
+      },
+      {
+        "an": 2009,
+        "luna": 5,
+        "indice": 100.03
+      },
+      {
+        "an": 2009,
+        "luna": 6,
+        "indice": 100.42
+      },
+      {
+        "an": 2009,
+        "luna": 7,
+        "indice": 100.14
+      },
+      {
+        "an": 2009,
+        "luna": 8,
+        "indice": 100.34
+      },
+      {
+        "an": 2009,
+        "luna": 9,
+        "indice": 100.79
+      },
+      {
+        "an": 2009,
+        "luna": 10,
+        "indice": 100.46
+      },
+      {
+        "an": 2009,
+        "luna": 11,
+        "indice": 101.11
+      },
+      {
+        "an": 2009,
+        "luna": 12,
+        "indice": 100.54
+      },
+      {
+        "an": 2010,
+        "luna": 1,
+        "indice": 103.2
+      },
+      {
+        "an": 2010,
+        "luna": 2,
+        "indice": 100.24
+      },
+      {
+        "an": 2010,
+        "luna": 3,
+        "indice": 100.38
+      },
+      {
+        "an": 2010,
+        "luna": 4,
+        "indice": 100.56
+      },
+      {
+        "an": 2010,
+        "luna": 5,
+        "indice": 100.2
+      },
+      {
+        "an": 2010,
+        "luna": 6,
+        "indice": 100.16
+      },
+      {
+        "an": 2010,
+        "luna": 7,
+        "indice": 103.08
+      },
+      {
+        "an": 2010,
+        "luna": 8,
+        "indice": 100.04
+      },
+      {
+        "an": 2010,
+        "luna": 9,
+        "indice": 100.34
+      },
+      {
+        "an": 2010,
+        "luna": 10,
+        "indice": 100.29
+      },
+      {
+        "an": 2010,
+        "luna": 11,
+        "indice": 100.38
+      },
+      {
+        "an": 2010,
+        "luna": 12,
+        "indice": 100.55
+      },
+      {
+        "an": 2011,
+        "luna": 1,
+        "indice": 100.83
+      },
+      {
+        "an": 2011,
+        "luna": 2,
+        "indice": 100.27
+      },
+      {
+        "an": 2011,
+        "luna": 3,
+        "indice": 100.51
+      },
+      {
+        "an": 2011,
+        "luna": 4,
+        "indice": 100.87
+      },
+      {
+        "an": 2011,
+        "luna": 5,
+        "indice": 100.16
+      },
+      {
+        "an": 2011,
+        "luna": 6,
+        "indice": 100.19
+      },
+      {
+        "an": 2011,
+        "luna": 7,
+        "indice": 100.44
+      },
+      {
+        "an": 2011,
+        "luna": 8,
+        "indice": 100.02
+      },
+      {
+        "an": 2011,
+        "luna": 9,
+        "indice": 100.24
+      },
+      {
+        "an": 2011,
+        "luna": 10,
+        "indice": 100.46
+      },
+      {
+        "an": 2011,
+        "luna": 11,
+        "indice": 100.24
+      },
+      {
+        "an": 2011,
+        "luna": 12,
+        "indice": 100.13
+      },
+      {
+        "an": 2012,
+        "luna": 1,
+        "indice": 100.4
+      },
+      {
+        "an": 2012,
+        "luna": 2,
+        "indice": 100.4
+      },
+      {
+        "an": 2012,
+        "luna": 3,
+        "indice": 100.32
+      },
+      {
+        "an": 2012,
+        "luna": 4,
+        "indice": 100.17
+      },
+      {
+        "an": 2012,
+        "luna": 5,
+        "indice": 100.21
+      },
+      {
+        "an": 2012,
+        "luna": 6,
+        "indice": 99.9
+      },
+      {
+        "an": 2012,
+        "luna": 7,
+        "indice": 100.84
+      },
+      {
+        "an": 2012,
+        "luna": 8,
+        "indice": 100.54
+      },
+      {
+        "an": 2012,
+        "luna": 9,
+        "indice": 100.62
+      },
+      {
+        "an": 2012,
+        "luna": 10,
+        "indice": 100.21
+      },
+      {
+        "an": 2012,
+        "luna": 11,
+        "indice": 99.9
+      },
+      {
+        "an": 2012,
+        "luna": 12,
+        "indice": 100.89
+      },
+      {
+        "an": 2013,
+        "luna": 1,
+        "indice": 102.04
+      },
+      {
+        "an": 2013,
+        "luna": 2,
+        "indice": 100.42
+      },
+      {
+        "an": 2013,
+        "luna": 3,
+        "indice": 99.93
+      },
+      {
+        "an": 2013,
+        "luna": 4,
+        "indice": 100.17
+      },
+      {
+        "an": 2013,
+        "luna": 5,
+        "indice": 99.88
+      },
+      {
+        "an": 2013,
+        "luna": 6,
+        "indice": 100.26
+      },
+      {
+        "an": 2013,
+        "luna": 7,
+        "indice": 100.48
+      },
+      {
+        "an": 2013,
+        "luna": 8,
+        "indice": 100.09
+      },
+      {
+        "an": 2013,
+        "luna": 9,
+        "indice": 100.04
+      },
+      {
+        "an": 2013,
+        "luna": 10,
+        "indice": 100.06
+      },
+      {
+        "an": 2013,
+        "luna": 11,
+        "indice": 100.06
+      },
+      {
+        "an": 2013,
+        "luna": 12,
+        "indice": 100.15
+      },
+      {
+        "an": 2014,
+        "luna": 1,
+        "indice": 100.92
+      },
+      {
+        "an": 2014,
+        "luna": 2,
+        "indice": 100.3
+      },
+      {
+        "an": 2014,
+        "luna": 3,
+        "indice": 100.1
+      },
+      {
+        "an": 2014,
+        "luna": 4,
+        "indice": 100.67
+      },
+      {
+        "an": 2014,
+        "luna": 5,
+        "indice": 100.05
+      },
+      {
+        "an": 2014,
+        "luna": 6,
+        "indice": 100.08
+      },
+      {
+        "an": 2014,
+        "luna": 7,
+        "indice": 99.99
+      },
+      {
+        "an": 2014,
+        "luna": 8,
+        "indice": 99.94
+      },
+      {
+        "an": 2014,
+        "luna": 9,
+        "indice": 100.07
+      },
+      {
+        "an": 2014,
+        "luna": 10,
+        "indice": 99.92
+      },
+      {
+        "an": 2014,
+        "luna": 11,
+        "indice": 99.73
+      },
+      {
+        "an": 2014,
+        "luna": 12,
+        "indice": 99.49
+      },
+      {
+        "an": 2015,
+        "luna": 1,
+        "indice": 100.23
+      },
+      {
+        "an": 2015,
+        "luna": 2,
+        "indice": 100.39
+      },
+      {
+        "an": 2015,
+        "luna": 3,
+        "indice": 100.62
+      },
+      {
+        "an": 2015,
+        "luna": 4,
+        "indice": 99.99
+      },
+      {
+        "an": 2015,
+        "luna": 5,
+        "indice": 100.32
+      },
+      {
+        "an": 2015,
+        "luna": 6,
+        "indice": 100.08
+      },
+      {
+        "an": 2015,
+        "luna": 7,
+        "indice": 100.48
+      },
+      {
+        "an": 2015,
+        "luna": 8,
+        "indice": 99.46
+      },
+      {
+        "an": 2015,
+        "luna": 9,
+        "indice": 99.85
+      },
+      {
+        "an": 2015,
+        "luna": 10,
+        "indice": 100.13
+      },
+      {
+        "an": 2015,
+        "luna": 11,
+        "indice": 100.5
+      },
+      {
+        "an": 2015,
+        "luna": 12,
+        "indice": 99.89
+      },
+      {
+        "an": 2016,
+        "luna": 1,
+        "indice": 98.44
+      },
+      {
+        "an": 2016,
+        "luna": 2,
+        "indice": 99.73
+      },
+      {
+        "an": 2016,
+        "luna": 3,
+        "indice": 100.23
+      },
+      {
+        "an": 2016,
+        "luna": 4,
+        "indice": 99.9
+      },
+      {
+        "an": 2016,
+        "luna": 5,
+        "indice": 100.09
+      },
+      {
+        "an": 2016,
+        "luna": 6,
+        "indice": 100.09
+      },
+      {
+        "an": 2016,
+        "luna": 7,
+        "indice": 99.48
+      },
+      {
+        "an": 2016,
+        "luna": 8,
+        "indice": 100.26
+      },
+      {
+        "an": 2016,
+        "luna": 9,
+        "indice": 100.21
+      },
+      {
+        "an": 2016,
+        "luna": 10,
+        "indice": 100.39
+      },
+      {
+        "an": 2016,
+        "luna": 11,
+        "indice": 100.02
+      },
+      {
+        "an": 2016,
+        "luna": 12,
+        "indice": 100.3
+      },
+      {
+        "an": 2017,
+        "luna": 1,
+        "indice": 99.07
+      },
+      {
+        "an": 2017,
+        "luna": 2,
+        "indice": 100.08
+      },
+      {
+        "an": 2017,
+        "luna": 3,
+        "indice": 99.87
+      },
+      {
+        "an": 2017,
+        "luna": 4,
+        "indice": 100.4
+      },
+      {
+        "an": 2017,
+        "luna": 5,
+        "indice": 100.07
+      },
+      {
+        "an": 2017,
+        "luna": 6,
+        "indice": 100.07
+      },
+      {
+        "an": 2017,
+        "luna": 7,
+        "indice": 100.93
+      },
+      {
+        "an": 2017,
+        "luna": 8,
+        "indice": 100.14
+      },
+      {
+        "an": 2017,
+        "luna": 9,
+        "indice": 100.54
+      },
+      {
+        "an": 2017,
+        "luna": 10,
+        "indice": 101.74
+      },
+      {
+        "an": 2017,
+        "luna": 11,
+        "indice": 100.86
+      },
+      {
+        "an": 2017,
+        "luna": 12,
+        "indice": 100.28
+      },
+      {
+        "an": 2018,
+        "luna": 1,
+        "indice": 101.08
+      },
+      {
+        "an": 2018,
+        "luna": 2,
+        "indice": 100.13
+      },
+      {
+        "an": 2018,
+        "luna": 3,
+        "indice": 100.15
+      },
+      {
+        "an": 2018,
+        "luna": 4,
+        "indice": 101
+      },
+      {
+        "an": 2018,
+        "luna": 5,
+        "indice": 100.58
+      },
+      {
+        "an": 2018,
+        "luna": 6,
+        "indice": 100.14
+      },
+      {
+        "an": 2018,
+        "luna": 7,
+        "indice": 99.45
+      },
+      {
+        "an": 2018,
+        "luna": 8,
+        "indice": 100.66
+      },
+      {
+        "an": 2018,
+        "luna": 9,
+        "indice": 100.32
+      },
+      {
+        "an": 2018,
+        "luna": 10,
+        "indice": 100.52
+      },
+      {
+        "an": 2018,
+        "luna": 11,
+        "indice": 99.87
+      },
+      {
+        "an": 2018,
+        "luna": 12,
+        "indice": 99.82
+      },
+      {
+        "an": 2019,
+        "luna": 1,
+        "indice": 100.63
+      },
+      {
+        "an": 2019,
+        "luna": 2,
+        "indice": 100.57
+      },
+      {
+        "an": 2019,
+        "luna": 3,
+        "indice": 100.54
+      },
+      {
+        "an": 2019,
+        "luna": 4,
+        "indice": 100.53
+      },
+      {
+        "an": 2019,
+        "luna": 5,
+        "indice": 100.2
+      },
+      {
+        "an": 2019,
+        "luna": 6,
+        "indice": 99.76
+      },
+      {
+        "an": 2019,
+        "luna": 7,
+        "indice": 99.98
+      },
+      {
+        "an": 2019,
+        "luna": 8,
+        "indice": 100.22
+      },
+      {
+        "an": 2019,
+        "luna": 9,
+        "indice": 100.13
+      },
+      {
+        "an": 2019,
+        "luna": 10,
+        "indice": 100.32
+      },
+      {
+        "an": 2019,
+        "luna": 11,
+        "indice": 100.12
+      },
+      {
+        "an": 2019,
+        "luna": 12,
+        "indice": 100.28
+      },
+      {
+        "an": 2020,
+        "luna": 1,
+        "indice": 100.02
+      },
+      {
+        "an": 2020,
+        "luna": 2,
+        "indice": 99.94
+      },
+      {
+        "an": 2020,
+        "luna": 3,
+        "indice": 99.91
+      },
+      {
+        "an": 2020,
+        "luna": 4,
+        "indice": 99.67
+      },
+      {
+        "an": 2020,
+        "luna": 5,
+        "indice": 99.82
+      },
+      {
+        "an": 2020,
+        "luna": 6,
+        "indice": 100.28
+      },
+      {
+        "an": 2020,
+        "luna": 7,
+        "indice": 100.19
+      },
+      {
+        "an": 2020,
+        "luna": 8,
+        "indice": 100.08
+      },
+      {
+        "an": 2020,
+        "luna": 9,
+        "indice": 99.99
+      },
+      {
+        "an": 2020,
+        "luna": 10,
+        "indice": 100.31
+      },
+      {
+        "an": 2020,
+        "luna": 11,
+        "indice": 100.29
+      },
+      {
+        "an": 2020,
+        "luna": 12,
+        "indice": 100.51
+      },
+      {
+        "an": 2021,
+        "luna": 1,
+        "indice": 102.24
+      },
+      {
+        "an": 2021,
+        "luna": 2,
+        "indice": 100.47
+      },
+      {
+        "an": 2021,
+        "luna": 3,
+        "indice": 100.46
+      },
+      {
+        "an": 2021,
+        "luna": 4,
+        "indice": 100.47
+      },
+      {
+        "an": 2021,
+        "luna": 5,
+        "indice": 100.28
+      },
+      {
+        "an": 2021,
+        "luna": 6,
+        "indice": 100.29
+      },
+      {
+        "an": 2021,
+        "luna": 7,
+        "indice": 102.02
+      },
+      {
+        "an": 2021,
+        "luna": 8,
+        "indice": 100.34
+      },
+      {
+        "an": 2021,
+        "luna": 9,
+        "indice": 100.73
+      },
+      {
+        "an": 2021,
+        "luna": 10,
+        "indice": 102.78
+      },
+      {
+        "an": 2021,
+        "luna": 11,
+        "indice": 99.47
+      },
+      {
+        "an": 2021,
+        "luna": 12,
+        "indice": 100.74
+      },
+      {
+        "an": 2022,
+        "luna": 1,
+        "indice": 101.73
+      },
+      {
+        "an": 2022,
+        "luna": 2,
+        "indice": 99.7
+      },
+      {
+        "an": 2022,
+        "luna": 3,
+        "indice": 101.86
+      },
+      {
+        "an": 2022,
+        "luna": 4,
+        "indice": 105.45
+      },
+      {
+        "an": 2022,
+        "luna": 5,
+        "indice": 101
+      },
+      {
+        "an": 2022,
+        "luna": 6,
+        "indice": 100.92
+      },
+      {
+        "an": 2022,
+        "luna": 7,
+        "indice": 100.87
+      },
+      {
+        "an": 2022,
+        "luna": 8,
+        "indice": 99.81
+      },
+      {
+        "an": 2022,
+        "luna": 9,
+        "indice": 101.28
+      },
+      {
+        "an": 2022,
+        "luna": 10,
+        "indice": 100.8
+      },
+      {
+        "an": 2022,
+        "luna": 11,
+        "indice": 101.03
+      },
+      {
+        "an": 2022,
+        "luna": 12,
+        "indice": 99.68
+      },
+      {
+        "an": 2023,
+        "luna": 1,
+        "indice": 99.01
+      },
+      {
+        "an": 2023,
+        "luna": 2,
+        "indice": 100.45
+      },
+      {
+        "an": 2023,
+        "luna": 3,
+        "indice": 100.35
+      },
+      {
+        "an": 2023,
+        "luna": 4,
+        "indice": 100.48
+      },
+      {
+        "an": 2023,
+        "luna": 5,
+        "indice": 100.36
+      },
+      {
+        "an": 2023,
+        "luna": 6,
+        "indice": 100.62
+      },
+      {
+        "an": 2023,
+        "luna": 7,
+        "indice": 100.3
+      },
+      {
+        "an": 2023,
+        "luna": 8,
+        "indice": 102.43
+      },
+      {
+        "an": 2023,
+        "luna": 9,
+        "indice": 101
+      },
+      {
+        "an": 2023,
+        "luna": 10,
+        "indice": 100.39
+      },
+      {
+        "an": 2023,
+        "luna": 11,
+        "indice": 99.93
+      },
+      {
+        "an": 2023,
+        "luna": 12,
+        "indice": 100.09
+      },
+      {
+        "an": 2024,
+        "luna": 1,
+        "indice": 100.74
+      },
+      {
+        "an": 2024,
+        "luna": 2,
+        "indice": 100.89
+      },
+      {
+        "an": 2024,
+        "luna": 3,
+        "indice": 100.57
+      },
+      {
+        "an": 2024,
+        "luna": 4,
+        "indice": 99.65
+      },
+      {
+        "an": 2024,
+        "luna": 5,
+        "indice": 99.63
+      },
+      {
+        "an": 2024,
+        "luna": 6,
+        "indice": 100.52
+      },
+      {
+        "an": 2024,
+        "luna": 7,
+        "indice": 100.9
+      },
+      {
+        "an": 2024,
+        "luna": 8,
+        "indice": 99.97
+      },
+      {
+        "an": 2024,
+        "luna": 9,
+        "indice": 99.98
+      },
+      {
+        "an": 2024,
+        "luna": 10,
+        "indice": 100.53
+      },
+      {
+        "an": 2024,
+        "luna": 11,
+        "indice": 100.61
+      },
+      {
+        "an": 2024,
+        "luna": 12,
+        "indice": 100.31
+      },
+      {
+        "an": 2025,
+        "luna": 1,
+        "indice": 100.95
+      },
+      {
+        "an": 2025,
+        "luna": 2,
+        "indice": 101.08
+      },
+      {
+        "an": 2025,
+        "luna": 3,
+        "indice": 99.66
+      },
+      {
+        "an": 2025,
+        "luna": 4,
+        "indice": 99.35
+      },
+      {
+        "an": 2025,
+        "luna": 5,
+        "indice": 100.08
+      },
+      {
+        "an": 2025,
+        "luna": 6,
+        "indice": 100.42
+      },
+      {
+        "an": 2025,
+        "luna": 7,
+        "indice": 105.06
+      },
+      {
+        "an": 2025,
+        "luna": 8,
+        "indice": 102.1
+      },
+      {
+        "an": 2025,
+        "luna": 9,
+        "indice": 100.53
+      },
+      {
+        "an": 2025,
+        "luna": 10,
+        "indice": 100.41
+      },
+      {
+        "an": 2025,
+        "luna": 11,
+        "indice": 100.41
+      },
+      {
+        "an": 2025,
+        "luna": 12,
+        "indice": 100.08
+      },
+      {
+        "an": 2026,
+        "luna": 1,
+        "indice": 100.51
+      },
+      {
+        "an": 2026,
+        "luna": 2,
+        "indice": 100.54
+      },
+      {
+        "an": 2026,
+        "luna": 3,
+        "indice": 101
+      },
+      {
+        "an": 2026,
+        "luna": 4,
+        "indice": 100.37
+      },
+      {
+        "an": 2026,
+        "luna": 5,
+        "indice": 100.55
+      },
+      {
+        "an": 2026,
+        "luna": 6,
+        "indice": 100.19
+      }
+    ],
+    "Servicii": [
+      {
+        "an": 1991,
+        "luna": 1,
+        "indice": 104.4
+      },
+      {
+        "an": 1991,
+        "luna": 2,
+        "indice": 108
+      },
+      {
+        "an": 1991,
+        "luna": 3,
+        "indice": 103.5
+      },
+      {
+        "an": 1991,
+        "luna": 4,
+        "indice": 118.5
+      },
+      {
+        "an": 1991,
+        "luna": 5,
+        "indice": 107.6
+      },
+      {
+        "an": 1991,
+        "luna": 6,
+        "indice": 103.7
+      },
+      {
+        "an": 1991,
+        "luna": 7,
+        "indice": 106.2
+      },
+      {
+        "an": 1991,
+        "luna": 8,
+        "indice": 109.2
+      },
+      {
+        "an": 1991,
+        "luna": 9,
+        "indice": 108.7
+      },
+      {
+        "an": 1991,
+        "luna": 10,
+        "indice": 110.2
+      },
+      {
+        "an": 1991,
+        "luna": 11,
+        "indice": 119
+      },
+      {
+        "an": 1991,
+        "luna": 12,
+        "indice": 112
+      },
+      {
+        "an": 1992,
+        "luna": 1,
+        "indice": 112.3
+      },
+      {
+        "an": 1992,
+        "luna": 2,
+        "indice": 107.7
+      },
+      {
+        "an": 1992,
+        "luna": 3,
+        "indice": 111.7
+      },
+      {
+        "an": 1992,
+        "luna": 4,
+        "indice": 103.3
+      },
+      {
+        "an": 1992,
+        "luna": 5,
+        "indice": 105.4
+      },
+      {
+        "an": 1992,
+        "luna": 6,
+        "indice": 103.8
+      },
+      {
+        "an": 1992,
+        "luna": 7,
+        "indice": 106.8
+      },
+      {
+        "an": 1992,
+        "luna": 8,
+        "indice": 104.9
+      },
+      {
+        "an": 1992,
+        "luna": 9,
+        "indice": 110.7
+      },
+      {
+        "an": 1992,
+        "luna": 10,
+        "indice": 108.3
+      },
+      {
+        "an": 1992,
+        "luna": 11,
+        "indice": 112.9
+      },
+      {
+        "an": 1992,
+        "luna": 12,
+        "indice": 113.5
+      },
+      {
+        "an": 1993,
+        "luna": 1,
+        "indice": 109.8
+      },
+      {
+        "an": 1993,
+        "luna": 2,
+        "indice": 105
+      },
+      {
+        "an": 1993,
+        "luna": 3,
+        "indice": 108.6
+      },
+      {
+        "an": 1993,
+        "luna": 4,
+        "indice": 107.8
+      },
+      {
+        "an": 1993,
+        "luna": 5,
+        "indice": 123.8
+      },
+      {
+        "an": 1993,
+        "luna": 6,
+        "indice": 114.9
+      },
+      {
+        "an": 1993,
+        "luna": 7,
+        "indice": 121.9
+      },
+      {
+        "an": 1993,
+        "luna": 8,
+        "indice": 107.5
+      },
+      {
+        "an": 1993,
+        "luna": 9,
+        "indice": 106.9
+      },
+      {
+        "an": 1993,
+        "luna": 10,
+        "indice": 111.9
+      },
+      {
+        "an": 1993,
+        "luna": 11,
+        "indice": 116.1
+      },
+      {
+        "an": 1993,
+        "luna": 12,
+        "indice": 109.7
+      },
+      {
+        "an": 1994,
+        "luna": 1,
+        "indice": 106.1
+      },
+      {
+        "an": 1994,
+        "luna": 2,
+        "indice": 106
+      },
+      {
+        "an": 1994,
+        "luna": 3,
+        "indice": 108
+      },
+      {
+        "an": 1994,
+        "luna": 4,
+        "indice": 106.1
+      },
+      {
+        "an": 1994,
+        "luna": 5,
+        "indice": 105.7
+      },
+      {
+        "an": 1994,
+        "luna": 6,
+        "indice": 106.6
+      },
+      {
+        "an": 1994,
+        "luna": 7,
+        "indice": 102
+      },
+      {
+        "an": 1994,
+        "luna": 8,
+        "indice": 103.8
+      },
+      {
+        "an": 1994,
+        "luna": 9,
+        "indice": 103.7
+      },
+      {
+        "an": 1994,
+        "luna": 10,
+        "indice": 104.9
+      },
+      {
+        "an": 1994,
+        "luna": 11,
+        "indice": 102.3
+      },
+      {
+        "an": 1994,
+        "luna": 12,
+        "indice": 101.9
+      },
+      {
+        "an": 1995,
+        "luna": 1,
+        "indice": 101.1
+      },
+      {
+        "an": 1995,
+        "luna": 2,
+        "indice": 101.6
+      },
+      {
+        "an": 1995,
+        "luna": 3,
+        "indice": 103.6
+      },
+      {
+        "an": 1995,
+        "luna": 4,
+        "indice": 100.9
+      },
+      {
+        "an": 1995,
+        "luna": 5,
+        "indice": 102.6
+      },
+      {
+        "an": 1995,
+        "luna": 6,
+        "indice": 104
+      },
+      {
+        "an": 1995,
+        "luna": 7,
+        "indice": 102.7
+      },
+      {
+        "an": 1995,
+        "luna": 8,
+        "indice": 102.8
+      },
+      {
+        "an": 1995,
+        "luna": 9,
+        "indice": 103
+      },
+      {
+        "an": 1995,
+        "luna": 10,
+        "indice": 104.4
+      },
+      {
+        "an": 1995,
+        "luna": 11,
+        "indice": 104.9
+      },
+      {
+        "an": 1995,
+        "luna": 12,
+        "indice": 103
+      },
+      {
+        "an": 1996,
+        "luna": 1,
+        "indice": 100.8
+      },
+      {
+        "an": 1996,
+        "luna": 2,
+        "indice": 102.1
+      },
+      {
+        "an": 1996,
+        "luna": 3,
+        "indice": 103.3
+      },
+      {
+        "an": 1996,
+        "luna": 4,
+        "indice": 101.8
+      },
+      {
+        "an": 1996,
+        "luna": 5,
+        "indice": 103.9
+      },
+      {
+        "an": 1996,
+        "luna": 6,
+        "indice": 101.5
+      },
+      {
+        "an": 1996,
+        "luna": 7,
+        "indice": 108.4
+      },
+      {
+        "an": 1996,
+        "luna": 8,
+        "indice": 106.8
+      },
+      {
+        "an": 1996,
+        "luna": 9,
+        "indice": 103.4
+      },
+      {
+        "an": 1996,
+        "luna": 10,
+        "indice": 103.4
+      },
+      {
+        "an": 1996,
+        "luna": 11,
+        "indice": 103
+      },
+      {
+        "an": 1996,
+        "luna": 12,
+        "indice": 105.6
+      },
+      {
+        "an": 1997,
+        "luna": 1,
+        "indice": 114.4
+      },
+      {
+        "an": 1997,
+        "luna": 2,
+        "indice": 116.7
+      },
+      {
+        "an": 1997,
+        "luna": 3,
+        "indice": 138.4
+      },
+      {
+        "an": 1997,
+        "luna": 4,
+        "indice": 109.3
+      },
+      {
+        "an": 1997,
+        "luna": 5,
+        "indice": 103.3
+      },
+      {
+        "an": 1997,
+        "luna": 6,
+        "indice": 106.6
+      },
+      {
+        "an": 1997,
+        "luna": 7,
+        "indice": 101.6
+      },
+      {
+        "an": 1997,
+        "luna": 8,
+        "indice": 104.8
+      },
+      {
+        "an": 1997,
+        "luna": 9,
+        "indice": 107.8
+      },
+      {
+        "an": 1997,
+        "luna": 10,
+        "indice": 109.4
+      },
+      {
+        "an": 1997,
+        "luna": 11,
+        "indice": 105.1
+      },
+      {
+        "an": 1997,
+        "luna": 12,
+        "indice": 103.5
+      },
+      {
+        "an": 1998,
+        "luna": 1,
+        "indice": 111.6
+      },
+      {
+        "an": 1998,
+        "luna": 2,
+        "indice": 106.2
+      },
+      {
+        "an": 1998,
+        "luna": 3,
+        "indice": 103.8
+      },
+      {
+        "an": 1998,
+        "luna": 4,
+        "indice": 105.7
+      },
+      {
+        "an": 1998,
+        "luna": 5,
+        "indice": 102.2
+      },
+      {
+        "an": 1998,
+        "luna": 6,
+        "indice": 101.6
+      },
+      {
+        "an": 1998,
+        "luna": 7,
+        "indice": 104.5
+      },
+      {
+        "an": 1998,
+        "luna": 8,
+        "indice": 101.9
+      },
+      {
+        "an": 1998,
+        "luna": 9,
+        "indice": 105.1
+      },
+      {
+        "an": 1998,
+        "luna": 10,
+        "indice": 106.5
+      },
+      {
+        "an": 1998,
+        "luna": 11,
+        "indice": 102.3
+      },
+      {
+        "an": 1998,
+        "luna": 12,
+        "indice": 102.1
+      },
+      {
+        "an": 1999,
+        "luna": 1,
+        "indice": 106
+      },
+      {
+        "an": 1999,
+        "luna": 2,
+        "indice": 102.7
+      },
+      {
+        "an": 1999,
+        "luna": 3,
+        "indice": 105
+      },
+      {
+        "an": 1999,
+        "luna": 4,
+        "indice": 106.7
+      },
+      {
+        "an": 1999,
+        "luna": 5,
+        "indice": 116.2
+      },
+      {
+        "an": 1999,
+        "luna": 6,
+        "indice": 111.8
+      },
+      {
+        "an": 1999,
+        "luna": 7,
+        "indice": 106
+      },
+      {
+        "an": 1999,
+        "luna": 8,
+        "indice": 101.6
+      },
+      {
+        "an": 1999,
+        "luna": 9,
+        "indice": 102.9
+      },
+      {
+        "an": 1999,
+        "luna": 10,
+        "indice": 106.8
+      },
+      {
+        "an": 1999,
+        "luna": 11,
+        "indice": 102.5
+      },
+      {
+        "an": 1999,
+        "luna": 12,
+        "indice": 101.3
+      },
+      {
+        "an": 2000,
+        "luna": 1,
+        "indice": 103.3
+      },
+      {
+        "an": 2000,
+        "luna": 2,
+        "indice": 102
+      },
+      {
+        "an": 2000,
+        "luna": 3,
+        "indice": 101.7
+      },
+      {
+        "an": 2000,
+        "luna": 4,
+        "indice": 108.9
+      },
+      {
+        "an": 2000,
+        "luna": 5,
+        "indice": 101.5
+      },
+      {
+        "an": 2000,
+        "luna": 6,
+        "indice": 100.8
+      },
+      {
+        "an": 2000,
+        "luna": 7,
+        "indice": 103.1
+      },
+      {
+        "an": 2000,
+        "luna": 8,
+        "indice": 102.7
+      },
+      {
+        "an": 2000,
+        "luna": 9,
+        "indice": 102.1
+      },
+      {
+        "an": 2000,
+        "luna": 10,
+        "indice": 103
+      },
+      {
+        "an": 2000,
+        "luna": 11,
+        "indice": 101.5
+      },
+      {
+        "an": 2000,
+        "luna": 12,
+        "indice": 101.6
+      },
+      {
+        "an": 2001,
+        "luna": 1,
+        "indice": 107
+      },
+      {
+        "an": 2001,
+        "luna": 2,
+        "indice": 102.4
+      },
+      {
+        "an": 2001,
+        "luna": 3,
+        "indice": 101.4
+      },
+      {
+        "an": 2001,
+        "luna": 4,
+        "indice": 101.5
+      },
+      {
+        "an": 2001,
+        "luna": 5,
+        "indice": 101.4
+      },
+      {
+        "an": 2001,
+        "luna": 6,
+        "indice": 101.4
+      },
+      {
+        "an": 2001,
+        "luna": 7,
+        "indice": 102.8
+      },
+      {
+        "an": 2001,
+        "luna": 8,
+        "indice": 102.5
+      },
+      {
+        "an": 2001,
+        "luna": 9,
+        "indice": 102.5
+      },
+      {
+        "an": 2001,
+        "luna": 10,
+        "indice": 103.7
+      },
+      {
+        "an": 2001,
+        "luna": 11,
+        "indice": 101.9
+      },
+      {
+        "an": 2001,
+        "luna": 12,
+        "indice": 102.9
+      },
+      {
+        "an": 2002,
+        "luna": 1,
+        "indice": 101.7
+      },
+      {
+        "an": 2002,
+        "luna": 2,
+        "indice": 101.4
+      },
+      {
+        "an": 2002,
+        "luna": 3,
+        "indice": 101.1
+      },
+      {
+        "an": 2002,
+        "luna": 4,
+        "indice": 102.5
+      },
+      {
+        "an": 2002,
+        "luna": 5,
+        "indice": 101.8
+      },
+      {
+        "an": 2002,
+        "luna": 6,
+        "indice": 101.3
+      },
+      {
+        "an": 2002,
+        "luna": 7,
+        "indice": 102
+      },
+      {
+        "an": 2002,
+        "luna": 8,
+        "indice": 102
+      },
+      {
+        "an": 2002,
+        "luna": 9,
+        "indice": 100.9
+      },
+      {
+        "an": 2002,
+        "luna": 10,
+        "indice": 101.6
+      },
+      {
+        "an": 2002,
+        "luna": 11,
+        "indice": 102.5
+      },
+      {
+        "an": 2002,
+        "luna": 12,
+        "indice": 100.5
+      },
+      {
+        "an": 2003,
+        "luna": 1,
+        "indice": 101.1
+      },
+      {
+        "an": 2003,
+        "luna": 2,
+        "indice": 98.7
+      },
+      {
+        "an": 2003,
+        "luna": 3,
+        "indice": 100.8
+      },
+      {
+        "an": 2003,
+        "luna": 4,
+        "indice": 101.6
+      },
+      {
+        "an": 2003,
+        "luna": 5,
+        "indice": 100.7
+      },
+      {
+        "an": 2003,
+        "luna": 6,
+        "indice": 100.5
+      },
+      {
+        "an": 2003,
+        "luna": 7,
+        "indice": 100.6
+      },
+      {
+        "an": 2003,
+        "luna": 8,
+        "indice": 102.1
+      },
+      {
+        "an": 2003,
+        "luna": 9,
+        "indice": 101.4
+      },
+      {
+        "an": 2003,
+        "luna": 10,
+        "indice": 103.9
+      },
+      {
+        "an": 2003,
+        "luna": 11,
+        "indice": 101.6
+      },
+      {
+        "an": 2003,
+        "luna": 12,
+        "indice": 101.1
+      },
+      {
+        "an": 2004,
+        "luna": 1,
+        "indice": 101.2
+      },
+      {
+        "an": 2004,
+        "luna": 2,
+        "indice": 100.5
+      },
+      {
+        "an": 2004,
+        "luna": 3,
+        "indice": 100.5
+      },
+      {
+        "an": 2004,
+        "luna": 4,
+        "indice": 101
+      },
+      {
+        "an": 2004,
+        "luna": 5,
+        "indice": 100.6
+      },
+      {
+        "an": 2004,
+        "luna": 6,
+        "indice": 101.2
+      },
+      {
+        "an": 2004,
+        "luna": 7,
+        "indice": 100.3
+      },
+      {
+        "an": 2004,
+        "luna": 8,
+        "indice": 101.4
+      },
+      {
+        "an": 2004,
+        "luna": 9,
+        "indice": 101.4
+      },
+      {
+        "an": 2004,
+        "luna": 10,
+        "indice": 101.4
+      },
+      {
+        "an": 2004,
+        "luna": 11,
+        "indice": 99.3
+      },
+      {
+        "an": 2004,
+        "luna": 12,
+        "indice": 99.6
+      },
+      {
+        "an": 2005,
+        "luna": 1,
+        "indice": 100.6
+      },
+      {
+        "an": 2005,
+        "luna": 2,
+        "indice": 102.5
+      },
+      {
+        "an": 2005,
+        "luna": 3,
+        "indice": 100.2
+      },
+      {
+        "an": 2005,
+        "luna": 4,
+        "indice": 101.5
+      },
+      {
+        "an": 2005,
+        "luna": 5,
+        "indice": 101
+      },
+      {
+        "an": 2005,
+        "luna": 6,
+        "indice": 101
+      },
+      {
+        "an": 2005,
+        "luna": 7,
+        "indice": 100.7
+      },
+      {
+        "an": 2005,
+        "luna": 8,
+        "indice": 100
+      },
+      {
+        "an": 2005,
+        "luna": 9,
+        "indice": 101.2
+      },
+      {
+        "an": 2005,
+        "luna": 10,
+        "indice": 102.2
+      },
+      {
+        "an": 2005,
+        "luna": 11,
+        "indice": 101.2
+      },
+      {
+        "an": 2005,
+        "luna": 12,
+        "indice": 100.3
+      },
+      {
+        "an": 2006,
+        "luna": 1,
+        "indice": 100.59
+      },
+      {
+        "an": 2006,
+        "luna": 2,
+        "indice": 99.71
+      },
+      {
+        "an": 2006,
+        "luna": 3,
+        "indice": 99.96
+      },
+      {
+        "an": 2006,
+        "luna": 4,
+        "indice": 100.42
+      },
+      {
+        "an": 2006,
+        "luna": 5,
+        "indice": 100.32
+      },
+      {
+        "an": 2006,
+        "luna": 6,
+        "indice": 100.81
+      },
+      {
+        "an": 2006,
+        "luna": 7,
+        "indice": 100.55
+      },
+      {
+        "an": 2006,
+        "luna": 8,
+        "indice": 100.73
+      },
+      {
+        "an": 2006,
+        "luna": 9,
+        "indice": 101.18
+      },
+      {
+        "an": 2006,
+        "luna": 10,
+        "indice": 100.92
+      },
+      {
+        "an": 2006,
+        "luna": 11,
+        "indice": 100.3
+      },
+      {
+        "an": 2006,
+        "luna": 12,
+        "indice": 99.53
+      },
+      {
+        "an": 2007,
+        "luna": 1,
+        "indice": 101.04
+      },
+      {
+        "an": 2007,
+        "luna": 2,
+        "indice": 100.38
+      },
+      {
+        "an": 2007,
+        "luna": 3,
+        "indice": 100.16
+      },
+      {
+        "an": 2007,
+        "luna": 4,
+        "indice": 99.8
+      },
+      {
+        "an": 2007,
+        "luna": 5,
+        "indice": 102.31
+      },
+      {
+        "an": 2007,
+        "luna": 6,
+        "indice": 99.91
+      },
+      {
+        "an": 2007,
+        "luna": 7,
+        "indice": 99.33
+      },
+      {
+        "an": 2007,
+        "luna": 8,
+        "indice": 101.06
+      },
+      {
+        "an": 2007,
+        "luna": 9,
+        "indice": 101.42
+      },
+      {
+        "an": 2007,
+        "luna": 10,
+        "indice": 100.98
+      },
+      {
+        "an": 2007,
+        "luna": 11,
+        "indice": 101.21
+      },
+      {
+        "an": 2007,
+        "luna": 12,
+        "indice": 100.67
+      },
+      {
+        "an": 2008,
+        "luna": 1,
+        "indice": 102.12
+      },
+      {
+        "an": 2008,
+        "luna": 2,
+        "indice": 100.51
+      },
+      {
+        "an": 2008,
+        "luna": 3,
+        "indice": 100.92
+      },
+      {
+        "an": 2008,
+        "luna": 4,
+        "indice": 99.56
+      },
+      {
+        "an": 2008,
+        "luna": 5,
+        "indice": 100.45
+      },
+      {
+        "an": 2008,
+        "luna": 6,
+        "indice": 100.19
+      },
+      {
+        "an": 2008,
+        "luna": 7,
+        "indice": 99.7
+      },
+      {
+        "an": 2008,
+        "luna": 8,
+        "indice": 99.1
+      },
+      {
+        "an": 2008,
+        "luna": 9,
+        "indice": 101.05
+      },
+      {
+        "an": 2008,
+        "luna": 10,
+        "indice": 102.23
+      },
+      {
+        "an": 2008,
+        "luna": 11,
+        "indice": 100.38
+      },
+      {
+        "an": 2008,
+        "luna": 12,
+        "indice": 101.3
+      },
+      {
+        "an": 2009,
+        "luna": 1,
+        "indice": 103.27
+      },
+      {
+        "an": 2009,
+        "luna": 2,
+        "indice": 101.03
+      },
+      {
+        "an": 2009,
+        "luna": 3,
+        "indice": 100.33
+      },
+      {
+        "an": 2009,
+        "luna": 4,
+        "indice": 99.55
+      },
+      {
+        "an": 2009,
+        "luna": 5,
+        "indice": 100.11
+      },
+      {
+        "an": 2009,
+        "luna": 6,
+        "indice": 100.43
+      },
+      {
+        "an": 2009,
+        "luna": 7,
+        "indice": 100.32
+      },
+      {
+        "an": 2009,
+        "luna": 8,
+        "indice": 100.32
+      },
+      {
+        "an": 2009,
+        "luna": 9,
+        "indice": 100.51
+      },
+      {
+        "an": 2009,
+        "luna": 10,
+        "indice": 100.94
+      },
+      {
+        "an": 2009,
+        "luna": 11,
+        "indice": 100.14
+      },
+      {
+        "an": 2009,
+        "luna": 12,
+        "indice": 99.75
+      },
+      {
+        "an": 2010,
+        "luna": 1,
+        "indice": 100.36
+      },
+      {
+        "an": 2010,
+        "luna": 2,
+        "indice": 100
+      },
+      {
+        "an": 2010,
+        "luna": 3,
+        "indice": 99.91
+      },
+      {
+        "an": 2010,
+        "luna": 4,
+        "indice": 100.47
+      },
+      {
+        "an": 2010,
+        "luna": 5,
+        "indice": 100.47
+      },
+      {
+        "an": 2010,
+        "luna": 6,
+        "indice": 100.57
+      },
+      {
+        "an": 2010,
+        "luna": 7,
+        "indice": 102.55
+      },
+      {
+        "an": 2010,
+        "luna": 8,
+        "indice": 100.41
+      },
+      {
+        "an": 2010,
+        "luna": 9,
+        "indice": 100.62
+      },
+      {
+        "an": 2010,
+        "luna": 10,
+        "indice": 100.67
+      },
+      {
+        "an": 2010,
+        "luna": 11,
+        "indice": 100.2
+      },
+      {
+        "an": 2010,
+        "luna": 12,
+        "indice": 100.04
+      },
+      {
+        "an": 2011,
+        "luna": 1,
+        "indice": 99.89
+      },
+      {
+        "an": 2011,
+        "luna": 2,
+        "indice": 100.03
+      },
+      {
+        "an": 2011,
+        "luna": 3,
+        "indice": 99.66
+      },
+      {
+        "an": 2011,
+        "luna": 4,
+        "indice": 99.58
+      },
+      {
+        "an": 2011,
+        "luna": 5,
+        "indice": 100.36
+      },
+      {
+        "an": 2011,
+        "luna": 6,
+        "indice": 100.68
+      },
+      {
+        "an": 2011,
+        "luna": 7,
+        "indice": 100.91
+      },
+      {
+        "an": 2011,
+        "luna": 8,
+        "indice": 100.83
+      },
+      {
+        "an": 2011,
+        "luna": 9,
+        "indice": 100.56
+      },
+      {
+        "an": 2011,
+        "luna": 10,
+        "indice": 100.77
+      },
+      {
+        "an": 2011,
+        "luna": 11,
+        "indice": 100.63
+      },
+      {
+        "an": 2011,
+        "luna": 12,
+        "indice": 100.26
+      },
+      {
+        "an": 2012,
+        "luna": 1,
+        "indice": 100.37
+      },
+      {
+        "an": 2012,
+        "luna": 2,
+        "indice": 100.13
+      },
+      {
+        "an": 2012,
+        "luna": 3,
+        "indice": 100.2
+      },
+      {
+        "an": 2012,
+        "luna": 4,
+        "indice": 100.17
+      },
+      {
+        "an": 2012,
+        "luna": 5,
+        "indice": 100.53
+      },
+      {
+        "an": 2012,
+        "luna": 6,
+        "indice": 100.27
+      },
+      {
+        "an": 2012,
+        "luna": 7,
+        "indice": 100.84
+      },
+      {
+        "an": 2012,
+        "luna": 8,
+        "indice": 100.12
+      },
+      {
+        "an": 2012,
+        "luna": 9,
+        "indice": 100.41
+      },
+      {
+        "an": 2012,
+        "luna": 10,
+        "indice": 100.87
+      },
+      {
+        "an": 2012,
+        "luna": 11,
+        "indice": 99.86
+      },
+      {
+        "an": 2012,
+        "luna": 12,
+        "indice": 99.81
+      },
+      {
+        "an": 2013,
+        "luna": 1,
+        "indice": 99.87
+      },
+      {
+        "an": 2013,
+        "luna": 2,
+        "indice": 100.22
+      },
+      {
+        "an": 2013,
+        "luna": 3,
+        "indice": 100.52
+      },
+      {
+        "an": 2013,
+        "luna": 4,
+        "indice": 100.13
+      },
+      {
+        "an": 2013,
+        "luna": 5,
+        "indice": 99.97
+      },
+      {
+        "an": 2013,
+        "luna": 6,
+        "indice": 100.88
+      },
+      {
+        "an": 2013,
+        "luna": 7,
+        "indice": 100.28
+      },
+      {
+        "an": 2013,
+        "luna": 8,
+        "indice": 100.31
+      },
+      {
+        "an": 2013,
+        "luna": 9,
+        "indice": 100.44
+      },
+      {
+        "an": 2013,
+        "luna": 10,
+        "indice": 100.46
+      },
+      {
+        "an": 2013,
+        "luna": 11,
+        "indice": 100.1
+      },
+      {
+        "an": 2013,
+        "luna": 12,
+        "indice": 100.2
+      },
+      {
+        "an": 2014,
+        "luna": 1,
+        "indice": 100.66
+      },
+      {
+        "an": 2014,
+        "luna": 2,
+        "indice": 100.47
+      },
+      {
+        "an": 2014,
+        "luna": 3,
+        "indice": 100.13
+      },
+      {
+        "an": 2014,
+        "luna": 4,
+        "indice": 99.95
+      },
+      {
+        "an": 2014,
+        "luna": 5,
+        "indice": 99.92
+      },
+      {
+        "an": 2014,
+        "luna": 6,
+        "indice": 99.82
+      },
+      {
+        "an": 2014,
+        "luna": 7,
+        "indice": 100.36
+      },
+      {
+        "an": 2014,
+        "luna": 8,
+        "indice": 100.22
+      },
+      {
+        "an": 2014,
+        "luna": 9,
+        "indice": 100.14
+      },
+      {
+        "an": 2014,
+        "luna": 10,
+        "indice": 100.16
+      },
+      {
+        "an": 2014,
+        "luna": 11,
+        "indice": 100.16
+      },
+      {
+        "an": 2014,
+        "luna": 12,
+        "indice": 100.25
+      },
+      {
+        "an": 2015,
+        "luna": 1,
+        "indice": 100.61
+      },
+      {
+        "an": 2015,
+        "luna": 2,
+        "indice": 99.81
+      },
+      {
+        "an": 2015,
+        "luna": 3,
+        "indice": 100.15
+      },
+      {
+        "an": 2015,
+        "luna": 4,
+        "indice": 100.07
+      },
+      {
+        "an": 2015,
+        "luna": 5,
+        "indice": 100.31
+      },
+      {
+        "an": 2015,
+        "luna": 6,
+        "indice": 100.22
+      },
+      {
+        "an": 2015,
+        "luna": 7,
+        "indice": 100.09
+      },
+      {
+        "an": 2015,
+        "luna": 8,
+        "indice": 100.02
+      },
+      {
+        "an": 2015,
+        "luna": 9,
+        "indice": 100.13
+      },
+      {
+        "an": 2015,
+        "luna": 10,
+        "indice": 100.27
+      },
+      {
+        "an": 2015,
+        "luna": 11,
+        "indice": 100.31
+      },
+      {
+        "an": 2015,
+        "luna": 12,
+        "indice": 100.4
+      },
+      {
+        "an": 2016,
+        "luna": 1,
+        "indice": 98.88
+      },
+      {
+        "an": 2016,
+        "luna": 2,
+        "indice": 98.86
+      },
+      {
+        "an": 2016,
+        "luna": 3,
+        "indice": 99.99
+      },
+      {
+        "an": 2016,
+        "luna": 4,
+        "indice": 100.11
+      },
+      {
+        "an": 2016,
+        "luna": 5,
+        "indice": 100.11
+      },
+      {
+        "an": 2016,
+        "luna": 6,
+        "indice": 100.1
+      },
+      {
+        "an": 2016,
+        "luna": 7,
+        "indice": 99.9
+      },
+      {
+        "an": 2016,
+        "luna": 8,
+        "indice": 99.91
+      },
+      {
+        "an": 2016,
+        "luna": 9,
+        "indice": 99.99
+      },
+      {
+        "an": 2016,
+        "luna": 10,
+        "indice": 100.33
+      },
+      {
+        "an": 2016,
+        "luna": 11,
+        "indice": 99.91
+      },
+      {
+        "an": 2016,
+        "luna": 12,
+        "indice": 100.08
+      },
+      {
+        "an": 2017,
+        "luna": 1,
+        "indice": 99.63
+      },
+      {
+        "an": 2017,
+        "luna": 2,
+        "indice": 98.22
+      },
+      {
+        "an": 2017,
+        "luna": 3,
+        "indice": 100.32
+      },
+      {
+        "an": 2017,
+        "luna": 4,
+        "indice": 100.15
+      },
+      {
+        "an": 2017,
+        "luna": 5,
+        "indice": 100.21
+      },
+      {
+        "an": 2017,
+        "luna": 6,
+        "indice": 100.33
+      },
+      {
+        "an": 2017,
+        "luna": 7,
+        "indice": 100.14
+      },
+      {
+        "an": 2017,
+        "luna": 8,
+        "indice": 100.2
+      },
+      {
+        "an": 2017,
+        "luna": 9,
+        "indice": 100.32
+      },
+      {
+        "an": 2017,
+        "luna": 10,
+        "indice": 100.16
+      },
+      {
+        "an": 2017,
+        "luna": 11,
+        "indice": 100.33
+      },
+      {
+        "an": 2017,
+        "luna": 12,
+        "indice": 100.21
+      },
+      {
+        "an": 2018,
+        "luna": 1,
+        "indice": 100.32
+      },
+      {
+        "an": 2018,
+        "luna": 2,
+        "indice": 100.18
+      },
+      {
+        "an": 2018,
+        "luna": 3,
+        "indice": 100.3
+      },
+      {
+        "an": 2018,
+        "luna": 4,
+        "indice": 100.09
+      },
+      {
+        "an": 2018,
+        "luna": 5,
+        "indice": 100.1
+      },
+      {
+        "an": 2018,
+        "luna": 6,
+        "indice": 100.2
+      },
+      {
+        "an": 2018,
+        "luna": 7,
+        "indice": 100.24
+      },
+      {
+        "an": 2018,
+        "luna": 8,
+        "indice": 100.13
+      },
+      {
+        "an": 2018,
+        "luna": 9,
+        "indice": 100.26
+      },
+      {
+        "an": 2018,
+        "luna": 10,
+        "indice": 100.35
+      },
+      {
+        "an": 2018,
+        "luna": 11,
+        "indice": 100.11
+      },
+      {
+        "an": 2018,
+        "luna": 12,
+        "indice": 100.15
+      },
+      {
+        "an": 2019,
+        "luna": 1,
+        "indice": 100.57
+      },
+      {
+        "an": 2019,
+        "luna": 2,
+        "indice": 100.55
+      },
+      {
+        "an": 2019,
+        "luna": 3,
+        "indice": 100.4
+      },
+      {
+        "an": 2019,
+        "luna": 4,
+        "indice": 100.72
+      },
+      {
+        "an": 2019,
+        "luna": 5,
+        "indice": 100.55
+      },
+      {
+        "an": 2019,
+        "luna": 6,
+        "indice": 100.17
+      },
+      {
+        "an": 2019,
+        "luna": 7,
+        "indice": 100.1
+      },
+      {
+        "an": 2019,
+        "luna": 8,
+        "indice": 100.25
+      },
+      {
+        "an": 2019,
+        "luna": 9,
+        "indice": 100.27
+      },
+      {
+        "an": 2019,
+        "luna": 10,
+        "indice": 100.25
+      },
+      {
+        "an": 2019,
+        "luna": 11,
+        "indice": 100.15
+      },
+      {
+        "an": 2019,
+        "luna": 12,
+        "indice": 100.12
+      },
+      {
+        "an": 2020,
+        "luna": 1,
+        "indice": 100.43
+      },
+      {
+        "an": 2020,
+        "luna": 2,
+        "indice": 100.39
+      },
+      {
+        "an": 2020,
+        "luna": 3,
+        "indice": 100.35
+      },
+      {
+        "an": 2020,
+        "luna": 4,
+        "indice": 100
+      },
+      {
+        "an": 2020,
+        "luna": 5,
+        "indice": 100.11
+      },
+      {
+        "an": 2020,
+        "luna": 6,
+        "indice": 100.34
+      },
+      {
+        "an": 2020,
+        "luna": 7,
+        "indice": 100.31
+      },
+      {
+        "an": 2020,
+        "luna": 8,
+        "indice": 100.21
+      },
+      {
+        "an": 2020,
+        "luna": 9,
+        "indice": 100.2
+      },
+      {
+        "an": 2020,
+        "luna": 10,
+        "indice": 100.22
+      },
+      {
+        "an": 2020,
+        "luna": 11,
+        "indice": 100.07
+      },
+      {
+        "an": 2020,
+        "luna": 12,
+        "indice": 100.04
+      },
+      {
+        "an": 2021,
+        "luna": 1,
+        "indice": 100.25
+      },
+      {
+        "an": 2021,
+        "luna": 2,
+        "indice": 100.2
+      },
+      {
+        "an": 2021,
+        "luna": 3,
+        "indice": 100.24
+      },
+      {
+        "an": 2021,
+        "luna": 4,
+        "indice": 100.4
+      },
+      {
+        "an": 2021,
+        "luna": 5,
+        "indice": 100.27
+      },
+      {
+        "an": 2021,
+        "luna": 6,
+        "indice": 100.23
+      },
+      {
+        "an": 2021,
+        "luna": 7,
+        "indice": 100.39
+      },
+      {
+        "an": 2021,
+        "luna": 8,
+        "indice": 100.43
+      },
+      {
+        "an": 2021,
+        "luna": 9,
+        "indice": 100.96
+      },
+      {
+        "an": 2021,
+        "luna": 10,
+        "indice": 100.42
+      },
+      {
+        "an": 2021,
+        "luna": 11,
+        "indice": 100.2
+      },
+      {
+        "an": 2021,
+        "luna": 12,
+        "indice": 100.42
+      },
+      {
+        "an": 2022,
+        "luna": 1,
+        "indice": 101.37
+      },
+      {
+        "an": 2022,
+        "luna": 2,
+        "indice": 100.6
+      },
+      {
+        "an": 2022,
+        "luna": 3,
+        "indice": 100.67
+      },
+      {
+        "an": 2022,
+        "luna": 4,
+        "indice": 100.94
+      },
+      {
+        "an": 2022,
+        "luna": 5,
+        "indice": 100.61
+      },
+      {
+        "an": 2022,
+        "luna": 6,
+        "indice": 100.54
+      },
+      {
+        "an": 2022,
+        "luna": 7,
+        "indice": 100.88
+      },
+      {
+        "an": 2022,
+        "luna": 8,
+        "indice": 100.37
+      },
+      {
+        "an": 2022,
+        "luna": 9,
+        "indice": 100.72
+      },
+      {
+        "an": 2022,
+        "luna": 10,
+        "indice": 100.7
+      },
+      {
+        "an": 2022,
+        "luna": 11,
+        "indice": 101.31
+      },
+      {
+        "an": 2022,
+        "luna": 12,
+        "indice": 100.67
+      },
+      {
+        "an": 2023,
+        "luna": 1,
+        "indice": 101.82
+      },
+      {
+        "an": 2023,
+        "luna": 2,
+        "indice": 100.7
+      },
+      {
+        "an": 2023,
+        "luna": 3,
+        "indice": 101.08
+      },
+      {
+        "an": 2023,
+        "luna": 4,
+        "indice": 100.77
+      },
+      {
+        "an": 2023,
+        "luna": 5,
+        "indice": 101.08
+      },
+      {
+        "an": 2023,
+        "luna": 6,
+        "indice": 100.84
+      },
+      {
+        "an": 2023,
+        "luna": 7,
+        "indice": 101.01
+      },
+      {
+        "an": 2023,
+        "luna": 8,
+        "indice": 100.44
+      },
+      {
+        "an": 2023,
+        "luna": 9,
+        "indice": 101.06
+      },
+      {
+        "an": 2023,
+        "luna": 10,
+        "indice": 100.79
+      },
+      {
+        "an": 2023,
+        "luna": 11,
+        "indice": 100.39
+      },
+      {
+        "an": 2023,
+        "luna": 12,
+        "indice": 100.7
+      },
+      {
+        "an": 2024,
+        "luna": 1,
+        "indice": 101.55
+      },
+      {
+        "an": 2024,
+        "luna": 2,
+        "indice": 100.78
+      },
+      {
+        "an": 2024,
+        "luna": 3,
+        "indice": 100.35
+      },
+      {
+        "an": 2024,
+        "luna": 4,
+        "indice": 100.63
+      },
+      {
+        "an": 2024,
+        "luna": 5,
+        "indice": 100.38
+      },
+      {
+        "an": 2024,
+        "luna": 6,
+        "indice": 100.4
+      },
+      {
+        "an": 2024,
+        "luna": 7,
+        "indice": 100.74
+      },
+      {
+        "an": 2024,
+        "luna": 8,
+        "indice": 100.51
+      },
+      {
+        "an": 2024,
+        "luna": 9,
+        "indice": 100.39
+      },
+      {
+        "an": 2024,
+        "luna": 10,
+        "indice": 100.59
+      },
+      {
+        "an": 2024,
+        "luna": 11,
+        "indice": 100.29
+      },
+      {
+        "an": 2024,
+        "luna": 12,
+        "indice": 100.27
+      },
+      {
+        "an": 2025,
+        "luna": 1,
+        "indice": 101.02
+      },
+      {
+        "an": 2025,
+        "luna": 2,
+        "indice": 100.66
+      },
+      {
+        "an": 2025,
+        "luna": 3,
+        "indice": 100.89
+      },
+      {
+        "an": 2025,
+        "luna": 4,
+        "indice": 100.48
+      },
+      {
+        "an": 2025,
+        "luna": 5,
+        "indice": 100.62
+      },
+      {
+        "an": 2025,
+        "luna": 6,
+        "indice": 100.37
+      },
+      {
+        "an": 2025,
+        "luna": 7,
+        "indice": 101.01
+      },
+      {
+        "an": 2025,
+        "luna": 8,
+        "indice": 102.87
+      },
+      {
+        "an": 2025,
+        "luna": 9,
+        "indice": 100.85
+      },
+      {
+        "an": 2025,
+        "luna": 10,
+        "indice": 100.74
+      },
+      {
+        "an": 2025,
+        "luna": 11,
+        "indice": 100.71
+      },
+      {
+        "an": 2025,
+        "luna": 12,
+        "indice": 100.28
+      },
+      {
+        "an": 2026,
+        "luna": 1,
+        "indice": 101.56
+      },
+      {
+        "an": 2026,
+        "luna": 2,
+        "indice": 100.46
+      },
+      {
+        "an": 2026,
+        "luna": 3,
+        "indice": 100.6
+      },
+      {
+        "an": 2026,
+        "luna": 4,
+        "indice": 102.28
+      },
+      {
+        "an": 2026,
+        "luna": 5,
+        "indice": 101.06
+      },
+      {
+        "an": 2026,
+        "luna": 6,
+        "indice": 100.49
+      }
+    ]
+  },
+  "primaLuna": {
+    "an": 1991,
+    "luna": 1,
+    "indice": 114.8
+  },
+  "ultimaLuna": {
+    "an": 2026,
+    "luna": 6,
+    "indice": 100.06
+  },
+  "luni": 426,
+  "serie": [
+    {
+      "an": 1991,
+      "luna": 1,
+      "indice": 114.8
+    },
+    {
+      "an": 1991,
+      "luna": 2,
+      "indice": 107
+    },
+    {
+      "an": 1991,
+      "luna": 3,
+      "indice": 106.6
+    },
+    {
+      "an": 1991,
+      "luna": 4,
+      "indice": 126.5
+    },
+    {
+      "an": 1991,
+      "luna": 5,
+      "indice": 105.1
+    },
+    {
+      "an": 1991,
+      "luna": 6,
+      "indice": 102
+    },
+    {
+      "an": 1991,
+      "luna": 7,
+      "indice": 109.5
+    },
+    {
+      "an": 1991,
+      "luna": 8,
+      "indice": 111.2
+    },
+    {
+      "an": 1991,
+      "luna": 9,
+      "indice": 107.3
+    },
+    {
+      "an": 1991,
+      "luna": 10,
+      "indice": 110.4
+    },
+    {
+      "an": 1991,
+      "luna": 11,
+      "indice": 110.9
+    },
+    {
+      "an": 1991,
+      "luna": 12,
+      "indice": 113.7
+    },
+    {
+      "an": 1992,
+      "luna": 1,
+      "indice": 119.5
+    },
+    {
+      "an": 1992,
+      "luna": 2,
+      "indice": 112.5
+    },
+    {
+      "an": 1992,
+      "luna": 3,
+      "indice": 110
+    },
+    {
+      "an": 1992,
+      "luna": 4,
+      "indice": 104.7
+    },
+    {
+      "an": 1992,
+      "luna": 5,
+      "indice": 112.1
+    },
+    {
+      "an": 1992,
+      "luna": 6,
+      "indice": 104.3
+    },
+    {
+      "an": 1992,
+      "luna": 7,
+      "indice": 103.2
+    },
+    {
+      "an": 1992,
+      "luna": 8,
+      "indice": 103.4
+    },
+    {
+      "an": 1992,
+      "luna": 9,
+      "indice": 110.1
+    },
+    {
+      "an": 1992,
+      "luna": 10,
+      "indice": 109.6
+    },
+    {
+      "an": 1992,
+      "luna": 11,
+      "indice": 113.5
+    },
+    {
+      "an": 1992,
+      "luna": 12,
+      "indice": 113.2
+    },
+    {
+      "an": 1993,
+      "luna": 1,
+      "indice": 111.5
+    },
+    {
+      "an": 1993,
+      "luna": 2,
+      "indice": 108.2
+    },
+    {
+      "an": 1993,
+      "luna": 3,
+      "indice": 109.2
+    },
+    {
+      "an": 1993,
+      "luna": 4,
+      "indice": 110
+    },
+    {
+      "an": 1993,
+      "luna": 5,
+      "indice": 130.4
+    },
+    {
+      "an": 1993,
+      "luna": 6,
+      "indice": 105.5
+    },
+    {
+      "an": 1993,
+      "luna": 7,
+      "indice": 113.2
+    },
+    {
+      "an": 1993,
+      "luna": 8,
+      "indice": 110.8
+    },
+    {
+      "an": 1993,
+      "luna": 9,
+      "indice": 110.9
+    },
+    {
+      "an": 1993,
+      "luna": 10,
+      "indice": 116.3
+    },
+    {
+      "an": 1993,
+      "luna": 11,
+      "indice": 114.2
+    },
+    {
+      "an": 1993,
+      "luna": 12,
+      "indice": 107.4
+    },
+    {
+      "an": 1994,
+      "luna": 1,
+      "indice": 104.9
+    },
+    {
+      "an": 1994,
+      "luna": 2,
+      "indice": 105.9
+    },
+    {
+      "an": 1994,
+      "luna": 3,
+      "indice": 108.3
+    },
+    {
+      "an": 1994,
+      "luna": 4,
+      "indice": 106.1
+    },
+    {
+      "an": 1994,
+      "luna": 5,
+      "indice": 105
+    },
+    {
+      "an": 1994,
+      "luna": 6,
+      "indice": 102.6
+    },
+    {
+      "an": 1994,
+      "luna": 7,
+      "indice": 101.6
+    },
+    {
+      "an": 1994,
+      "luna": 8,
+      "indice": 101.8
+    },
+    {
+      "an": 1994,
+      "luna": 9,
+      "indice": 103.9
+    },
+    {
+      "an": 1994,
+      "luna": 10,
+      "indice": 104.4
+    },
+    {
+      "an": 1994,
+      "luna": 11,
+      "indice": 102.8
+    },
+    {
+      "an": 1994,
+      "luna": 12,
+      "indice": 102.1
+    },
+    {
+      "an": 1995,
+      "luna": 1,
+      "indice": 102
+    },
+    {
+      "an": 1995,
+      "luna": 2,
+      "indice": 101.4
+    },
+    {
+      "an": 1995,
+      "luna": 3,
+      "indice": 100.9
+    },
+    {
+      "an": 1995,
+      "luna": 4,
+      "indice": 101.6
+    },
+    {
+      "an": 1995,
+      "luna": 5,
+      "indice": 101.1
+    },
+    {
+      "an": 1995,
+      "luna": 6,
+      "indice": 101.3
+    },
+    {
+      "an": 1995,
+      "luna": 7,
+      "indice": 102.6
+    },
+    {
+      "an": 1995,
+      "luna": 8,
+      "indice": 101
+    },
+    {
+      "an": 1995,
+      "luna": 9,
+      "indice": 101.6
+    },
+    {
+      "an": 1995,
+      "luna": 10,
+      "indice": 103.5
+    },
+    {
+      "an": 1995,
+      "luna": 11,
+      "indice": 104.1
+    },
+    {
+      "an": 1995,
+      "luna": 12,
+      "indice": 103.7
+    },
+    {
+      "an": 1996,
+      "luna": 1,
+      "indice": 101.2
+    },
+    {
+      "an": 1996,
+      "luna": 2,
+      "indice": 101.9
+    },
+    {
+      "an": 1996,
+      "luna": 3,
+      "indice": 101.7
+    },
+    {
+      "an": 1996,
+      "luna": 4,
+      "indice": 101.9
+    },
+    {
+      "an": 1996,
+      "luna": 5,
+      "indice": 105.3
+    },
+    {
+      "an": 1996,
+      "luna": 6,
+      "indice": 101
+    },
+    {
+      "an": 1996,
+      "luna": 7,
+      "indice": 107.5
+    },
+    {
+      "an": 1996,
+      "luna": 8,
+      "indice": 103.8
+    },
+    {
+      "an": 1996,
+      "luna": 9,
+      "indice": 102.4
+    },
+    {
+      "an": 1996,
+      "luna": 10,
+      "indice": 103.4
+    },
+    {
+      "an": 1996,
+      "luna": 11,
+      "indice": 105.8
+    },
+    {
+      "an": 1996,
+      "luna": 12,
+      "indice": 110.3
+    },
+    {
+      "an": 1997,
+      "luna": 1,
+      "indice": 113.7
+    },
+    {
+      "an": 1997,
+      "luna": 2,
+      "indice": 118.8
+    },
+    {
+      "an": 1997,
+      "luna": 3,
+      "indice": 130.7
+    },
+    {
+      "an": 1997,
+      "luna": 4,
+      "indice": 106.9
+    },
+    {
+      "an": 1997,
+      "luna": 5,
+      "indice": 104.3
+    },
+    {
+      "an": 1997,
+      "luna": 6,
+      "indice": 102.3
+    },
+    {
+      "an": 1997,
+      "luna": 7,
+      "indice": 100.7
+    },
+    {
+      "an": 1997,
+      "luna": 8,
+      "indice": 103.5
+    },
+    {
+      "an": 1997,
+      "luna": 9,
+      "indice": 103.3
+    },
+    {
+      "an": 1997,
+      "luna": 10,
+      "indice": 106.5
+    },
+    {
+      "an": 1997,
+      "luna": 11,
+      "indice": 104.3
+    },
+    {
+      "an": 1997,
+      "luna": 12,
+      "indice": 104.5
+    },
+    {
+      "an": 1998,
+      "luna": 1,
+      "indice": 104.9
+    },
+    {
+      "an": 1998,
+      "luna": 2,
+      "indice": 107.2
+    },
+    {
+      "an": 1998,
+      "luna": 3,
+      "indice": 103.8
+    },
+    {
+      "an": 1998,
+      "luna": 4,
+      "indice": 102.7
+    },
+    {
+      "an": 1998,
+      "luna": 5,
+      "indice": 102.3
+    },
+    {
+      "an": 1998,
+      "luna": 6,
+      "indice": 101.3
+    },
+    {
+      "an": 1998,
+      "luna": 7,
+      "indice": 101.3
+    },
+    {
+      "an": 1998,
+      "luna": 8,
+      "indice": 100.6
+    },
+    {
+      "an": 1998,
+      "luna": 9,
+      "indice": 102.7
+    },
+    {
+      "an": 1998,
+      "luna": 10,
+      "indice": 103.9
+    },
+    {
+      "an": 1998,
+      "luna": 11,
+      "indice": 101.9
+    },
+    {
+      "an": 1998,
+      "luna": 12,
+      "indice": 102.2
+    },
+    {
+      "an": 1999,
+      "luna": 1,
+      "indice": 103
+    },
+    {
+      "an": 1999,
+      "luna": 2,
+      "indice": 102.9
+    },
+    {
+      "an": 1999,
+      "luna": 3,
+      "indice": 106.4
+    },
+    {
+      "an": 1999,
+      "luna": 4,
+      "indice": 104.8
+    },
+    {
+      "an": 1999,
+      "luna": 5,
+      "indice": 105.3
+    },
+    {
+      "an": 1999,
+      "luna": 6,
+      "indice": 105.1
+    },
+    {
+      "an": 1999,
+      "luna": 7,
+      "indice": 101.7
+    },
+    {
+      "an": 1999,
+      "luna": 8,
+      "indice": 101.2
+    },
+    {
+      "an": 1999,
+      "luna": 9,
+      "indice": 103.2
+    },
+    {
+      "an": 1999,
+      "luna": 10,
+      "indice": 104.2
+    },
+    {
+      "an": 1999,
+      "luna": 11,
+      "indice": 104
+    },
+    {
+      "an": 1999,
+      "luna": 12,
+      "indice": 102.9
+    },
+    {
+      "an": 2000,
+      "luna": 1,
+      "indice": 104.3
+    },
+    {
+      "an": 2000,
+      "luna": 2,
+      "indice": 102.2
+    },
+    {
+      "an": 2000,
+      "luna": 3,
+      "indice": 101.8
+    },
+    {
+      "an": 2000,
+      "luna": 4,
+      "indice": 104.8
+    },
+    {
+      "an": 2000,
+      "luna": 5,
+      "indice": 101.8
+    },
+    {
+      "an": 2000,
+      "luna": 6,
+      "indice": 102.8
+    },
+    {
+      "an": 2000,
+      "luna": 7,
+      "indice": 104.3
+    },
+    {
+      "an": 2000,
+      "luna": 8,
+      "indice": 101.8
+    },
+    {
+      "an": 2000,
+      "luna": 9,
+      "indice": 102.8
+    },
+    {
+      "an": 2000,
+      "luna": 10,
+      "indice": 102.8
+    },
+    {
+      "an": 2000,
+      "luna": 11,
+      "indice": 102.8
+    },
+    {
+      "an": 2000,
+      "luna": 12,
+      "indice": 102.5
+    },
+    {
+      "an": 2001,
+      "luna": 1,
+      "indice": 103.7
+    },
+    {
+      "an": 2001,
+      "luna": 2,
+      "indice": 102.3
+    },
+    {
+      "an": 2001,
+      "luna": 3,
+      "indice": 102
+    },
+    {
+      "an": 2001,
+      "luna": 4,
+      "indice": 102.7
+    },
+    {
+      "an": 2001,
+      "luna": 5,
+      "indice": 101.7
+    },
+    {
+      "an": 2001,
+      "luna": 6,
+      "indice": 101.6
+    },
+    {
+      "an": 2001,
+      "luna": 7,
+      "indice": 101.3
+    },
+    {
+      "an": 2001,
+      "luna": 8,
+      "indice": 102.2
+    },
+    {
+      "an": 2001,
+      "luna": 9,
+      "indice": 101.9
+    },
+    {
+      "an": 2001,
+      "luna": 10,
+      "indice": 102.4
+    },
+    {
+      "an": 2001,
+      "luna": 11,
+      "indice": 102.7
+    },
+    {
+      "an": 2001,
+      "luna": 12,
+      "indice": 102.2
+    },
+    {
+      "an": 2002,
+      "luna": 1,
+      "indice": 102.3
+    },
+    {
+      "an": 2002,
+      "luna": 2,
+      "indice": 101.2
+    },
+    {
+      "an": 2002,
+      "luna": 3,
+      "indice": 100.4
+    },
+    {
+      "an": 2002,
+      "luna": 4,
+      "indice": 102
+    },
+    {
+      "an": 2002,
+      "luna": 5,
+      "indice": 101.9
+    },
+    {
+      "an": 2002,
+      "luna": 6,
+      "indice": 101.2
+    },
+    {
+      "an": 2002,
+      "luna": 7,
+      "indice": 100.5
+    },
+    {
+      "an": 2002,
+      "luna": 8,
+      "indice": 100.8
+    },
+    {
+      "an": 2002,
+      "luna": 9,
+      "indice": 100.6
+    },
+    {
+      "an": 2002,
+      "luna": 10,
+      "indice": 101.6
+    },
+    {
+      "an": 2002,
+      "luna": 11,
+      "indice": 102.6
+    },
+    {
+      "an": 2002,
+      "luna": 12,
+      "indice": 101.5
+    },
+    {
+      "an": 2003,
+      "luna": 1,
+      "indice": 101.3
+    },
+    {
+      "an": 2003,
+      "luna": 2,
+      "indice": 100.8
+    },
+    {
+      "an": 2003,
+      "luna": 3,
+      "indice": 101.1
+    },
+    {
+      "an": 2003,
+      "luna": 4,
+      "indice": 101.1
+    },
+    {
+      "an": 2003,
+      "luna": 5,
+      "indice": 100.5
+    },
+    {
+      "an": 2003,
+      "luna": 6,
+      "indice": 100.9
+    },
+    {
+      "an": 2003,
+      "luna": 7,
+      "indice": 101.2
+    },
+    {
+      "an": 2003,
+      "luna": 8,
+      "indice": 100.3
+    },
+    {
+      "an": 2003,
+      "luna": 9,
+      "indice": 102.1
+    },
+    {
+      "an": 2003,
+      "luna": 10,
+      "indice": 101.5
+    },
+    {
+      "an": 2003,
+      "luna": 11,
+      "indice": 101.4
+    },
+    {
+      "an": 2003,
+      "luna": 12,
+      "indice": 101.2
+    },
+    {
+      "an": 2004,
+      "luna": 1,
+      "indice": 101.1
+    },
+    {
+      "an": 2004,
+      "luna": 2,
+      "indice": 100.6
+    },
+    {
+      "an": 2004,
+      "luna": 3,
+      "indice": 100.5
+    },
+    {
+      "an": 2004,
+      "luna": 4,
+      "indice": 100.6
+    },
+    {
+      "an": 2004,
+      "luna": 5,
+      "indice": 100.3
+    },
+    {
+      "an": 2004,
+      "luna": 6,
+      "indice": 100.6
+    },
+    {
+      "an": 2004,
+      "luna": 7,
+      "indice": 101.3
+    },
+    {
+      "an": 2004,
+      "luna": 8,
+      "indice": 100.5
+    },
+    {
+      "an": 2004,
+      "luna": 9,
+      "indice": 100.9
+    },
+    {
+      "an": 2004,
+      "luna": 10,
+      "indice": 101.2
+    },
+    {
+      "an": 2004,
+      "luna": 11,
+      "indice": 100.6
+    },
+    {
+      "an": 2004,
+      "luna": 12,
+      "indice": 100.6
+    },
+    {
+      "an": 2005,
+      "luna": 1,
+      "indice": 100.8
+    },
+    {
+      "an": 2005,
+      "luna": 2,
+      "indice": 100.6
+    },
+    {
+      "an": 2005,
+      "luna": 3,
+      "indice": 100.3
+    },
+    {
+      "an": 2005,
+      "luna": 4,
+      "indice": 101.8
+    },
+    {
+      "an": 2005,
+      "luna": 5,
+      "indice": 100.3
+    },
+    {
+      "an": 2005,
+      "luna": 6,
+      "indice": 100.3
+    },
+    {
+      "an": 2005,
+      "luna": 7,
+      "indice": 101
+    },
+    {
+      "an": 2005,
+      "luna": 8,
+      "indice": 100.1
+    },
+    {
+      "an": 2005,
+      "luna": 9,
+      "indice": 100.6
+    },
+    {
+      "an": 2005,
+      "luna": 10,
+      "indice": 100.9
+    },
+    {
+      "an": 2005,
+      "luna": 11,
+      "indice": 101.2
+    },
+    {
+      "an": 2005,
+      "luna": 12,
+      "indice": 100.5
+    },
+    {
+      "an": 2006,
+      "luna": 1,
+      "indice": 101.03
+    },
+    {
+      "an": 2006,
+      "luna": 2,
+      "indice": 100.24
+    },
+    {
+      "an": 2006,
+      "luna": 3,
+      "indice": 100.21
+    },
+    {
+      "an": 2006,
+      "luna": 4,
+      "indice": 100.42
+    },
+    {
+      "an": 2006,
+      "luna": 5,
+      "indice": 100.6
+    },
+    {
+      "an": 2006,
+      "luna": 6,
+      "indice": 100.15
+    },
+    {
+      "an": 2006,
+      "luna": 7,
+      "indice": 100.11
+    },
+    {
+      "an": 2006,
+      "luna": 8,
+      "indice": 99.93
+    },
+    {
+      "an": 2006,
+      "luna": 9,
+      "indice": 100.05
+    },
+    {
+      "an": 2006,
+      "luna": 10,
+      "indice": 100.21
+    },
+    {
+      "an": 2006,
+      "luna": 11,
+      "indice": 101.09
+    },
+    {
+      "an": 2006,
+      "luna": 12,
+      "indice": 100.74
+    },
+    {
+      "an": 2007,
+      "luna": 1,
+      "indice": 100.2
+    },
+    {
+      "an": 2007,
+      "luna": 2,
+      "indice": 100.04
+    },
+    {
+      "an": 2007,
+      "luna": 3,
+      "indice": 100.07
+    },
+    {
+      "an": 2007,
+      "luna": 4,
+      "indice": 100.52
+    },
+    {
+      "an": 2007,
+      "luna": 5,
+      "indice": 100.64
+    },
+    {
+      "an": 2007,
+      "luna": 6,
+      "indice": 100.14
+    },
+    {
+      "an": 2007,
+      "luna": 7,
+      "indice": 100.29
+    },
+    {
+      "an": 2007,
+      "luna": 8,
+      "indice": 100.86
+    },
+    {
+      "an": 2007,
+      "luna": 9,
+      "indice": 101.08
+    },
+    {
+      "an": 2007,
+      "luna": 10,
+      "indice": 100.97
+    },
+    {
+      "an": 2007,
+      "luna": 11,
+      "indice": 100.93
+    },
+    {
+      "an": 2007,
+      "luna": 12,
+      "indice": 100.64
+    },
+    {
+      "an": 2008,
+      "luna": 1,
+      "indice": 100.86
+    },
+    {
+      "an": 2008,
+      "luna": 2,
+      "indice": 100.7
+    },
+    {
+      "an": 2008,
+      "luna": 3,
+      "indice": 100.67
+    },
+    {
+      "an": 2008,
+      "luna": 4,
+      "indice": 100.52
+    },
+    {
+      "an": 2008,
+      "luna": 5,
+      "indice": 100.49
+    },
+    {
+      "an": 2008,
+      "luna": 6,
+      "indice": 100.28
+    },
+    {
+      "an": 2008,
+      "luna": 7,
+      "indice": 100.69
+    },
+    {
+      "an": 2008,
+      "luna": 8,
+      "indice": 99.91
+    },
+    {
+      "an": 2008,
+      "luna": 9,
+      "indice": 100.4
+    },
+    {
+      "an": 2008,
+      "luna": 10,
+      "indice": 101.06
+    },
+    {
+      "an": 2008,
+      "luna": 11,
+      "indice": 100.32
+    },
+    {
+      "an": 2008,
+      "luna": 12,
+      "indice": 100.23
+    },
+    {
+      "an": 2009,
+      "luna": 1,
+      "indice": 101.24
+    },
+    {
+      "an": 2009,
+      "luna": 2,
+      "indice": 100.88
+    },
+    {
+      "an": 2009,
+      "luna": 3,
+      "indice": 100.5
+    },
+    {
+      "an": 2009,
+      "luna": 4,
+      "indice": 100.27
+    },
+    {
+      "an": 2009,
+      "luna": 5,
+      "indice": 100.01
+    },
+    {
+      "an": 2009,
+      "luna": 6,
+      "indice": 100.2
+    },
+    {
+      "an": 2009,
+      "luna": 7,
+      "indice": 99.93
+    },
+    {
+      "an": 2009,
+      "luna": 8,
+      "indice": 99.81
+    },
+    {
+      "an": 2009,
+      "luna": 9,
+      "indice": 100.39
+    },
+    {
+      "an": 2009,
+      "luna": 10,
+      "indice": 100.44
+    },
+    {
+      "an": 2009,
+      "luna": 11,
+      "indice": 100.67
+    },
+    {
+      "an": 2009,
+      "luna": 12,
+      "indice": 100.32
+    },
+    {
+      "an": 2010,
+      "luna": 1,
+      "indice": 101.68
+    },
+    {
+      "an": 2010,
+      "luna": 2,
+      "indice": 100.2
+    },
+    {
+      "an": 2010,
+      "luna": 3,
+      "indice": 100.22
+    },
+    {
+      "an": 2010,
+      "luna": 4,
+      "indice": 100.35
+    },
+    {
+      "an": 2010,
+      "luna": 5,
+      "indice": 100.15
+    },
+    {
+      "an": 2010,
+      "luna": 6,
+      "indice": 100.16
+    },
+    {
+      "an": 2010,
+      "luna": 7,
+      "indice": 102.58
+    },
+    {
+      "an": 2010,
+      "luna": 8,
+      "indice": 100.23
+    },
+    {
+      "an": 2010,
+      "luna": 9,
+      "indice": 100.56
+    },
+    {
+      "an": 2010,
+      "luna": 10,
+      "indice": 100.55
+    },
+    {
+      "an": 2010,
+      "luna": 11,
+      "indice": 100.52
+    },
+    {
+      "an": 2010,
+      "luna": 12,
+      "indice": 100.53
+    },
+    {
+      "an": 2011,
+      "luna": 1,
+      "indice": 100.77
+    },
+    {
+      "an": 2011,
+      "luna": 2,
+      "indice": 100.77
+    },
+    {
+      "an": 2011,
+      "luna": 3,
+      "indice": 100.6
+    },
+    {
+      "an": 2011,
+      "luna": 4,
+      "indice": 100.66
+    },
+    {
+      "an": 2011,
+      "luna": 5,
+      "indice": 100.21
+    },
+    {
+      "an": 2011,
+      "luna": 6,
+      "indice": 99.71
+    },
+    {
+      "an": 2011,
+      "luna": 7,
+      "indice": 99.65
+    },
+    {
+      "an": 2011,
+      "luna": 8,
+      "indice": 99.65
+    },
+    {
+      "an": 2011,
+      "luna": 9,
+      "indice": 99.79
+    },
+    {
+      "an": 2011,
+      "luna": 10,
+      "indice": 100.64
+    },
+    {
+      "an": 2011,
+      "luna": 11,
+      "indice": 100.42
+    },
+    {
+      "an": 2011,
+      "luna": 12,
+      "indice": 100.23
+    },
+    {
+      "an": 2012,
+      "luna": 1,
+      "indice": 100.36
+    },
+    {
+      "an": 2012,
+      "luna": 2,
+      "indice": 100.64
+    },
+    {
+      "an": 2012,
+      "luna": 3,
+      "indice": 100.42
+    },
+    {
+      "an": 2012,
+      "luna": 4,
+      "indice": 100.07
+    },
+    {
+      "an": 2012,
+      "luna": 5,
+      "indice": 100.2
+    },
+    {
+      "an": 2012,
+      "luna": 6,
+      "indice": 99.96
+    },
+    {
+      "an": 2012,
+      "luna": 7,
+      "indice": 100.59
+    },
+    {
+      "an": 2012,
+      "luna": 8,
+      "indice": 100.51
+    },
+    {
+      "an": 2012,
+      "luna": 9,
+      "indice": 101.18
+    },
+    {
+      "an": 2012,
+      "luna": 10,
+      "indice": 100.29
+    },
+    {
+      "an": 2012,
+      "luna": 11,
+      "indice": 100.04
+    },
+    {
+      "an": 2012,
+      "luna": 12,
+      "indice": 100.6
+    },
+    {
+      "an": 2013,
+      "luna": 1,
+      "indice": 101.34
+    },
+    {
+      "an": 2013,
+      "luna": 2,
+      "indice": 100.34
+    },
+    {
+      "an": 2013,
+      "luna": 3,
+      "indice": 100.04
+    },
+    {
+      "an": 2013,
+      "luna": 4,
+      "indice": 100.11
+    },
+    {
+      "an": 2013,
+      "luna": 5,
+      "indice": 100.23
+    },
+    {
+      "an": 2013,
+      "luna": 6,
+      "indice": 100.01
+    },
+    {
+      "an": 2013,
+      "luna": 7,
+      "indice": 99.66
+    },
+    {
+      "an": 2013,
+      "luna": 8,
+      "indice": 99.8
+    },
+    {
+      "an": 2013,
+      "luna": 9,
+      "indice": 99.43
+    },
+    {
+      "an": 2013,
+      "luna": 10,
+      "indice": 100.29
+    },
+    {
+      "an": 2013,
+      "luna": 11,
+      "indice": 99.99
+    },
+    {
+      "an": 2013,
+      "luna": 12,
+      "indice": 100.33
+    },
+    {
+      "an": 2014,
+      "luna": 1,
+      "indice": 100.85
+    },
+    {
+      "an": 2014,
+      "luna": 2,
+      "indice": 100.33
+    },
+    {
+      "an": 2014,
+      "luna": 3,
+      "indice": 100.03
+    },
+    {
+      "an": 2014,
+      "luna": 4,
+      "indice": 100.27
+    },
+    {
+      "an": 2014,
+      "luna": 5,
+      "indice": 99.96
+    },
+    {
+      "an": 2014,
+      "luna": 6,
+      "indice": 99.73
+    },
+    {
+      "an": 2014,
+      "luna": 7,
+      "indice": 99.95
+    },
+    {
+      "an": 2014,
+      "luna": 8,
+      "indice": 99.69
+    },
+    {
+      "an": 2014,
+      "luna": 9,
+      "indice": 100.12
+    },
+    {
+      "an": 2014,
+      "luna": 10,
+      "indice": 100.19
+    },
+    {
+      "an": 2014,
+      "luna": 11,
+      "indice": 99.81
+    },
+    {
+      "an": 2014,
+      "luna": 12,
+      "indice": 99.9
+    },
+    {
+      "an": 2015,
+      "luna": 1,
+      "indice": 100.43
+    },
+    {
+      "an": 2015,
+      "luna": 2,
+      "indice": 100.33
+    },
+    {
+      "an": 2015,
+      "luna": 3,
+      "indice": 100.41
+    },
+    {
+      "an": 2015,
+      "luna": 4,
+      "indice": 100.13
+    },
+    {
+      "an": 2015,
+      "luna": 5,
+      "indice": 100.47
+    },
+    {
+      "an": 2015,
+      "luna": 6,
+      "indice": 97.05
+    },
+    {
+      "an": 2015,
+      "luna": 7,
+      "indice": 99.83
+    },
+    {
+      "an": 2015,
+      "luna": 8,
+      "indice": 99.49
+    },
+    {
+      "an": 2015,
+      "luna": 9,
+      "indice": 100.26
+    },
+    {
+      "an": 2015,
+      "luna": 10,
+      "indice": 100.28
+    },
+    {
+      "an": 2015,
+      "luna": 11,
+      "indice": 100.31
+    },
+    {
+      "an": 2015,
+      "luna": 12,
+      "indice": 100.11
+    },
+    {
+      "an": 2016,
+      "luna": 1,
+      "indice": 99.22
+    },
+    {
+      "an": 2016,
+      "luna": 2,
+      "indice": 99.76
+    },
+    {
+      "an": 2016,
+      "luna": 3,
+      "indice": 100.1
+    },
+    {
+      "an": 2016,
+      "luna": 4,
+      "indice": 99.85
+    },
+    {
+      "an": 2016,
+      "luna": 5,
+      "indice": 100.25
+    },
+    {
+      "an": 2016,
+      "luna": 6,
+      "indice": 99.83
+    },
+    {
+      "an": 2016,
+      "luna": 7,
+      "indice": 99.76
+    },
+    {
+      "an": 2016,
+      "luna": 8,
+      "indice": 100.07
+    },
+    {
+      "an": 2016,
+      "luna": 9,
+      "indice": 99.89
+    },
+    {
+      "an": 2016,
+      "luna": 10,
+      "indice": 100.43
+    },
+    {
+      "an": 2016,
+      "luna": 11,
+      "indice": 100.07
+    },
+    {
+      "an": 2016,
+      "luna": 12,
+      "indice": 100.24
+    },
+    {
+      "an": 2017,
+      "luna": 1,
+      "indice": 99.81
+    },
+    {
+      "an": 2017,
+      "luna": 2,
+      "indice": 99.91
+    },
+    {
+      "an": 2017,
+      "luna": 3,
+      "indice": 100.08
+    },
+    {
+      "an": 2017,
+      "luna": 4,
+      "indice": 100.28
+    },
+    {
+      "an": 2017,
+      "luna": 5,
+      "indice": 100.28
+    },
+    {
+      "an": 2017,
+      "luna": 6,
+      "indice": 100.04
+    },
+    {
+      "an": 2017,
+      "luna": 7,
+      "indice": 100.32
+    },
+    {
+      "an": 2017,
+      "luna": 8,
+      "indice": 99.8
+    },
+    {
+      "an": 2017,
+      "luna": 9,
+      "indice": 100.5
+    },
+    {
+      "an": 2017,
+      "luna": 10,
+      "indice": 101.28
+    },
+    {
+      "an": 2017,
+      "luna": 11,
+      "indice": 100.66
+    },
+    {
+      "an": 2017,
+      "luna": 12,
+      "indice": 100.32
+    },
+    {
+      "an": 2018,
+      "luna": 1,
+      "indice": 100.78
+    },
+    {
+      "an": 2018,
+      "luna": 2,
+      "indice": 100.3
+    },
+    {
+      "an": 2018,
+      "luna": 3,
+      "indice": 100.29
+    },
+    {
+      "an": 2018,
+      "luna": 4,
+      "indice": 100.54
+    },
+    {
+      "an": 2018,
+      "luna": 5,
+      "indice": 100.47
+    },
+    {
+      "an": 2018,
+      "luna": 6,
+      "indice": 100.02
+    },
+    {
+      "an": 2018,
+      "luna": 7,
+      "indice": 99.52
+    },
+    {
+      "an": 2018,
+      "luna": 8,
+      "indice": 100.28
+    },
+    {
+      "an": 2018,
+      "luna": 9,
+      "indice": 100.47
+    },
+    {
+      "an": 2018,
+      "luna": 10,
+      "indice": 100.52
+    },
+    {
+      "an": 2018,
+      "luna": 11,
+      "indice": 99.87
+    },
+    {
+      "an": 2018,
+      "luna": 12,
+      "indice": 100.16
+    },
+    {
+      "an": 2019,
+      "luna": 1,
+      "indice": 100.83
+    },
+    {
+      "an": 2019,
+      "luna": 2,
+      "indice": 100.79
+    },
+    {
+      "an": 2019,
+      "luna": 3,
+      "indice": 100.49
+    },
+    {
+      "an": 2019,
+      "luna": 4,
+      "indice": 100.61
+    },
+    {
+      "an": 2019,
+      "luna": 5,
+      "indice": 100.46
+    },
+    {
+      "an": 2019,
+      "luna": 6,
+      "indice": 99.77
+    },
+    {
+      "an": 2019,
+      "luna": 7,
+      "indice": 99.8
+    },
+    {
+      "an": 2019,
+      "luna": 8,
+      "indice": 100.06
+    },
+    {
+      "an": 2019,
+      "luna": 9,
+      "indice": 100.09
+    },
+    {
+      "an": 2019,
+      "luna": 10,
+      "indice": 100.43
+    },
+    {
+      "an": 2019,
+      "luna": 11,
+      "indice": 100.23
+    },
+    {
+      "an": 2019,
+      "luna": 12,
+      "indice": 100.42
+    },
+    {
+      "an": 2020,
+      "luna": 1,
+      "indice": 100.41
+    },
+    {
+      "an": 2020,
+      "luna": 2,
+      "indice": 100.25
+    },
+    {
+      "an": 2020,
+      "luna": 3,
+      "indice": 100.5
+    },
+    {
+      "an": 2020,
+      "luna": 4,
+      "indice": 100.26
+    },
+    {
+      "an": 2020,
+      "luna": 5,
+      "indice": 100.05
+    },
+    {
+      "an": 2020,
+      "luna": 6,
+      "indice": 100.08
+    },
+    {
+      "an": 2020,
+      "luna": 7,
+      "indice": 100
+    },
+    {
+      "an": 2020,
+      "luna": 8,
+      "indice": 99.95
+    },
+    {
+      "an": 2020,
+      "luna": 9,
+      "indice": 99.86
+    },
+    {
+      "an": 2020,
+      "luna": 10,
+      "indice": 100.22
+    },
+    {
+      "an": 2020,
+      "luna": 11,
+      "indice": 100.13
+    },
+    {
+      "an": 2020,
+      "luna": 12,
+      "indice": 100.34
+    },
+    {
+      "an": 2021,
+      "luna": 1,
+      "indice": 101.33
+    },
+    {
+      "an": 2021,
+      "luna": 2,
+      "indice": 100.41
+    },
+    {
+      "an": 2021,
+      "luna": 3,
+      "indice": 100.38
+    },
+    {
+      "an": 2021,
+      "luna": 4,
+      "indice": 100.45
+    },
+    {
+      "an": 2021,
+      "luna": 5,
+      "indice": 100.53
+    },
+    {
+      "an": 2021,
+      "luna": 6,
+      "indice": 100.27
+    },
+    {
+      "an": 2021,
+      "luna": 7,
+      "indice": 100.97
+    },
+    {
+      "an": 2021,
+      "luna": 8,
+      "indice": 100.24
+    },
+    {
+      "an": 2021,
+      "luna": 9,
+      "indice": 100.84
+    },
+    {
+      "an": 2021,
+      "luna": 10,
+      "indice": 101.78
+    },
+    {
+      "an": 2021,
+      "luna": 11,
+      "indice": 100
+    },
+    {
+      "an": 2021,
+      "luna": 12,
+      "indice": 100.71
+    },
+    {
+      "an": 2022,
+      "luna": 1,
+      "indice": 101.48
+    },
+    {
+      "an": 2022,
+      "luna": 2,
+      "indice": 100.58
+    },
+    {
+      "an": 2022,
+      "luna": 3,
+      "indice": 101.88
+    },
+    {
+      "an": 2022,
+      "luna": 4,
+      "indice": 103.74
+    },
+    {
+      "an": 2022,
+      "luna": 5,
+      "indice": 101.18
+    },
+    {
+      "an": 2022,
+      "luna": 6,
+      "indice": 100.76
+    },
+    {
+      "an": 2022,
+      "luna": 7,
+      "indice": 100.89
+    },
+    {
+      "an": 2022,
+      "luna": 8,
+      "indice": 100.56
+    },
+    {
+      "an": 2022,
+      "luna": 9,
+      "indice": 101.33
+    },
+    {
+      "an": 2022,
+      "luna": 10,
+      "indice": 101.28
+    },
+    {
+      "an": 2022,
+      "luna": 11,
+      "indice": 101.25
+    },
+    {
+      "an": 2022,
+      "luna": 12,
+      "indice": 100.37
+    },
+    {
+      "an": 2023,
+      "luna": 1,
+      "indice": 100.34
+    },
+    {
+      "an": 2023,
+      "luna": 2,
+      "indice": 100.98
+    },
+    {
+      "an": 2023,
+      "luna": 3,
+      "indice": 101.01
+    },
+    {
+      "an": 2023,
+      "luna": 4,
+      "indice": 100.75
+    },
+    {
+      "an": 2023,
+      "luna": 5,
+      "indice": 100.64
+    },
+    {
+      "an": 2023,
+      "luna": 6,
+      "indice": 100.4
+    },
+    {
+      "an": 2023,
+      "luna": 7,
+      "indice": 100.15
+    },
+    {
+      "an": 2023,
+      "luna": 8,
+      "indice": 100.54
+    },
+    {
+      "an": 2023,
+      "luna": 9,
+      "indice": 100.79
+    },
+    {
+      "an": 2023,
+      "luna": 10,
+      "indice": 100.57
+    },
+    {
+      "an": 2023,
+      "luna": 11,
+      "indice": 99.99
+    },
+    {
+      "an": 2023,
+      "luna": 12,
+      "indice": 100.26
+    },
+    {
+      "an": 2024,
+      "luna": 1,
+      "indice": 101.1
+    },
+    {
+      "an": 2024,
+      "luna": 2,
+      "indice": 100.81
+    },
+    {
+      "an": 2024,
+      "luna": 3,
+      "indice": 100.42
+    },
+    {
+      "an": 2024,
+      "luna": 4,
+      "indice": 100.08
+    },
+    {
+      "an": 2024,
+      "luna": 5,
+      "indice": 99.89
+    },
+    {
+      "an": 2024,
+      "luna": 6,
+      "indice": 100.24
+    },
+    {
+      "an": 2024,
+      "luna": 7,
+      "indice": 100.6
+    },
+    {
+      "an": 2024,
+      "luna": 8,
+      "indice": 100.23
+    },
+    {
+      "an": 2024,
+      "luna": 9,
+      "indice": 100.33
+    },
+    {
+      "an": 2024,
+      "luna": 10,
+      "indice": 100.62
+    },
+    {
+      "an": 2024,
+      "luna": 11,
+      "indice": 100.41
+    },
+    {
+      "an": 2024,
+      "luna": 12,
+      "indice": 100.29
+    },
+    {
+      "an": 2025,
+      "luna": 1,
+      "indice": 100.92
+    },
+    {
+      "an": 2025,
+      "luna": 2,
+      "indice": 100.88
+    },
+    {
+      "an": 2025,
+      "luna": 3,
+      "indice": 100.27
+    },
+    {
+      "an": 2025,
+      "luna": 4,
+      "indice": 100.07
+    },
+    {
+      "an": 2025,
+      "luna": 5,
+      "indice": 100.46
+    },
+    {
+      "an": 2025,
+      "luna": 6,
+      "indice": 100.45
+    },
+    {
+      "an": 2025,
+      "luna": 7,
+      "indice": 102.68
+    },
+    {
+      "an": 2025,
+      "luna": 8,
+      "indice": 102.1
+    },
+    {
+      "an": 2025,
+      "luna": 9,
+      "indice": 100.36
+    },
+    {
+      "an": 2025,
+      "luna": 10,
+      "indice": 100.5
+    },
+    {
+      "an": 2025,
+      "luna": 11,
+      "indice": 100.42
+    },
+    {
+      "an": 2025,
+      "luna": 12,
+      "indice": 100.22
+    },
+    {
+      "an": 2026,
+      "luna": 1,
+      "indice": 100.86
+    },
+    {
+      "an": 2026,
+      "luna": 2,
+      "indice": 100.59
+    },
+    {
+      "an": 2026,
+      "luna": 3,
+      "indice": 100.78
+    },
+    {
+      "an": 2026,
+      "luna": 4,
+      "indice": 100.84
+    },
+    {
+      "an": 2026,
+      "luna": 5,
+      "indice": 100.58
+    },
+    {
+      "an": 2026,
+      "luna": 6,
+      "indice": 100.06
+    }
+  ]
+}

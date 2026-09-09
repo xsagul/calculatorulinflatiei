@@ -1,0 +1,140 @@
+---
+// Clusterul informational: „rata inflatiei", „inflatia in Romania", „bnr inflatie".
+// Aici pierdem azi in fata unui domeniu cu Domain Trust 3, fiindca el are cifra
+// proaspata pe pagina si noi n-avem pagina deloc.
+//
+// Pagina raspunde in primul paragraf, cu cifra, si abia apoi explica. Cine cauta
+// „rata inflatiei" vrea un numar, nu o definitie.
+import Baza from '@/layouts/Baza.astro';
+import { factorPreturi, ULTIMA_LUNA, PRIMA_LUNA, etichetaLuna, numeLuna } from '@/lib/inflatie';
+
+const lei = (n: number, z = 1) =>
+  n.toLocaleString('ro-RO', { minimumFractionDigits: z, maximumFractionDigits: z });
+
+const anualaLa = (an: number, luna: number) => (factorPreturi({ an: an - 1, luna }, { an, luna }) - 1) * 100;
+
+const ultima = anualaLa(ULTIMA_LUNA.an, ULTIMA_LUNA.luna);
+const actualizat = etichetaLuna(ULTIMA_LUNA);
+
+// Ultimele douasprezece luni, an peste an: forma reala a inflatiei, nu o singura cifra.
+const ultimele12: { an: number; luna: number; rata: number }[] = [];
+for (let i = 0; i < 12; i++) {
+  const rang = ULTIMA_LUNA.an * 12 + (ULTIMA_LUNA.luna - 1) - i;
+  const an = Math.floor(rang / 12), luna = (rang % 12) + 1;
+  if (an - 1 < PRIMA_LUNA.an) break;
+  ultimele12.push({ an, luna, rata: anualaLa(an, luna) });
+}
+
+// Decembrie peste decembrie, de la inceputul seriei: tabelul istoric complet.
+const istoric: { an: number; rata: number }[] = [];
+for (let an = ULTIMA_LUNA.an - 1; an > PRIMA_LUNA.an; an--) istoric.push({ an, rata: anualaLa(an, 12) });
+
+const maxim = istoric.reduce((a, b) => (b.rata > a.rata ? b : a));
+const minim = istoric.reduce((a, b) => (b.rata < a.rata ? b : a));
+
+const intrebari = [
+  {
+    q: `Cât este rata inflației în România acum?`,
+    a: `În ${actualizat}, prețurile erau cu ${lei(ultima)}% mai mari decât în aceeași lună a anului precedent. Este cea mai recentă comparație an-la-an din seria publicată de Institutul Național de Statistică.`,
+  },
+  {
+    q: 'Ce înseamnă „rata anuală a inflației"?',
+    a: 'Cât la sută au crescut prețurile într-o lună față de aceeași lună a anului precedent. Se compară luni identice ca să nu intervină sezonalitatea: prețurile alimentelor, de pildă, se mișcă altfel vara decât iarna.',
+  },
+  {
+    q: 'De ce cifra diferă de la o sursă la alta?',
+    a: 'Pentru că se raportează lucruri diferite: rata anuală a unei luni, rata medie a unui an întreg, sau creșterea din decembrie până în decembrie. Toate sunt corecte, dar răspund la întrebări diferite. Pe pagina asta scrie de fiecare dată care e care.',
+  },
+  {
+    q: 'Care a fost cea mai mare inflație din România?',
+    a: `În seria lunară publicată de INS, care începe în ${etichetaLuna(PRIMA_LUNA)}, vârful pe decembrie față de decembrie a fost în ${maxim.an}, cu ${lei(maxim.rata)}%. Cea mai mică a fost în ${minim.an}, cu ${lei(minim.rata)}%.`,
+  },
+];
+
+const schema = {
+  '@type': 'FAQPage',
+  mainEntity: intrebari.map((i) => ({
+    '@type': 'Question', name: i.q,
+    acceptedAnswer: { '@type': 'Answer', text: i.a },
+  })),
+};
+---
+
+<Baza
+  titlu={`Rata inflației în România — ${lei(ultima)}% în ${actualizat}`}
+  descriere={`Rata anuală a inflației în România este ${lei(ultima)}% în ${actualizat}. Evoluția ultimelor douăsprezece luni și istoricul complet, din datele Institutului Național de Statistică.`}
+  cale="/rata-inflatiei"
+  schema={schema}
+>
+  <div class="invelis sus">
+    <h1>Rata inflației în România</h1>
+
+    <p class="raspuns">
+      În <strong>{actualizat}</strong>, prețurile erau cu
+      <strong class="accent cifre">{lei(ultima)}%</strong> mai mari decât în aceeași lună a anului
+      precedent.
+    </p>
+    <p class="sursa">
+      Sursa: Institutul Național de Statistică, indicele prețurilor de consum. Este cea mai recentă
+      comparație an-la-an posibilă din seria publicată.
+    </p>
+
+    <h2>Ultimele douăsprezece luni</h2>
+    <p>
+      O singură cifră nu spune dacă inflația urcă sau coboară. Fiecare rând compară luna cu aceeași
+      lună a anului precedent.
+    </p>
+    <div class="derulabil">
+      <table>
+        <thead><tr><th>Luna</th><th class="num">Rata anuală</th></tr></thead>
+        <tbody>
+          {ultimele12.map(({ an, luna, rata }) => (
+            <tr>
+              <td>{numeLuna(luna)} {an}</td>
+              <td class="num cifre">{lei(rata)}%</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Istoricul complet, decembrie față de decembrie</h2>
+    <p>
+      Felul în care se raportează de obicei inflația unui an. Seria începe în
+      {' '}{etichetaLuna(PRIMA_LUNA)}, de unde o publică INS.
+    </p>
+    <div class="derulabil inalt">
+      <table>
+        <thead><tr><th>Anul</th><th class="num">Inflația anului</th></tr></thead>
+        <tbody>
+          {istoric.map(({ an, rata }) => (
+            <tr>
+              <td>{an}</td>
+              <td class="num cifre">{lei(rata)}%</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      Vrei să vezi ce înseamnă asta pentru o sumă anume?
+      {' '}<a href="/">Calculatorul de inflație</a> transformă orice sumă dintr-o lună în puterea ei
+      de cumpărare din altă lună. Seria brută, lună cu lună, e pe <a href="/date">pagina de date</a>.
+    </p>
+
+    <h2>Întrebări</h2>
+    <dl class="intrebari">
+      {intrebari.map((i) => (<><dt>{i.q}</dt><dd>{i.a}</dd></>))}
+    </dl>
+  </div>
+</Baza>
+
+<style>
+  .sus { padding-block: var(--sp-8) var(--sp-12); }
+  .raspuns { font-size: 1.25rem; margin-bottom: var(--sp-2); }
+  .accent { color: var(--acum); font-family: var(--font-titlu); font-size: 1.6em; }
+  .inalt { max-height: 30rem; overflow-y: auto; border: 1px solid var(--linie); border-radius: var(--raza); }
+  .intrebari dt { font-weight: 600; margin-top: var(--sp-6); }
+  .intrebari dd { margin: var(--sp-2) 0 0; max-width: var(--lat-text); color: var(--cerneala-slaba); }
+</style>

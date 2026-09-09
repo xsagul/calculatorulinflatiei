@@ -1,0 +1,159 @@
+---
+// Invelisul comun: head-ul, antetul, subsolul si datele structurate.
+// Fiecare pagina isi da titlul, descrierea si calea; restul se compune aici, ca
+// sa nu existe doua locuri care spun cine suntem.
+import '@/styles/global.css';
+import { SURSA, ULTIMA_LUNA, etichetaLuna } from '@/lib/inflatie';
+
+interface Props {
+  titlu: string;
+  descriere: string;
+  cale: string;
+  /** Date structurate suplimentare, specifice paginii. */
+  schema?: Record<string, unknown>;
+}
+
+const { titlu, descriere, cale, schema } = Astro.props;
+const SITE = 'https://calculatorulinflatiei.ro';
+const canonical = `${SITE}${cale === '/' ? '' : cale}`;
+const actualizat = etichetaLuna(ULTIMA_LUNA);
+
+const schemaSite = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE}#site`,
+      url: SITE,
+      name: 'Calculatorul Inflației',
+      inLanguage: 'ro-RO',
+      description:
+        'Calculator al puterii de cumpărare a leului, pe indicele prețurilor de consum publicat lunar de Institutul Național de Statistică.',
+    },
+    {
+      '@type': 'Dataset',
+      '@id': `${SITE}#date`,
+      name: 'Indicele prețurilor de consum, serie lunară',
+      description: `Lanțul lunar al indicelui prețurilor de consum, ${SURSA.denumire}, din ianuarie 1991 până în ${actualizat}.`,
+      license: 'https://data.gov.ro/base/images/logoinst/OGL-ROU-1.0.pdf',
+      creator: { '@type': 'GovernmentOrganization', name: SURSA.institutie },
+      isBasedOn: SURSA.url,
+      temporalCoverage: `1991-01/${ULTIMA_LUNA.an}-${String(ULTIMA_LUNA.luna).padStart(2, '0')}`,
+      variableMeasured: 'Indicele prețurilor de consum, față de luna precedentă',
+    },
+    ...(schema ? [schema] : []),
+  ],
+};
+---
+
+<!doctype html>
+<html lang="ro">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{titlu}</title>
+    <meta name="description" content={descriere} />
+    <link rel="canonical" href={canonical} />
+
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ro_RO" />
+    <meta property="og:site_name" content="Calculatorul Inflației" />
+    <meta property="og:title" content={titlu} />
+    <meta property="og:description" content={descriere} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=Instrument+Serif&display=swap"
+    />
+
+    <script type="application/ld+json" set:html={JSON.stringify(schemaSite)} />
+  </head>
+
+  <body>
+    <a href="#continut" class="sari">Sari la conținut</a>
+
+    <header class="antet">
+      <div class="invelis antet-rand">
+        <a href="/" class="marca" aria-label="Calculatorul Inflației, pagina principală">
+          <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true" focusable="false">
+            <rect x="2" y="4" width="8" height="18" rx="1.5" fill="var(--atunci)" />
+            <rect x="15" y="13" width="8" height="9" rx="1.5" fill="var(--acum)" />
+          </svg>
+          <span>Calculatorul Inflației</span>
+        </a>
+        <nav aria-label="Principal">
+          <a href="/rata-inflatiei">Rata inflației</a>
+          <a href="/indicele-preturilor-de-consum">Indicele prețurilor</a>
+          <a href="/date">Date</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="continut">
+      <slot />
+    </main>
+
+    <footer class="subsol">
+      <div class="invelis">
+        <p class="sursa">
+          Sursa cifrelor: {SURSA.institutie}, {SURSA.baza}, matricea {SURSA.matrice}. Serie lunară
+          din ianuarie 1991, actualizată până în {actualizat}. Reutilizare conform licenței {SURSA.licenta}.
+        </p>
+        <p class="sursa">
+          Sumele dinainte de 1 iulie 2005 sunt în lei vechi (ROL). Conversia în lei noi aplică
+          denominarea din Legea nr. 348/2004, adică împărțirea la 10.000.
+        </p>
+        <nav class="subsol-linkuri" aria-label="Secundar">
+          <a href="/despre">Despre și metodologie</a>
+          <a href="/date">Datele, descărcabile</a>
+          <a href="/politica-de-confidentialitate">Confidențialitate</a>
+        </nav>
+      </div>
+    </footer>
+
+    <style>
+      .sari {
+        position: absolute;
+        left: -9999px;
+        background: var(--hartie-sus);
+        padding: var(--sp-2) var(--sp-4);
+        z-index: 10;
+      }
+      .sari:focus { left: var(--sp-4); top: var(--sp-2); }
+
+      .antet { border-bottom: 1px solid var(--linie); background: var(--hartie-sus); }
+      .antet-rand {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: var(--sp-3);
+        padding-block: var(--sp-3);
+      }
+      .marca {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--sp-2);
+        font-family: var(--font-titlu);
+        font-size: 1.25rem;
+        text-decoration: none;
+      }
+      .antet nav { display: flex; gap: var(--sp-4); font-size: 0.9rem; }
+
+      .subsol {
+        border-top: 1px solid var(--linie);
+        margin-top: var(--sp-16);
+        padding-block: var(--sp-8);
+        background: var(--hartie-sus);
+      }
+      .subsol-linkuri { display: flex; flex-wrap: wrap; gap: var(--sp-4); font-size: 0.85rem; margin-top: var(--sp-4); }
+    </style>
+  </body>
+</html>

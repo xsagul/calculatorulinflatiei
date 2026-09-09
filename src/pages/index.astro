@@ -1,0 +1,151 @@
+---
+import Baza from '@/layouts/Baza.astro';
+import Calculator from '@/components/Calculator.astro';
+import { converteste, inflatieAnuala, ULTIMA_LUNA, etichetaLuna, PRIMA_LUNA } from '@/lib/inflatie';
+
+const actualizat = etichetaLuna(ULTIMA_LUNA);
+const anCurent = ULTIMA_LUNA.an;
+
+// Exemple calculate, nu scrise de mana: daca seria se actualizeaza, se
+// actualizeaza si textul. Nicio cifra din pagina nu are voie sa ramana in urma.
+const exemple = [
+  { suma: 100, an: 2000, luna: 1 },
+  { suma: 1000, an: 2010, luna: 1 },
+  { suma: 1000, an: 2020, luna: 1 },
+  { suma: 1000, an: anCurent - 1, luna: 1 },
+].map((e) => ({ ...e, r: converteste(e.suma, { an: e.an, luna: e.luna }, ULTIMA_LUNA) }));
+
+const aniTabel: { an: number; rata: number }[] = [];
+for (let an = ULTIMA_LUNA.an - 1; an >= ULTIMA_LUNA.an - 12; an--) {
+  const rata = inflatieAnuala(an, 12);
+  if (rata !== null) aniTabel.push({ an, rata });
+}
+
+const ultimaAnuala = inflatieAnuala(ULTIMA_LUNA.an, ULTIMA_LUNA.luna);
+const lei = (n: number, z = 2) =>
+  n.toLocaleString('ro-RO', { minimumFractionDigits: z, maximumFractionDigits: z });
+
+const intrebari = [
+  {
+    q: 'Cum se calculează puterea de cumpărare a unei sume din trecut?',
+    a: `Se înlănțuiesc indicii lunari ai prețurilor de consum publicați de Institutul Național de Statistică, de la luna sumei până la ${actualizat}. Produsul lor arată de câte ori au crescut prețurile; suma inițială se înmulțește cu el. Pentru sumele dinainte de 1 iulie 2005 se aplică și denominarea, adică împărțirea la 10.000.`,
+  },
+  {
+    q: 'De ce sumele dinainte de 2005 se împart la 10.000?',
+    a: 'Prin Legea nr. 348/2004, de la 1 iulie 2005 un leu nou (RON) a înlocuit 10.000 lei vechi (ROL). Indicii de preț nu conțin această tăiere, pentru că e o schimbare de unitate, nu o schimbare de preț. Un calculator care înlănțuie doar indicii peste granița din 2005 dă un rezultat de zece mii de ori prea mare.',
+  },
+  {
+    q: 'De unde vin datele și cât de des se actualizează?',
+    a: `Din TEMPO-Online, baza de date publică a Institutului Național de Statistică, matricea IPC102A. Seria e lunară, începe în ianuarie 1991 și e actualizată aici până în ${actualizat}. INS publică indicele lunii precedente în jurul datei de 12 a fiecărei luni.`,
+  },
+  {
+    q: 'De ce calculatorul nu merge mai devreme de 1991?',
+    a: 'Pentru că seria lunară publicată de INS începe în ianuarie 1991. Pentru anii anteriori nu există un indice oficial lunar accesibil public, iar o estimare ar arăta la fel de precisă ca o cifră reală fără să fie. Preferăm să spunem că nu știm.',
+  },
+  {
+    q: `Care a fost rata inflației în ${anCurent}?`,
+    a: ultimaAnuala !== null
+      ? `Comparând ${actualizat} cu aceeași lună a anului precedent, prețurile au crescut cu ${lei(ultimaAnuala, 1)}%. Este cea mai recentă comparație an-la-an posibilă din seria publicată de INS.`
+      : 'Datele pentru comparația an-la-an nu sunt încă disponibile.',
+  },
+];
+
+const schema = {
+  '@type': 'FAQPage',
+  mainEntity: intrebari.map((i) => ({
+    '@type': 'Question',
+    name: i.q,
+    acceptedAnswer: { '@type': 'Answer', text: i.a },
+  })),
+};
+---
+
+<Baza
+  titlu={`Calculator inflație România ${anCurent} — puterea de cumpărare a leului`}
+  descriere={`Cât valorează azi o sumă din trecut, sau între oricare două luni. Indicele prețurilor de consum publicat de INS, actualizat până în ${actualizat}. Rata inflației an de an și datele descărcabile.`}
+  cale="/"
+  schema={schema}
+>
+  <div class="invelis sus">
+    <h1>Calculator inflație România</h1>
+    <p class="introducere">
+      Câți lei îți trebuie azi ca să cumperi cât cumpărai atunci — sau între oricare două luni din
+      ultimii treizeci și cinci de ani. Pe indicele prețurilor de consum al Institutului Național de
+      Statistică, actualizat până în {actualizat}.
+    </p>
+
+    <Calculator />
+
+    <h2>Câteva răspunsuri, calculate</h2>
+    <div class="derulabil">
+      <table>
+        <caption class="sursa">
+          Puterea de cumpărare, raportată la {actualizat}. Sumele dinainte de iulie 2005 sunt în lei vechi.
+        </caption>
+        <thead>
+          <tr>
+            <th>Suma</th>
+            <th>Din</th>
+            <th class="num">Valorează azi</th>
+            <th class="num">Prețuri × de</th>
+            <th class="num">Putere rămasă</th>
+          </tr>
+        </thead>
+        <tbody>
+          {exemple.map(({ suma, an, luna, r }) => (
+            <tr>
+              <td class="num cifre">{lei(suma, 0)} {r.monedaDe}</td>
+              <td>{etichetaLuna({ an, luna })}</td>
+              <td class="num cifre"><strong>{lei(r.echivalent)} RON</strong></td>
+              <td class="num cifre">{lei(r.factorPreturi, 2)}</td>
+              <td class="num cifre">{lei(r.putereRamasa, 1)}%</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Rata inflației în România, an de an</h2>
+    <p>
+      Fiecare rând compară decembrie cu decembrie, adică felul în care se raportează de obicei
+      inflația anuală. Cifrele ies din același lanț lunar folosit de calculator.
+    </p>
+    <div class="derulabil">
+      <table>
+        <thead>
+          <tr><th>Anul</th><th class="num">Inflația, decembrie față de decembrie</th></tr>
+        </thead>
+        <tbody>
+          {aniTabel.map(({ an, rata }) => (
+            <tr>
+              <td>{an}</td>
+              <td class="num cifre">{lei(rata, 1)}%</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="sursa">
+      Seria completă, din {etichetaLuna(PRIMA_LUNA)}, e pe <a href="/date">pagina de date</a>,
+      descărcabilă în CSV și JSON.
+    </p>
+
+    <h2>Întrebări</h2>
+    <dl class="intrebari">
+      {intrebari.map((i) => (
+        <>
+          <dt>{i.q}</dt>
+          <dd>{i.a}</dd>
+        </>
+      ))}
+    </dl>
+  </div>
+</Baza>
+
+<style>
+  .sus { padding-block: var(--sp-8) var(--sp-12); }
+  .introducere { font-size: 1.1rem; color: var(--cerneala-slaba); margin-bottom: var(--sp-8); }
+  caption { caption-side: bottom; text-align: left; padding-top: var(--sp-2); }
+  .intrebari dt { font-weight: 600; margin-top: var(--sp-6); }
+  .intrebari dd { margin: var(--sp-2) 0 0; max-width: var(--lat-text); color: var(--cerneala-slaba); }
+</style>

@@ -1,0 +1,283 @@
+---
+// Singura insula de interactivitate din site.
+//
+// Pagina se randeaza pe server cu un rezultat real, nu cu un formular gol: cine
+// ajunge aici dintr-o cautare vede un raspuns inainte sa atinga ceva, iar Google
+// indexeaza cifre, nu un schelet. Scriptul preia apoi acelasi calcul in browser.
+//
+// AMBELE CAPETE SE ALEG. Prima versiune fixa data-tinta pe ultima luna cu date,
+// ceea ce raspundea doar la jumatate din intrebari: „cat valorau 1.000 de lei din
+// 2010 in 2015" nu se putea pune. Intervalul liber e ce ofera concurenta si ce
+// cere subiectul.
+//
+// UN SINGUR RASPUNS MARE. Din aceeasi pereche de date ies doua cifre — cat
+// valoreaza azi banii de atunci, si cat iti trebuie azi ca sa cumperi cat
+// cumparai atunci. Sunt inverse una alteia. A le pune pe amandoua in prim-plan
+// pune cititorul sa aleaga intre doua numere mari inainte sa fi inteles unul.
+// A doua sta dedesubt, intr-o propozitie.
+import {
+  converteste, ULTIMA_LUNA, PRIMA_LUNA, etichetaLuna, numeLuna, aniDisponibili,
+} from '@/lib/inflatie';
+import date from '@/data/ipc-lunar.json';
+
+interface Props {
+  suma?: number;
+  deLaAn?: number;
+  deLaLuna?: number;
+  panaLaAn?: number;
+  panaLaLuna?: number;
+}
+const {
+  suma = 1000,
+  deLaAn = 2020,
+  deLaLuna = 1,
+  panaLaAn = ULTIMA_LUNA.an,
+  panaLaLuna = ULTIMA_LUNA.luna,
+} = Astro.props;
+
+const de = { an: deLaAn, luna: deLaLuna };
+const la = { an: panaLaAn, luna: panaLaLuna };
+const r = converteste(suma, de, la);
+const ani = aniDisponibili();
+
+const lant = (date.serie as { an: number; luna: number; indice: number }[]).map((x) => x.indice);
+const config = { lant, primaLuna: PRIMA_LUNA, ultimaLuna: ULTIMA_LUNA, factorDenominare: date.denominare.factor };
+
+const lei = (n: number, z = 2) =>
+  n.toLocaleString('ro-RO', { minimumFractionDigits: z, maximumFractionDigits: z });
+---
+
+<section class="calc" aria-labelledby="calc-titlu" data-config={JSON.stringify(config)}>
+  <h2 id="calc-titlu">Cât valorează banii, dintr-o lună în alta</h2>
+
+  <form class="form" id="calc-form">
+    <div class="camp suma">
+      <label for="suma">Suma</label>
+      <div class="grup">
+        <input id="suma" type="number" inputmode="decimal" min="0" step="any" value={suma} required />
+        <span class="unitate" id="u-intrare">{r.monedaDe}</span>
+      </div>
+    </div>
+
+    <fieldset class="camp interval">
+      <legend>Din</legend>
+      <select id="luna-de" aria-label="Luna de început">
+        {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => (
+          <option value={m} selected={m === deLaLuna}>{numeLuna(m)}</option>
+        ))}
+      </select>
+      <select id="an-de" aria-label="Anul de început">
+        {ani.map((a) => <option value={a} selected={a === deLaAn}>{a}</option>)}
+      </select>
+    </fieldset>
+
+    <fieldset class="camp interval">
+      <legend>Până în</legend>
+      <select id="luna-la" aria-label="Luna finală">
+        {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => (
+          <option value={m} selected={m === panaLaLuna}>{numeLuna(m)}</option>
+        ))}
+      </select>
+      <select id="an-la" aria-label="Anul final">
+        {ani.map((a) => <option value={a} selected={a === panaLaAn}>{a}</option>)}
+      </select>
+    </fieldset>
+
+    <button type="submit">Calculează</button>
+  </form>
+
+  <p class="eroare" id="eroare" hidden role="alert"></p>
+
+  <output class="rezultat" for="suma luna-de an-de luna-la an-la">
+    <div class="col col-atunci">
+      <span class="eticheta" id="e-atunci">{etichetaLuna(de)}</span>
+      <strong class="cifra cifre" id="r-atunci">{lei(suma)} {r.monedaDe}</strong>
+    </div>
+    <div class="sageata" aria-hidden="true">
+      <svg width="34" height="14" viewBox="0 0 34 14" fill="none">
+        <path d="M0 7h30M24 1l6 6-6 6" stroke="var(--linie-tare)" stroke-width="1.5" />
+      </svg>
+    </div>
+    <div class="col col-acum">
+      <span class="eticheta" id="e-acum">{etichetaLuna(la)}</span>
+      <strong class="cifra cifre" id="r-acum">{lei(r.echivalent)} {r.monedaLa}</strong>
+    </div>
+  </output>
+
+  <p class="propozitie" id="r-propozitie">
+    Prețurile au crescut de <strong class="cifre">{lei(r.factorPreturi, 2)}</strong> ori, adică o
+    inflație cumulată de <strong class="cifre">{lei(r.inflatieCumulata, 1)}%</strong>.
+  </p>
+
+  <details class="detalii">
+    <summary>Încă trei feluri de a citi aceeași diferență</summary>
+    <dl id="r-detalii">
+      <dt>Cât îți trebuie acum</dt>
+      <dd class="cifre" id="d-necesar">{lei(r.echivalent)} {r.monedaLa}</dd>
+      <dt>Cât a mai rămas din puterea de cumpărare</dt>
+      <dd class="cifre" id="d-putere">{lei(r.putereRamasa, 1)}%</dd>
+      <dt>Rata medie anuală, pe tot intervalul</dt>
+      <dd class="cifre" id="d-medie">
+        {r.rataMedieAnuala !== null ? `${lei(r.rataMedieAnuala, 1)}%` : 'sub un an, nu se anualizează'}
+      </dd>
+    </dl>
+  </details>
+
+  <p class="denominare" id="r-denominare" hidden={!r.denominareAplicata}>
+    Suma e în lei vechi. Conversia aplică denominarea din 1 iulie 2005, prin care 10.000 ROL au
+    devenit 1 RON.
+  </p>
+</section>
+
+<style>
+  .calc { background: var(--hartie-sus); border: 1px solid var(--linie); border-radius: var(--raza); padding: var(--sp-6); }
+  h2 { margin-top: 0; font-size: clamp(1.3rem, 2.6vw, 1.7rem); }
+
+  .form { display: grid; gap: var(--sp-3); margin-bottom: var(--sp-6); align-items: end; }
+  @media (min-width: 52rem) { .form { grid-template-columns: 1fr 1.4fr 1.4fr auto; } }
+
+  .camp { display: flex; flex-direction: column; gap: var(--sp-1); border: 0; padding: 0; margin: 0; min-width: 0; }
+  label, legend { font-size: 0.8rem; font-weight: 600; color: var(--cerneala-slaba); padding: 0; }
+  .interval { display: grid; grid-template-columns: 1.3fr 1fr; gap: var(--sp-2); }
+  .interval legend { grid-column: 1 / -1; }
+
+  .grup { display: flex; border: 1px solid var(--linie-tare); border-radius: var(--raza); overflow: hidden; }
+  .grup input { border: 0; }
+  .unitate {
+    display: flex; align-items: center; padding-inline: var(--sp-3);
+    background: var(--hartie); border-left: 1px solid var(--linie);
+    font-size: 0.8rem; font-weight: 600; color: var(--cerneala-slaba);
+  }
+
+  input, select {
+    font: inherit; font-size: 1rem; /* 16px: sub atat, iOS mareste pagina la focus */
+    padding: var(--sp-2) var(--sp-3); min-height: 2.75rem; width: 100%; min-width: 0;
+    background: var(--hartie-sus); color: var(--cerneala);
+    border: 1px solid var(--linie-tare); border-radius: var(--raza);
+  }
+  @media (min-width: 40rem) { input, select { font-size: 0.95rem; } }
+
+  button {
+    font: inherit; font-weight: 600; min-height: 2.75rem; padding-inline: var(--sp-6);
+    border: 0; border-radius: var(--raza); background: var(--cerneala); color: var(--hartie-sus); cursor: pointer;
+  }
+  button:hover { opacity: 0.9; }
+
+  .eroare {
+    margin: 0 0 var(--sp-4); padding: var(--sp-3);
+    border-left: 3px solid var(--acum); background: var(--acum-fundal); font-size: 0.9rem;
+  }
+
+  .rezultat { display: grid; gap: var(--sp-3); align-items: center; }
+  @media (min-width: 34rem) { .rezultat { grid-template-columns: 1fr auto 1fr; } }
+
+  .col { display: flex; flex-direction: column; gap: var(--sp-1); padding: var(--sp-4); border-radius: var(--raza); }
+  .col-atunci { background: var(--atunci-fundal); }
+  .col-acum { background: var(--acum-fundal); }
+  .col-atunci .cifra { color: var(--atunci); }
+  .col-acum .cifra { color: var(--acum); }
+  .cifra { font-size: clamp(1.5rem, 4.5vw, 2.1rem); font-family: var(--font-titlu); font-weight: 400; line-height: 1.1; }
+
+  .sageata { display: flex; justify-content: center; }
+  @media (max-width: 33.99rem) { .sageata svg { transform: rotate(90deg); } }
+
+  .propozitie { margin: var(--sp-4) 0 0; }
+
+  .detalii { margin-top: var(--sp-4); border-top: 1px solid var(--linie); padding-top: var(--sp-3); }
+  summary { cursor: pointer; font-size: 0.9rem; color: var(--cerneala-slaba); }
+  .detalii dl { display: grid; grid-template-columns: 1fr auto; gap: var(--sp-2) var(--sp-4); margin: var(--sp-3) 0 0; font-size: 0.9rem; }
+  .detalii dt { color: var(--cerneala-slaba); }
+  .detalii dd { margin: 0; text-align: right; font-weight: 600; }
+
+  .denominare {
+    margin: var(--sp-4) 0 0; padding: var(--sp-3);
+    border-left: 3px solid var(--acum); background: var(--acum-fundal); font-size: 0.9rem;
+  }
+  [hidden] { display: none !important; }
+</style>
+
+<script>
+  // Acelasi calcul ca pe server, ca rezultatul sa nu difere intre randari.
+  const sectiune = document.querySelector<HTMLElement>('.calc');
+  const form = document.getElementById('calc-form') as HTMLFormElement | null;
+  if (sectiune && form) {
+    const cfg = JSON.parse(sectiune.dataset.config!) as {
+      lant: number[];
+      primaLuna: { an: number; luna: number };
+      ultimaLuna: { an: number; luna: number };
+      factorDenominare: number;
+    };
+    const LUNI = ['ianuarie', 'februarie', 'martie', 'aprilie', 'mai', 'iunie',
+      'iulie', 'august', 'septembrie', 'octombrie', 'noiembrie', 'decembrie'];
+    const rang = (an: number, luna: number) => an * 12 + (luna - 1);
+    const rPrim = rang(cfg.primaLuna.an, cfg.primaLuna.luna);
+    const rUltim = rang(cfg.ultimaLuna.an, cfg.ultimaLuna.luna);
+    const rDenom = rang(2005, 7);
+    const lei = (n: number, z = 2) =>
+      n.toLocaleString('ro-RO', { minimumFractionDigits: z, maximumFractionDigits: z });
+    const el = (id: string) => document.getElementById(id);
+    const scrie = (id: string, t: string) => { const e = el(id); if (e) e.textContent = t; };
+    const val = (id: string) => Number((el(id) as HTMLInputElement | HTMLSelectElement).value);
+
+    /** Produsul indicilor din intervalul (a, b]. Simetric: invers = 1/factor. */
+    function factor(a: number, b: number) {
+      const [jos, sus] = a <= b ? [a, b] : [b, a];
+      let f = 1;
+      for (let i = 0; i < cfg.lant.length; i++) {
+        const p = rPrim + i;
+        if (p > jos && p <= sus) f *= cfg.lant[i] / 100;
+      }
+      return a <= b ? f : 1 / f;
+    }
+
+    function calculeaza(event?: Event) {
+      event?.preventDefault();
+      const suma = val('suma');
+      const de = rang(val('an-de'), val('luna-de'));
+      const la = rang(val('an-la'), val('luna-la'));
+      const eroare = el('eroare')!;
+
+      const inAfara = [de, la].some((r) => r < rPrim || r > rUltim);
+      if (!Number.isFinite(suma) || suma < 0 || inAfara) {
+        eroare.textContent = inAfara
+          ? `Seria publicată de INS acoperă doar intervalul ${LUNI[cfg.primaLuna.luna - 1]} ${cfg.primaLuna.an} – ${LUNI[cfg.ultimaLuna.luna - 1]} ${cfg.ultimaLuna.an}.`
+          : 'Scrie o sumă pozitivă.';
+        eroare.hidden = false;
+        return;
+      }
+      eroare.hidden = true;
+
+      const f = factor(de, la);
+      const vechiDe = de < rDenom, vechiLa = la < rDenom;
+      const unitate = vechiDe && !vechiLa ? 1 / cfg.factorDenominare
+        : !vechiDe && vechiLa ? cfg.factorDenominare : 1;
+      const echivalent = suma * f * unitate;
+
+      const monedaDe = vechiDe ? 'ROL' : 'RON';
+      const monedaLa = vechiLa ? 'ROL' : 'RON';
+      scrie('u-intrare', monedaDe);
+      scrie('e-atunci', `${LUNI[val('luna-de') - 1]} ${val('an-de')}`);
+      scrie('e-acum', `${LUNI[val('luna-la') - 1]} ${val('an-la')}`);
+      scrie('r-atunci', `${lei(suma)} ${monedaDe}`);
+      scrie('r-acum', `${lei(echivalent)} ${monedaLa}`);
+
+      const prop = el('r-propozitie')!;
+      prop.innerHTML = f >= 1
+        ? `Prețurile au crescut de <strong class="cifre">${lei(f, 2)}</strong> ori, adică o inflație cumulată de <strong class="cifre">${lei((f - 1) * 100, 1)}%</strong>.`
+        : `Prețurile au scăzut cu <strong class="cifre">${lei((1 - f) * 100, 1)}%</strong> pe acest interval.`;
+
+      const ani = Math.abs(la - de) / 12;
+      scrie('d-necesar', `${lei(echivalent)} ${monedaLa}`);
+      scrie('d-putere', `${lei(100 / f, 1)}%`);
+      scrie('d-medie', ani >= 1 ? `${lei((Math.pow(f, 1 / ani) - 1) * 100, 1)}%` : 'sub un an, nu se anualizează');
+
+      const nota = el('r-denominare')!;
+      (nota as HTMLElement).hidden = unitate === 1;
+    }
+
+    form.addEventListener('submit', calculeaza);
+    for (const id of ['suma', 'an-de', 'luna-de', 'an-la', 'luna-la']) {
+      el(id)?.addEventListener('change', calculeaza);
+    }
+  }
+</script>

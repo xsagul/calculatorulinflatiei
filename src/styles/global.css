@@ -1,0 +1,129 @@
+/* Identitatea vizuala.
+ *
+ * Subiectul e eroziunea valorii in timp, deci pagina e construita in jurul unei
+ * comparatii intre doua sume. De aici si paleta: doua culori semantice, una
+ * pentru suma de atunci si una pentru ce a mai ramas din ea, pe un fundal de
+ * hartie milimetrica. Restul e cerneala.
+ *
+ * Nu e paleta de la salariile.ro. Acolo tonul e cald si editorial; aici e un
+ * instrument de masura, si arata ca atare.
+ */
+
+:root {
+  color-scheme: light;
+
+  /* Hartie usor rece, ca foaia de calcul, nu alb pur. */
+  --hartie: #f4f6f5;
+  --hartie-sus: #ffffff;
+  --linie: #d8dedc;
+  --linie-tare: #b3bcb9;
+
+  --cerneala: #16211f;
+  --cerneala-slaba: #5a6764;
+  --cerneala-stinsa: #7f8a87;
+
+  /* Doua culori semantice, folosite numai pentru cele doua sume. */
+  --atunci: #1d6f6a;      /* verde-petrol: suma de atunci, intacta */
+  --atunci-fundal: #e4efed;
+  --acum: #a8571c;        /* ocru ars: cat a mai ramas */
+  --acum-fundal: #f7ebdf;
+
+  --focus: #1d6f6a;
+
+  --sp-1: 0.25rem;
+  --sp-2: 0.5rem;
+  --sp-3: 0.75rem;
+  --sp-4: 1rem;
+  --sp-6: 1.5rem;
+  --sp-8: 2rem;
+  --sp-12: 3rem;
+  --sp-16: 4rem;
+
+  --lat-text: 68ch;
+  --lat-pagina: 72rem;
+  --raza: 6px;
+
+  --font-titlu: "Instrument Serif", "Iowan Old Style", Georgia, serif;
+  --font-text: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-tema="light"]) {
+    color-scheme: dark;
+    --hartie: #101817;
+    --hartie-sus: #17201f;
+    --linie: #2a3634;
+    --linie-tare: #3d4a47;
+    --cerneala: #e8edec;
+    --cerneala-slaba: #a3aeab;
+    --cerneala-stinsa: #7f8a87;
+    --atunci: #6fc7bf;
+    --atunci-fundal: #16302e;
+    --acum: #e0a06a;
+    --acum-fundal: #33241a;
+    --focus: #6fc7bf;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--hartie);
+  color: var(--cerneala);
+  font-family: var(--font-text);
+  font-size: 1rem;
+  line-height: 1.65;
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Cifrele se compara pe verticala peste tot in site. */
+.cifre, table, input, output, time { font-variant-numeric: tabular-nums; }
+
+h1, h2, h3 {
+  font-family: var(--font-titlu);
+  font-weight: 400;
+  line-height: 1.15;
+  text-wrap: balance;
+  margin: 0 0 var(--sp-4);
+  letter-spacing: -0.01em;
+}
+h1 { font-size: clamp(2rem, 5vw, 3.1rem); }
+h2 { font-size: clamp(1.5rem, 3.2vw, 2.1rem); margin-top: var(--sp-12); }
+h3 { font-size: 1.2rem; font-family: var(--font-text); font-weight: 600; margin-top: var(--sp-8); }
+
+p, li { max-width: var(--lat-text); }
+p { margin: 0 0 var(--sp-4); }
+
+a { color: inherit; text-decoration-color: var(--linie-tare); text-underline-offset: 3px; }
+a:hover { text-decoration-color: currentColor; }
+
+:where(a, button, input, select, summary):focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+.invelis { width: 100%; max-width: var(--lat-pagina); margin-inline: auto; padding-inline: var(--sp-4); }
+@media (min-width: 40rem) { .invelis { padding-inline: var(--sp-6); } }
+
+.eticheta {
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--cerneala-stinsa);
+  font-weight: 600;
+}
+
+.sursa { font-size: 0.85rem; color: var(--cerneala-slaba); }
+
+/* Tabelele de date depasesc latimea pe telefon; se deruleaza singure. */
+.derulabil { overflow-x: auto; }
+.derulabil table { min-width: 32rem; border-collapse: collapse; width: 100%; }
+th, td { text-align: left; padding: var(--sp-2) var(--sp-3); border-bottom: 1px solid var(--linie); }
+th { font-size: 0.8rem; color: var(--cerneala-slaba); font-weight: 600; }
+td.num, th.num { text-align: right; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}

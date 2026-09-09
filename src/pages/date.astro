@@ -1,0 +1,120 @@
+---
+// Pagina de date. Rostul ei nu e traficul direct, ci linkurile: un fisier curat,
+// cu sursa si licenta scrise, e ce citeaza un jurnalist, un student sau un blog.
+// Concurentul din nisa are doua domenii care il linkuiesc. Asta se poate schimba
+// fara outreach, daca datele merita citate.
+import Baza from '@/layouts/Baza.astro';
+import { SURSA, PRIMA_LUNA, ULTIMA_LUNA, etichetaLuna, factorPreturi, numeLuna } from '@/lib/inflatie';
+import date from '@/data/ipc-lunar.json';
+
+const lei = (n: number, z = 1) =>
+  n.toLocaleString('ro-RO', { minimumFractionDigits: z, maximumFractionDigits: z });
+const serie = date.serie as { an: number; luna: number; indice: number }[];
+const categorii = Object.keys(date.categorii as Record<string, unknown>);
+
+// Ultimele douasprezece luni, ca sa se vada forma fisierului inainte de descarcare.
+const previzualizare = serie.slice(-12).reverse();
+const c = date.categorii as Record<string, { indice: number }[]>;
+const indexUltimelor = serie.length - 12;
+
+const schema = {
+  '@type': 'Dataset',
+  name: 'Indicele prețurilor de consum în România, serie lunară',
+  description: `Indicii lunari ai prețurilor de consum, pe total și pe cele trei categorii publicate de INS, din ${etichetaLuna(PRIMA_LUNA)} până în ${etichetaLuna(ULTIMA_LUNA)}.`,
+  license: 'https://data.gov.ro/base/images/logoinst/OGL-ROU-1.0.pdf',
+  creator: { '@type': 'GovernmentOrganization', name: SURSA.institutie },
+  distribution: [
+    { '@type': 'DataDownload', encodingFormat: 'text/csv', contentUrl: 'https://calculatorulinflatiei.ro/ipc-lunar.csv' },
+    { '@type': 'DataDownload', encodingFormat: 'application/json', contentUrl: 'https://calculatorulinflatiei.ro/ipc-lunar.json' },
+  ],
+};
+---
+
+<Baza
+  titlu="Indicele prețurilor de consum, serie lunară descărcabilă (CSV, JSON)"
+  descriere={`Seria lunară completă a indicelui prețurilor de consum din România, ${etichetaLuna(PRIMA_LUNA)} – ${etichetaLuna(ULTIMA_LUNA)}, pe total și pe categorii. Descărcare în CSV și JSON, cu sursa și licența indicate.`}
+  cale="/date"
+  schema={schema}
+>
+  <div class="invelis sus">
+    <h1>Datele, așa cum le folosim</h1>
+    <p class="introducere">
+      Toate cifrele de pe site ies din același fișier. E aici, întreg, în formatul în care îl
+      folosim noi: {serie.length} de luni, din {etichetaLuna(PRIMA_LUNA)} până în
+      {' '}{etichetaLuna(ULTIMA_LUNA)}, pe {categorii.length} categorii.
+    </p>
+
+    <p class="descarcari">
+      <a class="buton" href="/ipc-lunar.csv" download>Descarcă CSV</a>
+      <a class="buton secundar" href="/ipc-lunar.json">Vezi JSON</a>
+    </p>
+
+    <h2>Ce conține</h2>
+    <ul>
+      <li><strong>Indicele lunar</strong>, față de luna precedentă. 100 înseamnă prețuri neschimbate.</li>
+      <li><strong>Patru serii</strong>: {categorii.join(', ')}.</li>
+      <li>Fără nicio prelucrare de-a noastră: cifrele sunt cele publicate de INS.</li>
+    </ul>
+
+    <h2>Cum se folosește</h2>
+    <p>
+      Indicii sunt lunari și se înmulțesc între ei. Ca să afli cât au crescut prețurile între două
+      luni, înmulțești indicii tuturor lunilor din interval, împărțiți la 100. Pentru sumele
+      dinainte de <strong>1 iulie 2005</strong> se împarte apoi la 10.000, fiindcă atunci
+      {' '}10.000 lei vechi au devenit 1 leu nou. Indicii nu conțin tăierea, pentru că e o schimbare
+      de unitate, nu de preț.
+    </p>
+    <p class="sursa">
+      Exemplu verificabil: între ianuarie 2020 și {etichetaLuna(ULTIMA_LUNA)} produsul indicilor dă
+      {' '}<strong class="cifre">{lei(factorPreturi({ an: 2020, luna: 1 }, ULTIMA_LUNA), 4)}</strong>,
+      adică o creștere de {lei((factorPreturi({ an: 2020, luna: 1 }, ULTIMA_LUNA) - 1) * 100)}%.
+    </p>
+
+    <h2>Ultimele douăsprezece luni din fișier</h2>
+    <div class="derulabil">
+      <table>
+        <thead>
+          <tr>
+            <th>Luna</th>
+            {categorii.map((k) => <th class="num">{k}</th>)}
+          </tr>
+        </thead>
+        <tbody>
+          {previzualizare.map((r, i) => {
+            const idx = indexUltimelor + (11 - i);
+            return (
+              <tr>
+                <td>{numeLuna(r.luna)} {r.an}</td>
+                {categorii.map((k) => <td class="num cifre">{lei(c[k][idx].indice, 1)}</td>)}
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
+
+    <h2>Sursa și licența</h2>
+    <p>
+      {SURSA.institutie}, {SURSA.baza}, matricea <strong>{SURSA.matrice}</strong> —
+      „{SURSA.denumire}". Reutilizare conform licenței <strong>{SURSA.licenta}</strong>, cu
+      indicarea sursei.
+    </p>
+    <p class="sursa">
+      Dacă folosești datele, ne ajută un link către pagina asta. Nu e o condiție a licenței INS, e
+      felul în care cititorii pot verifica de unde vine cifra.
+    </p>
+  </div>
+</Baza>
+
+<style>
+  .sus { padding-block: var(--sp-8) var(--sp-12); }
+  .introducere { font-size: 1.1rem; color: var(--cerneala-slaba); }
+  .descarcari { display: flex; flex-wrap: wrap; gap: var(--sp-3); margin-block: var(--sp-6); }
+  .buton {
+    display: inline-flex; align-items: center; min-height: 2.75rem; padding-inline: var(--sp-6);
+    border-radius: var(--raza); background: var(--cerneala); color: var(--hartie-sus);
+    text-decoration: none; font-weight: 600;
+  }
+  .buton.secundar { background: transparent; color: var(--cerneala); border: 1px solid var(--linie-tare); }
+  li { margin-bottom: var(--sp-2); }
+</style>
