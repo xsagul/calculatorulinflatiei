@@ -13,13 +13,16 @@ const rute = [
   { cale: '/', prioritate: '1.0' },
   { cale: '/rata-inflatiei', prioritate: '0.9' },
   { cale: '/date', prioritate: '0.7' },
+  { cale: '/api', prioritate: '0.4' },
+  { cale: '/politica-de-confidentialitate', prioritate: '0.3' },
+  { cale: '/cookies', prioritate: '0.3' },
 ];
 
 export const GET: APIRoute = () => {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${rute.map((r) => `  <url>
-    <loc>${SITE}${r.cale === '/' ? '/' : r.cale}</loc>
+    <loc>${SITE}${r.cale === '/' ? '/' : r.cale + '/'}</loc>
     <lastmod>${lastmod}</lastmod>
     <priority>${r.prioritate}</priority>
   </url>`).join('\n')}

@@ -1,0 +1,55 @@
+---
+// Documenteaza workerul care ruleaza deja pe /api/v1. Pagina exista din site-ul
+// precedent si e singurul loc unde e descris endpointul; daca dispare, ramane un
+// API public fara documentatie.
+import Baza from '@/layouts/Baza.astro';
+import { ULTIMA_LUNA, etichetaLuna } from '@/lib/inflatie';
+---
+<Baza
+  titlu="API public pentru calculul inflației"
+  descriere="Endpoint public care întoarce valoarea actualizată cu inflația pentru o sumă și un an, în format JSON."
+  cale="/api"
+>
+  <div class="invelis sus">
+    <h1>API</h1>
+    <p class="introducere">
+      Un endpoint public care întoarce, în JSON, valoarea unei sume actualizată cu inflația.
+      Rulează pe infrastructura Cloudflare, separat de paginile site-ului.
+    </p>
+
+    <h2>Cerere</h2>
+    <pre><code>GET https://calculatorulinflatiei.ro/api/v1/calc?year=2017&amp;sum=4000</code></pre>
+    <p>Sau, echivalent, <code>POST</code> pe <code>/api/v1</code> cu <code>&#123;"year": "2017", "sum": "4000"&#125;</code>.</p>
+
+    <h2>Răspuns</h2>
+    <pre><code>&#123;
+  "result": &#123;
+    "currentValue": 2368.89,
+    "adjustedValue": 6754.22,
+    "netDevaluation": "40.78"
+  &#125;
+&#125;</code></pre>
+
+    <h2>Datele din spate</h2>
+    <p>
+      Aceleași ca pe restul site-ului: indicele prețurilor de consum publicat de Institutul Național
+      de Statistică, actualizat până în {etichetaLuna(ULTIMA_LUNA)}. Seria brută, lună cu lună, se
+      descarcă de pe <a href="/date/">pagina de date</a> în CSV sau JSON, dacă preferi să calculezi
+      singur.
+    </p>
+    <p class="sursa">
+      API-ul e oferit fără garanții de disponibilitate. Pentru volume mari, descarcă seria și
+      calculează local — sunt patru sute de numere.
+    </p>
+  </div>
+</Baza>
+
+<style>
+  .sus { padding-block: var(--sp-8) var(--sp-12); }
+  .introducere { font-size: 1.1rem; color: var(--cerneala-slaba); }
+  pre {
+    background: var(--hartie-sus); border: 1px solid var(--linie); border-radius: var(--raza);
+    padding: var(--sp-4); overflow-x: auto; font-size: 0.9rem;
+  }
+  code { font-family: ui-monospace, "SFMono-Regular", Menlo, monospace; }
+</style>

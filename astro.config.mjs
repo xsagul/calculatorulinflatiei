@@ -7,7 +7,11 @@ import { defineConfig } from 'astro/config';
 export default defineConfig({
   site: 'https://calculatorulinflatiei.ro',
   output: 'static',
-  trailingSlash: 'never',
-  build: { format: 'file' },
+  // URL-urile indexate ale site-ului precedent au slash la final —
+  // /cookies/, /politica-de-confidentialitate/ — iar widgetul e incorporat de
+  // pe /widget/. Forma de director le pastreaza identice, ca migrarea sa nu
+  // ceara redirecturi si sa nu piarda ce e deja clasat.
+  trailingSlash: 'always',
+  build: { format: 'directory' },
   compressHTML: true,
 });

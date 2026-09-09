@@ -1,0 +1,103 @@
+---
+// Widgetul incorporabil. Ruta exista din site-ul precedent si poate fi deja
+// pusa in iframe pe alte site-uri, deci trebuie sa raspunda la fel: o pagina
+// mica, de sine statatoare, fara antet si fara subsol.
+//
+// Nu are voie sa creasca: e continut al altcuiva. Un camp, doua selectoare, un
+// rezultat si creditul.
+import { converteste, ULTIMA_LUNA, PRIMA_LUNA, etichetaLuna, numeLuna, aniDisponibili } from '@/lib/inflatie';
+import date from '@/data/ipc-lunar.json';
+
+const suma = 1000, deAn = 2020, deLuna = 1;
+const r = converteste(suma, { an: deAn, luna: deLuna }, ULTIMA_LUNA);
+const ani = aniDisponibili();
+const lant = (date.serie as { indice: number }[]).map((x) => x.indice);
+const cfg = { lant, primaLuna: PRIMA_LUNA, ultimaLuna: ULTIMA_LUNA, factorDenominare: date.denominare.factor };
+const lei = (n: number) => n.toLocaleString('ro-RO', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+---
+
+<!doctype html>
+<html lang="ro">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Calculator inflație — widget</title>
+    <meta name="robots" content="noindex" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&display=swap" />
+  </head>
+  <body data-cfg={JSON.stringify(cfg)}>
+    <form id="w">
+      <div class="rand">
+        <input id="s" type="number" min="0" step="any" value={suma} aria-label="Suma" />
+        <select id="l" aria-label="Luna">
+          {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => (
+            <option value={m} selected={m === deLuna}>{numeLuna(m)}</option>
+          ))}
+        </select>
+        <select id="a" aria-label="Anul">
+          {ani.map((x) => <option value={x} selected={x === deAn}>{x}</option>)}
+        </select>
+      </div>
+      <output id="o">
+        <strong>{lei(r.echivalent)} lei</strong> în {etichetaLuna(ULTIMA_LUNA)}
+      </output>
+    </form>
+    <a href="https://calculatorulinflatiei.ro?utm_source=widget" target="_blank" rel="noopener">
+      Calculator de inflație oferit de calculatorulinflatiei.ro
+    </a>
+
+    <style>
+      body {
+        margin: 0; padding: 12px;
+        font: 15px/1.5 "IBM Plex Sans", system-ui, sans-serif;
+        color: #16211f; background: #fff;
+      }
+      .rand { display: flex; gap: 6px; margin-bottom: 10px; }
+      input, select {
+        font: inherit; font-size: 16px; padding: 8px; min-height: 42px; min-width: 0;
+        border: 1px solid #b3bcb9; border-radius: 6px; background: #fff; color: inherit;
+      }
+      input { flex: 1.2; } select { flex: 1; }
+      output { display: block; padding: 10px 12px; background: #f7ebdf; border-radius: 6px; }
+      output strong { font-size: 1.25rem; color: #a8571c; }
+      a { display: block; margin-top: 10px; font-size: 12px; color: #5a6764; }
+    </style>
+
+    <script>
+      const b = document.body;
+      const cfg = JSON.parse(b.dataset.cfg!) as {
+        lant: number[]; primaLuna: { an: number; luna: number };
+        ultimaLuna: { an: number; luna: number }; factorDenominare: number;
+      };
+      const rang = (a: number, l: number) => a * 12 + (l - 1);
+      const rPrim = rang(cfg.primaLuna.an, cfg.primaLuna.luna);
+      const rUltim = rang(cfg.ultimaLuna.an, cfg.ultimaLuna.luna);
+      const LUNI = ['ianuarie', 'februarie', 'martie', 'aprilie', 'mai', 'iunie',
+        'iulie', 'august', 'septembrie', 'octombrie', 'noiembrie', 'decembrie'];
+
+      function calc(e?: Event) {
+        e?.preventDefault();
+        const s = Number((document.getElementById('s') as HTMLInputElement).value);
+        const r = rang(
+          Number((document.getElementById('a') as HTMLSelectElement).value),
+          Number((document.getElementById('l') as HTMLSelectElement).value),
+        );
+        if (!Number.isFinite(s) || s < 0 || r < rPrim || r > rUltim) return;
+        let f = 1;
+        for (let i = 0; i < cfg.lant.length; i++) {
+          const p = rPrim + i;
+          if (p > r && p <= rUltim) f *= cfg.lant[i] / 100;
+        }
+        const v = s * f * (r < rang(2005, 7) ? 1 / cfg.factorDenominare : 1);
+        document.getElementById('o')!.innerHTML =
+          `<strong>${v.toLocaleString('ro-RO', { minimumFractionDigits: 2, maximumFractionDigits: 2 })} lei</strong> ` +
+          `în ${LUNI[cfg.ultimaLuna.luna - 1]} ${cfg.ultimaLuna.an}`;
+        // Gazda isi poate potrivi inaltimea iframe-ului dupa continut.
+        parent.postMessage({ type: 'inflatie:height', height: document.documentElement.scrollHeight }, '*');
+      }
+      document.getElementById('w')!.addEventListener('submit', calc);
+      for (const id of ['s', 'l', 'a']) document.getElementById(id)!.addEventListener('change', calc);
+      calc();
+    </script>
+  </body>
+</html>

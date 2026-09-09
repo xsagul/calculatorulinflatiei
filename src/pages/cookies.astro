@@ -1,0 +1,47 @@
+---
+// Pagina exista din site-ul precedent si e indexata. Varianta veche descria
+// cookie-urile puse de Google Tag Manager; site-ul nou nu pune niciunul, iar
+// textul spune exact asta.
+import Baza from '@/layouts/Baza.astro';
+---
+<Baza
+  titlu="Cookie-uri"
+  descriere="Site-ul nu folosește cookie-uri și nu stochează nimic în browserul tău. De aceea nu vezi nicio casetă de acord."
+  cale="/cookies"
+>
+  <div class="invelis sus">
+    <h1>Cookie-uri</h1>
+
+    <p class="introducere">
+      Site-ul nu pune cookie-uri. Nu vei vedea o casetă care îți cere acordul, pentru că nu e nimic
+      de acordat.
+    </p>
+
+    <h2>Ce înseamnă asta în practică</h2>
+    <ul>
+      <li>Nu se scrie nimic în browserul tău: nici cookie-uri, nici <code>localStorage</code>.</li>
+      <li>Nu ești urmărit între vizite și nu se construiește niciun profil.</li>
+      <li>Ce alegi în calculator se pierde când închizi pagina. Asta e intenționat.</li>
+    </ul>
+
+    <h2>Ce se încarcă totuși din afară</h2>
+    <p>
+      Fonturile vin de la Google Fonts. E o cerere de rețea către serverele Google, ca orice
+      resursă externă, dar nu instalează cookie-uri în browserul tău.
+    </p>
+
+    <h2>Dacă se adaugă reclame</h2>
+    <p>
+      Rețelele de reclame folosesc cookie-uri. Dacă vreodată apar pe site, pagina asta se schimbă
+      înainte de a se activa ceva, împreună cu
+      <a href="/politica-de-confidentialitate/">politica de confidențialitate</a>, și va apărea o
+      casetă reală de consimțământ.
+    </p>
+  </div>
+</Baza>
+
+<style>
+  .sus { padding-block: var(--sp-8) var(--sp-12); }
+  .introducere { font-size: 1.1rem; color: var(--cerneala-slaba); }
+  li { margin-bottom: var(--sp-2); }
+</style>

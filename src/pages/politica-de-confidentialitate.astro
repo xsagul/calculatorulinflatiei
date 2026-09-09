@@ -1,0 +1,79 @@
+---
+// Pagina exista din site-ul precedent si e indexata, deci trebuie sa raspunda si
+// dupa reconstructie. Textul descrie ce face site-ul ACUM, nu ce facea inainte:
+// varianta veche incarca Google Tag Manager, aceasta nu incarca nimic.
+//
+// Daca se adauga vreodata reclame sau masurare, textul se schimba INAINTE, nu
+// dupa. O politica de confidentialitate care descrie alt site decat cel livrat e
+// mai rea decat lipsa ei.
+import Baza from '@/layouts/Baza.astro';
+import { SURSA } from '@/lib/inflatie';
+---
+
+<Baza
+  titlu="Politica de confidențialitate"
+  descriere="Ce date se colectează pe calculatorulinflatiei.ro: niciuna. Calculele se fac în browser, fără conturi, fără formulare și fără urmărire."
+  cale="/politica-de-confidentialitate"
+>
+  <div class="invelis sus">
+    <h1>Politica de confidențialitate</h1>
+
+    <p class="introducere">
+      Site-ul nu colectează date despre tine. Nu are conturi, nu are formulare de contact și nu
+      trimite nimic din ce scrii în calculator către un server.
+    </p>
+
+    <h2>Ce se întâmplă când folosești calculatorul</h2>
+    <p>
+      Suma și datele pe care le alegi rămân în browserul tău. Calculul se face acolo, cu seria de
+      indici inclusă în pagină. Nu există o cerere de rețea care să transmită ce ai introdus, deci
+      sumele tale nu ajung nicăieri.
+    </p>
+
+    <h2>Cookie-uri</h2>
+    <p>
+      Site-ul nu pune cookie-uri și nu folosește stocare locală. Nu vei vedea o casetă care îți cere
+      acordul, pentru că nu e nimic de acordat. Detalii pe <a href="/cookies/">pagina despre cookie-uri</a>.
+    </p>
+
+    <h2>Măsurarea traficului</h2>
+    <p>
+      Nu e instalat niciun instrument de analiză în paginile site-ului. Furnizorul de găzduire,
+      Cloudflare, păstrează jurnale tehnice ale cererilor — adrese IP, momentul cererii, pagina
+      cerută — pentru funcționarea și securitatea serviciului. Sunt datele oricărui server web și nu
+      le folosim pentru profilare.
+    </p>
+
+    <h2>Serviciile terțe pe care le încarcă pagina</h2>
+    <p>
+      Fonturile vin de la Google Fonts, deci browserul tău face o cerere către serverele Google
+      atunci când deschizi o pagină. Google poate înregistra adresa IP, ca la orice cerere de rețea.
+      În rest, paginile nu încarcă resurse din afară.
+    </p>
+
+    <h2>Datele publicate</h2>
+    <p>
+      Cifrele de pe site provin de la {SURSA.institutie}, {SURSA.baza}, și se republică în CSV și
+      JSON pe <a href="/date/">pagina de date</a>, conform licenței {SURSA.licenta}. Sunt date
+      publice despre prețuri, fără nicio legătură cu persoane.
+    </p>
+
+    <h2>Dacă se schimbă ceva</h2>
+    <p>
+      Dacă vreodată se adaugă reclame sau un instrument de măsurare, pagina asta se modifică
+      înainte, nu după. Un text care descrie alt site decât cel pe care îl folosești e mai rău decât
+      lipsa lui.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      Site-ul e întreținut de Știuriuc Sorin-Marian, ca proiect personal. Pentru orice întrebare
+      legată de datele publicate, scrie la adresa din <a href="https://salariile.ro/contact">pagina de contact</a>.
+    </p>
+  </div>
+</Baza>
+
+<style>
+  .sus { padding-block: var(--sp-8) var(--sp-12); }
+  .introducere { font-size: 1.1rem; color: var(--cerneala-slaba); }
+</style>
