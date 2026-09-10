@@ -82,6 +82,14 @@ const schema = {
       Cotele în vigoare în {R.eticheta}, cu salariul minim la {lei(R.salariulMinim)} lei.
     </p>
 
+    <p class="vecin">
+      Calculatorul de aici răspunde la o singură întrebare: cât rămâne din brut, și cât mai cumpără
+      suma aceea după inflație. Dacă vrei tot ce ține de salarii — grile pe meserii și domenii,
+      sporuri, comparații, salarii pe industrii — mergi direct la
+      <a href="https://salariile.ro/" rel="noopener">calculator salariu net</a> pe salariile.ro,
+      care se ocupă numai de asta.
+    </p>
+
     <CalculatorSalariu brut={5000} regim={R} titlu="Cât rămâne din salariul brut" />
 
     <h2>Salariile cerute cel mai des</h2>
@@ -183,7 +191,12 @@ const schema = {
 
 <style>
   .sus { padding-block: var(--sp-8) var(--sp-12); }
-  .introducere { font-size: 1.1rem; color: var(--cerneala-slaba); margin-bottom: var(--sp-8); }
+  .introducere { font-size: 1.1rem; color: var(--cerneala-slaba); margin-bottom: var(--sp-6); }
+  .vecin {
+    padding: var(--sp-3) var(--sp-4); margin-bottom: var(--sp-6);
+    border-left: 3px solid var(--atunci); background: var(--atunci-fundal);
+    font-size: 0.95rem; max-width: var(--lat-text);
+  }
   h1 { margin-top: var(--sp-2); }
   caption { caption-side: bottom; text-align: left; padding-top: var(--sp-2); }
   .intrebari dt { font-weight: 600; margin-top: var(--sp-6); }
