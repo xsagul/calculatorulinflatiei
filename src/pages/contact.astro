@@ -1,0 +1,91 @@
+---
+// Pagina de contact a acestui domeniu.
+//
+// Pana acum politica de confidentialitate trimitea la pagina de contact a altui
+// site. Pentru cititor e derutant — scrie unui alt brand ca sa intrebe de datele
+// de aici — iar pentru Google e un semnal ca cele doua domenii sunt acelasi
+// lucru, ceea ce nu ajuta niciunul dintre ele.
+//
+// Adresa e pe domeniul propriu si se redirecteaza mai departe, ca sa nu ajunga
+// nicio adresa personala pe o pagina publica.
+import Baza from '@/layouts/Baza.astro';
+import { SURSA, ULTIMA_LUNA, etichetaLuna } from '@/lib/inflatie';
+
+const ADRESA = 'contact@calculatorulinflatiei.ro';
+const actualizat = etichetaLuna(ULTIMA_LUNA);
+
+const motive = [
+  {
+    titlu: 'O cifră care nu pare corectă',
+    text: `Scrie ce ai calculat, cu sumele și lunile exacte. Seria e publică și se poate verifica rând cu rând pe pagina de date, deci o eroare se găsește repede — iar dacă e a noastră, se corectează.`,
+  },
+  {
+    titlu: 'Folosirea datelor sau a calculatorului',
+    text: 'Seria indicelui prețurilor de consum se republică liber, iar calculatorul se poate încorpora pe alt site. Nu trebuie să ceri voie, dar scrie dacă ai nevoie de alt format sau de un alt fel de acces.',
+  },
+  {
+    titlu: 'Presă și cercetare',
+    text: 'Pentru cifre, serii sau verificări înainte de publicare. Sursa se citează ca INS; noi doar înlănțuim indicii publicați.',
+  },
+];
+---
+
+<Baza
+  titlu="Contact — Calculatorul Inflației"
+  descriere="Cum ne scrii: pentru o cifră care nu pare corectă, pentru folosirea datelor sau a calculatorului, ori pentru presă și cercetare."
+  cale="/contact/"
+>
+  <div class="invelis sus">
+    <h1>Contact</h1>
+    <p class="introducere">
+      Site-ul e întreținut de Știuriuc Sorin-Marian, ca proiect personal. Nu are formular; o adresă
+      de e-mail e mai simplă și pentru tine, și pentru noi.
+    </p>
+
+    <p class="adresa">
+      <a href={`mailto:${ADRESA}`}>{ADRESA}</a>
+    </p>
+
+    <h2>Ce merită scris</h2>
+    <dl class="motive">
+      {motive.map((m) => (
+        <>
+          <dt>{m.titlu}</dt>
+          <dd>{m.text}</dd>
+        </>
+      ))}
+    </dl>
+
+    <h2>Ce nu găsești aici</h2>
+    <p>
+      Nu dăm consultanță fiscală, juridică sau financiară. Calculatoarele arată cum ies cifrele din
+      datele publice și din textul legii, cu sursa lângă ele, ca să poți verifica singur sau să duci
+      calculul la cine trebuie. Pentru o situație personală, întreabă un contabil sau un avocat.
+    </p>
+
+    <h2>Despre date</h2>
+    <p>
+      Cifrele vin de la {SURSA.institutie}, {SURSA.baza}, matricea {SURSA.matrice}, serie lunară din
+      ianuarie 1991 până în {actualizat}, republicată integral pe <a href="/date/">pagina de date</a>
+      în CSV și JSON, conform licenței {SURSA.licenta}. Nu colectăm date despre vizitatori — detaliile
+      sunt în <a href="/politica-de-confidentialitate/">politica de confidențialitate</a>.
+    </p>
+  </div>
+</Baza>
+
+<style>
+  .sus { padding-block: var(--sp-8) var(--sp-12); }
+  .introducere { font-size: 1.1rem; color: var(--cerneala-slaba); margin-bottom: var(--sp-6); }
+  .adresa {
+    font-family: var(--font-titlu);
+    font-size: clamp(1.3rem, 3.5vw, 1.8rem);
+    padding: var(--sp-4);
+    background: var(--hartie-sus);
+    border: 1px solid var(--linie);
+    border-radius: var(--raza);
+    max-width: var(--lat-text);
+    word-break: break-word;
+  }
+  .motive dt { font-weight: 600; margin-top: var(--sp-6); }
+  .motive dd { margin: var(--sp-2) 0 0; max-width: var(--lat-text); color: var(--cerneala-slaba); }
+</style>

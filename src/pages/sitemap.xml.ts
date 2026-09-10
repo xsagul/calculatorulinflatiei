@@ -25,6 +25,7 @@ const rute = [
   { cale: '/actualizare-cu-rata-inflatiei', prioritate: '0.9' },
   { cale: '/date', prioritate: '0.7' },
   { cale: '/api', prioritate: '0.4' },
+  { cale: '/contact', prioritate: '0.4' },
   { cale: '/politica-de-confidentialitate', prioritate: '0.3' },
   { cale: '/cookies', prioritate: '0.3' },
   ...luniCuPagina().map((l) => ({ cale: caleLuna(l).replace(/\/$/, ''), prioritate: '0.6' })),
