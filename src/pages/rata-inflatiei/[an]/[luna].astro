@@ -1,0 +1,241 @@
+---
+// O pagina pentru fiecare luna recenta.
+//
+// Tiparul e dovedit in Search Console: „inflatie iunie 2026" a strans singur 255
+// de afisari, „ipc iunie 2026" inca 120, plus variantele — vreo 430 de afisari
+// pentru o singura luna, si aproape niciun clic, fiindca raspundem cu pagina
+// principala. Tiparul se repeta luna de luna, la nesfarsit.
+//
+// DE CE DOAR ULTIMII ANI, si nu toate cele 426 de luni ale seriei. Nimeni nu
+// cauta „inflatia in martie 1997". Cererea e concentrata pe lunile recente, si o
+// pagina fara cerere nu e un castig neutru, e balast care dilueaza restul.
+// Lunile vechi raman acoperite de pagina anului lor.
+import Baza from '@/layouts/Baza.astro';
+import {
+  lunileAnului, inflatieAnuala, factorPreturi, converteste, moneda,
+  etichetaLuna, numeLuna, ULTIMA_LUNA, PRIMA_LUNA,
+} from '@/lib/inflatie';
+import { luniCuPagina, areLunaPagina, caleLuna } from '@/lib/pagini-inflatie';
+
+export function getStaticPaths() {
+  return luniCuPagina().map((l) => ({
+    params: { an: String(l.an), luna: numeLuna(l.luna) },
+    props: { an: l.an, luna: l.luna },
+  }));
+}
+
+const { an, luna } = Astro.props;
+
+const pr = (n: number, z = 1) =>
+  n.toLocaleString('ro-RO', { minimumFractionDigits: z, maximumFractionDigits: z });
+const lei = (n: number, z = 2) =>
+  n.toLocaleString('ro-RO', { minimumFractionDigits: z, maximumFractionDigits: z });
+
+const aceasta = { an, luna };
+const eticheta = etichetaLuna(aceasta);
+const rand = lunileAnului(an).find((l) => l.luna === luna)!;
+
+const anLaAn = inflatieAnuala(an, luna);
+const fataDeLunaTrecuta = rand.indice - 100;
+
+// Vecinii, pentru navigare si pentru „urca sau coboara".
+const rangul = an * 12 + (luna - 1);
+const primRang = PRIMA_LUNA.an * 12 + (PRIMA_LUNA.luna - 1);
+const ultimRang = ULTIMA_LUNA.an * 12 + (ULTIMA_LUNA.luna - 1);
+const dinRang = (r: number) => ({ an: Math.floor(r / 12), luna: (r % 12) + 1 });
+const anterior = rangul - 1 >= primRang ? dinRang(rangul - 1) : null;
+const urmator = rangul + 1 <= ultimRang ? dinRang(rangul + 1) : null;
+const anLaAnAnterior = anterior ? inflatieAnuala(anterior.an, anterior.luna) : null;
+
+const directie = anLaAn !== null && anLaAnAnterior !== null
+  ? (anLaAn > anLaAnAnterior ? 'a urcat' : anLaAn < anLaAnAnterior ? 'a coborât' : 'a stat pe loc')
+  : null;
+
+// De la aceasta luna pana azi.
+const SUMA = 1000;
+const acum = converteste(SUMA, aceasta, ULTIMA_LUNA);
+const esteUltima = rangul === ultimRang;
+const monedaAtunci = moneda(aceasta);
+
+// De la inceputul anului pana la luna aceasta.
+const deLaInceputulAnului = luna > 1
+  ? (factorPreturi({ an, luna: 1 }, aceasta) - 1) * 100
+  : null;
+
+// Cele douasprezece luni care se termina aici, ca sa se vada forma, nu un punct.
+const sir: { l: { an: number; luna: number }; rata: number | null }[] = [];
+for (let i = 11; i >= 0; i--) {
+  const r = rangul - i;
+  if (r < primRang) continue;
+  const l = dinRang(r);
+  sir.push({ l, rata: inflatieAnuala(l.an, l.luna) });
+}
+
+const intrebari = [
+  {
+    q: `Cât a fost inflația în ${eticheta}?`,
+    a: anLaAn !== null
+      ? `În ${eticheta}, prețurile erau cu ${pr(anLaAn)}% mai mari decât în ${etichetaLuna({ an: an - 1, luna })}. Față de luna precedentă, creșterea a fost de ${pr(fataDeLunaTrecuta, 2)}%.`
+      : `Pentru ${eticheta} nu există o comparație an la an, fiindcă seria publicată de INS începe în ${etichetaLuna(PRIMA_LUNA)}.`,
+  },
+  {
+    q: `Care a fost indicele prețurilor de consum în ${eticheta}?`,
+    a: `${lei(rand.indice)} față de luna precedentă, adică prețurile au ${rand.indice >= 100 ? 'crescut' : 'scăzut'} cu ${pr(Math.abs(fataDeLunaTrecuta), 2)}% într-o singură lună. Este indicele publicat de Institutul Național de Statistică în matricea IPC102A.`,
+  },
+  {
+    q: esteUltima
+      ? `${lei(SUMA, 0)} de lei din ${eticheta} — cât valorează?`
+      : `Cât valorează azi ${lei(SUMA, 0)} de lei din ${eticheta}?`,
+    a: esteUltima
+      ? `${eticheta} este cea mai recentă lună din seria publicată, deci suma este exprimată chiar în prețurile de referință ale calculatorului.`
+      : `${lei(SUMA, 0)} ${monedaAtunci} din ${eticheta} cumpără cât cumpără ${lei(acum.echivalent)} lei în ${etichetaLuna(ULTIMA_LUNA)}. Prețurile au crescut cu ${pr(acum.inflatieCumulata)}% între cele două momente.`,
+  },
+];
+
+const schema = {
+  '@type': 'FAQPage',
+  mainEntity: intrebari.map((i) => ({
+    '@type': 'Question',
+    name: i.q,
+    acceptedAnswer: { '@type': 'Answer', text: i.a },
+  })),
+};
+
+const titluCifra = anLaAn !== null ? `${pr(anLaAn)}%` : lei(rand.indice);
+---
+
+<Baza
+  titlu={anLaAn !== null
+    ? `Inflația în ${eticheta}: ${pr(anLaAn)}% — România`
+    : `Indicele prețurilor de consum în ${eticheta} — România`}
+  descriere={anLaAn !== null
+    ? `În ${eticheta}, rata anuală a inflației în România a fost ${pr(anLaAn)}%, iar prețurile au ${rand.indice >= 100 ? 'crescut' : 'scăzut'} cu ${pr(Math.abs(fataDeLunaTrecuta), 2)}% față de luna precedentă. Indicele publicat de INS și evoluția ultimelor douăsprezece luni.`
+    : `Indicele prețurilor de consum în ${eticheta}: ${lei(rand.indice)} față de luna precedentă, din seria publicată de Institutul Național de Statistică.`}
+  cale={`/rata-inflatiei/${an}/${numeLuna(luna)}/`}
+  schema={schema}
+>
+  <div class="invelis sus">
+    <nav class="firimituri" aria-label="Firimituri">
+      <a href="/rata-inflatiei/">Rata inflației</a> <span aria-hidden="true">›</span>
+      <a href={`/rata-inflatiei/${an}/`}>{an}</a> <span aria-hidden="true">›</span> {numeLuna(luna)}
+    </nav>
+
+    <h1>Inflația în {eticheta}: <span class="raspuns">{titluCifra}</span></h1>
+
+    {anLaAn !== null ? (
+      <p class="introducere">
+        În {eticheta}, prețurile erau cu <strong>{pr(anLaAn)}%</strong> mai mari decât în
+        {' '}{etichetaLuna({ an: an - 1, luna })}. Față de luna dinainte, creșterea a fost de
+        {' '}<strong>{pr(fataDeLunaTrecuta, 2)}%</strong>.
+        {directie && anLaAnAnterior !== null && ` Rata anuală ${directie} față de ${etichetaLuna(anterior!)}, când era ${pr(anLaAnAnterior)}%.`}
+      </p>
+    ) : (
+      <p class="introducere">
+        Indicele publicat de INS pentru {eticheta} este {lei(rand.indice)} față de luna precedentă.
+        O comparație an la an nu se poate face, fiindcă seria începe în {etichetaLuna(PRIMA_LUNA)}.
+      </p>
+    )}
+
+    <div class="doua">
+      <div class="fisa">
+        <span class="eticheta">Față de luna precedentă</span>
+        <strong class="cifra cifre">{fataDeLunaTrecuta >= 0 ? '+' : ''}{pr(fataDeLunaTrecuta, 2)}%</strong>
+        <span class="nota">Indice {lei(rand.indice)}, cum îl publică INS.</span>
+      </div>
+      {anLaAn !== null && (
+        <div class="fisa alta">
+          <span class="eticheta">Față de {etichetaLuna({ an: an - 1, luna })}</span>
+          <strong class="cifra cifre">{pr(anLaAn)}%</strong>
+          <span class="nota">Rata anuală a inflației, cifra raportată de obicei.</span>
+        </div>
+      )}
+    </div>
+
+    {deLaInceputulAnului !== null && (
+      <p>
+        De la începutul anului {an} până în {numeLuna(luna)}, prețurile au
+        {deLaInceputulAnului >= 0 ? ' crescut' : ' scăzut'} cumulat cu
+        {' '}<strong>{pr(Math.abs(deLaInceputulAnului), 2)}%</strong>.
+      </p>
+    )}
+
+    <h2>Cele douăsprezece luni care se încheie în {numeLuna(luna)} {an}</h2>
+    <p>O singură lună nu spune dacă inflația urcă sau coboară. Șirul spune.</p>
+    <div class="derulabil">
+      <table>
+        <thead><tr><th>Luna</th><th class="num">Rata anuală</th></tr></thead>
+        <tbody>
+          {sir.map(({ l, rata }) => (
+            <tr class={l.an === an && l.luna === luna ? 'curenta' : ''}>
+              <td>{etichetaLuna(l)}</td>
+              <td class="num cifre">{rata !== null ? `${pr(rata)}%` : '—'}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+
+    {!esteUltima && (
+      <>
+        <h2>Cât valorează azi {lei(SUMA, 0)} de lei din {eticheta}</h2>
+        <p>
+          {lei(SUMA, 0)} {monedaAtunci} din {eticheta} cumpără astăzi cât cumpără
+          <strong> {lei(acum.echivalent)} lei</strong>, la prețurile din
+          {' '}{etichetaLuna(ULTIMA_LUNA)}. Adică o inflație cumulată de {pr(acum.inflatieCumulata)}%
+          de atunci încoace.
+        </p>
+        <p class="sursa">
+          <a href="/">Calculatorul de inflație</a> face conversia pentru orice sumă și orice două luni.
+        </p>
+      </>
+    )}
+
+    <nav class="vecini" aria-label="Luna anterioară și următoarea">
+      {anterior && areLunaPagina(anterior)
+        ? <a href={caleLuna(anterior)}>← {etichetaLuna(anterior)}</a>
+        : <a href={`/rata-inflatiei/${an - (luna === 1 ? 1 : 0)}/`}>← anii mai vechi</a>}
+      <a href={`/rata-inflatiei/${an}/`}>Tot anul {an}</a>
+      {urmator && areLunaPagina(urmator) && <a href={caleLuna(urmator)}>{etichetaLuna(urmator)} →</a>}
+    </nav>
+
+    <h2>Întrebări</h2>
+    <dl class="intrebari">
+      {intrebari.map((i) => (
+        <>
+          <dt>{i.q}</dt>
+          <dd>{i.a}</dd>
+        </>
+      ))}
+    </dl>
+  </div>
+</Baza>
+
+<style>
+  .sus { padding-block: var(--sp-6) var(--sp-12); }
+  .firimituri { font-size: 0.85rem; color: var(--cerneala-slaba); margin-bottom: var(--sp-4); }
+  h1 { margin-bottom: var(--sp-4); }
+  .raspuns { color: var(--acum); white-space: nowrap; }
+  .introducere { font-size: 1.05rem; color: var(--cerneala-slaba); margin-bottom: var(--sp-8); max-width: var(--lat-text); }
+
+  .doua { display: grid; gap: var(--sp-3); margin-bottom: var(--sp-6); }
+  @media (min-width: 40rem) { .doua { grid-template-columns: repeat(2, 1fr); } }
+  .fisa {
+    display: flex; flex-direction: column; gap: var(--sp-1);
+    padding: var(--sp-4); border-radius: var(--raza); background: var(--atunci-fundal);
+  }
+  .fisa.alta { background: var(--acum-fundal); }
+  .fisa .cifra { font-size: clamp(1.8rem, 5vw, 2.4rem); font-family: var(--font-titlu); font-weight: 400; line-height: 1.1; color: var(--atunci); }
+  .fisa.alta .cifra { color: var(--acum); }
+  .nota { font-size: 0.85rem; color: var(--cerneala-slaba); }
+
+  tr.curenta { background: var(--acum-fundal); font-weight: 600; }
+
+  .vecini {
+    display: flex; flex-wrap: wrap; gap: var(--sp-4); justify-content: space-between;
+    margin-top: var(--sp-8); padding-top: var(--sp-4); border-top: 1px solid var(--linie);
+    font-size: 0.9rem;
+  }
+
+  .intrebari dt { font-weight: 600; margin-top: var(--sp-6); }
+  .intrebari dd { margin: var(--sp-2) 0 0; max-width: var(--lat-text); color: var(--cerneala-slaba); }
+</style>

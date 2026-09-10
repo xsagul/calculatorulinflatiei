@@ -138,3 +138,52 @@ export function aniDisponibili(): number[] {
   for (let an = PRIMA_LUNA.an; an <= ULTIMA_LUNA.an; an++) ani.push(an);
   return ani;
 }
+
+// ─── Agregari pe an ─────────────────────────────────────────────────────────
+//
+// Search Console arata cerere clara pentru „rata inflatiei 2023", „inflatia in
+// romania in ultimii 10 ani", „indice inflatie 2026" — interogari la care azi
+// aparem cu pagina principala si nu raspundem. Functiile de mai jos sunt tot ce
+// trebuie ca fiecare an sa aiba pagina lui, calculata din aceeasi serie.
+
+/**
+ * Nivelul preturilor la o luna, cu prima luna a seriei ca 100.
+ *
+ * Nu e un indice oficial publicat, e lantul nostru cumulat — dar rapoartele
+ * dintre doua niveluri sunt exact factorii de pret, si asta e tot ce folosim.
+ * Denominarea nu intervine: indicii masoara preturi, nu unitati monetare.
+ */
+export function nivel(l: Luna): number {
+  return factorPreturi(PRIMA_LUNA, l) * 100;
+}
+
+/** Lunile unui an care exista in serie. */
+export function lunileAnului(an: number): (RandSerie & { anLaAn: number | null })[] {
+  return SERIE
+    .filter((r) => r.an === an)
+    .map((r) => ({ ...r, anLaAn: inSerie({ an: an - 1, luna: r.luna }) ? inflatieAnuala(an, r.luna) : null }));
+}
+
+/**
+ * Rata medie anuala: nivelul mediu al preturilor dintr-un an fata de nivelul
+ * mediu al anului precedent.
+ *
+ * E alta cifra decat decembrie-la-decembrie si raspunde altei intrebari — „cat
+ * mai scump a fost anul acesta fata de anul trecut, luat pe tot" — iar INS o
+ * publica pe amandoua. Un an care incepe cu inflatie mare si se linisteste are
+ * media mult peste decembrie-la-decembrie, si invers. De aceea le aratam pe
+ * amandoua, cu numele fiecareia.
+ */
+export function inflatieMedieAnuala(an: number): number | null {
+  const acum = lunileAnului(an);
+  const inainte = lunileAnului(an - 1);
+  if (acum.length !== 12 || inainte.length !== 12) return null;
+  const medie = (luni: RandSerie[]) =>
+    luni.reduce((s, r) => s + nivel(r), 0) / luni.length;
+  return (medie(acum) / medie(inainte) - 1) * 100;
+}
+
+/** Anii cu serie completa, deci cu rata anuala calculabila. */
+export function aniIntregi(): number[] {
+  return aniDisponibili().filter((an) => lunileAnului(an).length === 12);
+}

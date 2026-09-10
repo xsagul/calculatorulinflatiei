@@ -1,0 +1,291 @@
+---
+// O pagina pentru fiecare an din serie.
+//
+// In Search Console, „rata inflatiei 2023", „inflatie 2024", „indice inflatie
+// 2026", „inflatia in romania 2025" aduna sute de afisari si aproape niciun
+// clic, fiindca raspundem cu pagina principala. Un an e o intrebare in sine.
+//
+// DOUA CIFRE, NU UNA. „Inflatia din 2023" inseamna doua lucruri diferite:
+// decembrie fata de decembrie (6,6%) si media anului fata de media anului trecut
+// (10,4%). Amandoua sunt corecte si INS le publica pe amandoua. Cine da o
+// singura cifra fara sa spuna care e, induce in eroare jumatate din cititori —
+// si asta face aproape toata presa.
+import Baza from '@/layouts/Baza.astro';
+import {
+  inflatieAnuala, inflatieMedieAnuala, lunileAnului, aniDisponibili, aniIntregi,
+  converteste, moneda, etichetaLuna, numeLuna, ULTIMA_LUNA, PRIMA_LUNA,
+} from '@/lib/inflatie';
+import { areLunaPagina, caleLuna } from '@/lib/pagini-inflatie';
+
+export function getStaticPaths() {
+  return aniDisponibili().map((an) => ({ params: { an: String(an) }, props: { an } }));
+}
+
+const { an } = Astro.props;
+
+const pr = (n: number, z = 1) =>
+  n.toLocaleString('ro-RO', { minimumFractionDigits: z, maximumFractionDigits: z });
+const lei = (n: number, z = 2) =>
+  n.toLocaleString('ro-RO', { minimumFractionDigits: z, maximumFractionDigits: z });
+
+const luni = lunileAnului(an);
+const complet = luni.length === 12;
+const ultimaLunaAn = luni[luni.length - 1];
+
+const decLaDec = complet ? inflatieAnuala(an, 12) : null;
+const medie = inflatieMedieAnuala(an);
+// Pentru anul in curs, cea mai recenta comparatie an la an disponibila.
+const ultimaAnLaAn = ultimaLunaAn?.anLaAn ?? null;
+
+// Cifra principala a paginii: decembrie-la-decembrie daca anul s-a incheiat,
+// altfel ultima comparatie an la an.
+const principala = decLaDec ?? ultimaAnLaAn;
+
+// Cat valoreaza azi o suma din anul acela. Inainte de iulie 2005 suma e in lei
+// vechi, iar conversia aplica denominarea — de aceea o si spunem.
+const SUMA = 1000;
+const lunaReferinta = { an, luna: complet ? 12 : ultimaLunaAn.luna };
+const valoare = converteste(SUMA, lunaReferinta, ULTIMA_LUNA);
+const monedaAtunci = moneda(lunaReferinta);
+
+// Unde sta anul in istoria seriei.
+const clasament = aniIntregi()
+  .map((a) => ({ an: a, rata: inflatieAnuala(a, 12) }))
+  .filter((x): x is { an: number; rata: number } => x.rata !== null)
+  .sort((a, b) => b.rata - a.rata);
+const pozitie = clasament.findIndex((x) => x.an === an) + 1;
+
+const ani = aniDisponibili();
+const anterior = ani.includes(an - 1) ? an - 1 : undefined;
+const urmator = ani.includes(an + 1) ? an + 1 : undefined;
+const rataAnterior = anterior ? inflatieAnuala(anterior, 12) : null;
+
+const luniCuAnLaAn = luni.filter((l) => l.anLaAn !== null);
+const varf = luniCuAnLaAn.length
+  ? luniCuAnLaAn.reduce((a, b) => (b.anLaAn! > a.anLaAn! ? b : a))
+  : null;
+
+const intrebari = [
+  {
+    q: `Care a fost rata inflației în ${an}?`,
+    a: complet && decLaDec !== null && medie !== null
+      ? `Două cifre, amândouă corecte. În decembrie ${an}, prețurile erau cu ${pr(decLaDec)}% mai mari decât în decembrie ${an - 1}. Media anului ${an} a fost cu ${pr(medie)}% peste media anului ${an - 1}. Prima măsoară cât a crescut nivelul prețurilor pe parcursul anului, a doua cât de scump a fost anul luat pe tot.`
+      : ultimaAnLaAn !== null
+        ? `Anul ${an} nu s-a încheiat. Cea mai recentă comparație disponibilă este ${etichetaLuna(ultimaLunaAn)} față de aceeași lună a anului precedent: ${pr(ultimaAnLaAn)}%.`
+        : `Seria lunară publicată de INS începe în ${etichetaLuna(PRIMA_LUNA)}, deci pentru ${an} nu se poate calcula o comparație an la an completă.`,
+  },
+  {
+    q: `Cât valorează azi ${lei(SUMA, 0)} de lei din ${an}?`,
+    a: `${lei(SUMA, 0)} ${monedaAtunci} din ${etichetaLuna(lunaReferinta)} au puterea de cumpărare a ${lei(valoare.echivalent)} lei în ${etichetaLuna(ULTIMA_LUNA)}. Prețurile au crescut de ${lei(valoare.factorPreturi)} ori între cele două momente${valoare.denominareAplicata ? ', iar conversia aplică și denominarea din 1 iulie 2005' : ''}.`,
+  },
+  ...(complet && decLaDec !== null
+    ? [{
+        q: `Unde se situează ${an} față de ceilalți ani?`,
+        a: `Pe locul ${pozitie} din ${clasament.length} ani cu serie completă, ordonați descrescător după inflația decembrie față de decembrie. Cel mai inflaționist an din serie a fost ${clasament[0].an}, cu ${pr(clasament[0].rata)}%; cel mai liniștit, ${clasament[clasament.length - 1].an}, cu ${pr(clasament[clasament.length - 1].rata)}%.`,
+      }]
+    : []),
+  ...(varf
+    ? [{
+        q: `În ce lună a fost inflația cea mai mare în ${an}?`,
+        a: `În ${etichetaLuna(varf)}, când prețurile erau cu ${pr(varf.anLaAn!)}% peste aceeași lună a anului precedent.`,
+      }]
+    : []),
+];
+
+const schema = {
+  '@type': 'FAQPage',
+  mainEntity: intrebari.map((i) => ({
+    '@type': 'Question',
+    name: i.q,
+    acceptedAnswer: { '@type': 'Answer', text: i.a },
+  })),
+};
+
+const titluCifra = principala !== null ? `${pr(principala)}%` : 'seria INS';
+---
+
+<Baza
+  titlu={complet && decLaDec !== null
+    ? `Rata inflației în ${an}: ${pr(decLaDec)}% — România`
+    : `Rata inflației în ${an} — România, lună de lună`}
+  descriere={complet && decLaDec !== null && medie !== null
+    ? `În ${an}, inflația a fost de ${pr(decLaDec)}% decembrie față de decembrie și ${pr(medie)}% ca medie anuală. Tabelul lunar complet și cât valorează azi ${lei(SUMA, 0)} de lei din ${an}.`
+    : `Inflația din ${an} în România, lună de lună, din indicele prețurilor de consum publicat de INS. Cât valorează azi ${lei(SUMA, 0)} de lei din ${an}.`}
+  cale={`/rata-inflatiei/${an}/`}
+  schema={schema}
+>
+  <div class="invelis sus">
+    <nav class="firimituri" aria-label="Firimituri">
+      <a href="/rata-inflatiei/">Rata inflației</a> <span aria-hidden="true">›</span> {an}
+    </nav>
+
+    <h1>Rata inflației în {an}: <span class="raspuns">{titluCifra}</span></h1>
+
+    {complet && decLaDec !== null && medie !== null ? (
+      <p class="introducere">
+        Decembrie {an} față de decembrie {an - 1}: <strong>{pr(decLaDec)}%</strong>. Media anului {an}
+        față de media anului {an - 1}: <strong>{pr(medie)}%</strong>. Sunt două întrebări diferite,
+        cu două răspunsuri diferite, și amândouă se publică de către Institutul Național de Statistică.
+      </p>
+    ) : ultimaAnLaAn !== null ? (
+      <p class="introducere">
+        Anul {an} e încă în curs. Cea mai recentă comparație an la an din seria publicată de INS este
+        {etichetaLuna(ultimaLunaAn)} față de aceeași lună a anului precedent: <strong>{pr(ultimaAnLaAn)}%</strong>.
+      </p>
+    ) : (
+      <p class="introducere">
+        Seria lunară publicată de INS începe în {etichetaLuna(PRIMA_LUNA)}, deci pentru {an} nu există
+        o comparație an la an completă. Mai jos sunt indicii lunari, așa cum îi publică institutul.
+      </p>
+    )}
+
+    {complet && decLaDec !== null && medie !== null && (
+      <div class="doua">
+        <div class="fisa">
+          <span class="eticheta">Decembrie față de decembrie</span>
+          <strong class="cifra cifre">{pr(decLaDec)}%</strong>
+          <span class="nota">Cât a urcat nivelul prețurilor pe parcursul anului.</span>
+        </div>
+        <div class="fisa alta">
+          <span class="eticheta">Media anuală</span>
+          <strong class="cifra cifre">{pr(medie)}%</strong>
+          <span class="nota">Cât de scump a fost anul {an} față de {an - 1}, luat pe tot.</span>
+        </div>
+      </div>
+    )}
+
+    <h2>Lună de lună, în {an}</h2>
+    <p>
+      Coloana din mijloc e indicele publicat de INS: cât la sută din prețul lunii precedente
+      reprezintă prețul lunii curente. Peste 100 înseamnă scumpire, sub 100 ieftinire.
+    </p>
+    <div class="derulabil">
+      <table>
+        <thead>
+          <tr>
+            <th>Luna</th>
+            <th class="num">Indice, față de luna precedentă</th>
+            <th class="num">Față de luna precedentă</th>
+            <th class="num">Față de aceeași lună din {an - 1}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {luni.map((l) => (
+            <tr>
+              <td>{areLunaPagina(l) ? <a href={caleLuna(l)}>{numeLuna(l.luna)}</a> : numeLuna(l.luna)}</td>
+              <td class="num cifre">{lei(l.indice)}</td>
+              <td class="num cifre">{l.indice >= 100 ? '+' : ''}{pr(l.indice - 100, 2)}%</td>
+              <td class="num cifre">{l.anLaAn !== null ? `${pr(l.anLaAn)}%` : '—'}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    {!complet && (
+      <p class="sursa">
+        Seria se oprește la {etichetaLuna(ULTIMA_LUNA)}. INS publică indicele lunii precedente în
+        jurul datei de 12 a fiecărei luni.
+      </p>
+    )}
+
+    <h2>Cât valorează azi {lei(SUMA, 0)} de lei din {an}</h2>
+    <p>
+      {lei(SUMA, 0)} {monedaAtunci} din {etichetaLuna(lunaReferinta)} cumpără astăzi cât cumpără
+      <strong> {lei(valoare.echivalent)} lei</strong>. Prețurile au crescut de {lei(valoare.factorPreturi)} ori
+      de atunci, adică o inflație cumulată de {pr(valoare.inflatieCumulata)}%.
+      {valoare.rataMedieAnuala !== null && ` Pe tot intervalul, asta înseamnă o rată medie de ${pr(valoare.rataMedieAnuala)}% pe an.`}
+    </p>
+    {valoare.denominareAplicata && (
+      <p class="atentie">
+        Suma e în lei vechi. Conversia aplică și denominarea din 1 iulie 2005, prin care 10.000 ROL
+        au devenit 1 RON. Fără ea, rezultatul ar fi de zece mii de ori mai mare — greșeala pe care o
+        fac mai toate calculatoarele pentru anii dinainte de 2005.
+      </p>
+    )}
+    <p class="sursa">
+      <a href="/">Calculatorul de inflație</a> face conversia pentru orice sumă și orice două luni,
+      iar <a href="/actualizare-cu-rata-inflatiei/">pagina de actualizare</a> arată calculul
+      desfășurat, pentru contracte și acte.
+    </p>
+
+    {complet && decLaDec !== null && (
+      <>
+        <h2>Unde stă {an} în istorie</h2>
+        <p>
+          Pe locul {pozitie} din {clasament.length} ani cu serie completă, ordonați după inflația
+          decembrie față de decembrie.
+          {anterior && rataAnterior !== null && ` Față de ${anterior}, când a fost ${pr(rataAnterior)}%, ${an} a fost ${decLaDec > rataAnterior ? 'un an mai inflaționist' : 'un an mai liniștit'}.`}
+        </p>
+      </>
+    )}
+
+    <h2>Ceilalți ani</h2>
+    <ul class="ani">
+      {aniDisponibili().slice().reverse().map((a) => (
+        <li>
+          {a === an
+            ? <span class="curent" aria-current="page">{a}</span>
+            : <a href={`/rata-inflatiei/${a}/`}>{a}</a>}
+        </li>
+      ))}
+    </ul>
+
+    <nav class="vecini" aria-label="Anul anterior și următorul">
+      {anterior && <a href={`/rata-inflatiei/${anterior}/`}>← {anterior}</a>}
+      <a href="/rata-inflatiei/">Toți anii, într-un tabel</a>
+      {urmator && <a href={`/rata-inflatiei/${urmator}/`}>{urmator} →</a>}
+    </nav>
+
+    <h2>Întrebări</h2>
+    <dl class="intrebari">
+      {intrebari.map((i) => (
+        <>
+          <dt>{i.q}</dt>
+          <dd>{i.a}</dd>
+        </>
+      ))}
+    </dl>
+  </div>
+</Baza>
+
+<style>
+  .sus { padding-block: var(--sp-6) var(--sp-12); }
+  .firimituri { font-size: 0.85rem; color: var(--cerneala-slaba); margin-bottom: var(--sp-4); }
+  h1 { margin-bottom: var(--sp-4); }
+  .raspuns { color: var(--acum); white-space: nowrap; }
+  .introducere { font-size: 1.05rem; color: var(--cerneala-slaba); margin-bottom: var(--sp-8); max-width: var(--lat-text); }
+
+  .doua { display: grid; gap: var(--sp-3); margin-bottom: var(--sp-8); }
+  @media (min-width: 40rem) { .doua { grid-template-columns: repeat(2, 1fr); } }
+  .fisa {
+    display: flex; flex-direction: column; gap: var(--sp-1);
+    padding: var(--sp-4); border-radius: var(--raza); background: var(--atunci-fundal);
+  }
+  .fisa.alta { background: var(--acum-fundal); }
+  .fisa .cifra { font-size: clamp(1.8rem, 5vw, 2.4rem); font-family: var(--font-titlu); font-weight: 400; line-height: 1.1; color: var(--atunci); }
+  .fisa.alta .cifra { color: var(--acum); }
+  .nota { font-size: 0.85rem; color: var(--cerneala-slaba); }
+
+  .atentie {
+    padding: var(--sp-3); border-left: 3px solid var(--acum);
+    background: var(--acum-fundal); font-size: 0.95rem;
+  }
+
+  .ani { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: var(--sp-2); max-width: none; }
+  .ani a, .ani .curent {
+    display: block; padding: var(--sp-2) var(--sp-3); border-radius: var(--raza);
+    border: 1px solid var(--linie); background: var(--hartie-sus);
+    font-size: 0.9rem; text-decoration: none; font-variant-numeric: tabular-nums;
+  }
+  .ani a:hover { border-color: var(--linie-tare); }
+  .ani .curent { background: var(--cerneala); color: var(--hartie-sus); border-color: var(--cerneala); font-weight: 600; }
+
+  .vecini {
+    display: flex; flex-wrap: wrap; gap: var(--sp-4); justify-content: space-between;
+    margin-top: var(--sp-8); padding-top: var(--sp-4); border-top: 1px solid var(--linie);
+    font-size: 0.9rem;
+  }
+
+  .intrebari dt { font-weight: 600; margin-top: var(--sp-6); }
+  .intrebari dd { margin: var(--sp-2) 0 0; max-width: var(--lat-text); color: var(--cerneala-slaba); }
+</style>

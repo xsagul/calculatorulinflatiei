@@ -6,7 +6,7 @@
 // Pagina raspunde in primul paragraf, cu cifra, si abia apoi explica. Cine cauta
 // „rata inflatiei" vrea un numar, nu o definitie.
 import Baza from '@/layouts/Baza.astro';
-import { factorPreturi, ULTIMA_LUNA, PRIMA_LUNA, etichetaLuna, numeLuna } from '@/lib/inflatie';
+import { factorPreturi, inflatieMedieAnuala, ULTIMA_LUNA, PRIMA_LUNA, etichetaLuna, numeLuna } from '@/lib/inflatie';
 
 const lei = (n: number, z = 1) =>
   n.toLocaleString('ro-RO', { minimumFractionDigits: z, maximumFractionDigits: z });
@@ -103,16 +103,31 @@ const schema = {
       Felul în care se raportează de obicei inflația unui an. Seria începe în
       {' '}{etichetaLuna(PRIMA_LUNA)}, de unde o publică INS.
     </p>
+    <p class="sursa">
+      Coloana a doua compară decembrie cu decembrie; a treia compară media anului cu media anului
+      precedent. Sunt două întrebări diferite, iar INS le publică pe amândouă. Fiecare an are
+      pagina lui, cu tabelul lunar complet.
+    </p>
     <div class="derulabil inalt">
       <table>
-        <thead><tr><th>Anul</th><th class="num">Inflația anului</th></tr></thead>
+        <thead>
+          <tr>
+            <th>Anul</th>
+            <th class="num">Decembrie față de decembrie</th>
+            <th class="num">Media anuală</th>
+          </tr>
+        </thead>
         <tbody>
-          {istoric.map(({ an, rata }) => (
-            <tr>
-              <td>{an}</td>
-              <td class="num cifre">{lei(rata)}%</td>
-            </tr>
-          ))}
+          {istoric.map(({ an, rata }) => {
+            const medie = inflatieMedieAnuala(an);
+            return (
+              <tr>
+                <td><a href={`/rata-inflatiei/${an}/`}>{an}</a></td>
+                <td class="num cifre">{lei(rata)}%</td>
+                <td class="num cifre">{medie !== null ? `${lei(medie)}%` : '—'}</td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
