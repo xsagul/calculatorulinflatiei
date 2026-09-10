@@ -24,6 +24,7 @@ const rute = [
   { cale: '/rata-inflatiei', prioritate: '0.8' },
   { cale: '/actualizare-cu-rata-inflatiei', prioritate: '0.9' },
   { cale: '/date', prioritate: '0.7' },
+  { cale: '/incorporeaza', prioritate: '0.7' },
   { cale: '/api', prioritate: '0.4' },
   { cale: '/contact', prioritate: '0.4' },
   { cale: '/politica-de-confidentialitate', prioritate: '0.3' },

@@ -1,0 +1,154 @@
+---
+// Pagina care lipsea.
+//
+// Widgetul exista din site-ul precedent, cu link de atribuire cu tot, dar nu era
+// anuntat nicaieri. Un instrument incorporabil despre care nu stie nimeni nu
+// aduce nici link, nici vizitatori — e cod care se construieste degeaba.
+//
+// DE CE E SINGURA STRATEGIE DE LINKURI CARE MERITA. Nimeni nu linkeaza spontan
+// catre un calculator; nu e continut pe care sa il citezi. Dar un site care are
+// nevoie de calculul asta in propria pagina — un blog de contabilitate, o casa
+// de avocatura, o redactie economica — il pune si linkeaza pentru ca asa
+// functioneaza incorporarea, nu pentru ca l-am rugat noi. Iar linkul aduce si
+// oameni, nu doar autoritate: cine foloseste widgetul si vrea mai mult da clic.
+import Baza from '@/layouts/Baza.astro';
+import { ULTIMA_LUNA, etichetaLuna, SURSA } from '@/lib/inflatie';
+
+const SITE = 'https://calculatorulinflatiei.ro';
+const actualizat = etichetaLuna(ULTIMA_LUNA);
+
+const cod = `<iframe src="${SITE}/widget/"
+        title="Calculator inflație"
+        width="100%" height="210"
+        style="border:1px solid #d8dedc;border-radius:6px"
+        loading="lazy"></iframe>`;
+
+const intrebari = [
+  {
+    q: 'Trebuie să cer voie?',
+    a: 'Nu. Copiază codul și pune-l unde vrei, pe orice site, comercial sau nu. Nu cerem nimic în schimb și nu trebuie să ne anunți.',
+  },
+  {
+    q: 'Costă ceva?',
+    a: 'Nu. Widgetul e un fișier static servit de pe aceeași infrastructură ca site-ul. Nu are limită de afișări și nu se va transforma în abonament.',
+  },
+  {
+    q: 'Urmărește vizitatorii?',
+    a: 'Nu. Nu are cookie-uri, nu are analytics, nu trimite nimic nicăieri. Vizitatorii tăi rămân ai tăi — asta e și motivul pentru care poate sta pe un site care ține la politica lui de confidențialitate.',
+  },
+  {
+    q: 'Se actualizează singur?',
+    a: `Da. Widgetul folosește aceeași serie ca site-ul, actualizată lunar din datele Institutului Național de Statistică. Nu trebuie să schimbi nimic în pagina ta când apar cifre noi; acum e actualizat până în ${actualizat}.`,
+  },
+  {
+    q: 'Pot să îi schimb înălțimea sau lățimea?',
+    a: 'Da, sunt atributele obișnuite ale unui iframe. Lățimea de 100% îl face să se potrivească în orice coloană; 210 pixeli înălțime e strictul necesar pe telefon, unde câmpurile trec pe două rânduri.',
+  },
+];
+
+const schema = {
+  '@type': 'FAQPage',
+  mainEntity: intrebari.map((i) => ({
+    '@type': 'Question',
+    name: i.q,
+    acceptedAnswer: { '@type': 'Answer', text: i.a },
+  })),
+};
+---
+
+<Baza
+  titlu="Pune calculatorul de inflație pe site-ul tău — gratuit, fără urmărire"
+  descriere="Cod de încorporare pentru calculatorul de inflație: un iframe, fără cont, fără cookie-uri, cu datele INS actualizate lunar. Liber de folosit pe orice site."
+  cale="/incorporeaza/"
+  schema={schema}
+>
+  <div class="invelis sus">
+    <p class="eticheta">Încorporare</p>
+    <h1>Pune calculatorul pe site-ul tău</h1>
+    <p class="introducere">
+      Un iframe, atât. Fără cont, fără cheie de API, fără cookie-uri, fără limită de afișări.
+      Datele se actualizează lunar de la {SURSA.institutie}, deci pagina ta nu rămâne în urmă.
+    </p>
+
+    <h2>Codul</h2>
+    <div class="cod-cutie">
+      <pre><code id="cod">{cod}</code></pre>
+      <button type="button" id="copiaza" data-cod={cod}>Copiază codul</button>
+    </div>
+
+    <h2>Cum arată</h2>
+    <p>Exact așa, în pagina ta:</p>
+    <iframe
+      src="/widget/"
+      title="Calculator inflație, previzualizare"
+      width="100%"
+      height="210"
+      style="border:1px solid var(--linie);border-radius:6px;max-width:34rem"
+      loading="lazy"
+    ></iframe>
+
+    <h2>Cui îi folosește</h2>
+    <ul>
+      <li>Blogurilor de contabilitate și fiscalitate, la articolele despre actualizarea sumelor.</li>
+      <li>Caselor de avocatură, unde clientul întreabă cât înseamnă azi o sumă dintr-un contract vechi.</li>
+      <li>Redacțiilor economice, ca cititorul să încerce singur cifra din articol.</li>
+      <li>Agențiilor imobiliare și site-urilor de credite, la comparațiile între ani.</li>
+      <li>Profesorilor, la orele de economie — e cel mai scurt drum de la o formulă la o cifră personală.</li>
+    </ul>
+
+    <h2>Ce e sub el</h2>
+    <p>
+      Lanțul lunar al indicelui prețurilor de consum publicat de {SURSA.institutie}, din ianuarie
+      1991 până în {actualizat}, cu denominarea din 2005 aplicată corect pentru sumele în lei vechi.
+      Seria întreagă se poate descărca de pe <a href="/date/">pagina de date</a>, în CSV sau JSON,
+      dacă preferi să calculezi singur, iar <a href="/api/">API-ul public</a> întoarce același
+      rezultat în JSON.
+    </p>
+
+    <h2>Întrebări</h2>
+    <dl class="intrebari">
+      {intrebari.map((i) => (
+        <>
+          <dt>{i.q}</dt>
+          <dd>{i.a}</dd>
+        </>
+      ))}
+    </dl>
+  </div>
+</Baza>
+
+<style>
+  .sus { padding-block: var(--sp-8) var(--sp-12); }
+  h1 { margin-top: var(--sp-2); }
+  .introducere { font-size: 1.1rem; color: var(--cerneala-slaba); margin-bottom: var(--sp-8); }
+  .cod-cutie { display: flex; flex-direction: column; gap: var(--sp-3); align-items: flex-start; max-width: var(--lat-text); }
+  pre {
+    background: var(--hartie-sus); border: 1px solid var(--linie); border-radius: var(--raza);
+    padding: var(--sp-4); font-size: 0.85rem; overflow-x: auto; width: 100%; margin: 0;
+  }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+  button {
+    font: inherit; font-weight: 600; min-height: 2.75rem; padding-inline: var(--sp-6);
+    border: 0; border-radius: var(--raza); background: var(--cerneala); color: var(--hartie-sus); cursor: pointer;
+  }
+  button:hover { opacity: 0.9; }
+  .intrebari dt { font-weight: 600; margin-top: var(--sp-6); }
+  .intrebari dd { margin: var(--sp-2) 0 0; max-width: var(--lat-text); color: var(--cerneala-slaba); }
+</style>
+
+<script>
+  const buton = document.getElementById('copiaza') as HTMLButtonElement | null;
+  if (buton) {
+    buton.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(buton.dataset.cod!);
+        const initial = buton.textContent;
+        buton.textContent = 'Copiat';
+        setTimeout(() => { buton.textContent = initial; }, 2000);
+      } catch {
+        // Clipboard-ul poate fi refuzat; codul e oricum vizibil si selectabil.
+        buton.textContent = 'Selectează codul de mai sus';
+      }
+    });
+  }
+</script>
