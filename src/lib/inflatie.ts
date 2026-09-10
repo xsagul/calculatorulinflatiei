@@ -18,12 +18,45 @@
 //    Pentru orice data anterioara raspunsul este ca nu stim, nu o extrapolare.
 
 import date from '../data/ipc-lunar.json' with { type: 'json' };
+import completare from '../data/ipc-completare.json' with { type: 'json' };
 
 export type Luna = { an: number; luna: number };
 type RandSerie = Luna & { indice: number };
 
-const SERIE = date.serie as RandSerie[];
+/**
+ * Seria, cu lunile publicate deja in comunicatul INS dar inca neincarcate in
+ * TEMPO-Online.
+ *
+ * TEMPO poate ramane in urma cu doua luni fata de comunicatul de presa. Pentru
+ * un site despre inflatie asta inseamna sa arate o cifra veche exact pe
+ * intrebarea cea mai cautata — „cat e inflatia acum" — in timp ce presa si
+ * concurenta au deja cifra noua.
+ *
+ * TEMPO are intaietate: cand o luna ajunge acolo, versiunea din completare e
+ * ignorata, deci fisierul se goleste singur si nu poate ramane sa contrazica
+ * sursa canonica.
+ */
+function serieUnificata(): RandSerie[] {
+  const tempo = date.serie as RandSerie[];
+  const cunoscute = new Set(tempo.map((r) => r.an * 12 + r.luna));
+  const adaugate = (completare.luni as (RandSerie & { cititLa: string })[])
+    .filter((r) => !cunoscute.has(r.an * 12 + r.luna))
+    .map(({ an, luna, indice }) => ({ an, luna, indice }));
+  return [...tempo, ...adaugate].sort((a, b) => (a.an - b.an) || (a.luna - b.luna));
+}
+
+const SERIE = serieUnificata();
 const DENOMINARE = date.denominare;
+
+/** Lunile care vin din comunicat, nu din TEMPO. Paginile o pot spune cititorului. */
+export const LUNI_DIN_COMUNICAT: Luna[] = (completare.luni as RandSerie[])
+  .filter((r) => !(date.serie as RandSerie[]).some((t) => t.an === r.an && t.luna === r.luna))
+  .map(({ an, luna }) => ({ an, luna }));
+
+export const SURSA_COMUNICAT = completare.sursa;
+
+export const dinComunicat = (l: Luna) =>
+  LUNI_DIN_COMUNICAT.some((x) => x.an === l.an && x.luna === l.luna);
 
 /** 1 iulie 2005: de aici incolo sumele sunt in lei noi. */
 export const DENOMINARE_AN = 2005;

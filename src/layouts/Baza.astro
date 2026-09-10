@@ -3,7 +3,7 @@
 // Fiecare pagina isi da titlul, descrierea si calea; restul se compune aici, ca
 // sa nu existe doua locuri care spun cine suntem.
 import '@/styles/global.css';
-import { SURSA, ULTIMA_LUNA, etichetaLuna } from '@/lib/inflatie';
+import { SURSA, ULTIMA_LUNA, etichetaLuna, LUNI_DIN_COMUNICAT, SURSA_COMUNICAT } from '@/lib/inflatie';
 
 interface Props {
   titlu: string;
@@ -107,6 +107,14 @@ const schemaSite = {
         <p class="sursa">
           Sursa cifrelor: {SURSA.institutie}, {SURSA.baza}, matricea {SURSA.matrice}. Serie lunară
           din ianuarie 1991, actualizată până în {actualizat}. Reutilizare conform licenței {SURSA.licenta}.
+          {LUNI_DIN_COMUNICAT.length > 0 && (
+            <>
+              {' '}Ultima {LUNI_DIN_COMUNICAT.length === 1 ? 'lună' : `${LUNI_DIN_COMUNICAT.length} luni`}
+              {' '}({LUNI_DIN_COMUNICAT.map((l) => etichetaLuna(l)).join(', ')}) {LUNI_DIN_COMUNICAT.length === 1 ? 'vine' : 'vin'} din
+              {' '}<a href={SURSA_COMUNICAT.url} rel="noopener">comunicatul de presă</a> al institutului,
+              care apare înaintea încărcării în baza de date.
+            </>
+          )}
         </p>
         <p class="sursa">
           Sumele dinainte de 1 iulie 2005 sunt în lei vechi (ROL). Conversia în lei noi aplică

@@ -1,0 +1,23 @@
+{
+  "de_ce": "INS publica indicele in comunicatul de presa lunar, in jurul datei de 12, dar il incarca in TEMPO-Online mult mai tarziu — uneori cu doua luni intarziere. Intre cele doua momente, un site despre inflatie care asteapta TEMPO arata o cifra veche exact pe intrebarea pe care o pune toata lumea. Lunile de aici vin din comunicat si dispar singure cand ajung in TEMPO, fiindca seria TEMPO are intaietate la unificare.",
+  "regula": "Nimic nu intra aici fara verificare independenta. Fiecare luna are trecuta rata anuala si cea de la inceputul anului asa cum le-a publicat INS; testul reconstruieste amandoua din lantul propriu si cade daca nu se potrivesc. Asa un indice gresit copiat nu poate ajunge pe site.",
+  "sursa": {
+    "institutie": "Institutul Național de Statistică",
+    "document": "Comunicat de presă — Indicele prețurilor de consum",
+    "url": "https://insse.ro/cms/ro/tags/comunicat-indicele-preturilor-de-consum",
+    "licenta": "OGL-ROU-1.0"
+  },
+  "luni": [
+    {
+      "an": 2026,
+      "luna": 7,
+      "indice": 100.58,
+      "verificare": {
+        "rataAnuala": 8.16,
+        "deLaInceputulAnului": 4.4,
+        "toleranta": 0.1
+      },
+      "cititLa": "2026-09-10"
+    }
+  ]
+}

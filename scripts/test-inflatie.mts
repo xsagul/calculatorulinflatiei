@@ -85,3 +85,62 @@ const i1993 = inflatieAnuala(1993, 12);
 assert.ok(i1993 !== null && i1993 > 200, `1993 a fost an de hiperinflatie, am calculat ${i1993}`);
 
 console.log(`OK: seria ${etichetaLuna(PRIMA_LUNA)} – ${etichetaLuna(ULTIMA_LUNA)}, denominare, compunerea lantului, simetrie si refuzul extrapolarii.`);
+
+// ─── Lunile venite din comunicatul INS, nu din TEMPO ────────────────────────
+//
+// Sunt singurele cifre din site care nu vin dintr-o descarcare automata, deci
+// singurele care pot fi gresite prin copiere. Testul le reconstruieste: din
+// lantul propriu plus indicele adaugat trebuie sa iasa exact rata anuala si cea
+// de la inceputul anului asa cum le-a publicat INS in acelasi comunicat.
+//
+// Doua cifre independente care se potrivesc amandoua inseamna ca indicele e
+// bun. Daca cineva scrie 100,85 in loc de 100,58, testul cade aici, nu ajunge
+// pe pagina principala.
+import completare from '../src/data/ipc-completare.json' with { type: 'json' };
+import { LUNI_DIN_COMUNICAT, dinComunicat, lunileAnului } from '../src/lib/inflatie.ts';
+
+for (const luna of completare.luni as {
+  an: number; luna: number; indice: number;
+  verificare: { rataAnuala: number; deLaInceputulAnului: number; toleranta: number };
+}[]) {
+  // Doar lunile care chiar sunt folosite; cele ajunse intre timp in TEMPO nu.
+  if (!dinComunicat({ an: luna.an, luna: luna.luna })) continue;
+  const { rataAnuala, deLaInceputulAnului, toleranta } = luna.verificare;
+  const eticheta = `${luna.luna}/${luna.an}`;
+
+  const anuala = inflatieAnuala(luna.an, luna.luna);
+  assert.ok(anuala !== null, `${eticheta}: rata anuala trebuie sa fie calculabila`);
+  assert.ok(
+    Math.abs(anuala! - rataAnuala) <= toleranta,
+    `${eticheta}: din lant iese ${anuala!.toFixed(2)}%, INS a publicat ${rataAnuala}%`,
+  );
+
+  const ytd = (factorPreturi({ an: luna.an - 1, luna: 12 }, { an: luna.an, luna: luna.luna }) - 1) * 100;
+  assert.ok(
+    Math.abs(ytd - deLaInceputulAnului) <= toleranta,
+    `${eticheta}: de la inceputul anului iese ${ytd.toFixed(2)}%, INS a publicat ${deLaInceputulAnului}%`,
+  );
+}
+
+// Unificarea celor doua surse nu are voie sa rupa lantul: fiecare an trebuie sa
+// aiba exact lunile pe care le poate avea, o singura data fiecare. O luna care
+// lipseste ar face gresite, tacut, toate conversiile care o traverseaza; una
+// duplicata ar aplica indicele de doua ori.
+for (let an = PRIMA_LUNA.an; an <= ULTIMA_LUNA.an; an++) {
+  const luni = lunileAnului(an).map((l) => l.luna);
+  const asteptate = an === ULTIMA_LUNA.an ? ULTIMA_LUNA.luna : 12;
+  const primaDinAn = an === PRIMA_LUNA.an ? PRIMA_LUNA.luna : 1;
+  assert.deepEqual(
+    luni,
+    Array.from({ length: asteptate - primaDinAn + 1 }, (_, i) => primaDinAn + i),
+    `anul ${an} trebuie sa aiba lunile ${primaDinAn}-${asteptate}, consecutive si fara dubluri`,
+  );
+}
+assert.ok(LUNI_DIN_COMUNICAT.length <= 3,
+  'daca TEMPO ramane in urma cu peste trei luni, s-a schimbat ceva la sursa si merita verificat manual');
+
+console.log(
+  LUNI_DIN_COMUNICAT.length
+    ? `completare: ${LUNI_DIN_COMUNICAT.length} luna/luni din comunicat, verificate fata de cifrele INS`
+    : 'completare: TEMPO e la zi, nu se adauga nimic',
+);
