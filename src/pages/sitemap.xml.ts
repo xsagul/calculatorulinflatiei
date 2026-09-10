@@ -20,6 +20,7 @@ const rute = [
   { cale: '/salariu-minim', prioritate: '0.9' },
   { cale: '/tva', prioritate: '0.9' },
   { cale: '/rata-inflatiei', prioritate: '0.8' },
+  { cale: '/actualizare-cu-rata-inflatiei', prioritate: '0.9' },
   { cale: '/date', prioritate: '0.7' },
   { cale: '/api', prioritate: '0.4' },
   { cale: '/politica-de-confidentialitate', prioritate: '0.3' },

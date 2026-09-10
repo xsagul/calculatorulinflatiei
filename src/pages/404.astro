@@ -1,0 +1,95 @@
+---
+// Pagina de 404.
+//
+// Nu e o politete, e o reparatie. Fara acest fisier, Cloudflare Pages servea
+// pagina principala pentru orice adresa inexistenta, cu status 200. Google
+// raporta rezultatul drept „soft 404" si cheltuia buget de crawl pe adrese care
+// nu exista — exact bugetul de care are nevoie ca sa descopere paginile reale.
+//
+// Cu `dist/404.html` prezent, Pages raspunde cu status 404 adevarat.
+import Baza from '@/layouts/Baza.astro';
+import { calculeazaSalariu, REGIM_CURENT } from '@/lib/salariu';
+import { ULTIMA_LUNA, etichetaLuna, inflatieAnuala } from '@/lib/inflatie';
+
+const R = REGIM_CURENT;
+const minim = calculeazaSalariu({ brut: R.salariulMinim }, R);
+const anuala = inflatieAnuala(ULTIMA_LUNA.an, ULTIMA_LUNA.luna);
+const lei = (n: number, z = 0) =>
+  n.toLocaleString('ro-RO', { minimumFractionDigits: z, maximumFractionDigits: z });
+
+const drumuri = [
+  {
+    cale: '/',
+    titlu: 'Calculator inflație',
+    text: `Cât valorează azi o sumă din trecut, sau între oricare două luni din 1991 încoace.`,
+  },
+  {
+    cale: '/salariu/',
+    titlu: 'Calculator salariu net',
+    text: 'Din brut în net și invers, cu deducerea personală și tichetele de masă.',
+  },
+  {
+    cale: '/salariu-minim/',
+    titlu: 'Salariul minim',
+    text: `${lei(R.salariulMinim)} lei brut, ${lei(minim.net)} lei net, și tot istoricul în lei de azi.`,
+  },
+  {
+    cale: '/tva/',
+    titlu: 'Calculator TVA',
+    text: 'Cotele de 21% și 11%, plus cele vechi pentru facturi mai vechi de august 2025.',
+  },
+  {
+    cale: '/rata-inflatiei/',
+    titlu: 'Rata inflației',
+    text: anuala !== null
+      ? `Cea mai recentă comparație an la an: ${lei(anuala, 1)}% în ${etichetaLuna(ULTIMA_LUNA)}.`
+      : 'Seria an de an, din indicele publicat de INS.',
+  },
+  {
+    cale: '/date/',
+    titlu: 'Datele, descărcabile',
+    text: 'Seria lunară completă a indicelui prețurilor de consum, în CSV și JSON.',
+  },
+];
+---
+
+<Baza
+  titlu="Pagina nu există — Calculatorul Inflației"
+  descriere="Adresa cerută nu există pe acest site. Mai jos sunt calculatoarele disponibile."
+  cale="/404/"
+>
+  <div class="invelis sus">
+    <p class="eticheta">Eroare 404</p>
+    <h1>Adresa asta nu există</h1>
+    <p class="introducere">
+      Fie linkul e greșit, fie pagina a fost mutată. Nu ghicim ce căutai, dar mai jos e tot ce
+      calculează site-ul.
+    </p>
+
+    <ul class="drumuri">
+      {drumuri.map((d) => (
+        <li>
+          <a href={d.cale}>
+            <strong>{d.titlu}</strong>
+            <span>{d.text}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</Baza>
+
+<style>
+  .sus { padding-block: var(--sp-8) var(--sp-12); }
+  h1 { margin-top: var(--sp-2); }
+  .introducere { font-size: 1.1rem; color: var(--cerneala-slaba); margin-bottom: var(--sp-8); }
+  .drumuri { list-style: none; padding: 0; display: grid; gap: var(--sp-3); max-width: none; }
+  @media (min-width: 46rem) { .drumuri { grid-template-columns: repeat(2, 1fr); } }
+  .drumuri a {
+    display: flex; flex-direction: column; gap: var(--sp-1); height: 100%;
+    padding: var(--sp-4); background: var(--hartie-sus);
+    border: 1px solid var(--linie); border-radius: var(--raza); text-decoration: none;
+  }
+  .drumuri a:hover { border-color: var(--linie-tare); }
+  .drumuri span { font-size: 0.9rem; color: var(--cerneala-slaba); }
+</style>

@@ -1,0 +1,181 @@
+---
+// Clusterul pe care il pierdem azi cu totul, desi aparem in rezultate.
+//
+// In Search Console, „actualizare cu rata inflatiei calculator", „actualizare
+// suma cu rata inflatiei", „exemplu calcul actualizarea unei sume cu rata
+// inflatiei" si chiar „calcul indice inflatie hotarari judecatoresti" aduna
+// sute de afisari si aproape niciun clic. Motivul e clar: oamenii astia nu vor
+// un calculator de curiozitate, vor o cifra pe care sa o poata pune intr-un act
+// — o chirie indexata, un debit actualizat, o suma dintr-o hotarare.
+//
+// De aceea pagina asta arata calculul desfasurat, nu doar rezultatul: cine
+// scrie o cerere trebuie sa poata copia rationamentul, cu sursa si cu perioada.
+import Baza from '@/layouts/Baza.astro';
+import Calculator from '@/components/Calculator.astro';
+import {
+  converteste, factorPreturi, ULTIMA_LUNA, PRIMA_LUNA, etichetaLuna, SURSA,
+} from '@/lib/inflatie';
+
+const lei = (n: number, z = 2) =>
+  n.toLocaleString('ro-RO', { minimumFractionDigits: z, maximumFractionDigits: z });
+
+// Un exemplu concret, cu cifre care se recalculeaza singure cand seria creste.
+const EXEMPLU = { suma: 2000, de: { an: ULTIMA_LUNA.an - 3, luna: ULTIMA_LUNA.luna } };
+const ex = converteste(EXEMPLU.suma, EXEMPLU.de, ULTIMA_LUNA);
+const coeficient = factorPreturi(EXEMPLU.de, ULTIMA_LUNA);
+
+const actualizat = etichetaLuna(ULTIMA_LUNA);
+
+const intrebari = [
+  {
+    q: 'Cum se actualizează o sumă cu rata inflației?',
+    a: `Se înmulțește suma cu raportul dintre indicele prețurilor de consum de la data actualizării și cel de la data sumei. Practic, se înlănțuiesc indicii lunari publicați de Institutul Național de Statistică între cele două luni, iar produsul lor este coeficientul de actualizare. ${lei(EXEMPLU.suma, 0)} lei din ${etichetaLuna(EXEMPLU.de)} devin ${lei(ex.echivalent)} lei în ${actualizat}, la un coeficient de ${lei(coeficient, 4)}.`,
+  },
+  {
+    q: 'Ce indice se folosește pentru actualizare?',
+    a: `Indicele prețurilor de consum publicat de ${SURSA.institutie}, matricea ${SURSA.matrice} din ${SURSA.baza}. Este indicele oficial, publicat lunar, și cel la care se face de obicei trimitere în clauzele de indexare și în cererile de actualizare.`,
+  },
+  {
+    q: 'De la ce dată până la ce dată se calculează?',
+    a: 'Depinde de ce prevede actul: unele contracte indexează de la data scadenței, altele de la data plății, iar o hotărâre judecătorească poate stabili expres perioada. Calculatorul lasă ambele capete libere tocmai pentru asta — alege lunile pe care le prevede actul tău, nu invers.',
+  },
+  {
+    q: 'Sumele dinainte de 2005 se actualizează la fel?',
+    a: 'Se aplică în plus denominarea din Legea nr. 348/2004: de la 1 iulie 2005, 10.000 lei vechi au devenit 1 leu nou. Indicii de preț nu conțin această tăiere, pentru că e o schimbare de unitate, nu de preț. Calculatorul o aplică automat când intervalul trece peste iulie 2005.',
+  },
+  {
+    q: 'Coeficientul de actualizare e același cu rata inflației?',
+    a: `Nu. Rata inflației e o creștere procentuală; coeficientul e un multiplicator. O rată cumulată de ${lei(ex.inflatieCumulata, 1)}% înseamnă un coeficient de ${lei(coeficient, 4)}, adică suma se înmulțește cu ${lei(coeficient, 4)}, nu cu ${lei(ex.inflatieCumulata, 1)}.`,
+  },
+];
+
+const schema = {
+  '@type': 'FAQPage',
+  mainEntity: intrebari.map((i) => ({
+    '@type': 'Question',
+    name: i.q,
+    acceptedAnswer: { '@type': 'Answer', text: i.a },
+  })),
+};
+---
+
+<Baza
+  titlu="Actualizarea unei sume cu rata inflației — calculator și exemplu de calcul"
+  descriere={`Actualizează o sumă cu indicele prețurilor de consum publicat de INS, între oricare două luni din 1991 până în ${actualizat}. Coeficientul de actualizare, calculul desfășurat pas cu pas și sursa oficială.`}
+  cale="/actualizare-cu-rata-inflatiei/"
+  schema={schema}
+>
+  <div class="invelis sus">
+    <p class="eticheta">Actualizare</p>
+    <h1>Actualizarea unei sume cu rata inflației</h1>
+    <p class="introducere">
+      Pentru o chirie indexată, un debit, o sumă dintr-un contract sau dintr-o hotărâre. Calculul
+      folosește indicele prețurilor de consum publicat de {SURSA.institutie} și e desfășurat mai
+      jos pas cu pas, ca să poată fi copiat într-un act.
+    </p>
+
+    <Calculator
+      suma={EXEMPLU.suma}
+      deLaAn={EXEMPLU.de.an}
+      deLaLuna={EXEMPLU.de.luna}
+      panaLaAn={ULTIMA_LUNA.an}
+      panaLaLuna={ULTIMA_LUNA.luna}
+    />
+
+    <h2>Calculul, desfășurat</h2>
+    <p>
+      Actualizarea are trei elemente: suma inițială, perioada, și coeficientul care le leagă.
+      Pentru exemplul de mai sus:
+    </p>
+    <div class="derulabil">
+      <table>
+        <tbody>
+          <tr>
+            <th scope="row">Suma inițială</th>
+            <td class="num cifre">{lei(EXEMPLU.suma, 2)} lei</td>
+          </tr>
+          <tr>
+            <th scope="row">Luna de referință</th>
+            <td class="num">{etichetaLuna(EXEMPLU.de)}</td>
+          </tr>
+          <tr>
+            <th scope="row">Luna actualizării</th>
+            <td class="num">{actualizat}</td>
+          </tr>
+          <tr>
+            <th scope="row">Coeficient de actualizare</th>
+            <td class="num cifre"><strong>{lei(coeficient, 4)}</strong></td>
+          </tr>
+          <tr>
+            <th scope="row">Suma actualizată</th>
+            <td class="num cifre"><strong>{lei(ex.echivalent)} lei</strong></td>
+          </tr>
+          <tr>
+            <th scope="row">Diferența de actualizat</th>
+            <td class="num cifre">{lei(ex.echivalent - EXEMPLU.suma)} lei</td>
+          </tr>
+          <tr>
+            <th scope="row">Inflația cumulată pe perioadă</th>
+            <td class="num cifre">{lei(ex.inflatieCumulata, 2)}%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>
+      Formula: <strong>suma actualizată = suma inițială × coeficient</strong>, adică
+      {lei(EXEMPLU.suma, 2)} × {lei(coeficient, 4)} = {lei(ex.echivalent)} lei. Coeficientul e
+      produsul indicilor lunari ai prețurilor de consum dintre {etichetaLuna(EXEMPLU.de)} și
+      {actualizat}, așa cum îi publică {SURSA.institutie}.
+    </p>
+    <p class="atentie">
+      Coeficientul nu se confundă cu rata inflației. O inflație cumulată de
+      {lei(ex.inflatieCumulata, 1)}% înseamnă înmulțirea cu {lei(coeficient, 4)}, nu cu
+      {lei(ex.inflatieCumulata, 1)}.
+    </p>
+
+    <h2>Unde se folosește</h2>
+    <ul>
+      <li>Chirii și contracte cu clauză de indexare cu indicele prețurilor de consum.</li>
+      <li>Debite și sume restante actualizate până la data plății.</li>
+      <li>Sume stabilite prin hotărâri judecătorești, când actul prevede actualizarea.</li>
+      <li>Comparații între sume din ani diferiți, în rapoarte și expertize.</li>
+    </ul>
+    <p class="sursa">
+      Perioada exactă și metoda de actualizare sunt cele prevăzute în contract sau în hotărâre.
+      Calculatorul lasă ambele capete ale intervalului libere tocmai pentru a putea reproduce ce
+      scrie în act, nu o convenție aleasă de noi.
+    </p>
+
+    <h2>Sursa cifrelor</h2>
+    <p>
+      {SURSA.institutie}, {SURSA.baza}, matricea {SURSA.matrice} — indicii lunari ai prețurilor de
+      consum față de luna precedentă. Seria acoperă {etichetaLuna(PRIMA_LUNA)} – {actualizat} și e
+      republicată integral pe <a href="/date/">pagina de date</a>, în CSV și JSON, ca să poată fi
+      verificată sau atașată. Reutilizare conform licenței {SURSA.licenta}.
+    </p>
+
+    <h2>Întrebări</h2>
+    <dl class="intrebari">
+      {intrebari.map((i) => (
+        <>
+          <dt>{i.q}</dt>
+          <dd>{i.a}</dd>
+        </>
+      ))}
+    </dl>
+  </div>
+</Baza>
+
+<style>
+  .sus { padding-block: var(--sp-8) var(--sp-12); }
+  h1 { margin-top: var(--sp-2); }
+  .introducere { font-size: 1.1rem; color: var(--cerneala-slaba); margin-bottom: var(--sp-8); }
+  .defalcare th { font-weight: 400; }
+  th[scope="row"] { font-weight: 400; text-align: left; font-size: 0.9rem; color: var(--cerneala); }
+  .atentie {
+    padding: var(--sp-3); border-left: 3px solid var(--acum);
+    background: var(--acum-fundal); font-size: 0.95rem;
+  }
+  .intrebari dt { font-weight: 600; margin-top: var(--sp-6); }
+  .intrebari dd { margin: var(--sp-2) 0 0; max-width: var(--lat-text); color: var(--cerneala-slaba); }
+</style>
