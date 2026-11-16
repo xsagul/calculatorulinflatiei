@@ -5,13 +5,13 @@
 //
 // Nu are voie sa creasca: e continut al altcuiva. Un camp, doua selectoare, un
 // rezultat si creditul.
-import { converteste, ULTIMA_LUNA, PRIMA_LUNA, etichetaLuna, numeLuna, aniDisponibili } from '@/lib/inflatie';
+import { converteste, ULTIMA_LUNA, PRIMA_LUNA, etichetaLuna, numeLuna, aniDisponibili, LANT_INDICI } from '@/lib/inflatie';
 import date from '@/data/ipc-lunar.json';
 
 const suma = 1000, deAn = 2020, deLuna = 1;
 const r = converteste(suma, { an: deAn, luna: deLuna }, ULTIMA_LUNA);
 const ani = aniDisponibili();
-const lant = (date.serie as { indice: number }[]).map((x) => x.indice);
+const lant = LANT_INDICI;
 const cfg = { lant, primaLuna: PRIMA_LUNA, ultimaLuna: ULTIMA_LUNA, factorDenominare: date.denominare.factor };
 const lei = (n: number) => n.toLocaleString('ro-RO', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 ---

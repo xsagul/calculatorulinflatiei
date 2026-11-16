@@ -1,34 +1,52 @@
-/* Identitatea vizuala.
+/* Identitatea vizuala, din 16 noiembrie 2026.
  *
- * Subiectul e eroziunea valorii in timp, deci pagina e construita in jurul unei
- * comparatii intre doua sume. De aici si paleta: doua culori semantice, una
- * pentru suma de atunci si una pentru ce a mai ramas din ea, pe un fundal de
- * hartie milimetrica. Restul e cerneala.
+ * Inrudita cu salariile.ro, nu copiata: aceeasi hartie calda, aceeasi cerneala
+ * stone, acelasi font (Inter) si aceeasi structura de calculator (formular in
+ * stanga, tabel de rezultat in dreapta, randul final inversat). Ce e propriu:
+ * accentul caramiziu din logo, in locul galbenului salariile.ro.
  *
- * Nu e paleta de la salariile.ro. Acolo tonul e cald si editorial; aici e un
- * instrument de masura, si arata ca atare.
+ * Accentul are un singur rol in interfata: cifra raspunsului. Daca apare pe
+ * butoane, linkuri si titluri, nu mai marcheaza nimic.
+ *
+ * Variabilele vechi (--hartie, --cerneala, --atunci, --acum) raman ca nume,
+ * fiindca paginile le folosesc in stilurile lor; doar valorile s-au schimbat.
  */
 
 :root {
   color-scheme: light;
 
-  /* Hartie usor rece, ca foaia de calcul, nu alb pur. */
-  --hartie: #f4f6f5;
-  --hartie-sus: #ffffff;
-  --linie: #d8dedc;
-  --linie-tare: #b3bcb9;
+  /* Hartie calda (ca la salariile.ro), nu gri. */
+  --hartie: #f8f5ef;        /* fundalul paginii */
+  --hartie-sus: #fffdf9;    /* carduri si tabele */
+  --antet: #efe9de;         /* capul de tabel, randurile secundare */
+  --linie: #e7e5e4;         /* bordura cardurilor */
+  --linie-tare: #d6d3d1;    /* campuri, tabele, separatoare */
+  --linie-hover: #a8a29e;
 
-  --cerneala: #16211f;
-  --cerneala-slaba: #5a6764;
-  --cerneala-stinsa: #7f8a87;
+  --cerneala: #1c1917;
+  --cerneala-slaba: #57534e;   /* cel mai deschis text permis pe hartie (7:1) */
+  --cerneala-stinsa: #57534e;
 
-  /* Doua culori semantice, folosite numai pentru cele doua sume. */
-  --atunci: #1d6f6a;      /* verde-petrol: suma de atunci, intacta */
-  --atunci-fundal: #e4efed;
-  --acum: #a8571c;        /* ocru ars: cat a mai ramas */
-  --acum-fundal: #f7ebdf;
+  /* Accentul marcii: caramiziu. #b4472f trece AA ca text pe hartie (4,9:1)
+     si ca fundal sub text alb (5,4:1); #c8553d e doar pentru logo. */
+  --accent: #b4472f;
+  --accent-logo: #c8553d;
+  --accent-fundal: #f6e6df;
 
-  --focus: #1d6f6a;
+  /* Nume vechi, pastrate pentru paginile care le folosesc. Fara culori
+     semantice: suma de atunci si cea de acum se deosebesc prin pozitie si
+     eticheta, nu prin culoare. */
+  --atunci: var(--cerneala);
+  --atunci-fundal: var(--antet);
+  --acum: var(--accent);
+  --acum-fundal: var(--accent-fundal);
+
+  --focus: #a8a29e;
+  --umbra: 0 1px 3px 0 rgba(28, 25, 23, 0.05);
+
+  /* Semnatura comuna cu salariile.ro: linia punctata sub antet si deasupra
+     subsolului. Numai acolo; in interior se desparte cu linie plina. */
+  --punctat: repeating-linear-gradient(to right, var(--linie-tare) 0 14px, transparent 14px 26px);
 
   --sp-1: 0.25rem;
   --sp-2: 0.5rem;
@@ -39,30 +57,13 @@
   --sp-12: 3rem;
   --sp-16: 4rem;
 
-  --lat-text: 68ch;
-  --lat-pagina: 72rem;
+  --lat-text: 65ch;
+  --lat-pagina: 60rem;
   --raza: 6px;
+  --raza-camp: 4px;
 
-  --font-titlu: "Instrument Serif", "Iowan Old Style", Georgia, serif;
-  --font-text: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-tema="light"]) {
-    color-scheme: dark;
-    --hartie: #101817;
-    --hartie-sus: #17201f;
-    --linie: #2a3634;
-    --linie-tare: #3d4a47;
-    --cerneala: #e8edec;
-    --cerneala-slaba: #a3aeab;
-    --cerneala-stinsa: #7f8a87;
-    --atunci: #6fc7bf;
-    --atunci-fundal: #16302e;
-    --acum: #e0a06a;
-    --acum-fundal: #33241a;
-    --focus: #6fc7bf;
-  }
+  --font-titlu: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-text: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -73,7 +74,12 @@ body {
   color: var(--cerneala);
   font-family: var(--font-text);
   font-size: 1rem;
-  line-height: 1.65;
+  line-height: 1.6;
+  letter-spacing: -0.01em;
+  font-feature-settings: "cv11", "ss01", "ss03";
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
 
@@ -82,26 +88,30 @@ body {
 
 h1, h2, h3 {
   font-family: var(--font-titlu);
-  font-weight: 400;
-  line-height: 1.15;
+  font-weight: 700;
+  line-height: 1.2;
   text-wrap: balance;
-  margin: 0 0 var(--sp-4);
-  letter-spacing: -0.01em;
+  margin: 0 0 var(--sp-3);
+  letter-spacing: -0.02em;
+  color: var(--cerneala);
 }
-h1 { font-size: clamp(2rem, 5vw, 3.1rem); }
-h2 { font-size: clamp(1.5rem, 3.2vw, 2.1rem); margin-top: var(--sp-12); }
-h3 { font-size: 1.2rem; font-family: var(--font-text); font-weight: 600; margin-top: var(--sp-8); }
+h1 { font-size: clamp(1.875rem, 4vw, 2.25rem); }
+h2 { font-size: clamp(1.25rem, 2.6vw, 1.5rem); margin-top: var(--sp-12); }
+h3 { font-size: 1.125rem; font-weight: 600; margin-top: var(--sp-8); }
 
 p, li { max-width: var(--lat-text); }
 p { margin: 0 0 var(--sp-4); }
 
-a { color: inherit; text-decoration-color: var(--linie-tare); text-underline-offset: 3px; }
+a { color: inherit; text-decoration-color: var(--linie-hover); text-underline-offset: 3px; }
 a:hover { text-decoration-color: currentColor; }
+
+strong, b { font-weight: 600; }
+em { font-style: normal; font-weight: 600; }
 
 :where(a, button, input, select, summary):focus-visible {
   outline: 2px solid var(--focus);
   outline-offset: 2px;
-  border-radius: 3px;
+  border-radius: var(--raza-camp);
 }
 
 .invelis { width: 100%; max-width: var(--lat-pagina); margin-inline: auto; padding-inline: var(--sp-4); }
@@ -109,20 +119,138 @@ a:hover { text-decoration-color: currentColor; }
 
 .eticheta {
   font-size: 0.75rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--cerneala-stinsa);
-  font-weight: 600;
+  color: var(--cerneala-slaba);
+  font-weight: 500;
 }
 
-.sursa { font-size: 0.85rem; color: var(--cerneala-slaba); }
+.sursa { font-size: 0.8125rem; color: var(--cerneala-slaba); }
 
-/* Tabelele de date depasesc latimea pe telefon; se deruleaza singure. */
-.derulabil { overflow-x: auto; }
+/* Cifra raspunsului — singurul loc din interfata unde apare accentul. */
+.marcaj {
+  background: var(--accent);
+  color: #fff;
+  border-radius: 3px;
+  padding: 0.125rem 0.5rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/* ── Carduri ─────────────────────────────────────────────── */
+.card {
+  background: var(--hartie-sus);
+  border: 1px solid var(--linie);
+  border-radius: var(--raza);
+  box-shadow: var(--umbra);
+  padding: var(--sp-4);
+}
+@media (min-width: 40rem) { .card { padding: var(--sp-6); } }
+.card-titlu {
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0 0 var(--sp-4);
+  padding-bottom: var(--sp-3);
+  border-bottom: 1px solid var(--linie-tare);
+}
+
+/* ── Campuri ─────────────────────────────────────────────── */
+.camp { display: flex; flex-direction: column; gap: 0.375rem; border: 0; padding: 0; margin: 0; min-width: 0; }
+.camp > label, .camp > legend { font-size: 0.875rem; font-weight: 500; color: var(--cerneala); padding: 0; }
+
+.grup {
+  display: flex;
+  border: 1px solid var(--linie-tare);
+  border-radius: var(--raza-camp);
+  background: var(--hartie-sus);
+  overflow: hidden;
+  transition: border-color 0.1s, box-shadow 0.1s;
+}
+.grup:focus-within { border-color: var(--linie-hover); box-shadow: 0 0 0 6px rgba(168, 162, 158, 0.18); }
+.grup input { border: 0; box-shadow: none !important; }
+.unitate {
+  display: flex; align-items: center; padding-inline: var(--sp-3);
+  border-left: 1px solid var(--linie-tare);
+  font-size: 0.75rem; font-weight: 500; color: var(--cerneala-slaba);
+  white-space: nowrap;
+}
+
+input:not([type="checkbox"]):not([type="radio"]), select {
+  font: inherit;
+  font-size: 1rem; /* 16px: sub atat, iOS mareste pagina la focus */
+  letter-spacing: normal;
+  padding: var(--sp-2) var(--sp-3);
+  min-height: 2.75rem;
+  width: 100%;
+  min-width: 0;
+  background: var(--hartie-sus);
+  color: var(--cerneala);
+  border: 1px solid var(--linie-tare);
+  border-radius: var(--raza-camp);
+  outline: none;
+  transition: border-color 0.1s, box-shadow 0.1s;
+}
+@media (min-width: 40rem) { input:not([type="checkbox"]):not([type="radio"]), select { font-size: 0.9375rem; } }
+input:not([type="checkbox"]):not([type="radio"]):focus, select:focus {
+  border-color: var(--linie-hover);
+  box-shadow: 0 0 0 6px rgba(168, 162, 158, 0.18);
+}
+select {
+  appearance: none;
+  padding-right: 2rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2357534e'%3E%3Cpath d='M5.23 7.21a.75.75 0 011.06.02L10 11.17l3.71-3.94a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.6rem center;
+  background-size: 1rem;
+}
+input[type="checkbox"] { accent-color: var(--cerneala); width: 1.125rem; height: 1.125rem; }
+
+/* Butonul primar: unul singur pe ecran, plin, cerneala. */
+.buton, form button[type="submit"] {
+  font: inherit;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  min-height: 2.75rem;
+  padding-inline: var(--sp-6);
+  border: 1px solid var(--cerneala);
+  border-radius: var(--raza-camp);
+  background: var(--cerneala);
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.1s;
+}
+.buton:hover, form button[type="submit"]:hover { background: #44403c; border-color: #44403c; }
+
+/* ── Tabele ──────────────────────────────────────────────── */
+.derulabil {
+  overflow-x: auto;
+  border: 1px solid var(--linie-tare);
+  border-radius: var(--raza);
+  background: var(--hartie-sus);
+}
 .derulabil table { min-width: 32rem; border-collapse: collapse; width: 100%; }
-th, td { text-align: left; padding: var(--sp-2) var(--sp-3); border-bottom: 1px solid var(--linie); }
-th { font-size: 0.8rem; color: var(--cerneala-slaba); font-weight: 600; }
+.derulabil caption {
+  caption-side: bottom; text-align: left;
+  padding: var(--sp-2) var(--sp-3);
+  border-top: 1px solid var(--linie-tare);
+  background: var(--hartie);
+}
+th, td { text-align: left; padding: 0.625rem var(--sp-3); border-bottom: 1px solid var(--linie-tare); font-size: 0.875rem; }
+tbody tr:last-child > * { border-bottom: 0; }
+thead th { background: var(--antet); font-size: 0.8125rem; color: var(--cerneala); font-weight: 500; }
 td.num, th.num { text-align: right; }
+tbody th { font-weight: 400; }
+
+/* Randul final se inverseaza — singurul fundal plin de rand din sistem. */
+tr.total > * { background: var(--cerneala); color: #fff; font-weight: 600; border-color: var(--cerneala); }
+tr.subtotal > * { background: var(--antet); font-weight: 600; }
+
+/* ── FAQ ─────────────────────────────────────────────────── */
+details > summary { cursor: pointer; }
+
+[hidden] { display: none !important; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }

@@ -3,6 +3,7 @@
 // Fiecare pagina isi da titlul, descrierea si calea; restul se compune aici, ca
 // sa nu existe doua locuri care spun cine suntem.
 import '@/styles/global.css';
+import Logo from '@/components/Logo.astro';
 import { SURSA, ULTIMA_LUNA, etichetaLuna, LUNI_DIN_COMUNICAT, SURSA_COMUNICAT } from '@/lib/inflatie';
 
 interface Props {
@@ -19,6 +20,48 @@ const SITE = 'https://calculatorulinflatiei.ro';
 // adresa livrata, nu catre una care redirecteaza.
 const canonical = `${SITE}${cale === '/' ? '/' : cale.replace(/\/$/, '') + '/'}`;
 const actualizat = etichetaLuna(ULTIMA_LUNA);
+
+// Meniul apare pe fiecare pagina. Rata inflatiei sta imediat dupa calculator:
+// e a doua intentie de cautare a subiectului.
+const MENIU = [
+  { href: '/', eticheta: 'Calculator inflație' },
+  { href: '/rata-inflatiei/', eticheta: 'Rata inflației' },
+  { href: '/salariu/', eticheta: 'Salariu net' },
+  { href: '/tva/', eticheta: 'TVA' },
+  { href: '/date/', eticheta: 'Date' },
+];
+const caleCurenta = Astro.url.pathname;
+const activ = (href: string) => (href === '/' ? caleCurenta === '/' : caleCurenta.startsWith(href));
+
+const GRUPURI = [
+  {
+    titlu: 'Calculatoare',
+    linkuri: [
+      { href: '/', eticheta: 'Calculator inflație' },
+      { href: '/actualizare-cu-rata-inflatiei/', eticheta: 'Actualizare cu rata inflației' },
+      { href: '/salariu/', eticheta: 'Calculator salariu net' },
+      { href: '/tva/', eticheta: 'Calculator TVA' },
+    ],
+  },
+  {
+    titlu: 'Informații',
+    linkuri: [
+      { href: '/rata-inflatiei/', eticheta: 'Rata inflației, an de an' },
+      { href: '/salariu-minim/', eticheta: 'Salariul minim' },
+      { href: '/date/', eticheta: 'Datele, descărcabile' },
+      { href: '/api/', eticheta: 'API public' },
+      { href: '/incorporeaza/', eticheta: 'Pune-l pe site-ul tău' },
+    ],
+  },
+  {
+    titlu: 'Despre',
+    linkuri: [
+      { href: '/contact/', eticheta: 'Contact' },
+      { href: '/politica-de-confidentialitate/', eticheta: 'Confidențialitate' },
+      { href: '/cookies/', eticheta: 'Cookie-uri' },
+    ],
+  },
+];
 
 const schemaSite = {
   '@context': 'https://schema.org',
@@ -57,7 +100,10 @@ const schemaSite = {
     <meta name="description" content={descriere} />
     <link rel="canonical" href={canonical} />
 
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#f8f5ef" />
 
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="ro_RO" />
@@ -71,7 +117,7 @@ const schemaSite = {
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600&family=Instrument+Serif&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
     />
 
     <script type="application/ld+json" set:html={JSON.stringify(schemaSite)} />
@@ -81,19 +127,14 @@ const schemaSite = {
     <a href="#continut" class="sari">Sari la conținut</a>
 
     <header class="antet">
-      <div class="invelis antet-rand">
+      <div class="antet-rand">
         <a href="/" class="marca" aria-label="Calculatorul Inflației, pagina principală">
-          <svg width="26" height="26" viewBox="0 0 26 26" aria-hidden="true" focusable="false">
-            <rect x="2" y="4" width="8" height="18" rx="1.5" fill="var(--atunci)" />
-            <rect x="15" y="13" width="8" height="9" rx="1.5" fill="var(--acum)" />
-          </svg>
-          <span>Calculatorul Inflației</span>
+          <Logo />
         </a>
-        <nav aria-label="Principal">
-          <a href="/salariu/">Salariu net</a>
-          <a href="/tva/">TVA</a>
-          <a href="/rata-inflatiei/">Rata inflației</a>
-          <a href="/date/">Date</a>
+        <nav aria-label="Principal" class="meniu">
+          {MENIU.map((m) => (
+            <a href={m.href} aria-current={activ(m.href) ? 'page' : undefined}>{m.eticheta}</a>
+          ))}
         </nav>
       </div>
     </header>
@@ -104,6 +145,25 @@ const schemaSite = {
 
     <footer class="subsol">
       <div class="invelis">
+        <div class="subsol-sus">
+          <a href="/" class="marca" aria-label="Calculatorul Inflației, pagina principală"><Logo /></a>
+          <p>
+            Cât valorează banii în România, pe indicele prețurilor de consum publicat de INS.
+            Calculele au caracter orientativ.
+          </p>
+        </div>
+
+        <div class="subsol-grupuri">
+          {GRUPURI.map((g) => (
+            <div>
+              <p class="grup-titlu">{g.titlu}</p>
+              <ul>
+                {g.linkuri.map((l) => <li><a href={l.href}>{l.eticheta}</a></li>)}
+              </ul>
+            </div>
+          ))}
+        </div>
+
         <p class="sursa">
           Sursa cifrelor: {SURSA.institutie}, {SURSA.baza}, matricea {SURSA.matrice}. Serie lunară
           din ianuarie 1991, actualizată până în {actualizat}. Reutilizare conform licenței {SURSA.licenta}.
@@ -120,18 +180,6 @@ const schemaSite = {
           Sumele dinainte de 1 iulie 2005 sunt în lei vechi (ROL). Conversia în lei noi aplică
           denominarea din Legea nr. 348/2004, adică împărțirea la 10.000.
         </p>
-        <nav class="subsol-linkuri" aria-label="Secundar">
-          <a href="/">Calculator inflație</a>
-          <a href="/salariu/">Calculator salariu net</a>
-          <a href="/salariu-minim/">Salariul minim</a>
-          <a href="/actualizare-cu-rata-inflatiei/">Actualizare cu rata inflației</a>
-          <a href="/tva/">Calculator TVA</a>
-          <a href="/incorporeaza/">Pune-l pe site-ul tău</a>
-          <a href="/api/">API public</a>
-          <a href="/date/">Datele, descărcabile</a>
-          <a href="/contact/">Contact</a>
-          <a href="/politica-de-confidentialitate/">Confidențialitate</a>
-        </nav>
       </div>
     </footer>
 
@@ -145,32 +193,87 @@ const schemaSite = {
       }
       .sari:focus { left: var(--sp-4); top: var(--sp-2); }
 
-      .antet { border-bottom: 1px solid var(--linie); background: var(--hartie-sus); }
+      /* Antetul: 64 px, linia punctata dedesubt, ca la salariile.ro. */
+      .antet {
+        background: var(--hartie) var(--punctat) left bottom / 100% 1px no-repeat;
+      }
       .antet-rand {
         display: flex;
         flex-wrap: wrap;
         align-items: center;
-        justify-content: space-between;
-        gap: var(--sp-3);
-        padding-block: var(--sp-3);
+        column-gap: var(--sp-6);
+        padding-inline: var(--sp-4);
+        min-height: 4rem;
       }
-      .marca {
+      @media (min-width: 40rem) { .antet-rand { padding-inline: var(--sp-6); } }
+      .marca { display: inline-flex; align-items: center; min-height: 2.75rem; margin-right: auto; text-decoration: none; }
+
+      /* Pe telefon, meniul coboara pe al doilea rand si se deruleaza lateral;
+         pe ecran lat sta in dreapta, ca la salariile.ro. */
+      .meniu {
+        display: flex;
+        gap: var(--sp-6);
+        width: 100%;
+        overflow-x: auto;
+        scrollbar-width: none;
+        font-size: 0.875rem;
+        font-weight: 500;
+      }
+      .meniu::-webkit-scrollbar { display: none; }
+      .meniu a {
         display: inline-flex;
         align-items: center;
-        gap: var(--sp-2);
-        font-family: var(--font-titlu);
-        font-size: 1.25rem;
+        min-height: 2.75rem;
+        white-space: nowrap;
         text-decoration: none;
+        color: var(--cerneala-slaba);
+        transition: color 0.1s;
       }
-      .antet nav { display: flex; gap: var(--sp-4); font-size: 0.9rem; }
+      .meniu a:hover, .meniu a[aria-current='page'] { color: var(--cerneala); }
+      @media (min-width: 52rem) { .meniu { width: auto; overflow: visible; } }
 
+      /* Subsolul: linia punctata deasupra, coloane de linkuri. */
       .subsol {
-        border-top: 1px solid var(--linie);
         margin-top: var(--sp-16);
-        padding-block: var(--sp-8);
-        background: var(--hartie-sus);
+        padding-block: var(--sp-8) var(--sp-6);
+        background: var(--hartie) var(--punctat) left top / 100% 1px no-repeat;
+        color: var(--cerneala-slaba);
       }
-      .subsol-linkuri { display: flex; flex-wrap: wrap; gap: var(--sp-4); font-size: 0.85rem; margin-top: var(--sp-4); }
+      @media (min-width: 40rem) { .subsol { padding-top: var(--sp-12); } }
+      .subsol-sus {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--sp-4);
+        padding-bottom: var(--sp-8);
+        margin-bottom: var(--sp-8);
+        border-bottom: 1px solid var(--linie);
+      }
+      .subsol-sus p { font-size: 0.875rem; max-width: 26rem; margin: 0; }
+      @media (min-width: 40rem) {
+        .subsol-sus { flex-direction: row; align-items: center; justify-content: space-between; }
+      }
+      .subsol-grupuri {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: var(--sp-8);
+        padding-bottom: var(--sp-8);
+        margin-bottom: var(--sp-6);
+        border-bottom: 1px solid var(--linie);
+      }
+      @media (min-width: 40rem) { .subsol-grupuri { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+      .grup-titlu { font-size: 0.75rem; font-weight: 500; margin: 0 0 var(--sp-2); }
+      .subsol ul { list-style: none; margin: 0; padding: 0; }
+      .subsol li a {
+        display: flex;
+        align-items: center;
+        min-height: 2.75rem;
+        font-size: 0.875rem;
+        text-decoration: none;
+        color: var(--cerneala-slaba);
+      }
+      .subsol li a:hover { color: var(--cerneala); }
+      .subsol .sursa { font-size: 0.75rem; margin-bottom: var(--sp-2); }
     </style>
   </body>
 </html>

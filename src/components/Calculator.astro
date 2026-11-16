@@ -1,5 +1,5 @@
 ---
-// Singura insula de interactivitate din site.
+// Calculatorul principal.
 //
 // Pagina se randeaza pe server cu un rezultat real, nu cu un formular gol: cine
 // ajunge aici dintr-o cautare vede un raspuns inainte sa atinga ceva, iar Google
@@ -10,13 +10,12 @@
 // 2010 in 2015" nu se putea pune. Intervalul liber e ce ofera concurenta si ce
 // cere subiectul.
 //
-// UN SINGUR RASPUNS MARE. Din aceeasi pereche de date ies doua cifre — cat
-// valoreaza azi banii de atunci, si cat iti trebuie azi ca sa cumperi cat
-// cumparai atunci. Sunt inverse una alteia. A le pune pe amandoua in prim-plan
-// pune cititorul sa aleaga intre doua numere mari inainte sa fi inteles unul.
-// A doua sta dedesubt, intr-o propozitie.
+// UN SINGUR RASPUNS MARE. Din 16 noiembrie 2026 rezultatul e un tabel, ca la
+// salariile.ro: celelalte citiri (de cate ori au crescut preturile, puterea
+// ramasa, media anuala) stau pe randuri mici, iar raspunsul — cat valoreaza suma
+// in luna finala — e randul inversat de jos, cu cifra marcata.
 import {
-  converteste, ULTIMA_LUNA, PRIMA_LUNA, etichetaLuna, numeLuna, aniDisponibili,
+  converteste, ULTIMA_LUNA, PRIMA_LUNA, etichetaLuna, numeLuna, aniDisponibili, LANT_INDICI,
 } from '@/lib/inflatie';
 import date from '@/data/ipc-lunar.json';
 
@@ -40,160 +39,151 @@ const la = { an: panaLaAn, luna: panaLaLuna };
 const r = converteste(suma, de, la);
 const ani = aniDisponibili();
 
-const lant = (date.serie as { an: number; luna: number; indice: number }[]).map((x) => x.indice);
+const lant = LANT_INDICI;
 const config = { lant, primaLuna: PRIMA_LUNA, ultimaLuna: ULTIMA_LUNA, factorDenominare: date.denominare.factor };
 
 const lei = (n: number, z = 2) =>
   n.toLocaleString('ro-RO', { minimumFractionDigits: z, maximumFractionDigits: z });
+const crescut = r.factorPreturi >= 1;
 ---
 
-<section class="calc" aria-labelledby="calc-titlu" data-config={JSON.stringify(config)}>
-  <h2 id="calc-titlu">Cât valorează banii, dintr-o lună în alta</h2>
+<section class="calc" aria-label="Calculator inflație" data-config={JSON.stringify(config)}>
+  <div class="card">
+    <h2 class="card-titlu">Suma și perioada</h2>
 
-  <form class="form" id="calc-form">
-    <div class="camp suma">
-      <label for="suma">Suma</label>
-      <div class="grup">
-        <input id="suma" type="number" inputmode="decimal" min="0" step="any" value={suma} required />
-        <span class="unitate" id="u-intrare">{r.monedaDe}</span>
+    <form class="form" id="calc-form">
+      <div class="camp">
+        <label for="suma">Suma</label>
+        <div class="grup">
+          <input id="suma" type="number" inputmode="decimal" min="0" step="any" value={suma} required />
+          <span class="unitate" id="u-intrare">{r.monedaDe}</span>
+        </div>
       </div>
-    </div>
 
-    <fieldset class="camp interval">
-      <legend>Din</legend>
-      <select id="luna-de" aria-label="Luna de început">
-        {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => (
-          <option value={m} selected={m === deLaLuna}>{numeLuna(m)}</option>
-        ))}
-      </select>
-      <select id="an-de" aria-label="Anul de început">
-        {ani.map((a) => <option value={a} selected={a === deLaAn}>{a}</option>)}
-      </select>
-    </fieldset>
+      <fieldset class="camp">
+        <legend>Din</legend>
+        <div class="luna-an">
+          <select id="luna-de" aria-label="Luna de început">
+            {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => (
+              <option value={m} selected={m === deLaLuna}>{numeLuna(m)}</option>
+            ))}
+          </select>
+          <select id="an-de" aria-label="Anul de început">
+            {ani.map((a) => <option value={a} selected={a === deLaAn}>{a}</option>)}
+          </select>
+        </div>
+      </fieldset>
 
-    <fieldset class="camp interval">
-      <legend>Până în</legend>
-      <select id="luna-la" aria-label="Luna finală">
-        {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => (
-          <option value={m} selected={m === panaLaLuna}>{numeLuna(m)}</option>
-        ))}
-      </select>
-      <select id="an-la" aria-label="Anul final">
-        {ani.map((a) => <option value={a} selected={a === panaLaAn}>{a}</option>)}
-      </select>
-    </fieldset>
+      <fieldset class="camp">
+        <legend>Până în</legend>
+        <div class="luna-an">
+          <select id="luna-la" aria-label="Luna finală">
+            {Array.from({ length: 12 }, (_, i) => i + 1).map((m) => (
+              <option value={m} selected={m === panaLaLuna}>{numeLuna(m)}</option>
+            ))}
+          </select>
+          <select id="an-la" aria-label="Anul final">
+            {ani.map((a) => <option value={a} selected={a === panaLaAn}>{a}</option>)}
+          </select>
+        </div>
+      </fieldset>
 
-    <button type="submit">Calculează</button>
-  </form>
+      <button type="submit">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
+          <rect x="2.5" y="1.5" width="11" height="13" rx="1.5" stroke="currentColor" stroke-width="1.3" />
+          <path d="M5 4.5h6M5 8h1.5M9.5 8H11M5 11h1.5M9.5 11H11" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" />
+        </svg>
+        Calculează
+      </button>
+    </form>
+  </div>
 
-  <p class="eroare" id="eroare" hidden role="alert"></p>
+  <div class="card">
+    <h2 class="card-titlu">Rezultat</h2>
 
-  <output class="rezultat" for="suma luna-de an-de luna-la an-la">
-    <div class="col col-atunci">
-      <span class="eticheta" id="e-atunci">{etichetaLuna(de)}</span>
-      <strong class="cifra cifre" id="r-atunci">{lei(suma)} {r.monedaDe}</strong>
-    </div>
-    <div class="sageata" aria-hidden="true">
-      <svg width="34" height="14" viewBox="0 0 34 14" fill="none">
-        <path d="M0 7h30M24 1l6 6-6 6" stroke="var(--linie-tare)" stroke-width="1.5" />
-      </svg>
-    </div>
-    <div class="col col-acum">
-      <span class="eticheta" id="e-acum">{etichetaLuna(la)}</span>
-      <strong class="cifra cifre" id="r-acum">{lei(r.echivalent)} {r.monedaLa}</strong>
-    </div>
-  </output>
+    <p class="eroare" id="eroare" hidden role="alert"></p>
 
-  <p class="propozitie" id="r-propozitie">
-    Prețurile au crescut de <strong class="cifre">{lei(r.factorPreturi, 2)}</strong> ori, adică o
-    inflație cumulată de <strong class="cifre">{lei(r.inflatieCumulata, 1)}%</strong>.
-  </p>
+    <output class="rezultat" for="suma luna-de an-de luna-la an-la">
+      <table>
+        <thead>
+          <tr><th scope="col">Indicator</th><th scope="col" class="num">Valoare</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">Suma, în <span id="e-atunci">{etichetaLuna(de)}</span></th>
+            <td class="num cifre" id="r-atunci">{lei(suma)} {r.monedaDe}</td>
+          </tr>
+          <tr>
+            <th scope="row" id="e-factor">{crescut ? 'Prețurile au crescut de' : 'Prețurile au scăzut cu'}</th>
+            <td class="num cifre" id="r-factor">
+              {crescut ? `${lei(r.factorPreturi, 2)} ori` : `${lei((1 - r.factorPreturi) * 100, 1)}%`}
+            </td>
+          </tr>
+          <tr>
+            <th scope="row">Inflație cumulată</th>
+            <td class="num cifre" id="r-cumulata">{lei(r.inflatieCumulata, 1)}%</td>
+          </tr>
+          <tr>
+            <th scope="row">Putere de cumpărare rămasă</th>
+            <td class="num cifre" id="d-putere">{lei(r.putereRamasa, 1)}%</td>
+          </tr>
+          <tr>
+            <th scope="row">Rata medie anuală</th>
+            <td class="num cifre" id="d-medie">
+              {r.rataMedieAnuala !== null ? `${lei(r.rataMedieAnuala, 1)}%` : 'sub un an'}
+            </td>
+          </tr>
+          <tr class="total">
+            <th scope="row">Valorează în <span id="e-acum">{etichetaLuna(la)}</span></th>
+            <td class="num cifre"><span class="marcaj" id="r-acum">{lei(r.echivalent)} {r.monedaLa}</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </output>
 
-  <details class="detalii">
-    <summary>Încă trei feluri de a citi aceeași diferență</summary>
-    <dl id="r-detalii">
-      <dt>Cât îți trebuie acum</dt>
-      <dd class="cifre" id="d-necesar">{lei(r.echivalent)} {r.monedaLa}</dd>
-      <dt>Cât a mai rămas din puterea de cumpărare</dt>
-      <dd class="cifre" id="d-putere">{lei(r.putereRamasa, 1)}%</dd>
-      <dt>Rata medie anuală, pe tot intervalul</dt>
-      <dd class="cifre" id="d-medie">
-        {r.rataMedieAnuala !== null ? `${lei(r.rataMedieAnuala, 1)}%` : 'sub un an, nu se anualizează'}
-      </dd>
-    </dl>
-  </details>
-
-  <p class="denominare" id="r-denominare" hidden={!r.denominareAplicata}>
-    Suma e în lei vechi. Conversia aplică denominarea din 1 iulie 2005, prin care 10.000 ROL au
-    devenit 1 RON.
-  </p>
+    <p class="denominare" id="r-denominare" hidden={!r.denominareAplicata}>
+      Suma e în lei vechi. Conversia aplică denominarea din 1 iulie 2005, prin care 10.000 ROL au
+      devenit 1 RON.
+    </p>
+    <p class="nota">
+      Pe indicele prețurilor de consum publicat de INS, lună de lună, până în {etichetaLuna(ULTIMA_LUNA)}.
+    </p>
+  </div>
 </section>
 
 <style>
-  .calc { background: var(--hartie-sus); border: 1px solid var(--linie); border-radius: var(--raza); padding: var(--sp-6); }
-  h2 { margin-top: 0; font-size: clamp(1.3rem, 2.6vw, 1.7rem); }
+  .calc { display: grid; gap: var(--sp-4); align-items: start; }
+  @media (min-width: 48rem) { .calc { grid-template-columns: minmax(0, 2fr) minmax(0, 3fr); gap: var(--sp-6); } }
 
-  .form { display: grid; gap: var(--sp-3); margin-bottom: var(--sp-6); align-items: end; }
-  @media (min-width: 52rem) { .form { grid-template-columns: 1fr 1.4fr 1.4fr auto; } }
+  /* Titlurile cardurilor sunt h2 pentru structura paginii, dar arata ca etichete. */
+  .card-titlu { margin-top: 0; }
 
-  .camp { display: flex; flex-direction: column; gap: var(--sp-1); border: 0; padding: 0; margin: 0; min-width: 0; }
-  label, legend { font-size: 0.8rem; font-weight: 600; color: var(--cerneala-slaba); padding: 0; }
-  .interval { display: grid; grid-template-columns: 1.3fr 1fr; gap: var(--sp-2); }
-  .interval legend { grid-column: 1 / -1; }
+  .form { display: flex; flex-direction: column; gap: var(--sp-4); }
+  .luna-an { display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: var(--sp-2); }
 
-  .grup { display: flex; border: 1px solid var(--linie-tare); border-radius: var(--raza); overflow: hidden; }
-  .grup input { border: 0; }
-  .unitate {
-    display: flex; align-items: center; padding-inline: var(--sp-3);
-    background: var(--hartie); border-left: 1px solid var(--linie);
-    font-size: 0.8rem; font-weight: 600; color: var(--cerneala-slaba);
+  .form button { display: inline-flex; align-items: center; justify-content: center; gap: var(--sp-2); width: 100%; margin-top: var(--sp-2); }
+
+  .rezultat { display: block; border: 1px solid var(--linie-tare); border-radius: var(--raza-camp); overflow: hidden; }
+  .rezultat table { width: 100%; border-collapse: collapse; }
+  .rezultat th, .rezultat td { font-size: 0.875rem; }
+  .rezultat tbody th { font-weight: 400; }
+  .rezultat td { white-space: nowrap; }
+  .rezultat thead th:first-child, .rezultat tbody th { border-right: 1px solid var(--linie-tare); }
+  .rezultat tr.total > * { border-right-color: #44403c; }
+  .rezultat tr.total th { font-weight: 600; }
+
+  .eroare, .denominare {
+    margin: 0 0 var(--sp-4);
+    padding: var(--sp-3);
+    border: 1px solid var(--linie-hover);
+    border-left: 3px solid var(--cerneala);
+    border-radius: var(--raza-camp);
+    background: var(--hartie);
+    font-size: 0.875rem;
+    font-weight: 500;
   }
-
-  input, select {
-    font: inherit; font-size: 1rem; /* 16px: sub atat, iOS mareste pagina la focus */
-    padding: var(--sp-2) var(--sp-3); min-height: 2.75rem; width: 100%; min-width: 0;
-    background: var(--hartie-sus); color: var(--cerneala);
-    border: 1px solid var(--linie-tare); border-radius: var(--raza);
-  }
-  @media (min-width: 40rem) { input, select { font-size: 0.95rem; } }
-
-  button {
-    font: inherit; font-weight: 600; min-height: 2.75rem; padding-inline: var(--sp-6);
-    border: 0; border-radius: var(--raza); background: var(--cerneala); color: var(--hartie-sus); cursor: pointer;
-  }
-  button:hover { opacity: 0.9; }
-
-  .eroare {
-    margin: 0 0 var(--sp-4); padding: var(--sp-3);
-    border-left: 3px solid var(--acum); background: var(--acum-fundal); font-size: 0.9rem;
-  }
-
-  .rezultat { display: grid; gap: var(--sp-3); align-items: center; }
-  @media (min-width: 34rem) { .rezultat { grid-template-columns: 1fr auto 1fr; } }
-
-  .col { display: flex; flex-direction: column; gap: var(--sp-1); padding: var(--sp-4); border-radius: var(--raza); }
-  .col-atunci { background: var(--atunci-fundal); }
-  .col-acum { background: var(--acum-fundal); }
-  .col-atunci .cifra { color: var(--atunci); }
-  .col-acum .cifra { color: var(--acum); }
-  .cifra { font-size: clamp(1.5rem, 4.5vw, 2.1rem); font-family: var(--font-titlu); font-weight: 400; line-height: 1.1; }
-
-  .sageata { display: flex; justify-content: center; }
-  @media (max-width: 33.99rem) { .sageata svg { transform: rotate(90deg); } }
-
-  .propozitie { margin: var(--sp-4) 0 0; }
-
-  .detalii { margin-top: var(--sp-4); border-top: 1px solid var(--linie); padding-top: var(--sp-3); }
-  summary { cursor: pointer; font-size: 0.9rem; color: var(--cerneala-slaba); }
-  .detalii dl { display: grid; grid-template-columns: 1fr auto; gap: var(--sp-2) var(--sp-4); margin: var(--sp-3) 0 0; font-size: 0.9rem; }
-  .detalii dt { color: var(--cerneala-slaba); }
-  .detalii dd { margin: 0; text-align: right; font-weight: 600; }
-
-  .denominare {
-    margin: var(--sp-4) 0 0; padding: var(--sp-3);
-    border-left: 3px solid var(--acum); background: var(--acum-fundal); font-size: 0.9rem;
-  }
-  [hidden] { display: none !important; }
+  .denominare { margin: var(--sp-4) 0 0; font-weight: 400; }
+  .nota { margin: var(--sp-3) 0 0; font-size: 0.75rem; color: var(--cerneala-slaba); }
 </style>
 
 <script>
@@ -261,18 +251,15 @@ const lei = (n: number, z = 2) =>
       scrie('r-atunci', `${lei(suma)} ${monedaDe}`);
       scrie('r-acum', `${lei(echivalent)} ${monedaLa}`);
 
-      const prop = el('r-propozitie')!;
-      prop.innerHTML = f >= 1
-        ? `Prețurile au crescut de <strong class="cifre">${lei(f, 2)}</strong> ori, adică o inflație cumulată de <strong class="cifre">${lei((f - 1) * 100, 1)}%</strong>.`
-        : `Prețurile au scăzut cu <strong class="cifre">${lei((1 - f) * 100, 1)}%</strong> pe acest interval.`;
+      scrie('e-factor', f >= 1 ? 'Prețurile au crescut de' : 'Prețurile au scăzut cu');
+      scrie('r-factor', f >= 1 ? `${lei(f, 2)} ori` : `${lei((1 - f) * 100, 1)}%`);
+      scrie('r-cumulata', `${lei((f - 1) * 100, 1)}%`);
 
       const ani = Math.abs(la - de) / 12;
-      scrie('d-necesar', `${lei(echivalent)} ${monedaLa}`);
       scrie('d-putere', `${lei(100 / f, 1)}%`);
-      scrie('d-medie', ani >= 1 ? `${lei((Math.pow(f, 1 / ani) - 1) * 100, 1)}%` : 'sub un an, nu se anualizează');
+      scrie('d-medie', ani >= 1 ? `${lei((Math.pow(f, 1 / ani) - 1) * 100, 1)}%` : 'sub un an');
 
-      const nota = el('r-denominare')!;
-      (nota as HTMLElement).hidden = unitate === 1;
+      (el('r-denominare') as HTMLElement).hidden = unitate === 1;
     }
 
     form.addEventListener('submit', calculeaza);

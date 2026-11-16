@@ -23,7 +23,7 @@ const lei = (n: number, z = 2) =>
   n.toLocaleString('ro-RO', { minimumFractionDigits: z, maximumFractionDigits: z });
 ---
 
-<section class="ct" aria-labelledby="ct-titlu">
+<section class="ct card" aria-labelledby="ct-titlu">
   {nivel === 'h1' ? <h1 id="ct-titlu">{titlu}</h1> : <h2 id="ct-titlu">{titlu}</h2>}
 
   <form class="form" id="ct-form">
@@ -68,7 +68,7 @@ const lei = (n: number, z = 2) =>
     </div>
     <div class="col col-total">
       <span class="eticheta">Cu TVA</span>
-      <strong class="cifra cifre" id="ct-cu">{lei(r.cuTva)}</strong>
+      <strong class="cifra cifre"><span class="marcaj" id="ct-cu">{lei(r.cuTva)}</span></strong>
     </div>
   </output>
 
@@ -79,48 +79,23 @@ const lei = (n: number, z = 2) =>
 </section>
 
 <style>
-  .ct { background: var(--hartie-sus); border: 1px solid var(--linie); border-radius: var(--raza); padding: var(--sp-6); }
-  .ct > :global(h1), .ct > :global(h2) { margin-top: 0; font-size: clamp(1.3rem, 2.6vw, 1.7rem); }
+  .ct > :global(h1), .ct > :global(h2) { margin-top: 0; }
+  .ct > :global(h2) { font-size: 1.125rem; padding-bottom: var(--sp-3); margin-bottom: var(--sp-4); border-bottom: 1px solid var(--linie-tare); }
 
   .form { display: grid; gap: var(--sp-3); align-items: end; }
   @media (min-width: 52rem) { .form { grid-template-columns: 1fr 1.4fr 1fr auto; } }
 
-  .camp { display: flex; flex-direction: column; gap: var(--sp-1); min-width: 0; }
-  label { font-size: 0.8rem; font-weight: 600; color: var(--cerneala-slaba); }
-
-  .grup { display: flex; border: 1px solid var(--linie-tare); border-radius: var(--raza); overflow: hidden; }
-  .grup input { border: 0; }
-  .unitate {
-    display: flex; align-items: center; padding-inline: var(--sp-3);
-    background: var(--hartie); border-left: 1px solid var(--linie);
-    font-size: 0.8rem; font-weight: 600; color: var(--cerneala-slaba);
-  }
-
-  input, select {
-    font: inherit; font-size: 1rem;
-    padding: var(--sp-2) var(--sp-3); min-height: 2.75rem; width: 100%; min-width: 0;
-    background: var(--hartie-sus); color: var(--cerneala);
-    border: 1px solid var(--linie-tare); border-radius: var(--raza);
-  }
-  @media (min-width: 40rem) { input, select { font-size: 0.95rem; } }
-
-  button {
-    font: inherit; font-weight: 600; min-height: 2.75rem; padding-inline: var(--sp-6);
-    border: 0; border-radius: var(--raza); background: var(--cerneala); color: var(--hartie-sus); cursor: pointer;
-  }
-  button:hover { opacity: 0.9; }
-
   .rezultat { display: grid; gap: var(--sp-3); margin-top: var(--sp-6); }
   @media (min-width: 40rem) { .rezultat { grid-template-columns: repeat(3, 1fr); } }
-  .col { display: flex; flex-direction: column; gap: var(--sp-1); padding: var(--sp-4); border-radius: var(--raza); background: var(--hartie); }
-  .col-tva { background: var(--acum-fundal); }
-  .col-tva .cifra { color: var(--acum); }
-  .col-total { background: var(--atunci-fundal); }
-  .col-total .cifra { color: var(--atunci); }
+  .col {
+    display: flex; flex-direction: column; gap: var(--sp-2); padding: var(--sp-4);
+    border: 1px solid var(--linie-tare); border-radius: var(--raza-camp); background: var(--hartie);
+  }
+  .col-total { background: var(--hartie-sus); border-color: var(--cerneala); }
   .eticheta { font-size: 0.75rem; }
-  .cifra { font-size: clamp(1.3rem, 3.6vw, 1.8rem); font-family: var(--font-titlu); font-weight: 400; line-height: 1.1; }
-
-  .sursa { margin-top: var(--sp-4); }
+  .cifra { font-size: clamp(1.375rem, 4vw, 1.75rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+  .cifra .marcaj { padding: 0.125rem 0.5rem; }
+  #ct-nota { margin: var(--sp-4) 0 0; }
 </style>
 
 <script>

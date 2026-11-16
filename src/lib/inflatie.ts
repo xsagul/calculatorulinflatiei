@@ -46,6 +46,12 @@ function serieUnificata(): RandSerie[] {
 }
 
 const SERIE = serieUnificata();
+
+/** Lantul de indici pe care il primeste browserul: aceeasi serie unificata ca
+ *  pe server. Pana pe 16 noiembrie 2026 calculatorul din browser lua numai
+ *  seria TEMPO si pierdea lunile din comunicat — 7,54 pe pagina, 7,50 dupa
+ *  primul click. */
+export const LANT_INDICI: number[] = SERIE.map((r) => r.indice);
 const DENOMINARE = date.denominare;
 
 /** Lunile care vin din comunicat, nu din TEMPO. Paginile o pot spune cititorului. */

@@ -26,7 +26,7 @@ const lei = (n: number, z = 0) =>
   n.toLocaleString('ro-RO', { minimumFractionDigits: z, maximumFractionDigits: z });
 ---
 
-<section class="cs" aria-labelledby="cs-titlu">
+<section class="cs card" aria-labelledby="cs-titlu">
   {nivel === 'h1' ? <h1 id="cs-titlu">{titlu}</h1> : <h2 id="cs-titlu">{titlu}</h2>}
 
   <form class="form" id="cs-form">
@@ -99,7 +99,7 @@ const lei = (n: number, z = 0) =>
     </div>
     <div class="col col-net">
       <span class="eticheta">Net, în mână</span>
-      <strong class="cifra cifre" id="cs-net">{lei(r.net)} lei</strong>
+      <strong class="cifra cifre"><span class="marcaj" id="cs-net">{lei(r.net)} lei</span></strong>
     </div>
   </output>
 
@@ -124,7 +124,7 @@ const lei = (n: number, z = 0) =>
         <tr><th scope="row">Impozit pe venit (10%)</th><td class="num cifre">−{lei(r.impozit)}</td></tr>
         <tr class="total"><th scope="row">Net, în mână</th><td class="num cifre">{lei(r.net)}</td></tr>
         <tr><th scope="row">CAM, plătit de angajator (2,25%)</th><td class="num cifre">{lei(r.cam)}</td></tr>
-        <tr class="total"><th scope="row">Cost total angajator</th><td class="num cifre">{lei(r.costAngajator)}</td></tr>
+        <tr class="subtotal"><th scope="row">Cost total angajator</th><td class="num cifre">{lei(r.costAngajator)}</td></tr>
       </tbody>
     </table>
   </div>
@@ -136,63 +136,42 @@ const lei = (n: number, z = 0) =>
 </section>
 
 <style>
-  .cs { background: var(--hartie-sus); border: 1px solid var(--linie); border-radius: var(--raza); padding: var(--sp-6); }
-  .cs > :global(h1), .cs > :global(h2) { margin-top: 0; font-size: clamp(1.3rem, 2.6vw, 1.7rem); }
+  .cs > :global(h1), .cs > :global(h2) { margin-top: 0; }
+  .cs > :global(h2) { font-size: 1.125rem; padding-bottom: var(--sp-3); margin-bottom: var(--sp-4); border-bottom: 1px solid var(--linie-tare); }
 
   .form { display: grid; gap: var(--sp-3); align-items: end; }
   @media (min-width: 52rem) { .form { grid-template-columns: 1fr 1.2fr 1.2fr auto; } }
 
-  .camp { display: flex; flex-direction: column; gap: var(--sp-1); border: 0; padding: 0; margin: 0; min-width: 0; }
-  label { font-size: 0.8rem; font-weight: 600; color: var(--cerneala-slaba); }
-
-  .grup { display: flex; border: 1px solid var(--linie-tare); border-radius: var(--raza); overflow: hidden; }
-  .grup input { border: 0; }
-  .unitate {
-    display: flex; align-items: center; padding-inline: var(--sp-3);
-    background: var(--hartie); border-left: 1px solid var(--linie);
-    font-size: 0.8rem; font-weight: 600; color: var(--cerneala-slaba);
+  .optiuni { margin-top: var(--sp-4); }
+  .optiuni summary {
+    display: flex; align-items: center; justify-content: center; min-height: 2.5rem;
+    border: 1px dashed var(--linie-hover); border-radius: var(--raza-camp);
+    font-size: 0.8125rem; font-weight: 500; color: var(--cerneala);
+    list-style: none;
   }
-
-  input, select {
-    font: inherit; font-size: 1rem; /* 16px: sub atat, iOS mareste pagina la focus */
-    padding: var(--sp-2) var(--sp-3); min-height: 2.75rem; width: 100%; min-width: 0;
-    background: var(--hartie-sus); color: var(--cerneala);
-    border: 1px solid var(--linie-tare); border-radius: var(--raza);
-  }
-  @media (min-width: 40rem) { input, select { font-size: 0.95rem; } }
-
-  button {
-    font: inherit; font-weight: 600; min-height: 2.75rem; padding-inline: var(--sp-6);
-    border: 0; border-radius: var(--raza); background: var(--cerneala); color: var(--hartie-sus); cursor: pointer;
-  }
-  button:hover { opacity: 0.9; }
-
-  .optiuni { margin-top: var(--sp-3); }
-  .optiuni summary { cursor: pointer; font-size: 0.9rem; color: var(--cerneala-slaba); }
-  .optiuni-grila { display: grid; gap: var(--sp-3); margin-top: var(--sp-3); }
+  .optiuni summary::-webkit-details-marker { display: none; }
+  .optiuni summary::before { content: '▾'; margin-right: var(--sp-2); }
+  .optiuni[open] summary::before { content: '▴'; }
+  .optiuni-grila { display: grid; gap: var(--sp-3); margin-top: var(--sp-4); }
   @media (min-width: 40rem) { .optiuni-grila { grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 60rem) { .optiuni-grila { grid-template-columns: repeat(4, 1fr); } }
-  .bifa { flex-direction: row; align-items: center; gap: var(--sp-2); display: flex; font-size: 0.9rem; align-self: end; min-height: 2.75rem; }
-  .bifa input { width: auto; min-height: 0; }
+  .bifa { display: flex; flex-direction: row; align-items: center; gap: var(--sp-2); font-size: 0.875rem; align-self: end; min-height: 2.75rem; }
 
-  .rezultat { display: grid; gap: var(--sp-3); align-items: center; margin-top: var(--sp-6); }
-  @media (min-width: 34rem) { .rezultat { grid-template-columns: 1fr auto 1fr; } }
-  .col { display: flex; flex-direction: column; gap: var(--sp-1); padding: var(--sp-4); border-radius: var(--raza); }
-  .col-brut { background: var(--atunci-fundal); }
-  .col-net { background: var(--acum-fundal); }
-  .col-brut .cifra { color: var(--atunci); }
-  .col-net .cifra { color: var(--acum); }
-  .eticheta { font-size: 0.8rem; font-weight: 600; color: var(--cerneala-slaba); }
-  .cifra { font-size: clamp(1.5rem, 4.5vw, 2.1rem); font-family: var(--font-titlu); font-weight: 400; line-height: 1.1; }
+  .rezultat { display: grid; gap: var(--sp-3); align-items: stretch; margin-top: var(--sp-6); }
+  @media (min-width: 34rem) { .rezultat { grid-template-columns: 1fr auto 1fr; align-items: center; } }
+  .col {
+    display: flex; flex-direction: column; gap: var(--sp-2); padding: var(--sp-4);
+    border: 1px solid var(--linie-tare); border-radius: var(--raza-camp); background: var(--hartie);
+  }
+  .col .eticheta { font-size: 0.75rem; }
+  .cifra { font-size: clamp(1.375rem, 4vw, 1.75rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
+  .cifra .marcaj { padding: 0.125rem 0.5rem; }
   .sageata { display: flex; justify-content: center; }
   @media (max-width: 33.99rem) { .sageata svg { transform: rotate(90deg); } }
 
-  .propozitie { margin: var(--sp-4) 0 var(--sp-6); }
+  .propozitie { margin: var(--sp-4) 0 var(--sp-6); font-size: 0.9375rem; }
 
-  .defalcare th { font-weight: 400; text-align: left; }
-  .defalcare .total th, .defalcare .total td { font-weight: 600; border-top: 1px solid var(--linie-tare); }
   .defalcare .ascuns { display: none; }
-  caption { caption-side: bottom; text-align: left; padding-top: var(--sp-2); }
 </style>
 
 <script>
@@ -243,9 +222,9 @@ const lei = (n: number, z = 0) =>
         rand('Impozit pe venit (10%)', `−${lei(r.impozit)}`),
         rand('Net, în mână', lei(r.net), 'total'),
         r.tichete ? rand('Tichete de masă', lei(r.tichete)) : '',
-        r.tichete ? rand('Total primit', lei(r.totalPrimit), 'total') : '',
+        r.tichete ? rand('Total primit', lei(r.totalPrimit), 'subtotal') : '',
         rand('CAM, plătit de angajator (2,25%)', lei(r.cam)),
-        rand('Cost total angajator', lei(r.costAngajator), 'total'),
+        rand('Cost total angajator', lei(r.costAngajator), 'subtotal'),
       ].join('');
     }
 
