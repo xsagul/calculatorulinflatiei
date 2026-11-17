@@ -7,7 +7,7 @@
     "url": "http://statistici.insse.ro:8077/tempo-ins/matrix/IPC102A",
     "licenta": "OGL-ROU-1.0"
   },
-  "descarcatLa": "2026-09-10T03:23:54.147Z",
+  "descarcatLa": "2026-11-17T14:41:59.984Z",
   "unitate": "procente fata de luna precedenta (100 = preturi neschimbate)",
   "denominare": {
     "dataLegala": "2005-07-01",
@@ -2146,6 +2146,21 @@
         "an": 2026,
         "luna": 6,
         "indice": 100.06
+      },
+      {
+        "an": 2026,
+        "luna": 7,
+        "indice": 100.58
+      },
+      {
+        "an": 2026,
+        "luna": 8,
+        "indice": 100.22
+      },
+      {
+        "an": 2026,
+        "luna": 9,
+        "indice": 100.77
       }
     ],
     "Marfuri alimentare": [
@@ -4278,6 +4293,21 @@
         "an": 2026,
         "luna": 6,
         "indice": 99.56
+      },
+      {
+        "an": 2026,
+        "luna": 7,
+        "indice": 99.71
+      },
+      {
+        "an": 2026,
+        "luna": 8,
+        "indice": 99.29
+      },
+      {
+        "an": 2026,
+        "luna": 9,
+        "indice": 100.17
       }
     ],
     "Marfuri nealimentare": [
@@ -6410,6 +6440,21 @@
         "an": 2026,
         "luna": 6,
         "indice": 100.19
+      },
+      {
+        "an": 2026,
+        "luna": 7,
+        "indice": 100.98
+      },
+      {
+        "an": 2026,
+        "luna": 8,
+        "indice": 100.61
+      },
+      {
+        "an": 2026,
+        "luna": 9,
+        "indice": 101.19
       }
     ],
     "Servicii": [
@@ -8542,6 +8587,21 @@
         "an": 2026,
         "luna": 6,
         "indice": 100.49
+      },
+      {
+        "an": 2026,
+        "luna": 7,
+        "indice": 101.01
+      },
+      {
+        "an": 2026,
+        "luna": 8,
+        "indice": 100.71
+      },
+      {
+        "an": 2026,
+        "luna": 9,
+        "indice": 100.71
       }
     ]
   },
@@ -8552,10 +8612,10 @@
   },
   "ultimaLuna": {
     "an": 2026,
-    "luna": 6,
-    "indice": 100.06
+    "luna": 9,
+    "indice": 100.77
   },
-  "luni": 426,
+  "luni": 429,
   "serie": [
     {
       "an": 1991,
@@ -10686,6 +10746,21 @@
       "an": 2026,
       "luna": 6,
       "indice": 100.06
+    },
+    {
+      "an": 2026,
+      "luna": 7,
+      "indice": 100.58
+    },
+    {
+      "an": 2026,
+      "luna": 8,
+      "indice": 100.22
+    },
+    {
+      "an": 2026,
+      "luna": 9,
+      "indice": 100.77
     }
   ]
 }

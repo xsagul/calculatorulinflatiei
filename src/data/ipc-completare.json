@@ -18,6 +18,17 @@
         "toleranta": 0.1
       },
       "cititLa": "2026-09-10"
+    },
+    {
+      "an": 2026,
+      "luna": 10,
+      "indice": 100.82,
+      "verificare": {
+        "rataAnuala": 6.94,
+        "deLaInceputulAnului": 6.27,
+        "toleranta": 0.1
+      },
+      "cititLa": "2026-11-17"
     }
   ]
 }
